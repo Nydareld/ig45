@@ -1,3 +1,20 @@
+agenda:
+    resource: "@AgendaBundle/Resources/config/routing.yml"
+    prefix:   /
+
+
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+backoffice_base:
+    resource: "@BackofficeBaseBundle/Resources/config/routing.yml"
+    prefix:   /
+
+base:
+    resource: "@BaseBundle/Resources/config/routing.yml"
+    prefix:   /
+
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
