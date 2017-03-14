@@ -96,6 +96,19 @@ class Evenement
 
      private $id_user_correspondant;
 
+     /**
+      * @var id_status
+      *
+      * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Status")
+      * @ORM\JoinTable(name="fos_evt_status",
+      *      joinColumns={@ORM\JoinColumn(name="evt_id", referencedColumnName="id")},
+      *      inverseJoinColumns={@ORM\JoinColumn(name="status_id", referencedColumnName="id")}
+      * )
+      */
+
+      private $id_status;
+
+
 
     /**
      * Get id
