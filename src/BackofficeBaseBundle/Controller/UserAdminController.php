@@ -8,7 +8,8 @@ class UserAdminController extends Controller
 {
     public function userListAction()
     {
-        return $this->render('BackofficeBaseBundle:User:index.html.twig');
+        $users = $this->get('fos_user.user_manager')->findUsers();
+        return $this->render('BackofficeBaseBundle:User:userList.html.twig',array('users' => $users ));
     }
 
 }
