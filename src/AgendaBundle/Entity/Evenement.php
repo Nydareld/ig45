@@ -84,6 +84,18 @@ class Evenement
      */
     private $typeIntervention;
 
+    /**
+     * @var id_user_correspondant
+     *
+     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Correspondant")
+     * @ORM\JoinTable(name="fos_user_corresponsant",
+     *      joinColumns={@ORM\JoinColumn(name="evt_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="corresp_id", referencedColumnName="id")}
+     * )
+     */
+
+     private $id_user_correspondant;
+
 
     /**
      * Get id
