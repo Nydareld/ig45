@@ -88,7 +88,7 @@ class Evenement
      * @var id_user_correspondant
      *
      * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Correspondant")
-     * @ORM\JoinTable(name="fos_user_corresponsant",
+     * @ORM\JoinTable(name="user_corresponsant",
      *      joinColumns={@ORM\JoinColumn(name="evt_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="corresp_id", referencedColumnName="id")}
      * )
@@ -100,14 +100,13 @@ class Evenement
       * @var id_status
       *
       * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Status")
-      * @ORM\JoinTable(name="fos_evt_status",
+      * @ORM\JoinTable(name="evt_status",
       *      joinColumns={@ORM\JoinColumn(name="evt_id", referencedColumnName="id")},
       *      inverseJoinColumns={@ORM\JoinColumn(name="status_id", referencedColumnName="id")}
       * )
       */
 
       private $id_status;
-
 
 
     /**
