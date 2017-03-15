@@ -85,19 +85,32 @@ class Evenement
     private $typeIntervention;
 
     /**
-     * @var id_user_correspondant
+     * @var correspondant
      *
-     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Correspondant")
-     * @ORM\JoinTable(name="user_corresponsant",
-     *      joinColumns={@ORM\JoinColumn(name="evt_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="corresp_id", referencedColumnName="id")}
-     * )
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="evenements")
      */
-
-     private $id_user_correspondant;
+     private $correspondant;
 
      /**
-      * @var id_status
+      * @var string
+      * @ORM\Column(name="adresse", type="string", length=255)
+      */
+     private $adresse;
+
+     /**
+      * @var integer
+      * @ORM\Column(name="zipcode", type="integer")
+      */
+     private $zipcode;
+
+     /**
+      * @var string
+      * @ORM\Column(name="ville", type="string", length=255)
+      */
+     private $ville;
+
+     /**
+      * @var status
       *
       * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Status")
       * @ORM\JoinTable(name="evt_status",
@@ -106,8 +119,25 @@ class Evenement
       * )
       */
 
-      private $id_status;
+      private $status;
 
+      /**
+      * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", inversedBy="intervention")
+      * @ORM\JoinTable(name="intervention",
+      *      joinColumns={@ORM\JoinColumn(name="evt_id", referencedColumnName="id")},
+      *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
+      * )
+      */
+      private $intervenants;
+
+      /**
+      * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", inversedBy="observation")
+      * @ORM\JoinTable(name="observation",
+      *      joinColumns={@ORM\JoinColumn(name="evt_id", referencedColumnName="id")},
+      *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
+      * )
+      */
+      private $observateurs;
 
     /**
      * Get id
@@ -333,5 +363,218 @@ class Evenement
     public function getTypeIntervention()
     {
         return $this->typeIntervention;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->status = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->intervenants = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->observateurs = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set adresse.
+     *
+     * @param string $adresse
+     *
+     * @return Evenement
+     */
+    public function setAdresse($adresse)
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * Get adresse.
+     *
+     * @return string
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
+
+    /**
+     * Set zipcode.
+     *
+     * @param int $zipcode
+     *
+     * @return Evenement
+     */
+    public function setZipcode($zipcode)
+    {
+        $this->zipcode = $zipcode;
+
+        return $this;
+    }
+
+    /**
+     * Get zipcode.
+     *
+     * @return int
+     */
+    public function getZipcode()
+    {
+        return $this->zipcode;
+    }
+
+    /**
+     * Set ville.
+     *
+     * @param string $ville
+     *
+     * @return Evenement
+     */
+    public function setVille($ville)
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    /**
+     * Get ville.
+     *
+     * @return string
+     */
+    public function getVille()
+    {
+        return $this->ville;
+    }
+
+    /**
+     * Set correspondant.
+     *
+     * @param \UserBundle\Entity\User|null $correspondant
+     *
+     * @return Evenement
+     */
+    public function setCorrespondant(\UserBundle\Entity\User $correspondant = null)
+    {
+        $this->correspondant = $correspondant;
+
+        return $this;
+    }
+
+    /**
+     * Get correspondant.
+     *
+     * @return \UserBundle\Entity\User|null
+     */
+    public function getCorrespondant()
+    {
+        return $this->correspondant;
+    }
+
+    /**
+     * Add status.
+     *
+     * @param \AgendaBundle\Entity\Status $status
+     *
+     * @return Evenement
+     */
+    public function addStatus(\AgendaBundle\Entity\Status $status)
+    {
+        $this->status[] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Remove status.
+     *
+     * @param \AgendaBundle\Entity\Status $status
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeStatus(\AgendaBundle\Entity\Status $status)
+    {
+        return $this->status->removeElement($status);
+    }
+
+    /**
+     * Get status.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Add intervenant.
+     *
+     * @param \UserBundle\Entity\User $intervenant
+     *
+     * @return Evenement
+     */
+    public function addIntervenant(\UserBundle\Entity\User $intervenant)
+    {
+        $this->intervenants[] = $intervenant;
+
+        return $this;
+    }
+
+    /**
+     * Remove intervenant.
+     *
+     * @param \UserBundle\Entity\User $intervenant
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeIntervenant(\UserBundle\Entity\User $intervenant)
+    {
+        return $this->intervenants->removeElement($intervenant);
+    }
+
+    /**
+     * Get intervenants.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIntervenants()
+    {
+        return $this->intervenants;
+    }
+
+    /**
+     * Add observateur.
+     *
+     * @param \UserBundle\Entity\User $observateur
+     *
+     * @return Evenement
+     */
+    public function addObservateur(\UserBundle\Entity\User $observateur)
+    {
+        $this->observateurs[] = $observateur;
+
+        return $this;
+    }
+
+    /**
+     * Remove observateur.
+     *
+     * @param \UserBundle\Entity\User $observateur
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeObservateur(\UserBundle\Entity\User $observateur)
+    {
+        return $this->observateurs->removeElement($observateur);
+    }
+
+    /**
+     * Get observateurs.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getObservateurs()
+    {
+        return $this->observateurs;
     }
 }
