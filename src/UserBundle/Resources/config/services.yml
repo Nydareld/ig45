@@ -1,4 +1,6 @@
+
 services:
-#    user.example:
-#        class: UserBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    userbundle.usernamecreator:
+        class: UserBundle\EventListener\UsernameCreator
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
