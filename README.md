@@ -1,6 +1,6 @@
 # IG45 #
 ## Installation ##
-### Prérequis ###
+### Pré-requis ###
 
 + Apache
 + PHP 7  
@@ -22,7 +22,7 @@ Mettre à jour la base de données
     php bin/console doctrine:database:create
     php bin/console doctrine:schema:update --force
 
-Si vous êtes sur apache le serveur devrait etre accessible de façon classique, sinon vous pouvez utiliser le serveur PHP interne :
+Si vous êtes sur Apache, le serveur devrait être accessible de façon classique, sinon vous pouvez utiliser le serveur PHP interne :
 
     php bin/console server:run
 
@@ -30,7 +30,7 @@ Si vous êtes sur apache le serveur devrait etre accessible de façon classique,
 
 Il est conseillé de fork le dépot [principal](https://gitlab.com/Francisco/IG45.git)
 
-Pour integrer son code à la master du projet, créer des pull resquest, pour notifier par mail, ajouter théo et francois en reviewers.
+Pour intégrer son code à la master du projet, créer des pull resquest, pour notifier par mail, ajouter Théo et François en reviewers.
 
 Exemple type de bonne pratique :
 
@@ -39,5 +39,5 @@ Exemple type de bonne pratique :
 + Coder votre feature
 + Commiter
 + Push sa feature sur son fork
-+ Créez une merge request depuis sa branche vers le master de François (avec Théo et François en reviewers )
++ Créer une merge request depuis sa branche vers le master de François (avec Théo et François en reviewers )
 + Une fois sa branche mergée, il reste plus qu'à pull le master
