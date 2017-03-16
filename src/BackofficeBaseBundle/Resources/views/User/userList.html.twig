@@ -64,15 +64,15 @@
                 <tbody>
                     {% for user in users %}
                     <tr>
-                        <th>{{user.username}}</th>
-                        <th>{{user.nom}}</th>
-                        <th>{{user.prenom}}</th>
-                        <th>
+                        <td>{{user.username}}</td>
+                        <td>{{user.nom}}</td>
+                        <td>{{user.prenom}}</td>
+                        <td>
                             {% for group in user.groups %}
                             {{group.name}}
                             {% endfor %}
-                        </th>
-                        <th>{{user.nom}}</th>
+                        </td>
+                        <td>{{user.nom}}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -93,11 +93,11 @@
                 <h4 class="modal-title">Ajout d'utilisateur</h4>
             </div>
             <div class="modal-body">
-                <p>One fine body…</p>
+                {{ form(form, {'attr': {'id': 'form_user_add'}} ) }}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Annuler</button>
-                <button type="button" class="btn btn-primary">Valider</button>
+                <button type="submit" form="form_user_add" class="btn btn-primary">Valider</button>
             </div>
         </div>
         <!-- /.modal-content -->
