@@ -1,88 +1,60 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>
-        {% block title %}IG45 Login{% endblock %}
-    </title>
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    {% block styles %}
-    <!-- Bootstrap 3.3.6 -->
-    <link rel="stylesheet" href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- AdminLTE -->
-    <link rel="stylesheet" href="{{ asset('bower_components/AdminLTE/dist/css/AdminLTE.min.css') }}">
+{% extends "UserBundle::Layout/UserFormLayout.html.twig" %}
+
+{% block content %}
+
+<div class="login-box-body">
+    <p class="login-box-msg">Connectez vous pour continuer</p>
+
+
+    <form action="{{ path("fos_user_security_check") }}" method="post" role="form">
+
+        {% if error %}
+        <div class="alert alert-danger" role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        <div class="form-group has-feedback">
+            <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" placeholder="prenom.nom" required="required" >
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+            <input type="password" class="form-control" placeholder="Password" id="password" name="_password" required="required" />
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="checkbox icheck">
+                    <label for="remember_me">
+                        <input type="checkbox" id="remember_me" name="_remember_me" value="on" /> Se souvenir de moi
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-xs-4">
+                <input type="submit" class="btn btn-primary btn-block btn-flat" id="_submit" name="_submit" value="Connexion" />
+            </div>
+
+        </div>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+    </form>
+
+    <!-- /.social-auth-links -->
+
+    <a href="{{ path('fos_user_resetting_request') }}">Mot de passe oublié</a><br>
+
+</div>
+
+{% endblock %}
+
+{% block styles %}
+    {{ parent() }}
     <!-- Icheck -->
     <link rel="stylesheet" href="{{ asset('bower_components/AdminLTE/plugins/iCheck/square/blue.css') }}">
+{% endblock %}
 
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('bower_components/AdminLTE/dist/css/skins/skin-blue.min.css') }}">
-    {% endblock %}
+{% block scripts %}
+    {{ parent() }}
 
-</head>
-<body class="hold-transition login-page">
-
-    <div class="login-box">
-        <div class="login-logo">
-            <span class="logo-lg"><b>Inter</b>Générations<b>45</b></span>
-        </div>
-
-        <div class="login-box-body">
-            <p class="login-box-msg">Connectez vous pour continuer</p>
-
-
-            <form action="{{ path("fos_user_security_check") }}" method="post" role="form">
-
-                {% if error %}
-                <div class="alert alert-danger" role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                {% endif %}
-
-                <div class="form-group has-feedback">
-                    <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" placeholder="prenom.nom" required="required" >
-                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                </div>
-                <div class="form-group has-feedback">
-                    <input type="password" class="form-control" placeholder="Password" id="password" name="_password" required="required" />
-                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                </div>
-                <div class="row">
-                    <div class="col-xs-8">
-                        <div class="checkbox icheck">
-                            <label for="remember_me">
-                                <input type="checkbox" id="remember_me" name="_remember_me" value="on" /> Se souvenir de moi
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-4">
-                        <input type="submit" class="btn btn-primary btn-block btn-flat" id="_submit" name="_submit" value="Connexion" />
-                    </div>
-
-                </div>
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-            </form>
-
-            <!-- /.social-auth-links -->
-
-            <a href="#">Mot de passe oublié</a><br>
-
-        </div>
-        <!-- /.login-box-body -->
-    </div>
-
-    {% block scripts %}
-
-    <!-- jquery -->
-    <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
-
-    <!-- Bootstrap -->
-    <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-
-    <!-- AdminLTE -->
+    <!-- icheck -->
     <script src="{{ asset('bower_components/AdminLTE/plugins/iCheck/icheck.min.js') }}"></script>
 
     <script>
@@ -94,9 +66,4 @@
         });
       });
     </script>
-
-
-    {% endblock %}
-
-</body>
-</html>
+{% endblock %}
