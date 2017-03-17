@@ -17,9 +17,9 @@ class GroupType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name',TextType::class,array('label'=>'Nom'))
-            ->add('description',TextareaType::class,array('label'=>'Description'))
-            ->add('save', SubmitType::class, array('label' => 'Valider'));
+            ->add('name',TextType::class,array('label'=>'form.group_name', 'translation_domain' => 'FOSUserBundle'))
+            ->add('description',TextareaType::class,array('label'=>'form.group_description', 'translation_domain' => 'UserBundle'))
+            ->add('save', SubmitType::class, array('label' => 'form.validate', 'translation_domain' => 'UserBundle'));
     }
 
     /**
