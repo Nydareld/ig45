@@ -48,9 +48,18 @@ class User extends BaseUser
     protected $observation;
 
     /**
-     * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\Evenement", mappedBy="evenements")
+     * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\Lieux", mappedBy="correspondants")
      */
-    protected $evenements;
+    protected $correspondants_lieux;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Lieux", mappedBy="adjoints")
+     * @ORM\JoinTable(name="fos_user_user_adjoints",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="lieux_id", referencedColumnName="id")}
+     * )
+     */
+    protected $adjoint_lieux;
 
     public function __construct()
     {

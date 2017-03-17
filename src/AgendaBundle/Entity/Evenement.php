@@ -92,22 +92,11 @@ class Evenement
      private $correspondant;
 
      /**
-      * @var string
-      * @ORM\Column(name="adresse", type="string", length=255)
+      * @var Lieux
+      *
+      * @ORM\OneToOne(targetEntity="AgendaBundle\Entity\Lieux")
       */
-     private $adresse;
-
-     /**
-      * @var integer
-      * @ORM\Column(name="zipcode", type="integer")
-      */
-     private $zipcode;
-
-     /**
-      * @var string
-      * @ORM\Column(name="ville", type="string", length=255)
-      */
-     private $ville;
+     private $lieu;
 
      /**
       * @var status
@@ -131,6 +120,13 @@ class Evenement
       private $intervenants;
 
       /**
+       * @var boolean
+       *
+       * @ORM\Column(name="have_observateur", type="boolean")
+       */
+      private $have_observateur;
+
+      /**
       * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", inversedBy="observation")
       * @ORM\JoinTable(name="observation",
       *      joinColumns={@ORM\JoinColumn(name="evt_id", referencedColumnName="id")},
@@ -138,6 +134,13 @@ class Evenement
       * )
       */
       private $observateurs;
+
+      /**
+      * @var Type_intervention
+      *
+      * @ORM\ManyToOne(targetEntity="AgendaBundle\Entity\Type_intervention", inversedBy="evenements")
+      */
+      private $type;
 
     /**
      * Get id
