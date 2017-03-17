@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Group extends BaseGroup
 {
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -22,4 +23,43 @@ class Group extends BaseGroup
      * @ORM\Column(type="text")
      */
     protected $description;
+
+    /**
+     * Set the value of Id
+     *
+     * @param mixed id
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Description
+     *
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set the value of Description
+     *
+     * @param mixed description
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
 }
