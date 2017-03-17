@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="col-md-8 col-sm-8 col-xs-8">
+<div class="col-md-8 col-sm-6 col-xs-12">
 
     <div class="box">
         <div class="box-header">
@@ -44,4 +44,15 @@
         <!-- /.box-body -->
     </div>
 </div>
+<div class="col-md-4 col-sm-6 col-xs-12">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Nouveau groupe</h3>
+        </div>
+        <div class="box-body">
+            {{ form(form) }}
+        </div>
+    </div>
+</div>
+
 {% endblock %}
