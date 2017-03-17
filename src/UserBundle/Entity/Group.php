@@ -25,17 +25,13 @@ class Group extends BaseGroup
     protected $description;
 
     /**
-     * Set the value of Id
+     * Get the value of Id
      *
-     * @param mixed id
-     *
-     * @return self
+     * @return mixed
      */
-    public function setId($id)
+    public function getId()
     {
-        $this->id = $id;
-
-        return $this;
+        return $this->id;
     }
 
     /**
