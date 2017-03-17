@@ -1,0 +1,47 @@
+{% extends "BackofficeBaseBundle::Layout/AdminLayout.html.twig" %}
+
+{% block navActive %}groupList{% endblock %}
+
+{% block contentHeader %}
+<h1>
+    Administration des utilisateurs
+</h1>
+{% endblock %}
+
+{% block content %}
+<div class="col-md-8 col-sm-8 col-xs-8">
+
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Liste des Groupes</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <table class="table table-bordered table-striped dataTable">
+                <thead>
+                    <tr>
+                        <th>Nom du groupe</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Nom du groupe</th>
+                        <th>Description</th>
+                    </tr>
+                </tfoot>
+
+                <tbody>
+                    {% for group in groups %}
+                    <tr>
+                        <td>{{group.name}}</td>
+                        <td>{{group.description}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <!-- /.box-body -->
+    </div>
+</div>
+{% endblock %}
