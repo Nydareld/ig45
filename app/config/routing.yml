@@ -12,19 +12,11 @@ agenda:
 
 user:
     resource: "@UserBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /user
 
 backoffice_base:
     resource: "@BackofficeBaseBundle/Resources/config/routing.yml"
     prefix:   /admin
-
-base:
-    resource: "@BaseBundle/Resources/config/routing.yml"
-    prefix:   /
-
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
