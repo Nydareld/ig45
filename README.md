@@ -1,27 +1,43 @@
 # IG45 #
 ## Installation ##
-### Prérequis ###
+### Pré-requis ###
 
-+ apache
-+ php 7  
++ Apache
++ PHP 7  
 + mysql
-+ composer ( téléchargez le [ici](https://getcomposer.org/download/) )
++ Composer ( Téléchargez le [ici](https://getcomposer.org/download/) )
 
 ### Procedure ###
 
-Clone le projet avec
+Cloner le projet
 
     git pull https://gitlab.com/Francisco/IG45
 
-Installez les dépendances avec
+Installer les dépendances
 
     composer install
 
-Mettez a jours la base de données avec
+Mettre à jour la base de données
 
     php bin/console doctrine:database:create
     php bin/console doctrine:schema:update --force
 
-si vous etes sur apache le serveur devrait etre accessible de facon classique, sinon vous pouvez utiliser le serveur php interne avec :
+Si vous êtes sur Apache, le serveur devrait être accessible de façon classique, sinon vous pouvez utiliser le serveur PHP interne :
 
     php bin/console server:run
+
+## Procédure de développement ##
+
+Il est conseillé de fork le dépot [principal](https://gitlab.com/Francisco/IG45.git)
+
+Pour intégrer son code à la master du projet, créer des pull resquest, pour notifier par mail, ajouter Théo et François en reviewers.
+
+Exemple type de bonne pratique :
+
++ S'attribuer une feature
++ Créer une branche
++ Coder votre feature
++ Commiter
++ Push sa feature sur son fork
++ Créer une merge request depuis sa branche vers le master de François (avec Théo et François en reviewers )
++ Une fois sa branche mergée, il reste plus qu'à pull le master

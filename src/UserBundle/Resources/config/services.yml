@@ -1,0 +1,6 @@
+
+services:
+    userbundle.usernamecreator:
+        class: UserBundle\EventListener\UsernameCreator
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
