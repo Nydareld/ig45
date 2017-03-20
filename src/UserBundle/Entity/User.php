@@ -128,13 +128,13 @@ class User extends BaseUser
     /**
      * Add intervention.
      *
-     * @param \AgendaBundle\Entity\Evenement $intervention
+     * @param \AgendaBundle\Entity\Evenement $interventions
      *
      * @return User
      */
     public function addIntervention(\AgendaBundle\Entity\Evenement $intervention)
     {
-        $this->intervention[] = $intervention;
+        $this->interventions[] = $intervention;
 
         return $this;
     }
@@ -142,13 +142,13 @@ class User extends BaseUser
     /**
      * Remove intervention.
      *
-     * @param \AgendaBundle\Entity\Evenement $intervention
+     * @param \AgendaBundle\Entity\Evenement $interventions
      *
      * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
     public function removeIntervention(\AgendaBundle\Entity\Evenement $intervention)
     {
-        return $this->intervention->removeElement($intervention);
+        return $this->interventions->removeElement($intervention);
     }
 
     /**
@@ -156,21 +156,21 @@ class User extends BaseUser
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getIntervention()
+    public function getInterventions()
     {
-        return $this->intervention;
+        return $this->interventions;
     }
 
     /**
      * Add observation.
      *
-     * @param \AgendaBundle\Entity\Evenement $observation
+     * @param \AgendaBundle\Entity\Evenement $observations
      *
      * @return User
      */
     public function addObservation(\AgendaBundle\Entity\Evenement $observation)
     {
-        $this->observation[] = $observation;
+        $this->observations[] = $observation;
 
         return $this;
     }
@@ -178,13 +178,13 @@ class User extends BaseUser
     /**
      * Remove observation.
      *
-     * @param \AgendaBundle\Entity\Evenement $observation
+     * @param \AgendaBundle\Entity\Evenement $observations
      *
      * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
     public function removeObservation(\AgendaBundle\Entity\Evenement $observation)
     {
-        return $this->observation->removeElement($observation);
+        return $this->observations->removeElement($observation);
     }
 
     /**
@@ -192,9 +192,9 @@ class User extends BaseUser
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getObservation()
+    public function getObservations()
     {
-        return $this->observation;
+        return $this->observations;
     }
 
     /**
@@ -232,4 +232,5 @@ class User extends BaseUser
     {
         return $this->evenements;
     }
+
 }
