@@ -66,42 +66,35 @@ class Evenement
     /**
      * @var string
      *
-     * @ORM\Column(name="niveau_intervention", type="text")
+     * @ORM\Column(name="niveau_intervention", type="string", length=255)
      */
     private $niveauIntervention;
 
     /**
-     * @var string
+     * @var Type_intervention
      *
-     * @ORM\Column(name="type_intervention", type="text")
+     * @ORM\ManyToOne(targetEntity="AgendaBundle\Entity\Type_intervention", cascade={"persist"})
      */
     private $typeIntervention;
-
-    /**
-     * @var correspondant
-     *
-     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="evenements")
-     */
-     private $correspondant;
 
      /**
       * @var Lieux
       *
-      * @ORM\OneToOne(targetEntity="AgendaBundle\Entity\Lieux")
+      * @ORM\ManyToOne(targetEntity="AgendaBundle\Entity\Lieux", inversedBy="evenements")
       */
      private $lieu;
 
      /**
       * @var status
       *
-      * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Status")
+      * @ORM\ManyToOne(targetEntity="AgendaBundle\Entity\Status")
       * @ORM\JoinTable(name="evt_status",
       *      joinColumns={@ORM\JoinColumn(name="evt_id", referencedColumnName="id")},
       *      inverseJoinColumns={@ORM\JoinColumn(name="status_id", referencedColumnName="id")}
       * )
       */
 
-      private $status;
+      private $statut;
 
       /**
       * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", inversedBy="intervention")
@@ -111,13 +104,6 @@ class Evenement
       * )
       */
       private $intervenants;
-
-      /**
-       * @var boolean
-       *
-       * @ORM\Column(name="have_observateur", type="boolean")
-       */
-      private $have_observateur;
 
       /**
       * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", inversedBy="observation")
@@ -133,96 +119,21 @@ class Evenement
       *
       * @ORM\ManyToOne(targetEntity="AgendaBundle\Entity\Type_intervention", inversedBy="evenements")
       */
-      private $type;
 
-      /**
-       * @var string
-       *
-       * @ORM\Column(name="finale_intervention", type="text")
-       */
-      private $finale_intervention;
 
-      /**
-       * @var int
-       *
-       * @ORM\Column(name="nb_groupes", type="integer")
-       */
-      private $nbGroupes;
-
-      /**
-       * @var int
-       *
-       * @ORM\Column(name="nb_salles", type="integer")
-       */
-      private $nbSalles;
-
-      /**
-       * @var string
-       *
-       * @ORM\Column(name="eleves_volontaires", type="text")
-       */
-      private $eleves_volontaires;
-
-      /**
-       * @var boolean
-       *
-       * @ORM\Column(name="documentation_attendue", type="boolean")
-       */
-      private $documentation_attendue;
-
-      /**
-       * @var string
-       *
-       * @ORM\Column(name="particularite", type="text")
-       */
-      private $particularite;
-
-      /**
-       * @var string
-       *
-       * @ORM\Column(name="complement_info", type="text")
-       */
-      private $complement_info;
-
-      /**
-       * @var string
-       *
-       * @ORM\Column(name="enseignant_ref", type="text")
-       */
-      private $enseignant_ref;
-
-      /**
-       * @var string
-       *
-       * @ORM\Column(name="courriel_enseignant_ref", type="text")
-       */
-      private $courriel_enseignant_ref;
-
-      /**
-       * @var int
-       *
-       * @ORM\Column(name="tel_enseignant_ref", type="integer")
-       */
-      private $tel_enseignant_ref;
-
-      /**
-       * @var int
-       *
-       * @ORM\Column(name="nb_eleves", type="integer")
-       */
-      private $nbEleves;
-
-      /**
-       * @var string
-       *
-       * @ORM\Column(name="niveau_classe", type="text")
-       */
-      private $niveau_classe;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->intervenants = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->observateurs = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -342,7 +253,7 @@ class Evenement
     /**
      * Get nbParticipants
      *
-     * @return int
+     * @return integer
      */
     public function getNbParticipants()
     {
@@ -366,7 +277,7 @@ class Evenement
     /**
      * Get nbObservateurs
      *
-     * @return int
+     * @return integer
      */
     public function getNbObservateurs()
     {
@@ -420,150 +331,57 @@ class Evenement
     {
         return $this->typeIntervention;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->status = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->intervenants = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->observateurs = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
-     * Set adresse.
+     * Set lieu
      *
-     * @param string $adresse
+     * @param \AgendaBundle\Entity\Lieux $lieu
      *
      * @return Evenement
      */
-    public function setAdresse($adresse)
+    public function setLieu(\AgendaBundle\Entity\Lieux $lieu = null)
     {
-        $this->adresse = $adresse;
+        $this->lieu = $lieu;
 
         return $this;
     }
 
     /**
-     * Get adresse.
+     * Get lieu
      *
-     * @return string
+     * @return \AgendaBundle\Entity\Lieux
      */
-    public function getAdresse()
+    public function getLieu()
     {
-        return $this->adresse;
+        return $this->lieu;
     }
 
     /**
-     * Set zipcode.
+     * Set statut
      *
-     * @param int $zipcode
+     * @param \AgendaBundle\Entity\Status $statut
      *
      * @return Evenement
      */
-    public function setZipcode($zipcode)
+    public function setStatut(\AgendaBundle\Entity\Status $statut = null)
     {
-        $this->zipcode = $zipcode;
+        $this->statut = $statut;
 
         return $this;
     }
 
     /**
-     * Get zipcode.
+     * Get statut
      *
-     * @return int
+     * @return \AgendaBundle\Entity\Status
      */
-    public function getZipcode()
+    public function getStatut()
     {
-        return $this->zipcode;
+        return $this->statut;
     }
 
     /**
-     * Set ville.
-     *
-     * @param string $ville
-     *
-     * @return Evenement
-     */
-    public function setVille($ville)
-    {
-        $this->ville = $ville;
-
-        return $this;
-    }
-
-    /**
-     * Get ville.
-     *
-     * @return string
-     */
-    public function getVille()
-    {
-        return $this->ville;
-    }
-
-    /**
-     * Set correspondant.
-     *
-     * @param \UserBundle\Entity\User|null $correspondant
-     *
-     * @return Evenement
-     */
-    public function setCorrespondant(\UserBundle\Entity\User $correspondant = null)
-    {
-        $this->correspondant = $correspondant;
-
-        return $this;
-    }
-
-    /**
-     * Get correspondant.
-     *
-     * @return \UserBundle\Entity\User|null
-     */
-    public function getCorrespondant()
-    {
-        return $this->correspondant;
-    }
-
-    /**
-     * Add status.
-     *
-     * @param \AgendaBundle\Entity\Status $status
-     *
-     * @return Evenement
-     */
-    public function addStatus(\AgendaBundle\Entity\Status $status)
-    {
-        $this->status[] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Remove status.
-     *
-     * @param \AgendaBundle\Entity\Status $status
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removeStatus(\AgendaBundle\Entity\Status $status)
-    {
-        return $this->status->removeElement($status);
-    }
-
-    /**
-     * Get status.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
-     * Add intervenant.
+     * Add intervenant
      *
      * @param \UserBundle\Entity\User $intervenant
      *
@@ -577,19 +395,17 @@ class Evenement
     }
 
     /**
-     * Remove intervenant.
+     * Remove intervenant
      *
      * @param \UserBundle\Entity\User $intervenant
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
     public function removeIntervenant(\UserBundle\Entity\User $intervenant)
     {
-        return $this->intervenants->removeElement($intervenant);
+        $this->intervenants->removeElement($intervenant);
     }
 
     /**
-     * Get intervenants.
+     * Get intervenants
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -599,7 +415,7 @@ class Evenement
     }
 
     /**
-     * Add observateur.
+     * Add observateur
      *
      * @param \UserBundle\Entity\User $observateur
      *
@@ -613,384 +429,22 @@ class Evenement
     }
 
     /**
-     * Remove observateur.
+     * Remove observateur
      *
      * @param \UserBundle\Entity\User $observateur
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
     public function removeObservateur(\UserBundle\Entity\User $observateur)
     {
-        return $this->observateurs->removeElement($observateur);
+        $this->observateurs->removeElement($observateur);
     }
 
     /**
-     * Get observateurs.
+     * Get observateurs
      *
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getObservateurs()
     {
         return $this->observateurs;
-    }
-
-    /**
-     * Set haveObservateur.
-     *
-     * @param bool $haveObservateur
-     *
-     * @return Evenement
-     */
-    public function setHaveObservateur($haveObservateur)
-    {
-        $this->have_observateur = $haveObservateur;
-
-        return $this;
-    }
-
-    /**
-     * Get haveObservateur.
-     *
-     * @return bool
-     */
-    public function getHaveObservateur()
-    {
-        return $this->have_observateur;
-    }
-
-    /**
-     * Set finaleIntervention.
-     *
-     * @param string $finaleIntervention
-     *
-     * @return Evenement
-     */
-    public function setFinaleIntervention($finaleIntervention)
-    {
-        $this->finale_intervention = $finaleIntervention;
-
-        return $this;
-    }
-
-    /**
-     * Get finaleIntervention.
-     *
-     * @return string
-     */
-    public function getFinaleIntervention()
-    {
-        return $this->finale_intervention;
-    }
-
-    /**
-     * Set nbGroupes.
-     *
-     * @param int $nbGroupes
-     *
-     * @return Evenement
-     */
-    public function setNbGroupes($nbGroupes)
-    {
-        $this->nbGroupes = $nbGroupes;
-
-        return $this;
-    }
-
-    /**
-     * Get nbGroupes.
-     *
-     * @return int
-     */
-    public function getNbGroupes()
-    {
-        return $this->nbGroupes;
-    }
-
-    /**
-     * Set nbSalles.
-     *
-     * @param int $nbSalles
-     *
-     * @return Evenement
-     */
-    public function setNbSalles($nbSalles)
-    {
-        $this->nbSalles = $nbSalles;
-
-        return $this;
-    }
-
-    /**
-     * Get nbSalles.
-     *
-     * @return int
-     */
-    public function getNbSalles()
-    {
-        return $this->nbSalles;
-    }
-
-    /**
-     * Set elevesVolontaires.
-     *
-     * @param string $elevesVolontaires
-     *
-     * @return Evenement
-     */
-    public function setElevesVolontaires($elevesVolontaires)
-    {
-        $this->eleves_volontaires = $elevesVolontaires;
-
-        return $this;
-    }
-
-    /**
-     * Get elevesVolontaires.
-     *
-     * @return string
-     */
-    public function getElevesVolontaires()
-    {
-        return $this->eleves_volontaires;
-    }
-
-    /**
-     * Set documentationAttendue.
-     *
-     * @param bool $documentationAttendue
-     *
-     * @return Evenement
-     */
-    public function setDocumentationAttendue($documentationAttendue)
-    {
-        $this->documentation_attendue = $documentationAttendue;
-
-        return $this;
-    }
-
-    /**
-     * Get documentationAttendue.
-     *
-     * @return bool
-     */
-    public function getDocumentationAttendue()
-    {
-        return $this->documentation_attendue;
-    }
-
-    /**
-     * Set particularite.
-     *
-     * @param string $particularite
-     *
-     * @return Evenement
-     */
-    public function setParticularite($particularite)
-    {
-        $this->particularite = $particularite;
-
-        return $this;
-    }
-
-    /**
-     * Get particularite.
-     *
-     * @return string
-     */
-    public function getParticularite()
-    {
-        return $this->particularite;
-    }
-
-    /**
-     * Set complementInfo.
-     *
-     * @param string $complementInfo
-     *
-     * @return Evenement
-     */
-    public function setComplementInfo($complementInfo)
-    {
-        $this->complement_info = $complementInfo;
-
-        return $this;
-    }
-
-    /**
-     * Get complementInfo.
-     *
-     * @return string
-     */
-    public function getComplementInfo()
-    {
-        return $this->complement_info;
-    }
-
-    /**
-     * Set enseignantRef.
-     *
-     * @param string $enseignantRef
-     *
-     * @return Evenement
-     */
-    public function setEnseignantRef($enseignantRef)
-    {
-        $this->enseignant_ref = $enseignantRef;
-
-        return $this;
-    }
-
-    /**
-     * Get enseignantRef.
-     *
-     * @return string
-     */
-    public function getEnseignantRef()
-    {
-        return $this->enseignant_ref;
-    }
-
-    /**
-     * Set courrielEnseignantRef.
-     *
-     * @param string $courrielEnseignantRef
-     *
-     * @return Evenement
-     */
-    public function setCourrielEnseignantRef($courrielEnseignantRef)
-    {
-        $this->courriel_enseignant_ref = $courrielEnseignantRef;
-
-        return $this;
-    }
-
-    /**
-     * Get courrielEnseignantRef.
-     *
-     * @return string
-     */
-    public function getCourrielEnseignantRef()
-    {
-        return $this->courriel_enseignant_ref;
-    }
-
-    /**
-     * Set telEnseignantRef.
-     *
-     * @param int $telEnseignantRef
-     *
-     * @return Evenement
-     */
-    public function setTelEnseignantRef($telEnseignantRef)
-    {
-        $this->tel_enseignant_ref = $telEnseignantRef;
-
-        return $this;
-    }
-
-    /**
-     * Get telEnseignantRef.
-     *
-     * @return int
-     */
-    public function getTelEnseignantRef()
-    {
-        return $this->tel_enseignant_ref;
-    }
-
-    /**
-     * Set nbEleves.
-     *
-     * @param int $nbEleves
-     *
-     * @return Evenement
-     */
-    public function setNbEleves($nbEleves)
-    {
-        $this->nbEleves = $nbEleves;
-
-        return $this;
-    }
-
-    /**
-     * Get nbEleves.
-     *
-     * @return int
-     */
-    public function getNbEleves()
-    {
-        return $this->nbEleves;
-    }
-
-    /**
-     * Set niveauClasse.
-     *
-     * @param string $niveauClasse
-     *
-     * @return Evenement
-     */
-    public function setNiveauClasse($niveauClasse)
-    {
-        $this->niveau_classe = $niveauClasse;
-
-        return $this;
-    }
-
-    /**
-     * Get niveauClasse.
-     *
-     * @return string
-     */
-    public function getNiveauClasse()
-    {
-        return $this->niveau_classe;
-    }
-
-    /**
-     * Set lieu.
-     *
-     * @param \AgendaBundle\Entity\Lieux|null $lieu
-     *
-     * @return Evenement
-     */
-    public function setLieu(\AgendaBundle\Entity\Lieux $lieu = null)
-    {
-        $this->lieu = $lieu;
-
-        return $this;
-    }
-
-    /**
-     * Get lieu.
-     *
-     * @return \AgendaBundle\Entity\Lieux|null
-     */
-    public function getLieu()
-    {
-        return $this->lieu;
-    }
-
-    /**
-     * Set type.
-     *
-     * @param \AgendaBundle\Entity\Type_intervention|null $type
-     *
-     * @return Evenement
-     */
-    public function setType(\AgendaBundle\Entity\Type_intervention $type = null)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type.
-     *
-     * @return \AgendaBundle\Entity\Type_intervention|null
-     */
-    public function getType()
-    {
-        return $this->type;
     }
 }
