@@ -179,4 +179,77 @@ class Lieux
     {
         return $this->codePostal;
     }
+
+    /**
+     * Get the value of Correspondants
+     *
+     * @return User
+     */
+    public function getCorrespondants()
+    {
+        return $this->correspondants;
+    }
+
+    /**
+     * Set the value of Correspondants
+     *
+     * @param User correspondants
+     *
+     * @return self
+     */
+    public function setCorrespondants(User $correspondants)
+    {
+        $this->correspondants = $correspondants;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Adjoints
+     *
+     * @return User
+     */
+    public function getAdjoints()
+    {
+        return $this->adjoints;
+    }
+
+    /**
+     * Set the value of Adjoints
+     *
+     * @param User adjoints
+     *
+     * @return self
+     */
+    public function setAdjoints(User $adjoints)
+    {
+        $this->adjoints = $adjoints;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Type
+     *
+     * @return Type_lieu
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set the value of Type
+     *
+     * @param Type_lieu type
+     *
+     * @return self
+     */
+    public function setType(Type_lieu $type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
 }
