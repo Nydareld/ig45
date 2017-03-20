@@ -1,0 +1,107 @@
+{% extends "BackofficeBaseBundle::Layout/AdminLayout.html.twig" %}
+
+{% block navActive %}userList{% endblock %}
+
+{% block contentHeader %}
+<h1>
+    Administration des utilisateurs
+</h1>
+{% endblock %}
+
+{% block content %}
+
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="info-box">
+        <span class="info-box-icon bg-aqua"><i class="fa fa-user"></i></span>
+
+        <div class="info-box-content">
+            <span class="info-box-text">Nombre d'utilisateurs</span>
+            <span class="info-box-number">{{users|length}}</span>
+        </div>
+        <!-- /.info-box-content -->
+    </div>
+    <!-- /.info-box -->
+</div>
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <a data-toggle="modal" data-target="#addUserModal">
+        <div class="info-box">
+            <span class="info-box-icon bg-green"><i class="fa fa-plus-circle"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-number">Créer utilisateur</span>
+            </div>
+        </div>
+    </a>
+</div>
+<div class="col-md-12 col-sm-12 col-xs-12">
+
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Liste des Utilisateurs</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <table class="table table-bordered table-striped dataTable">
+                <thead>
+                    <tr>
+                        <th>Nom d'utilisateur</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Groupes</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Nom d'utilisateur</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Groupes</th>
+                        <th>Email</th>
+                    </tr>
+                </tfoot>
+
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{user.username}}</td>
+                        <td>{{user.nom}}</td>
+                        <td>{{user.prenom}}</td>
+                        <td>
+                            {% for group in user.groups %}
+                            {{group.name}}
+                            {% endfor %}
+                        </td>
+                        <td>{{user.email}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <!-- /.box-body -->
+    </div>
+</div>
+{% endblock %}
+{% block modals %}
+<div class="modal" id="addUserModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title">Ajout d'utilisateur</h4>
+            </div>
+            <div class="modal-body">
+                {{ form(form, {'attr': {'id': 'form_user_add'}} ) }}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Annuler</button>
+                <button type="submit" form="form_user_add" class="btn btn-primary">Valider</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+{% endblock %}
