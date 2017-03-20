@@ -37,7 +37,6 @@ class AgendaController extends Controller
         foreach ($adjointLieux as $lieu) {
             $evenements[] = $lieu->getEvenement();
         }
-
         // on envoie tout les évènements liés à l'utilisateur jusqu'au twig
         return $this->render('AgendaBundle:Agenda:agenda.html.twig',
                         array('user' => $user));

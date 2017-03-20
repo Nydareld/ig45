@@ -138,7 +138,6 @@ class LoadData implements FixtureInterface
 
         $manager->persist($lieu3);
 
-        //Je commence les évènements
         $evenement = new Evenement();
         $evenement -> setDescription("Pool party au Lion's club, on va tout déchirer");
         $evenement -> setDateEvt(new \DateTime("2017-02-14"));
