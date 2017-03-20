@@ -1,0 +1,23 @@
+{
+  "name": "IG45",
+  "authors": [
+    "Theo Guerin <theo.guerin.pro@gmail.com>"
+  ],
+  "description": "Site et backoffice d'administration de l'association inter-generation45",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "bootstrap": "^3.3.7",
+    "AdminLTE": "admin-lte#^2.3.11"
+  }
+}

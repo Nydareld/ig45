@@ -1,3 +1,11 @@
+agenda_evenement:
+    resource: "@AgendaBundle/Controller/EvenementController.php"
+    type:     annotation
+
+agenda_evenement:
+    resource: "@AgendaBundle/Controller/EvenementController.php"
+    type:     annotation
+
 agenda:
     resource: "@AgendaBundle/Resources/config/routing.yml"
     prefix:   /
@@ -13,10 +21,6 @@ backoffice_base:
 base:
     resource: "@BaseBundle/Resources/config/routing.yml"
     prefix:   /
-
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

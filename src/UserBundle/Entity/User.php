@@ -37,6 +37,44 @@ class User extends BaseUser
      */
     protected $groups;
 
+    /**
+    * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Evenement", mappedBy="intervenants")
+    */
+    protected $intervention;
+
+    /**
+    * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Evenement", mappedBy="observateurs")
+    */
+    protected $observation;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\Lieux", mappedBy="correspondants")
+     */
+    protected $correspondants_lieux;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Lieux", mappedBy="adjoints")
+     * @ORM\JoinTable(name="fos_user_user_adjoints",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="lieux_id", referencedColumnName="id")}
+     * )
+     */
+    protected $adjoint_lieux;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="tel_fixe", type="integer")
+     */
+    private $tel_fixe;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="tel_port", type="integer")
+     */
+    private $tel_port;
+
     public function __construct()
     {
         parent::__construct();
@@ -100,4 +138,232 @@ class User extends BaseUser
         return $this;
     }
 
+
+    /**
+     * Add intervention.
+     *
+     * @param \AgendaBundle\Entity\Evenement $intervention
+     *
+     * @return User
+     */
+    public function addIntervention(\AgendaBundle\Entity\Evenement $intervention)
+    {
+        $this->intervention[] = $intervention;
+
+        return $this;
+    }
+
+    /**
+     * Remove intervention.
+     *
+     * @param \AgendaBundle\Entity\Evenement $intervention
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeIntervention(\AgendaBundle\Entity\Evenement $intervention)
+    {
+        return $this->intervention->removeElement($intervention);
+    }
+
+    /**
+     * Get intervention.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIntervention()
+    {
+        return $this->intervention;
+    }
+
+    /**
+     * Add observation.
+     *
+     * @param \AgendaBundle\Entity\Evenement $observation
+     *
+     * @return User
+     */
+    public function addObservation(\AgendaBundle\Entity\Evenement $observation)
+    {
+        $this->observation[] = $observation;
+
+        return $this;
+    }
+
+    /**
+     * Remove observation.
+     *
+     * @param \AgendaBundle\Entity\Evenement $observation
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeObservation(\AgendaBundle\Entity\Evenement $observation)
+    {
+        return $this->observation->removeElement($observation);
+    }
+
+    /**
+     * Get observation.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getObservation()
+    {
+        return $this->observation;
+    }
+
+    /**
+     * Add evenement.
+     *
+     * @param \AgendaBundle\Entity\Evenement $evenement
+     *
+     * @return User
+     */
+    public function addEvenement(\AgendaBundle\Entity\Evenement $evenement)
+    {
+        $this->evenements[] = $evenement;
+
+        return $this;
+    }
+
+    /**
+     * Remove evenement.
+     *
+     * @param \AgendaBundle\Entity\Evenement $evenement
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeEvenement(\AgendaBundle\Entity\Evenement $evenement)
+    {
+        return $this->evenements->removeElement($evenement);
+    }
+
+    /**
+     * Get evenements.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEvenements()
+    {
+        return $this->evenements;
+    }
+
+    /**
+     * Set telFixe.
+     *
+     * @param int $telFixe
+     *
+     * @return User
+     */
+    public function setTelFixe($telFixe)
+    {
+        $this->tel_fixe = $telFixe;
+
+        return $this;
+    }
+
+    /**
+     * Get telFixe.
+     *
+     * @return int
+     */
+    public function getTelFixe()
+    {
+        return $this->tel_fixe;
+    }
+
+    /**
+     * Set telPort.
+     *
+     * @param int $telPort
+     *
+     * @return User
+     */
+    public function setTelPort($telPort)
+    {
+        $this->tel_port = $telPort;
+
+        return $this;
+    }
+
+    /**
+     * Get telPort.
+     *
+     * @return int
+     */
+    public function getTelPort()
+    {
+        return $this->tel_port;
+    }
+
+    /**
+     * Add correspondantsLieux.
+     *
+     * @param \AgendaBundle\Entity\Lieux $correspondantsLieux
+     *
+     * @return User
+     */
+    public function addCorrespondantsLieux(\AgendaBundle\Entity\Lieux $correspondantsLieux)
+    {
+        $this->correspondants_lieux[] = $correspondantsLieux;
+
+        return $this;
+    }
+
+    /**
+     * Remove correspondantsLieux.
+     *
+     * @param \AgendaBundle\Entity\Lieux $correspondantsLieux
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeCorrespondantsLieux(\AgendaBundle\Entity\Lieux $correspondantsLieux)
+    {
+        return $this->correspondants_lieux->removeElement($correspondantsLieux);
+    }
+
+    /**
+     * Get correspondantsLieux.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCorrespondantsLieux()
+    {
+        return $this->correspondants_lieux;
+    }
+
+    /**
+     * Add adjointLieux.
+     *
+     * @param \AgendaBundle\Entity\Lieux $adjointLieux
+     *
+     * @return User
+     */
+    public function addAdjointLieux(\AgendaBundle\Entity\Lieux $adjointLieux)
+    {
+        $this->adjoint_lieux[] = $adjointLieux;
+
+        return $this;
+    }
+
+    /**
+     * Remove adjointLieux.
+     *
+     * @param \AgendaBundle\Entity\Lieux $adjointLieux
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeAdjointLieux(\AgendaBundle\Entity\Lieux $adjointLieux)
+    {
+        return $this->adjoint_lieux->removeElement($adjointLieux);
+    }
+
+    /**
+     * Get adjointLieux.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAdjointLieux()
+    {
+        return $this->adjoint_lieux;
+    }
 }

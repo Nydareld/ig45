@@ -1,3 +1,7 @@
 backoffice_base_homepage:
     path:     /
     defaults: { _controller: BackofficeBaseBundle:Default:index }
+
+user_list:
+    path: /user/list
+    defaults: { _controller: BackofficeBaseBundle:UserAdmin:userList}
