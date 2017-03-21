@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class LieuxType extends AbstractType
@@ -29,7 +29,8 @@ class LieuxType extends AbstractType
                 'label'=>'lieux.fieldslabel.ville',
                 'translation_domain' => 'AgendaBundle'
             ))
-            ->add('codePostal',NumberType::class,array(
+            ->add('codePostal',IntegerType::class,array(
+                'attr' => array('min' => 0,'max' => 99999),
                 'label'=>'lieux.fieldslabel.codePostal',
                 'translation_domain' => 'AgendaBundle'
             ))
