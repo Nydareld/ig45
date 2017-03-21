@@ -24,7 +24,7 @@ class Evenement
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
@@ -66,7 +66,7 @@ class Evenement
     /**
      * @var string
      *
-     * @ORM\Column(name="niveau_intervention", type="text")
+     * @ORM\Column(name="niveau_intervention", type="text", nullable=true)
      */
     private $niveauIntervention;
 
@@ -113,13 +113,6 @@ class Evenement
       * )
       */
       private $observateurs;
-
-      /**
-       * @var string
-       *
-       * @ORM\Column(name="finale_intervention", type="text", nullable=true)
-       */
-      private $finale_intervention;
 
       /**
        * @var int
