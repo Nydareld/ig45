@@ -8,14 +8,15 @@ class AgendaController extends Controller
 {
     public function indexAction()
     {
-        // récupération de tout les évènements
-        $evenements = $this->getDoctrine()
-                            ->getRepository('AgendaBundle:Evenement')
-                            ->findAll();
+        // // récupération de tout les évènements
+        // $evenements = $this->getDoctrine()
+        //                     ->getRepository('AgendaBundle:Evenement')
+        //                     ->findAll();
 
         // on envoie tout les évènements au twig
-        return $this->render('AgendaBundle:Agenda:agenda.html.twig',
-                        array('evenements' => $evenements));
+        // return $this->render('AgendaBundle:Agenda:agenda.html.twig',
+        //                 array('evenements' => $evenements));
+        return $this->render('AgendaBundle:Agenda:agenda.html.twig');
     }
 
     public function agendaPersoAction()
