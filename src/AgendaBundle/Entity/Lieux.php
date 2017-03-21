@@ -3,6 +3,8 @@
 namespace AgendaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use UserBundle\Entity\User;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Lieux
@@ -221,7 +223,7 @@ class Lieux
      *
      * @return self
      */
-    public function setAdjoints(User $adjoints)
+    public function setAdjoints(ArrayCollection $adjoints)
     {
         $this->adjoints = $adjoints;
 
