@@ -10,10 +10,6 @@
                 <td>{{ evenement.id }}</td>
             </tr>
             <tr>
-                <th>Nom</th>
-                <td>{{ evenement.nom }}</td>
-            </tr>
-            <tr>
                 <th>Description</th>
                 <td>{{ evenement.description }}</td>
             </tr>
@@ -42,12 +38,52 @@
                 <td>{{ evenement.niveauIntervention }}</td>
             </tr>
             <tr>
-                <th>Typeintervention</th>
-                <td>{{ evenement.typeIntervention }}</td>
+                <th>Finale_intervention</th>
+                <td>{{ evenement.finaleintervention }}</td>
             </tr>
             <tr>
-                <th>Have_observateur</th>
-                <td>{% if evenement.haveobservateur %}Yes{% else %}No{% endif %}</td>
+                <th>Nbgroupes</th>
+                <td>{{ evenement.nbGroupes }}</td>
+            </tr>
+            <tr>
+                <th>Nbsalles</th>
+                <td>{{ evenement.nbSalles }}</td>
+            </tr>
+            <tr>
+                <th>Eleves_volontaires</th>
+                <td>{{ evenement.elevesvolontaires }}</td>
+            </tr>
+            <tr>
+                <th>Documentation_attendue</th>
+                <td>{% if evenement.documentationattendue %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Particularite</th>
+                <td>{{ evenement.particularite }}</td>
+            </tr>
+            <tr>
+                <th>Complement_info</th>
+                <td>{{ evenement.complementinfo }}</td>
+            </tr>
+            <tr>
+                <th>Enseignant_ref</th>
+                <td>{{ evenement.enseignantref }}</td>
+            </tr>
+            <tr>
+                <th>Courriel_enseignant_ref</th>
+                <td>{{ evenement.courrielenseignantref }}</td>
+            </tr>
+            <tr>
+                <th>Tel_enseignant_ref</th>
+                <td>{{ evenement.telenseignantref }}</td>
+            </tr>
+            <tr>
+                <th>Nbeleves</th>
+                <td>{{ evenement.nbEleves }}</td>
+            </tr>
+            <tr>
+                <th>Niveau_classe</th>
+                <td>{{ evenement.niveauclasse }}</td>
             </tr>
         </tbody>
     </table>

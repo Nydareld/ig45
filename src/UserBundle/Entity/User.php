@@ -64,14 +64,14 @@ class User extends BaseUser
     /**
      * @var int
      *
-     * @ORM\Column(name="tel_fixe", type="integer")
+     * @ORM\Column(name="tel_fixe", type="integer", nullable=true)
      */
     private $tel_fixe;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="tel_port", type="integer")
+     * @ORM\Column(name="tel_port", type="integer", nullable=true)
      */
     private $tel_port;
 

@@ -13,23 +13,9 @@ class EvenementType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nom')
-                ->add('description')
-                ->add('dateEvt')
-                ->add('heureDebut')
-                ->add('heureFin')
-                ->add('nbParticipants')
-                ->add('nbObservateurs')
-                ->add('niveauIntervention')
-                ->add('typeIntervention')
-                ->add('have_observateur')
-                ->add('correspondant')
-                ->add('lieu')->add('status')
-                ->add('intervenants')
-                ->add('observateurs')
-                ->add('type');
+        $builder->add('description')->add('dateEvt')->add('heureDebut')->add('heureFin')->add('nbParticipants')->add('nbObservateurs')->add('niveauIntervention')->add('finale_intervention')->add('nbGroupes')->add('nbSalles')->add('eleves_volontaires')->add('documentation_attendue')->add('particularite')->add('complement_info')->add('enseignant_ref')->add('courriel_enseignant_ref')->add('tel_enseignant_ref')->add('nbEleves')->add('niveau_classe')->add('typeIntervention')->add('lieu')->add('statut')->add('intervenants')->add('observateurs');
     }
-
+    
     /**
      * {@inheritdoc}
      */
