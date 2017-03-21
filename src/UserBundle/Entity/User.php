@@ -40,12 +40,12 @@ class User extends BaseUser
     /**
     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Evenement", mappedBy="intervenants")
     */
-    protected $intervention;
+    protected $interventions;
 
     /**
     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Evenement", mappedBy="observateurs")
     */
-    protected $observation;
+    protected $observations;
 
     /**
      * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\Lieux", mappedBy="correspondants")
@@ -60,20 +60,6 @@ class User extends BaseUser
      * )
      */
     protected $adjoint_lieux;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="tel_fixe", type="integer")
-     */
-    private $tel_fixe;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="tel_port", type="integer")
-     */
-    private $tel_port;
 
     public function __construct()
     {
@@ -142,13 +128,13 @@ class User extends BaseUser
     /**
      * Add intervention.
      *
-     * @param \AgendaBundle\Entity\Evenement $intervention
+     * @param \AgendaBundle\Entity\Evenement $interventions
      *
      * @return User
      */
     public function addIntervention(\AgendaBundle\Entity\Evenement $intervention)
     {
-        $this->intervention[] = $intervention;
+        $this->interventions[] = $intervention;
 
         return $this;
     }
@@ -156,13 +142,13 @@ class User extends BaseUser
     /**
      * Remove intervention.
      *
-     * @param \AgendaBundle\Entity\Evenement $intervention
+     * @param \AgendaBundle\Entity\Evenement $interventions
      *
      * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
     public function removeIntervention(\AgendaBundle\Entity\Evenement $intervention)
     {
-        return $this->intervention->removeElement($intervention);
+        return $this->interventions->removeElement($intervention);
     }
 
     /**
@@ -170,21 +156,21 @@ class User extends BaseUser
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getIntervention()
+    public function getInterventions()
     {
-        return $this->intervention;
+        return $this->interventions;
     }
 
     /**
      * Add observation.
      *
-     * @param \AgendaBundle\Entity\Evenement $observation
+     * @param \AgendaBundle\Entity\Evenement $observations
      *
      * @return User
      */
     public function addObservation(\AgendaBundle\Entity\Evenement $observation)
     {
-        $this->observation[] = $observation;
+        $this->observations[] = $observation;
 
         return $this;
     }
@@ -192,13 +178,13 @@ class User extends BaseUser
     /**
      * Remove observation.
      *
-     * @param \AgendaBundle\Entity\Evenement $observation
+     * @param \AgendaBundle\Entity\Evenement $observations
      *
      * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
     public function removeObservation(\AgendaBundle\Entity\Evenement $observation)
     {
-        return $this->observation->removeElement($observation);
+        return $this->observations->removeElement($observation);
     }
 
     /**
@@ -206,9 +192,9 @@ class User extends BaseUser
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getObservation()
+    public function getObservations()
     {
-        return $this->observation;
+        return $this->observations;
     }
 
     /**
@@ -247,123 +233,4 @@ class User extends BaseUser
         return $this->evenements;
     }
 
-    /**
-     * Set telFixe.
-     *
-     * @param int $telFixe
-     *
-     * @return User
-     */
-    public function setTelFixe($telFixe)
-    {
-        $this->tel_fixe = $telFixe;
-
-        return $this;
-    }
-
-    /**
-     * Get telFixe.
-     *
-     * @return int
-     */
-    public function getTelFixe()
-    {
-        return $this->tel_fixe;
-    }
-
-    /**
-     * Set telPort.
-     *
-     * @param int $telPort
-     *
-     * @return User
-     */
-    public function setTelPort($telPort)
-    {
-        $this->tel_port = $telPort;
-
-        return $this;
-    }
-
-    /**
-     * Get telPort.
-     *
-     * @return int
-     */
-    public function getTelPort()
-    {
-        return $this->tel_port;
-    }
-
-    /**
-     * Add correspondantsLieux.
-     *
-     * @param \AgendaBundle\Entity\Lieux $correspondantsLieux
-     *
-     * @return User
-     */
-    public function addCorrespondantsLieux(\AgendaBundle\Entity\Lieux $correspondantsLieux)
-    {
-        $this->correspondants_lieux[] = $correspondantsLieux;
-
-        return $this;
-    }
-
-    /**
-     * Remove correspondantsLieux.
-     *
-     * @param \AgendaBundle\Entity\Lieux $correspondantsLieux
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removeCorrespondantsLieux(\AgendaBundle\Entity\Lieux $correspondantsLieux)
-    {
-        return $this->correspondants_lieux->removeElement($correspondantsLieux);
-    }
-
-    /**
-     * Get correspondantsLieux.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCorrespondantsLieux()
-    {
-        return $this->correspondants_lieux;
-    }
-
-    /**
-     * Add adjointLieux.
-     *
-     * @param \AgendaBundle\Entity\Lieux $adjointLieux
-     *
-     * @return User
-     */
-    public function addAdjointLieux(\AgendaBundle\Entity\Lieux $adjointLieux)
-    {
-        $this->adjoint_lieux[] = $adjointLieux;
-
-        return $this;
-    }
-
-    /**
-     * Remove adjointLieux.
-     *
-     * @param \AgendaBundle\Entity\Lieux $adjointLieux
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removeAdjointLieux(\AgendaBundle\Entity\Lieux $adjointLieux)
-    {
-        return $this->adjoint_lieux->removeElement($adjointLieux);
-    }
-
-    /**
-     * Get adjointLieux.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getAdjointLieux()
-    {
-        return $this->adjoint_lieux;
-    }
 }
