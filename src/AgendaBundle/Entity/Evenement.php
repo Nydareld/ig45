@@ -66,7 +66,7 @@ class Evenement
     /**
      * @var string
      *
-     * @ORM\Column(name="niveau_intervention", type="string", length=255)
+     * @ORM\Column(name="niveau_intervention", type="text")
      */
     private $niveauIntervention;
 
@@ -115,10 +115,88 @@ class Evenement
       private $observateurs;
 
       /**
-      * @var Type_intervention
-      *
-      * @ORM\ManyToOne(targetEntity="AgendaBundle\Entity\Type_intervention", inversedBy="evenements")
-      */
+       * @var string
+       *
+       * @ORM\Column(name="finale_intervention", type="text")
+       */
+      private $finale_intervention;
+
+      /**
+       * @var int
+       *
+       * @ORM\Column(name="nb_groupes", type="integer")
+       */
+      private $nbGroupes;
+
+      /**
+       * @var int
+       *
+       * @ORM\Column(name="nb_salles", type="integer")
+       */
+      private $nbSalles;
+
+      /**
+       * @var string
+       *
+       * @ORM\Column(name="eleves_volontaires", type="text")
+       */
+      private $eleves_volontaires;
+
+      /**
+       * @var boolean
+       *
+       * @ORM\Column(name="documentation_attendue", type="boolean")
+       */
+      private $documentation_attendue;
+
+      /**
+       * @var string
+       *
+       * @ORM\Column(name="particularite", type="text")
+       */
+      private $particularite;
+
+      /**
+       * @var string
+       *
+       * @ORM\Column(name="complement_info", type="text")
+       */
+      private $complement_info;
+
+      /**
+       * @var string
+       *
+       * @ORM\Column(name="enseignant_ref", type="text")
+       */
+      private $enseignant_ref;
+
+      /**
+       * @var string
+       *
+       * @ORM\Column(name="courriel_enseignant_ref", type="text")
+       */
+      private $courriel_enseignant_ref;
+
+      /**
+       * @var int
+       *
+       * @ORM\Column(name="tel_enseignant_ref", type="integer")
+       */
+      private $tel_enseignant_ref;
+
+      /**
+       * @var int
+       *
+       * @ORM\Column(name="nb_eleves", type="integer")
+       */
+      private $nbEleves;
+
+      /**
+       * @var string
+       *
+       * @ORM\Column(name="niveau_classe", type="text")
+       */
+      private $niveau_classe;
 
 
     /**
@@ -446,5 +524,293 @@ class Evenement
     public function getObservateurs()
     {
         return $this->observateurs;
+    }
+
+    /**
+     * Set finaleIntervention.
+     *
+     * @param string $finaleIntervention
+     *
+     * @return Evenement
+     */
+    public function setFinaleIntervention($finaleIntervention)
+    {
+        $this->finale_intervention = $finaleIntervention;
+
+        return $this;
+    }
+
+    /**
+     * Get finaleIntervention.
+     *
+     * @return string
+     */
+    public function getFinaleIntervention()
+    {
+        return $this->finale_intervention;
+    }
+
+    /**
+     * Set nbGroupes.
+     *
+     * @param int $nbGroupes
+     *
+     * @return Evenement
+     */
+    public function setNbGroupes($nbGroupes)
+    {
+        $this->nbGroupes = $nbGroupes;
+
+        return $this;
+    }
+
+    /**
+     * Get nbGroupes.
+     *
+     * @return int
+     */
+    public function getNbGroupes()
+    {
+        return $this->nbGroupes;
+    }
+
+    /**
+     * Set nbSalles.
+     *
+     * @param int $nbSalles
+     *
+     * @return Evenement
+     */
+    public function setNbSalles($nbSalles)
+    {
+        $this->nbSalles = $nbSalles;
+
+        return $this;
+    }
+
+    /**
+     * Get nbSalles.
+     *
+     * @return int
+     */
+    public function getNbSalles()
+    {
+        return $this->nbSalles;
+    }
+
+    /**
+     * Set elevesVolontaires.
+     *
+     * @param string $elevesVolontaires
+     *
+     * @return Evenement
+     */
+    public function setElevesVolontaires($elevesVolontaires)
+    {
+        $this->eleves_volontaires = $elevesVolontaires;
+
+        return $this;
+    }
+
+    /**
+     * Get elevesVolontaires.
+     *
+     * @return string
+     */
+    public function getElevesVolontaires()
+    {
+        return $this->eleves_volontaires;
+    }
+
+    /**
+     * Set documentationAttendue.
+     *
+     * @param bool $documentationAttendue
+     *
+     * @return Evenement
+     */
+    public function setDocumentationAttendue($documentationAttendue)
+    {
+        $this->documentation_attendue = $documentationAttendue;
+
+        return $this;
+    }
+
+    /**
+     * Get documentationAttendue.
+     *
+     * @return bool
+     */
+    public function getDocumentationAttendue()
+    {
+        return $this->documentation_attendue;
+    }
+
+    /**
+     * Set particularite.
+     *
+     * @param string $particularite
+     *
+     * @return Evenement
+     */
+    public function setParticularite($particularite)
+    {
+        $this->particularite = $particularite;
+
+        return $this;
+    }
+
+    /**
+     * Get particularite.
+     *
+     * @return string
+     */
+    public function getParticularite()
+    {
+        return $this->particularite;
+    }
+
+    /**
+     * Set complementInfo.
+     *
+     * @param string $complementInfo
+     *
+     * @return Evenement
+     */
+    public function setComplementInfo($complementInfo)
+    {
+        $this->complement_info = $complementInfo;
+
+        return $this;
+    }
+
+    /**
+     * Get complementInfo.
+     *
+     * @return string
+     */
+    public function getComplementInfo()
+    {
+        return $this->complement_info;
+    }
+
+    /**
+     * Set enseignantRef.
+     *
+     * @param string $enseignantRef
+     *
+     * @return Evenement
+     */
+    public function setEnseignantRef($enseignantRef)
+    {
+        $this->enseignant_ref = $enseignantRef;
+
+        return $this;
+    }
+
+    /**
+     * Get enseignantRef.
+     *
+     * @return string
+     */
+    public function getEnseignantRef()
+    {
+        return $this->enseignant_ref;
+    }
+
+    /**
+     * Set courrielEnseignantRef.
+     *
+     * @param string $courrielEnseignantRef
+     *
+     * @return Evenement
+     */
+    public function setCourrielEnseignantRef($courrielEnseignantRef)
+    {
+        $this->courriel_enseignant_ref = $courrielEnseignantRef;
+
+        return $this;
+    }
+
+    /**
+     * Get courrielEnseignantRef.
+     *
+     * @return string
+     */
+    public function getCourrielEnseignantRef()
+    {
+        return $this->courriel_enseignant_ref;
+    }
+
+    /**
+     * Set telEnseignantRef.
+     *
+     * @param int $telEnseignantRef
+     *
+     * @return Evenement
+     */
+    public function setTelEnseignantRef($telEnseignantRef)
+    {
+        $this->tel_enseignant_ref = $telEnseignantRef;
+
+        return $this;
+    }
+
+    /**
+     * Get telEnseignantRef.
+     *
+     * @return int
+     */
+    public function getTelEnseignantRef()
+    {
+        return $this->tel_enseignant_ref;
+    }
+
+    /**
+     * Set nbEleves.
+     *
+     * @param int $nbEleves
+     *
+     * @return Evenement
+     */
+    public function setNbEleves($nbEleves)
+    {
+        $this->nbEleves = $nbEleves;
+
+        return $this;
+    }
+
+    /**
+     * Get nbEleves.
+     *
+     * @return int
+     */
+    public function getNbEleves()
+    {
+        return $this->nbEleves;
+    }
+
+    /**
+     * Set niveauClasse.
+     *
+     * @param string $niveauClasse
+     *
+     * @return Evenement
+     */
+    public function setNiveauClasse($niveauClasse)
+    {
+        $this->niveau_classe = $niveauClasse;
+
+        return $this;
+    }
+
+    /**
+     * Get niveauClasse.
+     *
+     * @return string
+     */
+    public function getNiveauClasse()
+    {
+        return $this->niveau_classe;
     }
 }
