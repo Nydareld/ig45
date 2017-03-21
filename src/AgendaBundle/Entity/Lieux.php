@@ -310,4 +310,8 @@ class Lieux
     {
         return $this->evenements;
     }
+
+    public function __toString(){
+      return $this->nom;
+    }
 }
