@@ -11,10 +11,51 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Group extends BaseGroup
 {
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-     protected $id;
+    protected $id;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $description;
+
+    /**
+     * Get the value of Id
+     *
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Get the value of Description
+     *
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set the value of Description
+     *
+     * @param mixed description
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
 }

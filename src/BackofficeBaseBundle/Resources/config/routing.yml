@@ -5,3 +5,7 @@ backoffice_base_homepage:
 user_list:
     path: /user/list
     defaults: { _controller: BackofficeBaseBundle:UserAdmin:userList}
+
+group_list:
+    path: /group/list
+    defaults: { _controller: BackofficeBaseBundle:GroupAdmin:groupList}

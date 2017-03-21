@@ -74,6 +74,13 @@ class Lieux
       */
       private $type;
 
+      /**
+       * @var Evenement
+       *
+       * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\Evenement", mappedBy="lieu")
+       */
+      private $evenements;
+
     /**
      * Get id.
      *
@@ -178,5 +185,133 @@ class Lieux
     public function getCodePostal()
     {
         return $this->codePostal;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->adjoints = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->evenements = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set correspondants
+     *
+     * @param \UserBundle\Entity\User $correspondants
+     *
+     * @return Lieux
+     */
+    public function setCorrespondants(\UserBundle\Entity\User $correspondants = null)
+    {
+        $this->correspondants = $correspondants;
+
+        return $this;
+    }
+
+    /**
+     * Get correspondants
+     *
+     * @return \UserBundle\Entity\User
+     */
+    public function getCorrespondants()
+    {
+        return $this->correspondants;
+    }
+
+    /**
+     * Add adjoint
+     *
+     * @param \UserBundle\Entity\User $adjoint
+     *
+     * @return Lieux
+     */
+    public function addAdjoint(\UserBundle\Entity\User $adjoint)
+    {
+        $this->adjoints[] = $adjoint;
+
+        return $this;
+    }
+
+    /**
+     * Remove adjoint
+     *
+     * @param \UserBundle\Entity\User $adjoint
+     */
+    public function removeAdjoint(\UserBundle\Entity\User $adjoint)
+    {
+        $this->adjoints->removeElement($adjoint);
+    }
+
+    /**
+     * Get adjoints
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAdjoints()
+    {
+        return $this->adjoints;
+    }
+
+    /**
+     * Set type
+     *
+     * @param \AgendaBundle\Entity\Type_lieu $type
+     *
+     * @return Lieux
+     */
+    public function setType(\AgendaBundle\Entity\Type_lieu $type = null)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return \AgendaBundle\Entity\Type_lieu
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Add evenement
+     *
+     * @param \AgendaBundle\Entity\Evenement $evenement
+     *
+     * @return Lieux
+     */
+    public function addEvenement(\AgendaBundle\Entity\Evenement $evenement)
+    {
+        $this->evenements[] = $evenement;
+
+        return $this;
+    }
+
+    /**
+     * Remove evenement
+     *
+     * @param \AgendaBundle\Entity\Evenement $evenement
+     */
+    public function removeEvenement(\AgendaBundle\Entity\Evenement $evenement)
+    {
+        $this->evenements->removeElement($evenement);
+    }
+
+    /**
+     * Get evenements
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEvenements()
+    {
+        return $this->evenements;
+    }
+
+    public function __toString(){
+      return $this->nom;
     }
 }

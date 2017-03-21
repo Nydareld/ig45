@@ -68,4 +68,8 @@ class Type_lieu
     {
         return $this->nom;
     }
+
+    public function __toString(){
+      return $this->nom;
+    }
 }
