@@ -6,24 +6,23 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class EvenementType extends AbstractType
+class EvenementTypeSuite extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('dateEvt')
-                ->add('heureDebut')
-                ->add('heureFin')
-                ->add('typeIntervention')
-                ->add('niveau_classe')
-                ->add('nbEleves')
-                ->add('nbParticipants')
-                ->add('intervenants')
-                ->add('nbObservateurs')
-                ->add('observateurs')
-                ->add('lieu');
+        $builder->add('description')
+                ->add('nbGroupes')
+                ->add('nbSalles')
+                ->add('eleves_volontaires')
+                ->add('documentation_attendue')
+                ->add('particularite')
+                ->add('complement_info')
+                ->add('enseignant_ref')
+                ->add('courriel_enseignant_ref')
+                ->add('tel_enseignant_ref');
     }
 
     /**
