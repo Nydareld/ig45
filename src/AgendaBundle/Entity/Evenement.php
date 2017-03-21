@@ -24,13 +24,6 @@ class Evenement
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
-     */
-    private $nom;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="description", type="text")
      */
     private $description;
@@ -78,48 +71,30 @@ class Evenement
     private $niveauIntervention;
 
     /**
-     * @var string
+     * @var Type_intervention
      *
-     * @ORM\Column(name="type_intervention", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="AgendaBundle\Entity\Type_intervention", cascade={"persist"})
      */
     private $typeIntervention;
 
-    /**
-     * @var correspondant
-     *
-     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="evenements")
-     */
-     private $correspondant;
-
      /**
-      * @var string
-      * @ORM\Column(name="adresse", type="string", length=255)
+      * @var Lieux
+      *
+      * @ORM\ManyToOne(targetEntity="AgendaBundle\Entity\Lieux", inversedBy="evenements")
       */
-     private $adresse;
-
-     /**
-      * @var integer
-      * @ORM\Column(name="zipcode", type="integer")
-      */
-     private $zipcode;
-
-     /**
-      * @var string
-      * @ORM\Column(name="ville", type="string", length=255)
-      */
-     private $ville;
+     private $lieu;
 
      /**
       * @var status
       *
-      * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Status")
+      * @ORM\ManyToOne(targetEntity="AgendaBundle\Entity\Status")
       * @ORM\JoinTable(name="evt_status",
       *      joinColumns={@ORM\JoinColumn(name="evt_id", referencedColumnName="id")},
       *      inverseJoinColumns={@ORM\JoinColumn(name="status_id", referencedColumnName="id")}
       * )
       */
 
-      private $status;
+      private $statut;
 
       /**
       * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", inversedBy="intervention")
@@ -139,38 +114,30 @@ class Evenement
       */
       private $observateurs;
 
+      /**
+      * @var Type_intervention
+      *
+      * @ORM\ManyToOne(targetEntity="AgendaBundle\Entity\Type_intervention", inversedBy="evenements")
+      */
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->intervenants = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->observateurs = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set nom
-     *
-     * @param string $nom
-     *
-     * @return Evenement
-     */
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    /**
-     * Get nom
-     *
-     * @return string
-     */
-    public function getNom()
-    {
-        return $this->nom;
     }
 
     /**
@@ -286,7 +253,7 @@ class Evenement
     /**
      * Get nbParticipants
      *
-     * @return int
+     * @return integer
      */
     public function getNbParticipants()
     {
@@ -310,7 +277,7 @@ class Evenement
     /**
      * Get nbObservateurs
      *
-     * @return int
+     * @return integer
      */
     public function getNbObservateurs()
     {
@@ -364,150 +331,57 @@ class Evenement
     {
         return $this->typeIntervention;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->status = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->intervenants = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->observateurs = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
-     * Set adresse.
+     * Set lieu
      *
-     * @param string $adresse
+     * @param \AgendaBundle\Entity\Lieux $lieu
      *
      * @return Evenement
      */
-    public function setAdresse($adresse)
+    public function setLieu(\AgendaBundle\Entity\Lieux $lieu = null)
     {
-        $this->adresse = $adresse;
+        $this->lieu = $lieu;
 
         return $this;
     }
 
     /**
-     * Get adresse.
+     * Get lieu
      *
-     * @return string
+     * @return \AgendaBundle\Entity\Lieux
      */
-    public function getAdresse()
+    public function getLieu()
     {
-        return $this->adresse;
+        return $this->lieu;
     }
 
     /**
-     * Set zipcode.
+     * Set statut
      *
-     * @param int $zipcode
+     * @param \AgendaBundle\Entity\Status $statut
      *
      * @return Evenement
      */
-    public function setZipcode($zipcode)
+    public function setStatut(\AgendaBundle\Entity\Status $statut = null)
     {
-        $this->zipcode = $zipcode;
+        $this->statut = $statut;
 
         return $this;
     }
 
     /**
-     * Get zipcode.
+     * Get statut
      *
-     * @return int
+     * @return \AgendaBundle\Entity\Status
      */
-    public function getZipcode()
+    public function getStatut()
     {
-        return $this->zipcode;
+        return $this->statut;
     }
 
     /**
-     * Set ville.
-     *
-     * @param string $ville
-     *
-     * @return Evenement
-     */
-    public function setVille($ville)
-    {
-        $this->ville = $ville;
-
-        return $this;
-    }
-
-    /**
-     * Get ville.
-     *
-     * @return string
-     */
-    public function getVille()
-    {
-        return $this->ville;
-    }
-
-    /**
-     * Set correspondant.
-     *
-     * @param \UserBundle\Entity\User|null $correspondant
-     *
-     * @return Evenement
-     */
-    public function setCorrespondant(\UserBundle\Entity\User $correspondant = null)
-    {
-        $this->correspondant = $correspondant;
-
-        return $this;
-    }
-
-    /**
-     * Get correspondant.
-     *
-     * @return \UserBundle\Entity\User|null
-     */
-    public function getCorrespondant()
-    {
-        return $this->correspondant;
-    }
-
-    /**
-     * Add status.
-     *
-     * @param \AgendaBundle\Entity\Status $status
-     *
-     * @return Evenement
-     */
-    public function addStatus(\AgendaBundle\Entity\Status $status)
-    {
-        $this->status[] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Remove status.
-     *
-     * @param \AgendaBundle\Entity\Status $status
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removeStatus(\AgendaBundle\Entity\Status $status)
-    {
-        return $this->status->removeElement($status);
-    }
-
-    /**
-     * Get status.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
-     * Add intervenant.
+     * Add intervenant
      *
      * @param \UserBundle\Entity\User $intervenant
      *
@@ -521,19 +395,17 @@ class Evenement
     }
 
     /**
-     * Remove intervenant.
+     * Remove intervenant
      *
      * @param \UserBundle\Entity\User $intervenant
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
     public function removeIntervenant(\UserBundle\Entity\User $intervenant)
     {
-        return $this->intervenants->removeElement($intervenant);
+        $this->intervenants->removeElement($intervenant);
     }
 
     /**
-     * Get intervenants.
+     * Get intervenants
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -543,7 +415,7 @@ class Evenement
     }
 
     /**
-     * Add observateur.
+     * Add observateur
      *
      * @param \UserBundle\Entity\User $observateur
      *
@@ -557,19 +429,17 @@ class Evenement
     }
 
     /**
-     * Remove observateur.
+     * Remove observateur
      *
      * @param \UserBundle\Entity\User $observateur
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
     public function removeObservateur(\UserBundle\Entity\User $observateur)
     {
-        return $this->observateurs->removeElement($observateur);
+        $this->observateurs->removeElement($observateur);
     }
 
     /**
-     * Get observateurs.
+     * Get observateurs
      *
      * @return \Doctrine\Common\Collections\Collection
      */

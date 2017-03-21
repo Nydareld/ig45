@@ -1,3 +1,11 @@
 backoffice_base_homepage:
     path:     /
     defaults: { _controller: BackofficeBaseBundle:Default:index }
+
+user_list:
+    path: /user/list
+    defaults: { _controller: BackofficeBaseBundle:UserAdmin:userList}
+
+group_list:
+    path: /group/list
+    defaults: { _controller: BackofficeBaseBundle:GroupAdmin:groupList}

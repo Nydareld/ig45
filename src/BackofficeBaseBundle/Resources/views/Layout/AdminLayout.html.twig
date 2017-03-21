@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>
+        {% block title %}IG45 BackOffice{% endblock %}
+    </title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    {% block styles %}
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- AdminLTE -->
+    <link rel="stylesheet" href="{{ asset('bower_components/AdminLTE/dist/css/AdminLTE.min.css') }}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('bower_components/AdminLTE/dist/css/skins/skin-blue.min.css') }}">
+    {% endblock %}
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+
+    <header class="main-header">
+
+        <!-- Logo -->
+        <a href="index2.html" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>IG</b>45</span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>Inter</b>Générations<b>45</b></span>
+        </a>
+
+        <!-- Header Navbar -->
+        <nav class="navbar navbar-static-top" role="navigation">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <!-- Navbar Right Menu -->
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+
+                    <!-- User Account Menu -->
+                    <li class="dropdown user user-menu">
+                        <!-- Menu Toggle Button -->
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <!-- The user image in the navbar-->
+                            <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                            <span class="hidden-xs">Alexander Pierce</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- The user image in the menu -->
+                            <li class="user-header">
+
+                                <p>
+                                    Alexander Pierce - Web Developer
+                                </p>
+                            </li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Control Sidebar Toggle Button -->
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            {% block contentHeader %}{% endblock %}
+        </section>
+
+        <section class="content">
+            <div class="row">
+                {% if app.session.flashbag %}
+                {% for type, messages in app.session.flashbag.all() %}
+                {% for message in messages %}
+                <div class="col-md-offset-3 col-md-6 alert alert-{{type}} alert-dismissible alert-auto-dismiss">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    {{message}}
+                </div>
+                {% endfor %}
+                {% endfor %}
+                {% endif %}
+            </div>
+            <div class="row">
+
+                {% block content %}{% endblock %}
+            </div>
+        </section>
+    </div>
+
+    <aside class="main-sidebar">
+
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu">
+                <li class="header">ACCUEIL</li>
+                <li id="nav-overview"><a href="{{ path('backoffice_base_homepage') }}"><i class="fa fa-pie-chart"></i> <span>Vue d'ensemble</span></a></li>
+                <li class="header">AGENDA</li>
+                <li id="nav-interv"><a href="#"><i class="fa fa-calendar"></i> <span>Interventions</span></a></li>
+                <li class="header">UTILISATEURS</li>
+                <li id="nav-userList"><a href="{{ path('user_list') }}"><i class="fa fa-user"></i> <span>Utilisateurs</span></a></li>
+                <li id="nav-groupList"><a href="{{ path('group_list') }}"><i class="fa fa-users"></i> <span>Groupes</span></a></li>
+            </ul>
+            <!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    <footer class="main-footer">
+        <!-- To the right -->
+        <div class="pull-right hidden-xs">
+            Anything you want
+        </div>
+        <!-- Default to the left -->
+        <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+    </footer>
+    {% block modals %}{% endblock %}
+
+    {% block scripts %}
+
+    <!-- jquery -->
+    <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+
+    <!-- Classe active sur le menu -->
+    <script>
+        $("#nav-{% block navActive %}{% endblock %}").addClass("active");
+        setTimeout(function(){
+            $(".alert-auto-dismiss").hide();
+        }, 5000);
+    </script>
+
+    <!-- Bootstrap -->
+    <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+
+    <!-- AdminLTE -->
+    <script src="{{ asset('bower_components/AdminLTE/dist/js/app.min.js') }}"></script>
+
+    {% endblock %}
+
+</body>
+</html>
