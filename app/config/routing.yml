@@ -1,7 +1,3 @@
-agenda_evenement:
-    resource: "@AgendaBundle/Controller/EvenementController.php"
-    type:     annotation
-
 agenda:
     resource: "@AgendaBundle/Resources/config/routing.yml"
     prefix:   /
