@@ -10,10 +10,9 @@ class AgendaController extends Controller
     {
         // récupération de tout les évènements
         $evenements = $this->getDoctrine()
-                            ->getRepository('AgendaBundle:Evenement')
-                            ->findAll();
-                            
-        // on envoie tout les évènements au twig
+                       ->getRepository('AgendaBundle:Evenement')
+
+        //on envoie tout les évènements au twig
         return $this->render('AgendaBundle:Agenda:agenda.html.twig',
                         array('evenements' => $evenements));
     }
@@ -42,8 +41,9 @@ class AgendaController extends Controller
         // }
         //
         // // ajout des évènements dans lesquelles le user est adjoint
-        // $adjointLieux = $user->getAdjointLieux();
-        // foreach ($adjointLieux as $lieu) {
+        // $adjointLieux =     return $this->render('AgendaBundle:Agenda:agenda.html.twig',
+        //                array('ev    return $this->render('AgendaBundle:Agenda:agenda.html.twig',
+        //                array('evenements' => $evenements)); as $lieu) {
         //     $evenements[] = $lieu->getEvenement();
         // }
 
