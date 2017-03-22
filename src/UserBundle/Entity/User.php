@@ -366,4 +366,14 @@ class User extends BaseUser
     {
         return $this->adjoint_lieux;
     }
+
+    /**
+     * Representation en chaine d'un utilisateur : Prenom Nom
+     * @method __toString
+     * @return string
+     */
+    public function __toString(){
+        return $this->getNom().' '.$this->getPrenom();
+    }
+
 }
