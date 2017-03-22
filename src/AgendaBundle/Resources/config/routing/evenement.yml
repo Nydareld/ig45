@@ -1,0 +1,23 @@
+evenement_index:
+    path:  /
+    defaults: {_controller: AgendaBundle:Evenement:index}
+
+evenement_new:
+    path:  /new
+    defaults: {_controller: AgendaBundle:Evenement:new}
+
+evenement_show:
+    path:  /{id}
+    defaults: {_controller: AgendaBundle:Evenement:show}
+
+evenement_new_suite:
+    path: /{id}/new/suite
+    defaults: {_controller: AgendaBundle:Evenement:SuiteNew}
+
+evenement_delete:
+    path: /supprimer/{id}
+    defaults: {_controller: AgendaBundle:Evenement:delete}
+
+evenement_edit:
+    path: /{id}/edit
+    defaults: {_controller: AgendaBundle:Evenement:edit}
