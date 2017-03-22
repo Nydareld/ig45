@@ -10,7 +10,7 @@ class AgendaController extends Controller
     {
         // récupération de tout les évènements
         $evenements = $this->getDoctrine()
-                       ->getRepository('AgendaBundle:Evenement')
+                       ->getRepository('AgendaBundle:Evenement');
 
         //on envoie tout les évènements au twig
         return $this->render('AgendaBundle:Agenda:agenda.html.twig',
