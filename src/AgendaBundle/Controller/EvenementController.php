@@ -10,14 +10,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Evenement controller.
  *
- * @Route("evenement")
  */
 class EvenementController extends Controller
 {
     /**
      * Lists all evenement entities.
      *
-     * @Route("/", name="evenement_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -34,7 +32,6 @@ class EvenementController extends Controller
     /**
      * Creates a new evenement entity.
      *
-     * @Route("/new", name="evenement_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -60,7 +57,6 @@ class EvenementController extends Controller
     /**
      * Finds and displays a evenement entity.
      *
-     * @Route("/{id}", name="evenement_show")
      * @Method("GET")
      */
     public function showAction(Evenement $evenement)
@@ -76,7 +72,6 @@ class EvenementController extends Controller
     /**
      * Displays a form to edit an existing evenement entity.
      *
-     * @Route("/{id}/edit", name="evenement_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Evenement $evenement)
@@ -101,7 +96,6 @@ class EvenementController extends Controller
     /**
      * Displays a form to edit an existing evenement entity.
      *
-     * @Route("/{id}/new/suite", name="evenement_new_suite")
      * @Method({"GET", "POST"})
      */
     public function SuiteNewAction(Request $request, Evenement $evenement)
@@ -126,7 +120,6 @@ class EvenementController extends Controller
     /**
      * Deletes a evenement entity.
      *
-     * @Route("/{id}", name="evenement_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Evenement $evenement)
