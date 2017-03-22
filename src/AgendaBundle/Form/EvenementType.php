@@ -13,21 +13,17 @@ class EvenementType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nom')
-                ->add('description')
-                ->add('dateEvt')
+        $builder->add('dateEvt')
                 ->add('heureDebut')
                 ->add('heureFin')
-                ->add('nbParticipants')
-                ->add('nbObservateurs')
-                ->add('niveauIntervention')
                 ->add('typeIntervention')
-                ->add('have_observateur')
-                ->add('correspondant')
-                ->add('lieu')->add('status')
+                ->add('niveau_classe')
+                ->add('nbEleves')
+                ->add('nbParticipants')
                 ->add('intervenants')
+                ->add('nbObservateurs')
                 ->add('observateurs')
-                ->add('type');
+                ->add('lieu');
     }
 
     /**

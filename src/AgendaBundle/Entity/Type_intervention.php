@@ -31,7 +31,7 @@ class Type_intervention
     /**
      * @var Evenement
      *
-     * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\Evenement", mappedBy="type")
+     * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\Evenement", mappedBy="typeIntervention", cascade={"persist"})
      */
     private $evenements;
 
@@ -68,4 +68,9 @@ class Type_intervention
     {
         return $this->nom;
     }
+
+    public function __toString(){
+      return $this->nom;
+    }
+
 }

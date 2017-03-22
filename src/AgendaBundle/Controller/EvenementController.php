@@ -10,14 +10,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Evenement controller.
  *
- * @Route("evenement")
  */
 class EvenementController extends Controller
 {
     /**
      * Lists all evenement entities.
      *
-     * @Route("/", name="evenement_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -26,7 +24,7 @@ class EvenementController extends Controller
 
         $evenements = $em->getRepository('AgendaBundle:Evenement')->findAll();
 
-        return $this->render('evenement/index.html.twig', array(
+        return $this->render('AgendaBundle:Evenement:index.html.twig', array(
             'evenements' => $evenements,
         ));
     }
@@ -34,7 +32,6 @@ class EvenementController extends Controller
     /**
      * Creates a new evenement entity.
      *
-     * @Route("/new", name="evenement_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -48,10 +45,10 @@ class EvenementController extends Controller
             $em->persist($evenement);
             $em->flush();
 
-            return $this->redirectToRoute('evenement_show', array('id' => $evenement->getId()));
+            return $this->redirectToRoute('evenement_new_suite', array('id' => $evenement->getId()));
         }
 
-        return $this->render('evenement/new.html.twig', array(
+        return $this->render('AgendaBundle:Evenement:new.html.twig', array(
             'evenement' => $evenement,
             'form' => $form->createView(),
         ));
@@ -60,14 +57,13 @@ class EvenementController extends Controller
     /**
      * Finds and displays a evenement entity.
      *
-     * @Route("/{id}", name="evenement_show")
      * @Method("GET")
      */
     public function showAction(Evenement $evenement)
     {
         $deleteForm = $this->createDeleteForm($evenement);
 
-        return $this->render('evenement/show.html.twig', array(
+        return $this->render('AgendaBundle:Evenement:show.html.twig', array(
             'evenement' => $evenement,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -76,7 +72,6 @@ class EvenementController extends Controller
     /**
      * Displays a form to edit an existing evenement entity.
      *
-     * @Route("/{id}/edit", name="evenement_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Evenement $evenement)
@@ -91,7 +86,31 @@ class EvenementController extends Controller
             return $this->redirectToRoute('evenement_edit', array('id' => $evenement->getId()));
         }
 
-        return $this->render('evenement/edit.html.twig', array(
+        return $this->render('AgendaBundle:Evenement:edit.html.twig', array(
+            'evenement' => $evenement,
+            'edit_form' => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    /**
+     * Displays a form to edit an existing evenement entity.
+     *
+     * @Method({"GET", "POST"})
+     */
+    public function SuiteNewAction(Request $request, Evenement $evenement)
+    {
+        $deleteForm = $this->createDeleteForm($evenement);
+        $editForm = $this->createForm('AgendaBundle\Form\EvenementTypeSuite', $evenement);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('evenement_edit', array('id' => $evenement->getId()));
+        }
+
+        return $this->render('AgendaBundle:Evenement:edit.html.twig', array(
             'evenement' => $evenement,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -101,7 +120,6 @@ class EvenementController extends Controller
     /**
      * Deletes a evenement entity.
      *
-     * @Route("/{id}", name="evenement_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Evenement $evenement)
