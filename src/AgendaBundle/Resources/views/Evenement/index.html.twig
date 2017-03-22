@@ -7,7 +7,6 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Nom</th>
                 <th>Description</th>
                 <th>Dateevt</th>
                 <th>Heuredebut</th>
@@ -15,8 +14,17 @@
                 <th>Nbparticipants</th>
                 <th>Nbobservateurs</th>
                 <th>Niveauintervention</th>
-                <th>Typeintervention</th>
-                <th>Have_observateur</th>
+                <th>Nbgroupes</th>
+                <th>Nbsalles</th>
+                <th>Eleves_volontaires</th>
+                <th>Documentation_attendue</th>
+                <th>Particularite</th>
+                <th>Complement_info</th>
+                <th>Enseignant_ref</th>
+                <th>Courriel_enseignant_ref</th>
+                <th>Tel_enseignant_ref</th>
+                <th>Nbeleves</th>
+                <th>Niveau_classe</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -24,7 +32,6 @@
         {% for evenement in evenements %}
             <tr>
                 <td><a href="{{ path('evenement_show', { 'id': evenement.id }) }}">{{ evenement.id }}</a></td>
-                <td>{{ evenement.nom }}</td>
                 <td>{{ evenement.description }}</td>
                 <td>{% if evenement.dateEvt %}{{ evenement.dateEvt|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{% if evenement.heureDebut %}{{ evenement.heureDebut|date('Y-m-d H:i:s') }}{% endif %}</td>
@@ -32,8 +39,17 @@
                 <td>{{ evenement.nbParticipants }}</td>
                 <td>{{ evenement.nbObservateurs }}</td>
                 <td>{{ evenement.niveauIntervention }}</td>
-                <td>{{ evenement.typeIntervention }}</td>
-                <td>{% if evenement.haveobservateur %}Yes{% else %}No{% endif %}</td>
+                <td>{{ evenement.nbGroupes }}</td>
+                <td>{{ evenement.nbSalles }}</td>
+                <td>{{ evenement.elevesvolontaires }}</td>
+                <td>{% if evenement.documentationattendue %}Yes{% else %}No{% endif %}</td>
+                <td>{{ evenement.particularite }}</td>
+                <td>{{ evenement.complementinfo }}</td>
+                <td>{{ evenement.enseignantref }}</td>
+                <td>{{ evenement.courrielenseignantref }}</td>
+                <td>{{ evenement.telenseignantref }}</td>
+                <td>{{ evenement.nbEleves }}</td>
+                <td>{{ evenement.niveauclasse }}</td>
                 <td>
                     <ul>
                         <li>

@@ -74,6 +74,13 @@ class Lieux
       */
       private $type;
 
+      /**
+       * @var Evenement
+       *
+       * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\Evenement", mappedBy="lieu")
+       */
+      private $evenements;
+
     /**
      * Get id.
      *
@@ -179,25 +186,23 @@ class Lieux
     {
         return $this->codePostal;
     }
-
     /**
-     * Get the value of Correspondants
-     *
-     * @return User
+     * Constructor
      */
-    public function getCorrespondants()
+    public function __construct()
     {
-        return $this->correspondants;
+        $this->adjoints = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->evenements = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
-     * Set the value of Correspondants
+     * Set correspondants
      *
-     * @param User correspondants
+     * @param \UserBundle\Entity\User $correspondants
      *
-     * @return self
+     * @return Lieux
      */
-    public function setCorrespondants(User $correspondants)
+    public function setCorrespondants(\UserBundle\Entity\User $correspondants = null)
     {
         $this->correspondants = $correspondants;
 
@@ -205,9 +210,43 @@ class Lieux
     }
 
     /**
-     * Get the value of Adjoints
+     * Get correspondants
      *
-     * @return User
+     * @return \UserBundle\Entity\User
+     */
+    public function getCorrespondants()
+    {
+        return $this->correspondants;
+    }
+
+    /**
+     * Add adjoint
+     *
+     * @param \UserBundle\Entity\User $adjoint
+     *
+     * @return Lieux
+     */
+    public function addAdjoint(\UserBundle\Entity\User $adjoint)
+    {
+        $this->adjoints[] = $adjoint;
+
+        return $this;
+    }
+
+    /**
+     * Remove adjoint
+     *
+     * @param \UserBundle\Entity\User $adjoint
+     */
+    public function removeAdjoint(\UserBundle\Entity\User $adjoint)
+    {
+        $this->adjoints->removeElement($adjoint);
+    }
+
+    /**
+     * Get adjoints
+     *
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getAdjoints()
     {
@@ -215,23 +254,23 @@ class Lieux
     }
 
     /**
-     * Set the value of Adjoints
+     * Set type
      *
-     * @param User adjoints
+     * @param \AgendaBundle\Entity\Type_lieu $type
      *
-     * @return self
+     * @return Lieux
      */
-    public function setAdjoints(User $adjoints)
+    public function setType(\AgendaBundle\Entity\Type_lieu $type = null)
     {
-        $this->adjoints = $adjoints;
+        $this->type = $type;
 
         return $this;
     }
 
     /**
-     * Get the value of Type
+     * Get type
      *
-     * @return Type_lieu
+     * @return \AgendaBundle\Entity\Type_lieu
      */
     public function getType()
     {
@@ -239,17 +278,40 @@ class Lieux
     }
 
     /**
-     * Set the value of Type
+     * Add evenement
      *
-     * @param Type_lieu type
+     * @param \AgendaBundle\Entity\Evenement $evenement
      *
-     * @return self
+     * @return Lieux
      */
-    public function setType(Type_lieu $type)
+    public function addEvenement(\AgendaBundle\Entity\Evenement $evenement)
     {
-        $this->type = $type;
+        $this->evenements[] = $evenement;
 
         return $this;
     }
 
+    /**
+     * Remove evenement
+     *
+     * @param \AgendaBundle\Entity\Evenement $evenement
+     */
+    public function removeEvenement(\AgendaBundle\Entity\Evenement $evenement)
+    {
+        $this->evenements->removeElement($evenement);
+    }
+
+    /**
+     * Get evenements
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEvenements()
+    {
+        return $this->evenements;
+    }
+
+    public function __toString(){
+      return $this->nom;
+    }
 }
