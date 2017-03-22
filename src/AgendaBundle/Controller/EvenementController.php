@@ -26,7 +26,7 @@ class EvenementController extends Controller
 
         $evenements = $em->getRepository('AgendaBundle:Evenement')->findAll();
 
-        return $this->render('evenement/index.html.twig', array(
+        return $this->render('AgendaBundle:Evenement:index.html.twig', array(
             'evenements' => $evenements,
         ));
     }
@@ -48,10 +48,10 @@ class EvenementController extends Controller
             $em->persist($evenement);
             $em->flush();
 
-            return $this->redirectToRoute('evenement_show', array('id' => $evenement->getId()));
+            return $this->redirectToRoute('evenement_new_suite', array('id' => $evenement->getId()));
         }
 
-        return $this->render('evenement/new.html.twig', array(
+        return $this->render('AgendaBundle:Evenement:new.html.twig', array(
             'evenement' => $evenement,
             'form' => $form->createView(),
         ));
@@ -67,7 +67,7 @@ class EvenementController extends Controller
     {
         $deleteForm = $this->createDeleteForm($evenement);
 
-        return $this->render('evenement/show.html.twig', array(
+        return $this->render('AgendaBundle:Evenement:show.html.twig', array(
             'evenement' => $evenement,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -91,7 +91,32 @@ class EvenementController extends Controller
             return $this->redirectToRoute('evenement_edit', array('id' => $evenement->getId()));
         }
 
-        return $this->render('evenement/edit.html.twig', array(
+        return $this->render('AgendaBundle:Evenement:edit.html.twig', array(
+            'evenement' => $evenement,
+            'edit_form' => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    /**
+     * Displays a form to edit an existing evenement entity.
+     *
+     * @Route("/{id}/new/suite", name="evenement_new_suite")
+     * @Method({"GET", "POST"})
+     */
+    public function SuiteNewAction(Request $request, Evenement $evenement)
+    {
+        $deleteForm = $this->createDeleteForm($evenement);
+        $editForm = $this->createForm('AgendaBundle\Form\EvenementTypeSuite', $evenement);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('evenement_edit', array('id' => $evenement->getId()));
+        }
+
+        return $this->render('AgendaBundle:Evenement:edit.html.twig', array(
             'evenement' => $evenement,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
