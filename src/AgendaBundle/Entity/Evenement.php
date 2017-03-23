@@ -73,7 +73,7 @@ class Evenement
     /**
      * @var Type_intervention
      *
-     * @ORM\ManyToOne(targetEntity="AgendaBundle\Entity\Type_intervention", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="AgendaBundle\Entity\Type_intervention", inversedBy="evenements", cascade={"persist"})
      */
     private $typeIntervention;
 
@@ -97,7 +97,7 @@ class Evenement
       private $statut;
 
       /**
-      * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", inversedBy="intervention")
+      * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", mappedBy="interventions")
       * @ORM\JoinTable(name="intervention",
       *      joinColumns={@ORM\JoinColumn(name="evt_id", referencedColumnName="id")},
       *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
@@ -106,7 +106,7 @@ class Evenement
       private $intervenants;
 
       /**
-      * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", inversedBy="observation")
+      * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", mappedBy="observations")
       * @ORM\JoinTable(name="observation",
       *      joinColumns={@ORM\JoinColumn(name="evt_id", referencedColumnName="id")},
       *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
@@ -380,7 +380,7 @@ class Evenement
     }
 
     /**
-     * Set typeIntervention
+     * Set Type_intervention
      *
      * @param string $typeIntervention
      *
