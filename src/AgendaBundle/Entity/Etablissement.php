@@ -7,12 +7,12 @@ use UserBundle\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Lieux
+ * Etablissement
  *
- * @ORM\Table(name="lieux")
- * @ORM\Entity(repositoryClass="AgendaBundle\Repository\LieuxRepository")
+ * @ORM\Table(name="etablissement")
+ * @ORM\Entity(repositoryClass="AgendaBundle\Repository\EtablissementRepository")
  */
-class Lieux
+class Etablissement
 {
     /**
      * @var int
@@ -62,7 +62,7 @@ class Lieux
       * @var User
       *
       * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", inversedBy="adjoint_lieux")
-      * @ORM\JoinTable(name="lieux_adjoints",
+      * @ORM\JoinTable(name="etablissement_adjoints",
       *      joinColumns={@ORM\JoinColumn(name="lieux_id", referencedColumnName="id")},
       *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
       * )
@@ -70,18 +70,22 @@ class Lieux
       private $adjoints;
 
       /**
-      * @var Type_lieu
-      *
-      * @ORM\ManyToOne(targetEntity="AgendaBundle\Entity\Type_lieu", inversedBy="lieux")
-      */
-      private $type;
-
-      /**
        * @var Evenement
        *
        * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\Evenement", mappedBy="lieu")
        */
       private $evenements;
+
+      /**
+       * @var Niveau
+       *
+       * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Niveau", mappedBy="etablissements")
+       * @ORM\JoinTable(name="etablissement_niveau",
+       *     joinColumns={@ORM\JoinColumn(name="id_etablissement", referencedColumnName="id")},
+       *     inverseJoinColumns={@ORM\JoinColumn(name="id_niveau", referencedColumnName="id")}
+       *     )
+       */
+      private $niveaux;
 
     /**
      * Get id.
@@ -98,7 +102,7 @@ class Lieux
      *
      * @param string $nom
      *
-     * @return Lieux
+     * @return Etablissement
      */
     public function setNom($nom)
     {
@@ -122,7 +126,7 @@ class Lieux
      *
      * @param string $adresse
      *
-     * @return Lieux
+     * @return Etablissement
      */
     public function setAdresse($adresse)
     {
@@ -146,7 +150,7 @@ class Lieux
      *
      * @param string $ville
      *
-     * @return Lieux
+     * @return Etablissement
      */
     public function setVille($ville)
     {
@@ -170,7 +174,7 @@ class Lieux
      *
      * @param string $codePostal
      *
-     * @return Lieux
+     * @return Etablissement
      */
     public function setCodePostal($codePostal)
     {
@@ -202,7 +206,7 @@ class Lieux
      *
      * @param \UserBundle\Entity\User $correspondants
      *
-     * @return Lieux
+     * @return Etablissement
      */
     public function setCorrespondants(\UserBundle\Entity\User $correspondants = null)
     {
@@ -226,7 +230,7 @@ class Lieux
      *
      * @param \UserBundle\Entity\User $adjoint
      *
-     * @return Lieux
+     * @return Etablissement
      */
     public function addAdjoint(\UserBundle\Entity\User $adjoint)
     {
@@ -256,35 +260,11 @@ class Lieux
     }
 
     /**
-     * Set type
-     *
-     * @param \AgendaBundle\Entity\Type_lieu $type
-     *
-     * @return Lieux
-     */
-    public function setType(\AgendaBundle\Entity\Type_lieu $type = null)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return \AgendaBundle\Entity\Type_lieu
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
      * Add evenement
      *
      * @param \AgendaBundle\Entity\Evenement $evenement
      *
-     * @return Lieux
+     * @return Etablissement
      */
     public function addEvenement(\AgendaBundle\Entity\Evenement $evenement)
     {

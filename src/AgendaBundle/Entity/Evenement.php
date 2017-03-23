@@ -71,16 +71,16 @@ class Evenement
     private $niveauIntervention;
 
     /**
-     * @var Type_intervention
+     * @var Type_evenement
      *
-     * @ORM\ManyToOne(targetEntity="AgendaBundle\Entity\Type_intervention", inversedBy="evenements", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="AgendaBundle\Entity\Type_evenement", inversedBy="evenements", cascade={"persist"})
      */
-    private $typeIntervention;
+    private $typeEvenement;
 
      /**
-      * @var Lieux
+      * @var Etablissement
       *
-      * @ORM\ManyToOne(targetEntity="AgendaBundle\Entity\Lieux", inversedBy="evenements")
+      * @ORM\ManyToOne(targetEntity="AgendaBundle\Entity\Etablissement", inversedBy="evenements")
       */
      private $lieu;
 
@@ -380,37 +380,37 @@ class Evenement
     }
 
     /**
-     * Set Type_intervention
+     * Set Type_evenement
      *
-     * @param string $typeIntervention
+     * @param string $typeEvenement
      *
      * @return Evenement
      */
-    public function setTypeIntervention($typeIntervention)
+    public function setTypeEvenement($typeEvenement)
     {
-        $this->typeIntervention = $typeIntervention;
+        $this->typeEvenement = $typeEvenement;
 
         return $this;
     }
 
     /**
-     * Get typeIntervention
+     * Get typeEvenement
      *
      * @return string
      */
-    public function getTypeIntervention()
+    public function getTypeEvenement()
     {
-        return $this->typeIntervention;
+        return $this->typeEvenement;
     }
 
     /**
-     * Set lieu
+     * Set etablissement
      *
-     * @param \AgendaBundle\Entity\Lieux $lieu
+     * @param \AgendaBundle\Entity\Etablissement $lieu
      *
      * @return Evenement
      */
-    public function setLieu(\AgendaBundle\Entity\Lieux $lieu = null)
+    public function setLieu(\AgendaBundle\Entity\Etablissement $lieu = null)
     {
         $this->lieu = $lieu;
 
@@ -420,7 +420,7 @@ class Evenement
     /**
      * Get lieu
      *
-     * @return \AgendaBundle\Entity\Lieux
+     * @return \AgendaBundle\Entity\Etablissement
      */
     public function getLieu()
     {

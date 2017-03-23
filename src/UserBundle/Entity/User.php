@@ -50,12 +50,12 @@ class User extends BaseUser
     protected $observations;
 
     /**
-     * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\Lieux", mappedBy="correspondants")
+     * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\Etablissement", mappedBy="correspondants")
      */
     protected $correspondants_lieux;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Lieux", mappedBy="adjoints")
+     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Etablissement", mappedBy="adjoints")
      * @ORM\JoinTable(name="fos_user_user_adjoints",
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="lieux_id", referencedColumnName="id")}
@@ -301,11 +301,11 @@ class User extends BaseUser
     /**
      * Add correspondantsLieux.
      *
-     * @param \AgendaBundle\Entity\Lieux $correspondantsLieux
+     * @param \AgendaBundle\Entity\Etablissement $correspondantsLieux
      *
      * @return User
      */
-    public function addCorrespondantsLieux(\AgendaBundle\Entity\Lieux $correspondantsLieux)
+    public function addCorrespondantsLieux(\AgendaBundle\Entity\Etablissement $correspondantsLieux)
     {
         $this->correspondants_lieux[] = $correspondantsLieux;
 
@@ -315,11 +315,11 @@ class User extends BaseUser
     /**
      * Remove correspondantsLieux.
      *
-     * @param \AgendaBundle\Entity\Lieux $correspondantsLieux
+     * @param \AgendaBundle\Entity\Etablissement $correspondantsLieux
      *
      * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
-    public function removeCorrespondantsLieux(\AgendaBundle\Entity\Lieux $correspondantsLieux)
+    public function removeCorrespondantsLieux(\AgendaBundle\Entity\Etablissement $correspondantsLieux)
     {
         return $this->correspondants_lieux->removeElement($correspondantsLieux);
     }
@@ -337,11 +337,11 @@ class User extends BaseUser
     /**
      * Add adjointLieux.
      *
-     * @param \AgendaBundle\Entity\Lieux $adjointLieux
+     * @param \AgendaBundle\Entity\Etablissement $adjointLieux
      *
      * @return User
      */
-    public function addAdjointLieux(\AgendaBundle\Entity\Lieux $adjointLieux)
+    public function addAdjointLieux(\AgendaBundle\Entity\Etablissement $adjointLieux)
     {
         $this->adjoint_lieux[] = $adjointLieux;
 
@@ -351,11 +351,11 @@ class User extends BaseUser
     /**
      * Remove adjointLieux.
      *
-     * @param \AgendaBundle\Entity\Lieux $adjointLieux
+     * @param \AgendaBundle\Entity\Etablissement $adjointLieux
      *
      * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
-    public function removeAdjointLieux(\AgendaBundle\Entity\Lieux $adjointLieux)
+    public function removeAdjointLieux(\AgendaBundle\Entity\Etablissement $adjointLieux)
     {
         return $this->adjoint_lieux->removeElement($adjointLieux);
     }
