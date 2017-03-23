@@ -61,9 +61,9 @@ class Etablissement
     /**
      * @var User
      *
-     * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", inversedBy="adjoint_lieux")
+     * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", mappedBy="adjonctions")
      * @ORM\JoinTable(name="etablissement_adjoints",
-     *      joinColumns={@ORM\JoinColumn(name="lieux_id", referencedColumnName="id")},
+     *      joinColumns={@ORM\JoinColumn(name="etablissement_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
      * )
      */

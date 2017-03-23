@@ -55,13 +55,10 @@ class User extends BaseUser
     protected $correspondances;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Etablissement", mappedBy="adjoints")
-     * @ORM\JoinTable(name="fos_user_user_adjoints",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="lieux_id", referencedColumnName="id")}
-     * )
+     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Etablissement", inversedBy="adjoints")
+     * @ORM\JoinTable(name="etablissement_adjoints")
      */
-    protected $adjoint_lieux;
+    protected $adjonctions;
 
     /**
      * @var int
