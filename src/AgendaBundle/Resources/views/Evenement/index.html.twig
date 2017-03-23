@@ -1,73 +1,63 @@
-{% extends 'base.html.twig' %}
+{% extends "BaseBundle::Layout/BaseLayout.html.twig" %}
 
-{% block body %}
-    <h1>Evenements list</h1>
+{% block contentBody %}
+    <h1>Agenda</h1>
+    <ul>
+        <li>
+          <a href="#"><i class="material-icons">chevron_left</i></a>
+        </li>
+        <li>
+            <a href="{{ path('evenement_new') }}">Créer une Intervention</a>
+        </li>
+        <li>
+          <a href="#">Agenda Personnel</a>
+        </li>
+    </ul>
 
-    <table>
+    <table class="bordered striped responsive-table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Description</th>
-                <th>Dateevt</th>
-                <th>Heuredebut</th>
-                <th>Heurefin</th>
-                <th>Nbparticipants</th>
-                <th>Nbobservateurs</th>
-                <th>Niveauintervention</th>
-                <th>Nbgroupes</th>
-                <th>Nbsalles</th>
-                <th>Eleves_volontaires</th>
-                <th>Documentation_attendue</th>
-                <th>Particularite</th>
-                <th>Complement_info</th>
-                <th>Enseignant_ref</th>
-                <th>Courriel_enseignant_ref</th>
-                <th>Tel_enseignant_ref</th>
-                <th>Nbeleves</th>
-                <th>Niveau_classe</th>
-                <th>Actions</th>
+                <th>Date</th>
+                <th>Début</th>
+                <th>Fin</th>
+                <th>Information Intervention</th>
+                <th>Intervenant</th>
+                <th>Observateurs</th>
+                <th>Fiche Intervention</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
         {% for evenement in evenements %}
             <tr>
-                <td><a href="{{ path('evenement_show', { 'id': evenement.id }) }}">{{ evenement.id }}</a></td>
-                <td>{{ evenement.description }}</td>
                 <td>{% if evenement.dateEvt %}{{ evenement.dateEvt|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{% if evenement.heureDebut %}{{ evenement.heureDebut|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{% if evenement.heureFin %}{{ evenement.heureFin|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ evenement.description }}</td>
                 <td>{{ evenement.nbParticipants }}</td>
                 <td>{{ evenement.nbObservateurs }}</td>
-                <td>{{ evenement.niveauIntervention }}</td>
-                <td>{{ evenement.nbGroupes }}</td>
-                <td>{{ evenement.nbSalles }}</td>
-                <td>{{ evenement.elevesvolontaires }}</td>
-                <td>{% if evenement.documentationattendue %}Yes{% else %}No{% endif %}</td>
-                <td>{{ evenement.particularite }}</td>
-                <td>{{ evenement.complementinfo }}</td>
-                <td>{{ evenement.enseignantref }}</td>
-                <td>{{ evenement.courrielenseignantref }}</td>
-                <td>{{ evenement.telenseignantref }}</td>
-                <td>{{ evenement.nbEleves }}</td>
-                <td>{{ evenement.niveauclasse }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('evenement_show', { 'id': evenement.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('evenement_edit', { 'id': evenement.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                  <ul>
+                    <li>
+                        <a href="{{ path('evenement_show', { 'id': evenement.id }) }}">détails</a>
+                    </li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                      <li>
+                          <a href="#"><i class="material-icons">mail</i></a>
+                      </li>
+                      <li>
+                          <a href="{{ path('evenement_delete', { 'id': evenement.id }) }}"><i class="material-icons">delete</i></a>
+                      </li>
+                      <li>
+                          <a href="{{ path('evenement_edit', { 'id': evenement.id }) }}"><i class="material-icons">mode_edit</i></a>
+                      </li>
+                  </ul>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('evenement_new') }}">Create a new evenement</a>
-        </li>
-    </ul>
 {% endblock %}
