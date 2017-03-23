@@ -10,14 +10,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Evenement controller.
  *
- * @Route("evenement")
  */
 class EvenementController extends Controller
 {
     /**
      * Lists all evenement entities.
      *
-     * @Route("/", name="evenement_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -34,7 +32,6 @@ class EvenementController extends Controller
     /**
      * Creates a new evenement entity.
      *
-     * @Route("/new", name="evenement_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -58,9 +55,33 @@ class EvenementController extends Controller
     }
 
     /**
+     * Displays a form to edit an existing evenement entity.
+     *
+     * @Route("/{id}/new/suite", name="evenement_new_suite")
+     * @Method({"GET", "POST"})
+     */
+    public function SuiteNewAction(Request $request, Evenement $evenement)
+    {
+        $deleteForm = $this->createDeleteForm($evenement);
+        $editForm = $this->createForm('AgendaBundle\Form\EvenementTypeSuite', $evenement);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('evenement_index');
+        }
+
+        return $this->render('AgendaBundle:Evenement:edit.html.twig', array(
+            'evenement' => $evenement,
+            'edit_form' => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    /**
      * Finds and displays a evenement entity.
      *
-     * @Route("/{id}", name="evenement_show")
      * @Method("GET")
      */
     public function showAction(Evenement $evenement)
@@ -76,7 +97,6 @@ class EvenementController extends Controller
     /**
      * Displays a form to edit an existing evenement entity.
      *
-     * @Route("/{id}/edit", name="evenement_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Evenement $evenement)
@@ -88,7 +108,7 @@ class EvenementController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('evenement_edit', array('id' => $evenement->getId()));
+            return $this->redirectToRoute('evenement_edit_suite', array('id' => $evenement->getId()));
         }
 
         return $this->render('AgendaBundle:Evenement:edit.html.twig', array(
@@ -101,10 +121,9 @@ class EvenementController extends Controller
     /**
      * Displays a form to edit an existing evenement entity.
      *
-     * @Route("/{id}/new/suite", name="evenement_new_suite")
      * @Method({"GET", "POST"})
      */
-    public function SuiteNewAction(Request $request, Evenement $evenement)
+    public function suiteEditAction(Request $request, Evenement $evenement)
     {
         $deleteForm = $this->createDeleteForm($evenement);
         $editForm = $this->createForm('AgendaBundle\Form\EvenementTypeSuite', $evenement);
@@ -113,7 +132,7 @@ class EvenementController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('evenement_edit', array('id' => $evenement->getId()));
+            return $this->redirectToRoute('evenement_index');
         }
 
         return $this->render('AgendaBundle:Evenement:edit.html.twig', array(
@@ -126,7 +145,6 @@ class EvenementController extends Controller
     /**
      * Deletes a evenement entity.
      *
-     * @Route("/{id}", name="evenement_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Evenement $evenement)

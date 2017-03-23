@@ -5,3 +5,7 @@ agenda_homepage:
 agenda_perso:
     path:     /perso
     defaults: { _controller: AgendaBundle:Agenda:agendaPerso }
+
+admin_crud_lieux:
+    resource: "@AgendaBundle/Resources/config/routing/evenement.yml"
+    prefix:  /evenement

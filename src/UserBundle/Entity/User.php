@@ -38,12 +38,14 @@ class User extends BaseUser
     protected $groups;
 
     /**
-    * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Evenement", mappedBy="intervenants")
+    * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Evenement", inversedBy="intervenants")
+    * @ORM\JoinTable(name="intervention")
     */
     protected $interventions;
 
     /**
-    * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Evenement", mappedBy="observateurs")
+    * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Evenement", inversedBy="observateurs")
+    * @ORM\JoinTable(name="observation")
     */
     protected $observations;
 
