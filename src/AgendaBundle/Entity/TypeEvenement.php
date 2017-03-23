@@ -3,6 +3,8 @@
 namespace AgendaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
 
 /**
  * type_evenement
@@ -42,6 +44,10 @@ class TypeEvenement
      */
     private $niveaux;
 
+    public function __toString(){
+      return $this->nom;
+    }
+
     /**
      * Get id.
      *
@@ -52,12 +58,25 @@ class TypeEvenement
         return $this->id;
     }
 
+
+
+
     /**
-     * Set nom.
+     * Get the value of Nom
      *
-     * @param string $nom
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set the value of Nom
      *
-     * @return type_evenement
+     * @param string nom
+     *
+     * @return self
      */
     public function setNom($nom)
     {
@@ -67,17 +86,51 @@ class TypeEvenement
     }
 
     /**
-     * Get nom.
+     * Get the value of Evenements
      *
-     * @return string
+     * @return Evenement
      */
-    public function getNom()
+    public function getEvenements()
     {
-        return $this->nom;
+        return $this->evenements;
     }
 
-    public function __toString(){
-      return $this->nom;
+    /**
+     * Set the value of Evenements
+     *
+     * @param Evenement evenements
+     *
+     * @return self
+     */
+    public function setEvenements(ArrayCollection $evenements)
+    {
+        $this->evenements = $evenements;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Niveaux
+     *
+     * @return Niveau
+     */
+    public function getNiveaux()
+    {
+        return $this->niveaux;
+    }
+
+    /**
+     * Set the value of Niveaux
+     *
+     * @param Niveau niveaux
+     *
+     * @return self
+     */
+    public function setNiveaux(ArrayCollection $niveaux)
+    {
+        $this->niveaux = $niveaux;
+
+        return $this;
     }
 
 }

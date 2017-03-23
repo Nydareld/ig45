@@ -3,6 +3,7 @@
 namespace AgendaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Evenement
@@ -185,10 +186,12 @@ class Evenement
         $this->observateurs = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+
+
     /**
-     * Get id
+     * Get the value of Id
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -196,21 +199,7 @@ class Evenement
     }
 
     /**
-     * Set description
-     *
-     * @param string $description
-     *
-     * @return Evenement
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
+     * Get the value of Description
      *
      * @return string
      */
@@ -220,21 +209,21 @@ class Evenement
     }
 
     /**
-     * Set dateEvt
+     * Set the value of Description
      *
-     * @param \DateTime $dateEvt
+     * @param string description
      *
-     * @return Evenement
+     * @return self
      */
-    public function setDateEvt($dateEvt)
+    public function setDescription($description)
     {
-        $this->dateEvt = $dateEvt;
+        $this->description = $description;
 
         return $this;
     }
 
     /**
-     * Get dateEvt
+     * Get the value of Date Evt
      *
      * @return \DateTime
      */
@@ -244,21 +233,21 @@ class Evenement
     }
 
     /**
-     * Set heureDebut
+     * Set the value of Date Evt
      *
-     * @param \DateTime $heureDebut
+     * @param \DateTime dateEvt
      *
-     * @return Evenement
+     * @return self
      */
-    public function setHeureDebut($heureDebut)
+    public function setDateEvt(\DateTime $dateEvt)
     {
-        $this->heureDebut = $heureDebut;
+        $this->dateEvt = $dateEvt;
 
         return $this;
     }
 
     /**
-     * Get heureDebut
+     * Get the value of Heure Debut
      *
      * @return \DateTime
      */
@@ -268,21 +257,21 @@ class Evenement
     }
 
     /**
-     * Set heureFin
+     * Set the value of Heure Debut
      *
-     * @param \DateTime $heureFin
+     * @param \DateTime heureDebut
      *
-     * @return Evenement
+     * @return self
      */
-    public function setHeureFin($heureFin)
+    public function setHeureDebut(\DateTime $heureDebut)
     {
-        $this->heureFin = $heureFin;
+        $this->heureDebut = $heureDebut;
 
         return $this;
     }
 
     /**
-     * Get heureFin
+     * Get the value of Heure Fin
      *
      * @return \DateTime
      */
@@ -292,11 +281,35 @@ class Evenement
     }
 
     /**
-     * Set nbParticipants
+     * Set the value of Heure Fin
      *
-     * @param integer $nbParticipants
+     * @param \DateTime heureFin
      *
-     * @return Evenement
+     * @return self
+     */
+    public function setHeureFin(\DateTime $heureFin)
+    {
+        $this->heureFin = $heureFin;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Nb Participants
+     *
+     * @return int
+     */
+    public function getNbParticipants()
+    {
+        return $this->nbParticipants;
+    }
+
+    /**
+     * Set the value of Nb Participants
+     *
+     * @param int nbParticipants
+     *
+     * @return self
      */
     public function setNbParticipants($nbParticipants)
     {
@@ -306,21 +319,21 @@ class Evenement
     }
 
     /**
-     * Get nbParticipants
+     * Get the value of Nb Observateurs
      *
-     * @return integer
+     * @return int
      */
-    public function getNbParticipants()
+    public function getNbObservateurs()
     {
-        return $this->nbParticipants;
+        return $this->nbObservateurs;
     }
 
     /**
-     * Set nbObservateurs
+     * Set the value of Nb Observateurs
      *
-     * @param integer $nbObservateurs
+     * @param int nbObservateurs
      *
-     * @return Evenement
+     * @return self
      */
     public function setNbObservateurs($nbObservateurs)
     {
@@ -330,45 +343,45 @@ class Evenement
     }
 
     /**
-     * Get nbObservateurs
+     * Get the value of Annule
      *
-     * @return integer
+     * @return boolean
      */
-    public function getNbObservateurs()
+    public function getAnnule()
     {
-        return $this->nbObservateurs;
+        return $this->annule;
     }
 
     /**
-     * Set niveauIntervention
+     * Set the value of Annule
      *
-     * @param string $niveauIntervention
+     * @param boolean annule
      *
-     * @return Evenement
+     * @return self
      */
-    public function setNiveauIntervention($niveauIntervention)
+    public function setAnnule($annule)
     {
-        $this->niveauIntervention = $niveauIntervention;
+        $this->annule = $annule;
 
         return $this;
     }
 
     /**
-     * Get niveauIntervention
+     * Get the value of Type Evenement
      *
-     * @return string
+     * @return mixed
      */
-    public function getNiveauIntervention()
+    public function getTypeEvenement()
     {
-        return $this->niveauIntervention;
+        return $this->typeEvenement;
     }
 
     /**
-     * Set Type_evenement
+     * Set the value of Type Evenement
      *
-     * @param string $typeEvenement
+     * @param mixed typeEvenement
      *
-     * @return Evenement
+     * @return self
      */
     public function setTypeEvenement($typeEvenement)
     {
@@ -378,61 +391,51 @@ class Evenement
     }
 
     /**
-     * Get typeEvenement
+     * Get the value of Etablissement
      *
-     * @return string
+     * @return mixed
      */
-    public function getTypeEvenement()
+    public function getEtablissement()
     {
-        return $this->typeEvenement;
+        return $this->etablissement;
     }
 
     /**
-     * Set etablissement
+     * Set the value of Etablissement
      *
-     * @param \AgendaBundle\Entity\Etablissement $lieu
+     * @param mixed etablissement
      *
-     * @return Evenement
+     * @return self
      */
-    public function setLieu(\AgendaBundle\Entity\Etablissement $lieu = null)
+    public function setEtablissement($etablissement)
     {
-        $this->lieu = $lieu;
+        $this->etablissement = $etablissement;
 
         return $this;
     }
 
     /**
-     * Get lieu
+     * Get the value of Intervenants
      *
-     * @return \AgendaBundle\Entity\Etablissement
+     * @return mixed
      */
-    public function getLieu()
+    public function getIntervenants()
     {
-        return $this->lieu;
+        return $this->intervenants;
     }
 
     /**
-     * Set statut
+     * Set the value of Intervenants
      *
-     * @param \AgendaBundle\Entity\Status $statut
+     * @param mixed intervenants
      *
-     * @return Evenement
+     * @return self
      */
-    public function setStatut(\AgendaBundle\Entity\Status $statut = null)
+    public function setIntervenants($intervenants)
     {
-        $this->statut = $statut;
+        $this->intervenants = $intervenants;
 
         return $this;
-    }
-
-    /**
-     * Get statut
-     *
-     * @return \AgendaBundle\Entity\Status
-     */
-    public function getStatut()
-    {
-        return $this->statut;
     }
 
     /**
@@ -460,14 +463,29 @@ class Evenement
     }
 
     /**
-     * Get intervenants
+     * Get the value of Observateurs
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return mixed
      */
-    public function getIntervenants()
+    public function getObservateurs()
     {
-        return $this->intervenants;
+        return $this->observateurs;
     }
+
+    /**
+     * Set the value of Observateurs
+     *
+     * @param mixed observateurs
+     *
+     * @return self
+     */
+    public function setObservateurs($observateurs)
+    {
+        $this->observateurs = $observateurs;
+
+        return $this;
+    }
+
 
     /**
      * Add observateur
@@ -494,55 +512,7 @@ class Evenement
     }
 
     /**
-     * Get observateurs
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getObservateurs()
-    {
-        return $this->observateurs;
-    }
-
-    /**
-     * Set finaleIntervention.
-     *
-     * @param string $finaleIntervention
-     *
-     * @return Evenement
-     */
-    public function setFinaleIntervention($finaleIntervention)
-    {
-        $this->finale_intervention = $finaleIntervention;
-
-        return $this;
-    }
-
-    /**
-     * Get finaleIntervention.
-     *
-     * @return string
-     */
-    public function getFinaleIntervention()
-    {
-        return $this->finale_intervention;
-    }
-
-    /**
-     * Set nbGroupes.
-     *
-     * @param int $nbGroupes
-     *
-     * @return Evenement
-     */
-    public function setNbGroupes($nbGroupes)
-    {
-        $this->nbGroupes = $nbGroupes;
-
-        return $this;
-    }
-
-    /**
-     * Get nbGroupes.
+     * Get the value of Nb Groupes
      *
      * @return int
      */
@@ -552,21 +522,21 @@ class Evenement
     }
 
     /**
-     * Set nbSalles.
+     * Set the value of Nb Groupes
      *
-     * @param int $nbSalles
+     * @param int nbGroupes
      *
-     * @return Evenement
+     * @return self
      */
-    public function setNbSalles($nbSalles)
+    public function setNbGroupes($nbGroupes)
     {
-        $this->nbSalles = $nbSalles;
+        $this->nbGroupes = $nbGroupes;
 
         return $this;
     }
 
     /**
-     * Get nbSalles.
+     * Get the value of Nb Salles
      *
      * @return int
      */
@@ -576,69 +546,69 @@ class Evenement
     }
 
     /**
-     * Set elevesVolontaires.
+     * Set the value of Nb Salles
      *
-     * @param string $elevesVolontaires
+     * @param int nbSalles
      *
-     * @return Evenement
+     * @return self
      */
-    public function setElevesVolontaires($elevesVolontaires)
+    public function setNbSalles($nbSalles)
     {
-        $this->eleves_volontaires = $elevesVolontaires;
+        $this->nbSalles = $nbSalles;
 
         return $this;
     }
 
     /**
-     * Get elevesVolontaires.
+     * Get the value of Eleves Volontaires
      *
      * @return string
      */
     public function getElevesVolontaires()
     {
-        return $this->eleves_volontaires;
+        return $this->elevesVolontaires;
     }
 
     /**
-     * Set documentationAttendue.
+     * Set the value of Eleves Volontaires
      *
-     * @param bool $documentationAttendue
+     * @param string elevesVolontaires
      *
-     * @return Evenement
+     * @return self
      */
-    public function setDocumentationAttendue($documentationAttendue)
+    public function setElevesVolontaires($elevesVolontaires)
     {
-        $this->documentation_attendue = $documentationAttendue;
+        $this->elevesVolontaires = $elevesVolontaires;
 
         return $this;
     }
 
     /**
-     * Get documentationAttendue.
+     * Get the value of Documentation Attendue
      *
-     * @return bool
+     * @return boolean
      */
     public function getDocumentationAttendue()
     {
-        return $this->documentation_attendue;
+        return $this->documentationAttendue;
     }
 
     /**
-     * Set particularite.
+     * Set the value of Documentation Attendue
      *
-     * @param string $particularite
+     * @param boolean documentationAttendue
      *
-     * @return Evenement
+     * @return self
      */
-    public function setParticularite($particularite)
+    public function setDocumentationAttendue($documentationAttendue)
     {
-        $this->particularite = $particularite;
+        $this->documentationAttendue = $documentationAttendue;
 
         return $this;
     }
 
     /**
-     * Get particularite.
+     * Get the value of Particularite
      *
      * @return string
      */
@@ -648,117 +618,117 @@ class Evenement
     }
 
     /**
-     * Set complementInfo.
+     * Set the value of Particularite
      *
-     * @param string $complementInfo
+     * @param string particularite
      *
-     * @return Evenement
+     * @return self
      */
-    public function setComplementInfo($complementInfo)
+    public function setParticularite($particularite)
     {
-        $this->complement_info = $complementInfo;
+        $this->particularite = $particularite;
 
         return $this;
     }
 
     /**
-     * Get complementInfo.
+     * Get the value of Complement Info
      *
      * @return string
      */
     public function getComplementInfo()
     {
-        return $this->complement_info;
+        return $this->complementInfo;
     }
 
     /**
-     * Set enseignantRef.
+     * Set the value of Complement Info
      *
-     * @param string $enseignantRef
+     * @param string complementInfo
      *
-     * @return Evenement
+     * @return self
      */
-    public function setEnseignantRef($enseignantRef)
+    public function setComplementInfo($complementInfo)
     {
-        $this->enseignant_ref = $enseignantRef;
+        $this->complementInfo = $complementInfo;
 
         return $this;
     }
 
     /**
-     * Get enseignantRef.
+     * Get the value of Enseignant Ref
      *
      * @return string
      */
     public function getEnseignantRef()
     {
-        return $this->enseignant_ref;
+        return $this->enseignantRef;
     }
 
     /**
-     * Set courrielEnseignantRef.
+     * Set the value of Enseignant Ref
      *
-     * @param string $courrielEnseignantRef
+     * @param string enseignantRef
      *
-     * @return Evenement
+     * @return self
      */
-    public function setCourrielEnseignantRef($courrielEnseignantRef)
+    public function setEnseignantRef($enseignantRef)
     {
-        $this->courriel_enseignant_ref = $courrielEnseignantRef;
+        $this->enseignantRef = $enseignantRef;
 
         return $this;
     }
 
     /**
-     * Get courrielEnseignantRef.
+     * Get the value of Courriel Enseignant Ref
      *
      * @return string
      */
     public function getCourrielEnseignantRef()
     {
-        return $this->courriel_enseignant_ref;
+        return $this->courrielEnseignantRef;
     }
 
     /**
-     * Set telEnseignantRef.
+     * Set the value of Courriel Enseignant Ref
      *
-     * @param int $telEnseignantRef
+     * @param string courrielEnseignantRef
      *
-     * @return Evenement
+     * @return self
      */
-    public function setTelEnseignantRef($telEnseignantRef)
+    public function setCourrielEnseignantRef($courrielEnseignantRef)
     {
-        $this->tel_enseignant_ref = $telEnseignantRef;
+        $this->courrielEnseignantRef = $courrielEnseignantRef;
 
         return $this;
     }
 
     /**
-     * Get telEnseignantRef.
+     * Get the value of Tel Enseignant Ref
      *
      * @return int
      */
     public function getTelEnseignantRef()
     {
-        return $this->tel_enseignant_ref;
+        return $this->telEnseignantRef;
     }
 
     /**
-     * Set nbEleves.
+     * Set the value of Tel Enseignant Ref
      *
-     * @param int $nbEleves
+     * @param int telEnseignantRef
      *
-     * @return Evenement
+     * @return self
      */
-    public function setNbEleves($nbEleves)
+    public function setTelEnseignantRef($telEnseignantRef)
     {
-        $this->nbEleves = $nbEleves;
+        $this->telEnseignantRef = $telEnseignantRef;
 
         return $this;
     }
 
     /**
-     * Get nbEleves.
+     * Get the value of Nb Eleves
      *
      * @return int
      */
@@ -768,26 +738,41 @@ class Evenement
     }
 
     /**
-     * Set niveauClasse.
+     * Set the value of Nb Eleves
      *
-     * @param string $niveauClasse
+     * @param int nbEleves
      *
-     * @return Evenement
+     * @return self
      */
-    public function setNiveauClasse($niveauClasse)
+    public function setNbEleves($nbEleves)
     {
-        $this->niveau_classe = $niveauClasse;
+        $this->nbEleves = $nbEleves;
 
         return $this;
     }
 
     /**
-     * Get niveauClasse.
+     * Get the value of Niveau Classe
      *
      * @return string
      */
     public function getNiveauClasse()
     {
-        return $this->niveau_classe;
+        return $this->niveauClasse;
     }
+
+    /**
+     * Set the value of Niveau Classe
+     *
+     * @param string niveauClasse
+     *
+     * @return self
+     */
+    public function setNiveauClasse($niveauClasse)
+    {
+        $this->niveauClasse = $niveauClasse;
+
+        return $this;
+    }
+
 }
