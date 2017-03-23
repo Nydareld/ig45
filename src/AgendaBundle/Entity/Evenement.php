@@ -64,128 +64,116 @@ class Evenement
     private $nbObservateurs;
 
     /**
-     * @var string
+     * @var boolean
      *
-     * @ORM\Column(name="niveau_intervention", type="text", nullable=true)
+     * @ORM\Column(name="annule", type="boolean")
      */
-    private $niveauIntervention;
+    private $annule = false;
 
     /**
      * @ORM\ManyToOne(targetEntity="AgendaBundle\Entity\TypeEvenement", inversedBy="evenements", cascade={"persist"})
      */
     private $typeEvenement;
 
-     /**
-      * @ORM\ManyToOne(targetEntity="AgendaBundle\Entity\Etablissement", inversedBy="evenements")
-      */
-     private $etablissement;
+    /**
+     * @ORM\ManyToOne(targetEntity="AgendaBundle\Entity\Etablissement", inversedBy="evenements")
+     */
+    private $etablissement;
 
-     /**
-      * @var status
-      *
-      * @ORM\ManyToOne(targetEntity="AgendaBundle\Entity\Status")
-      * @ORM\JoinTable(name="evt_status",
-      *      joinColumns={@ORM\JoinColumn(name="evt_id", referencedColumnName="id")},
-      *      inverseJoinColumns={@ORM\JoinColumn(name="status_id", referencedColumnName="id")}
-      * )
-      */
+    /**
+     * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", mappedBy="interventions")
+     * @ORM\JoinTable(name="user_interventions",
+     *      joinColumns={@ORM\JoinColumn(name="evenement_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
+     * )
+     */
+    private $intervenants;
 
-      private $statut;
+    /**
+     * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", mappedBy="observations")
+     * @ORM\JoinTable(name="user_observations",
+     *      joinColumns={@ORM\JoinColumn(name="evenement_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
+     * )
+     */
+    private $observateurs;
 
-      /**
-      * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", mappedBy="interventions")
-      * @ORM\JoinTable(name="intervention",
-      *      joinColumns={@ORM\JoinColumn(name="evt_id", referencedColumnName="id")},
-      *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
-      * )
-      */
-      private $intervenants;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="nb_groupes", type="integer", nullable=true)
+     */
+    private $nbGroupes;
 
-      /**
-      * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", mappedBy="observations")
-      * @ORM\JoinTable(name="observation",
-      *      joinColumns={@ORM\JoinColumn(name="evt_id", referencedColumnName="id")},
-      *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
-      * )
-      */
-      private $observateurs;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="nb_salles", type="integer", nullable=true)
+     */
+    private $nbSalles;
 
-      /**
-       * @var int
-       *
-       * @ORM\Column(name="nb_groupes", type="integer", nullable=true)
-       */
-      private $nbGroupes;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="eleves_volontaires", type="text", nullable=true)
+     */
+    private $eleves_volontaires;
 
-      /**
-       * @var int
-       *
-       * @ORM\Column(name="nb_salles", type="integer", nullable=true)
-       */
-      private $nbSalles;
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="documentation_attendue", type="boolean", nullable=true)
+     */
+    private $documentation_attendue;
 
-      /**
-       * @var string
-       *
-       * @ORM\Column(name="eleves_volontaires", type="text", nullable=true)
-       */
-      private $eleves_volontaires;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="particularite", type="text", nullable=true)
+     */
+    private $particularite;
 
-      /**
-       * @var boolean
-       *
-       * @ORM\Column(name="documentation_attendue", type="boolean", nullable=true)
-       */
-      private $documentation_attendue;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="complement_info", type="text", nullable=true)
+     */
+    private $complement_info;
 
-      /**
-       * @var string
-       *
-       * @ORM\Column(name="particularite", type="text", nullable=true)
-       */
-      private $particularite;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="enseignant_ref", type="text", nullable=true)
+     */
+    private $enseignant_ref;
 
-      /**
-       * @var string
-       *
-       * @ORM\Column(name="complement_info", type="text", nullable=true)
-       */
-      private $complement_info;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="courriel_enseignant_ref", type="text", nullable=true)
+     */
+    private $courriel_enseignant_ref;
 
-      /**
-       * @var string
-       *
-       * @ORM\Column(name="enseignant_ref", type="text", nullable=true)
-       */
-      private $enseignant_ref;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="tel_enseignant_ref", type="integer", nullable=true)
+     */
+    private $tel_enseignant_ref;
 
-      /**
-       * @var string
-       *
-       * @ORM\Column(name="courriel_enseignant_ref", type="text", nullable=true)
-       */
-      private $courriel_enseignant_ref;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="nb_eleves", type="integer", nullable=true)
+     */
+    private $nbEleves;
 
-      /**
-       * @var int
-       *
-       * @ORM\Column(name="tel_enseignant_ref", type="integer", nullable=true)
-       */
-      private $tel_enseignant_ref;
-
-      /**
-       * @var int
-       *
-       * @ORM\Column(name="nb_eleves", type="integer", nullable=true)
-       */
-      private $nbEleves;
-
-      /**
-       * @var string
-       *
-       * @ORM\Column(name="niveau_classe", type="text", nullable=true)
-       */
-      private $niveau_classe;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="niveau_classe", type="text", nullable=true)
+     */
+    private $niveau_classe;
 
 
     /**
