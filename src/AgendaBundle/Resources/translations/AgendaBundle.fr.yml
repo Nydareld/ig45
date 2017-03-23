@@ -1,0 +1,10 @@
+
+lieux:
+    fieldslabel:
+        nom: Nom de l'etablissement
+        adresse : Adresse
+        ville : Ville
+        codePostal : Code postal
+        correspondants : Correspondants
+        adjoints : Adjoints
+        type : Type détablissement

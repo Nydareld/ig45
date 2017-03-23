@@ -39,11 +39,13 @@ class User extends BaseUser
 
     /**
     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Evenement", inversedBy="intervenants")
+    * @ORM\JoinTable(name="intervention")
     */
     protected $interventions;
 
     /**
     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Evenement", inversedBy="observateurs")
+    * @ORM\JoinTable(name="observation")
     */
     protected $observations;
 
@@ -367,4 +369,14 @@ class User extends BaseUser
     {
         return $this->adjoint_lieux;
     }
+
+    /**
+     * Representation en chaine d'un utilisateur : Prenom Nom
+     * @method __toString
+     * @return string
+     */
+    public function __toString(){
+        return $this->getNom().' '.$this->getPrenom();
+    }
+
 }
