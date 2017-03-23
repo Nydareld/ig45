@@ -38,30 +38,27 @@ class User extends BaseUser
     protected $groups;
 
     /**
-    * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Evenement", inversedBy="intervenants")
-    * @ORM\JoinTable(name="intervention")
-    */
+     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Evenement", inversedBy="intervenants")
+     * @ORM\JoinTable(name="user_interventions")
+     */
     protected $interventions;
 
     /**
-    * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Evenement", inversedBy="observateurs")
-    * @ORM\JoinTable(name="observation")
-    */
+     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Evenement", inversedBy="observateurs")
+     * @ORM\JoinTable(name="user_observations")
+     */
     protected $observations;
 
     /**
      * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\Etablissement", mappedBy="correspondants")
      */
-    protected $correspondants_lieux;
+    protected $correspondances;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Etablissement", mappedBy="adjoints")
-     * @ORM\JoinTable(name="fos_user_user_adjoints",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="lieux_id", referencedColumnName="id")}
-     * )
+     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Etablissement", inversedBy="adjoints")
+     * @ORM\JoinTable(name="etablissement_adjoints")
      */
-    protected $adjoint_lieux;
+    protected $adjonctions;
 
     /**
      * @var int

@@ -2,6 +2,7 @@
 
 namespace AgendaBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Niveau
@@ -23,9 +24,9 @@ class Niveau
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text", nullable=true)
+     * @ORM\Column(name="nom", type="text", nullable=true)
      */
-    private $description;
+    private $nom;
 
     /**
      * @var Etablissement
@@ -36,11 +37,13 @@ class Niveau
     private $etablissements;
 
     /**
-     * @var Type_evenement
-     *
-     * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\Type_evenement", mappedBy="niveau")
+     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\TypeEvenement", mappedBy="niveaux")
+     * @ORM\JoinTable(name="type_evenement_niveaux",
+     *      joinColumns={@ORM\JoinColumn(name="type_evenement_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="niveau_id", referencedColumnName="id")}
+     * )
      */
-    private $type_evenements;
+    private $typeEvenements;
 
 
     /**
@@ -53,29 +56,77 @@ class Niveau
         return $this->id;
     }
 
+
     /**
-     * Set description
+     * Get the value of Nom
      *
-     * @param string $description
-     *
-     * @return Niveau
+     * @return string
      */
-    public function setDescription($description)
+    public function getNom()
     {
-        $this->description = $description;
+        return $this->nom;
+    }
+
+    /**
+     * Set the value of Nom
+     *
+     * @param string nom
+     *
+     * @return self
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
 
         return $this;
     }
 
     /**
-     * Get description
+     * Get the value of Etablissements
      *
-     * @return string
+     * @return Etablissement
      */
-    public function getDescription()
+    public function getEtablissements()
     {
-        return $this->description;
+        return $this->etablissements;
     }
 
+    /**
+     * Set the value of Etablissements
+     *
+     * @param Etablissement etablissements
+     *
+     * @return self
+     */
+    public function setEtablissements(ArrayCollection $etablissements)
+    {
+        $this->etablissements = $etablissements;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Type Evenements
+     *
+     * @return Type_evenement
+     */
+    public function getTypeEvenements()
+    {
+        return $this->typeEvenements;
+    }
+
+    /**
+     * Set the value of Type Evenements
+     *
+     * @param Type_evenement typeEvenements
+     *
+     * @return self
+     */
+    public function setTypeEvenements(ArrayCollection $typeEvenements)
+    {
+        $this->typeEvenements = $typeEvenements;
+
+        return $this;
+    }
 
 }
