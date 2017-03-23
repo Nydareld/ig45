@@ -16,4 +16,3 @@
 /web/bundles/
 /web/node_modules/*
 .idea
-composer.lock

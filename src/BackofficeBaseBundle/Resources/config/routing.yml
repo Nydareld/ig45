@@ -2,6 +2,10 @@ backoffice_base_homepage:
     path:     /
     defaults: { _controller: BackofficeBaseBundle:Default:index }
 
+admin_crud_lieux:
+    resource: "@BackofficeBaseBundle/Resources/config/routing/lieux.yml"
+    prefix:   /lieux
+
 user_list:
     path: /user/list
     defaults: { _controller: BackofficeBaseBundle:UserAdmin:userList}
