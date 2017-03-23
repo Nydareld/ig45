@@ -5,12 +5,12 @@ namespace AgendaBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * type_intervention
+ * type_evenement
  *
- * @ORM\Table(name="type_intervention")
- * @ORM\Entity(repositoryClass="AgendaBundle\Repository\type_interventionRepository")
+ * @ORM\Table(name="type_evenement")
+ * @ORM\Entity(repositoryClass="AgendaBundle\Repository\type_evenementRepository")
  */
-class Type_intervention
+class Type_evenement
 {
     /**
      * @var int
@@ -31,9 +31,16 @@ class Type_intervention
     /**
      * @var Evenement
      *
-     * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\Evenement", mappedBy="typeIntervention", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\Evenement", mappedBy="typeEvenement", cascade={"persist"})
      */
     private $evenements;
+
+    /**
+     * @var Niveau
+     *
+     * @ORM\ManyToOne(targetEntity="AgendaBundle\Entity\Niveau", inversedBy="type_evenements")
+     */
+    private $niveau;
 
     /**
      * Get id.
@@ -50,7 +57,7 @@ class Type_intervention
      *
      * @param string $nom
      *
-     * @return type_intervention
+     * @return type_evenement
      */
     public function setNom($nom)
     {

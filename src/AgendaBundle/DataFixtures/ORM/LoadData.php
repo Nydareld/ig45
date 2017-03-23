@@ -6,7 +6,6 @@ use AgendaBundle\Entity\Evenement;
 use AgendaBundle\Entity\Lieux;
 use AgendaBundle\Entity\Status;
 use AgendaBundle\Entity\Type_intervention;
-use AgendaBundle\Entity\Type_lieu;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Validator\Constraints\Date;
@@ -74,21 +73,6 @@ class LoadData implements FixtureInterface
 
         $manager->persist($status2);
 
-        $type_lieu = new Type_lieu();
-        $type_lieu->setNom("ecole maternelle");
-
-        $manager->persist($type_lieu);
-
-        $type_lieu2 = new Type_lieu();
-        $type_lieu2->setNom("fistiniere");
-
-        $manager->persist($type_lieu2);
-
-        $type_lieu3 = new Type_lieu();
-        $type_lieu3->setNom("mére à françois");
-
-        $manager->persist($type_lieu3);
-
         $typeIntervention = new Type_intervention();
         $typeIntervention -> setNom("Atelier CV");
         $manager -> persist($typeIntervention);
@@ -111,7 +95,6 @@ class LoadData implements FixtureInterface
         $lieu->setCodePostal("32000");
         $lieu->setVille("Orléans");
         $lieu->setCorrespondants($user);
-        $lieu->setType($type_lieu);
         $lieu->addAdjoint($user2);
 
         $manager->persist($lieu);
@@ -122,7 +105,6 @@ class LoadData implements FixtureInterface
         $lieu2->setCodePostal("85000");
         $lieu2->setVille("Lyon");
         $lieu2->setCorrespondants($user3);
-        $lieu2->setType($type_lieu2);
         $lieu2->addAdjoint($user);
 
         $manager->persist($lieu2);
@@ -133,7 +115,6 @@ class LoadData implements FixtureInterface
         $lieu3->setCodePostal("50000");
         $lieu3->setVille("Tee shirt");
         $lieu3->setCorrespondants($user5);
-        $lieu3->setType($type_lieu3);
         $lieu3->addAdjoint($user4);
 
         $manager->persist($lieu3);
