@@ -44,6 +44,11 @@ class TypeEvenement
      */
     private $niveaux;
 
+    public function __construct(Type $foo = null)
+    {
+        $this->niveaux = new ArrayCollection();
+    }
+
     public function __toString(){
       return $this->nom;
     }
@@ -131,6 +136,34 @@ class TypeEvenement
         $this->niveaux = $niveaux;
 
         return $this;
+    }
+
+    /**
+     * Add niveau
+     *
+     * @param Niveau
+     *
+     * @return TypeEvenement
+     */
+    public function addNiveau(Niveau $niveau)
+    {
+    $this->niveaux->add($niveau);
+
+    return $this;
+    }
+
+    /**
+     * Remove Niveau
+     *
+     * @param Niveau
+     *
+     * @return TypeEvenement
+     */
+    public function removeNiveau(Niveau $niveau)
+    {
+    $this->niveaux->removeElement($niveau);
+
+    return $this;
     }
 
 }
