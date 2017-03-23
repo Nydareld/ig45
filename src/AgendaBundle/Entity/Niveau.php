@@ -38,7 +38,7 @@ class Niveau
     /**
      * @var Type_evenement
      *
-     * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\TypeEvenement", mappedBy="niveau")
+     * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\TypeEvenement", mappedBy="niveaux")
      */
     private $type_evenements;
 

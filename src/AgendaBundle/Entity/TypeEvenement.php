@@ -40,7 +40,7 @@ class TypeEvenement
      *
      * @ORM\ManyToOne(targetEntity="AgendaBundle\Entity\Niveau", inversedBy="type_evenements")
      */
-    private $niveau;
+    private $niveaux;
 
     /**
      * Get id.
