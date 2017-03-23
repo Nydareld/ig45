@@ -4,6 +4,13 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+    "hash": "24230909023b1a02fa9a935c802f8130",
+=======
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     "content-hash": "3bf7ae482ae34f7eafbfc4cac40b8d4d",
     "packages": [
         {
@@ -208,7 +215,15 @@
                 "collections",
                 "iterator"
             ],
+<<<<<<< Updated upstream
             "time": "2017-01-03T10:49:41+00:00"
+=======
+<<<<<<< Updated upstream
+            "time": "2017-01-03 10:49:41"
+=======
+            "time": "2017-01-03T10:49:41+00:00"
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
         },
         {
             "name": "doctrine/common",
@@ -1083,7 +1098,15 @@
                 "pseudorandom",
                 "random"
             ],
+<<<<<<< Updated upstream
             "time": "2017-03-13T16:27:32+00:00"
+=======
+<<<<<<< Updated upstream
+            "time": "2017-03-13 16:27:32"
+=======
+            "time": "2017-03-13T16:27:32+00:00"
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
         },
         {
             "name": "psr/cache",
@@ -2177,7 +2200,15 @@
                 "Fixture",
                 "persistence"
             ],
+<<<<<<< Updated upstream
             "time": "2015-11-04T21:23:23+00:00"
+=======
+<<<<<<< Updated upstream
+            "time": "2015-11-04 21:23:23"
+=======
+            "time": "2015-11-04T21:23:23+00:00"
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
         },
         {
             "name": "sensio/generator-bundle",
