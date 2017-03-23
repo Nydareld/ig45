@@ -4,7 +4,6 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "24230909023b1a02fa9a935c802f8130",
     "content-hash": "3bf7ae482ae34f7eafbfc4cac40b8d4d",
     "packages": [
         {
@@ -209,7 +208,7 @@
                 "collections",
                 "iterator"
             ],
-            "time": "2017-01-03 10:49:41"
+            "time": "2017-01-03T10:49:41+00:00"
         },
         {
             "name": "doctrine/common",
@@ -523,7 +522,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2016-01-26 17:28:51"
+            "time": "2016-01-26T17:28:51+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -1084,7 +1083,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2017-03-13 16:27:32"
+            "time": "2017-03-13T16:27:32+00:00"
         },
         {
             "name": "psr/cache",
@@ -1299,7 +1298,7 @@
                 "annotations",
                 "controllers"
             ],
-            "time": "2017-03-02 20:17:28"
+            "time": "2017-03-21 23:34:44"
         },
         {
             "name": "sensiolabs/security-checker",
@@ -1405,12 +1404,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/monolog-bundle.git",
-                "reference": "ebce76a39a65495a66c34eb1574cc4b9e35a4e64"
+                "reference": "1afc6ac72b7fa93bcda189160b54f6629a0c66f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/monolog-bundle/zipball/ebce76a39a65495a66c34eb1574cc4b9e35a4e64",
-                "reference": "ebce76a39a65495a66c34eb1574cc4b9e35a4e64",
+                "url": "https://api.github.com/repos/symfony/monolog-bundle/zipball/1afc6ac72b7fa93bcda189160b54f6629a0c66f2",
+                "reference": "1afc6ac72b7fa93bcda189160b54f6629a0c66f2",
                 "shasum": ""
             },
             "require": {
@@ -1457,7 +1456,7 @@
                 "log",
                 "logging"
             ],
-            "time": "2017-01-10 20:01:51"
+            "time": "2017-03-22 15:56:53"
         },
         {
             "name": "symfony/polyfill-apcu",
@@ -1853,7 +1852,7 @@
             ],
             "description": "Symfony SwiftmailerBundle",
             "homepage": "http://symfony.com",
-            "time": "2017-03-02T16:47:57+00:00"
+            "time": "2017-03-21 22:18:39"
         },
         {
             "name": "symfony/symfony",
@@ -1861,12 +1860,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "b0f8a7fa4b8baadf9db299cb6ac87c96a8977dbe"
+                "reference": "04fcac74b189de430c78adfa673f64a8d1a03491"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/b0f8a7fa4b8baadf9db299cb6ac87c96a8977dbe",
-                "reference": "b0f8a7fa4b8baadf9db299cb6ac87c96a8977dbe",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/04fcac74b189de430c78adfa673f64a8d1a03491",
+                "reference": "04fcac74b189de430c78adfa673f64a8d1a03491",
                 "shasum": ""
             },
             "require": {
@@ -1997,7 +1996,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2017-03-10T18:35:48+00:00"
+            "time": "2017-03-22 20:31:03"
         },
         {
             "name": "twig/twig",
@@ -2005,12 +2004,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "4d40c66dbcf5df34d084ee7240efdab5c0c14ca2"
+                "reference": "84dea3134b63318803561a6b3f8ffe2b2ef70cbd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/4d40c66dbcf5df34d084ee7240efdab5c0c14ca2",
-                "reference": "4d40c66dbcf5df34d084ee7240efdab5c0c14ca2",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/84dea3134b63318803561a6b3f8ffe2b2ef70cbd",
+                "reference": "84dea3134b63318803561a6b3f8ffe2b2ef70cbd",
                 "shasum": ""
             },
             "require": {
@@ -2025,7 +2024,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2-dev"
+                    "dev-master": "2.3-dev"
                 }
             },
             "autoload": {
@@ -2060,7 +2059,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-03-20 16:12:13"
+            "time": "2017-03-22 15:42:21"
         }
     ],
     "packages-dev": [
@@ -2178,7 +2177,7 @@
                 "Fixture",
                 "persistence"
             ],
-            "time": "2015-11-04 21:23:23"
+            "time": "2015-11-04T21:23:23+00:00"
         },
         {
             "name": "sensio/generator-bundle",
@@ -2240,12 +2239,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",
-                "reference": "fc1b0c54b61a30fd15d6de04f6e01c01d0aa4a7b"
+                "reference": "cfccd28964312201522f9edbc9739b393c64c978"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/fc1b0c54b61a30fd15d6de04f6e01c01d0aa4a7b",
-                "reference": "fc1b0c54b61a30fd15d6de04f6e01c01d0aa4a7b",
+                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/cfccd28964312201522f9edbc9739b393c64c978",
+                "reference": "cfccd28964312201522f9edbc9739b393c64c978",
                 "shasum": ""
             },
             "require": {
@@ -2294,7 +2293,7 @@
             ],
             "description": "Symfony PHPUnit Bridge",
             "homepage": "https://symfony.com",
-            "time": "2017-03-13 11:11:00"
+            "time": "2017-03-20T13:28:31+00:00"
         }
     ],
     "aliases": [],
