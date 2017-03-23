@@ -11,12 +11,72 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Validator\Constraints\Date;
 use UserBundle\Entity\User;
+use UserBundle\Entity\Group;
 
 class LoadData implements FixtureInterface
 {
     public function load(ObjectManager $manager)
     {
+
+        $grpUser = new Group('Membre');
+        $grpUser->addRole('ROLE_USER');
+        $grpUser->setDescription('Membre d\'integeneration 45, peut consulter l\'agenda, prendre part aux evenements ou adminisrtrer les evenements dont il est l\'adjoint');
+        $manager->persist($grpUser);
+
+        $grpCoress = new Group('Coresspondant');
+        $grpCoress->addRole('ROLE_CORESSPONDANT');
+        $grpCoress->setDescription('Membre d\'integeneration 45 coresspondant d\'un etablissement, peut créer un evenement dans les etablissement avec lequel il coresspond');
+        $manager->persist($grpCoress);
+
+        $grpAdmin = new Group('Administrateur');
+        $grpAdmin->addRole('ROLE_ADMIN');
+        $grpAdmin->setDescription('Membre du bureau d\'integeneration 45. Peut adminisrtrer les etablissement et les utilisateurs');
+        $manager->persist($grpAdmin);
+
+        $grpSuperAdm = new Group('Super-administrateur');
+        $grpSuperAdm->addRole('ROLE_SUPER_ADMIN');
+        $grpSuperAdm->setDescription('Super utilisateur, à n\'utiliser qu\'en ca de probleme');
+        $manager->persist($grpSuperAdm);
+
+        $userUser = new User();
+        $userUser->setNom("test");
+        $userUser->setPrenom("user");
+        $userUser->setPlainPassword("test");
+        $userUser->addGroup($grpUser);
+        $userUser->setEmail("testUser@test.Fr");
+        $userUser->setEnabled(true);
+        $manager->persist($userUser);
+
+        $userCoress = new User();
+        $userCoress->setNom("test");
+        $userCoress->setPrenom("coress");
+        $userCoress->setPlainPassword("test");
+        $userCoress->addGroup($grpCoress);
+        $userCoress->setEmail("testCoress@test.Fr");
+        $userCoress->setEnabled(true);
+        $manager->persist($userCoress);
+
+        $userAdmin = new User();
+        $userAdmin->setNom("test");
+        $userAdmin->setPrenom("admin");
+        $userAdmin->setPlainPassword("test");
+        $userAdmin->addGroup($grpAdmin);
+        $userAdmin->setEmail("testAdmin@test.Fr");
+        $userAdmin->setEnabled(true);
+        $manager->persist($userAdmin);
+
+        $userSuperAdmin = new User();
+        $userSuperAdmin->setNom("test");
+        $userSuperAdmin->setPrenom("superadmin");
+        $userSuperAdmin->setPlainPassword("test");
+        $userSuperAdmin->addGroup($grpSuperAdm);
+        $userSuperAdmin->setEmail("testSuperAdmin@test.Fr");
+        $userSuperAdmin->setEnabled(true);
+        $manager->persist($userSuperAdmin);
+
+
         $user = new User();
+        $user->addGroup($grpUser);
         $user->setNom("dupont");
         $user->setEmail("test@test.Fr");
         $user->setPrenom("Roger");
@@ -25,6 +85,7 @@ class LoadData implements FixtureInterface
         $manager->persist($user);
 
         $user1 = new User();
+        $user1->addGroup($grpUser);
         $user1->setNom("duport");
         $user1->setEmail("leporc@cbon.fr");
         $user1->setPrenom("peguy");
@@ -33,6 +94,7 @@ class LoadData implements FixtureInterface
         $manager->persist($user1);
 
         $user2 = new User();
+        $user2->addGroup($grpUser);
         $user2->setNom("neau");
         $user2->setEmail("francois@sodomite.fr");
         $user2->setPrenom("francois");
@@ -41,6 +103,7 @@ class LoadData implements FixtureInterface
         $manager->persist($user2);
 
         $user3 = new User();
+        $user3->addGroup($grpUser);
         $user3->setNom("franconi");
         $user3->setEmail("florian@doudou.Fr");
         $user3->setPrenom("floriant");
@@ -49,6 +112,7 @@ class LoadData implements FixtureInterface
         $manager->persist($user3);
 
         $user4 = new User();
+        $user4->addGroup($grpUser);
         $user4->setNom("Lubinou");
         $user4->setEmail("sboubinator@lubi.fr");
         $user4->setPrenom("sboubinator");
@@ -57,6 +121,7 @@ class LoadData implements FixtureInterface
         $manager->persist($user4);
 
         $user5 = new User();
+        $user5->addGroup($grpUser);
         $user5->setNom("chef");
         $user5->setEmail("chef@chef.fr");
         $user5->setPrenom("chef");
