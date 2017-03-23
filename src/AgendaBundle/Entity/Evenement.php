@@ -117,14 +117,14 @@ class Evenement
      *
      * @ORM\Column(name="eleves_volontaires", type="text", nullable=true)
      */
-    private $eleves_volontaires;
+    private $elevesVolontaires;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="documentation_attendue", type="boolean", nullable=true)
      */
-    private $documentation_attendue;
+    private $documentationAttendue;
 
     /**
      * @var string
@@ -138,28 +138,28 @@ class Evenement
      *
      * @ORM\Column(name="complement_info", type="text", nullable=true)
      */
-    private $complement_info;
+    private $complementInfo;
 
     /**
      * @var string
      *
      * @ORM\Column(name="enseignant_ref", type="text", nullable=true)
      */
-    private $enseignant_ref;
+    private $enseignantRef;
 
     /**
      * @var string
      *
      * @ORM\Column(name="courriel_enseignant_ref", type="text", nullable=true)
      */
-    private $courriel_enseignant_ref;
+    private $courrielEnseignantRef;
 
     /**
      * @var int
      *
      * @ORM\Column(name="tel_enseignant_ref", type="integer", nullable=true)
      */
-    private $tel_enseignant_ref;
+    private $telEnseignantRef;
 
     /**
      * @var int
@@ -173,7 +173,7 @@ class Evenement
      *
      * @ORM\Column(name="niveau_classe", type="text", nullable=true)
      */
-    private $niveau_classe;
+    private $niveauClasse;
 
 
     /**
