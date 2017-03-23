@@ -38,9 +38,8 @@ class TypeEvenement
     private $evenements;
 
     /**
-     * @var Niveau
-     *
-     * @ORM\ManyToOne(targetEntity="AgendaBundle\Entity\Niveau", inversedBy="typeEvenements")
+     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Niveau", inversedBy="typeEvenements")
+     * @ORM\JoinTable(name="type_evenement_niveaux")
      */
     private $niveaux;
 
