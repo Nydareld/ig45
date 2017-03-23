@@ -52,7 +52,7 @@ class User extends BaseUser
     /**
      * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\Etablissement", mappedBy="correspondants")
      */
-    protected $correspondants_lieux;
+    protected $correspondances;
 
     /**
      * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Etablissement", mappedBy="adjoints")

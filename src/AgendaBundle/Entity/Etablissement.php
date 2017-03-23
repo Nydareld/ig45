@@ -54,38 +54,38 @@ class Etablissement
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="correspondants_lieux")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="correspondances")
      */
-     private $correspondants;
+    private $correspondants;
 
-     /**
-      * @var User
-      *
-      * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", inversedBy="adjoint_lieux")
-      * @ORM\JoinTable(name="etablissement_adjoints",
-      *      joinColumns={@ORM\JoinColumn(name="lieux_id", referencedColumnName="id")},
-      *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
-      * )
-      */
-      private $adjoints;
+    /**
+     * @var User
+     *
+     * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", inversedBy="adjoint_lieux")
+     * @ORM\JoinTable(name="etablissement_adjoints",
+     *      joinColumns={@ORM\JoinColumn(name="lieux_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
+     * )
+     */
+    private $adjoints;
 
-      /**
-       * @var Evenement
-       *
-       * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\Evenement", mappedBy="lieu")
-       */
-      private $evenements;
+    /**
+     * @var Evenement
+     *
+     * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\Evenement", mappedBy="lieu")
+     */
+    private $evenements;
 
-      /**
-       * @var Niveau
-       *
-       * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Niveau", mappedBy="etablissements")
-       * @ORM\JoinTable(name="etablissement_niveau",
-       *     joinColumns={@ORM\JoinColumn(name="id_etablissement", referencedColumnName="id")},
-       *     inverseJoinColumns={@ORM\JoinColumn(name="id_niveau", referencedColumnName="id")}
-       *     )
-       */
-      private $niveaux;
+    /**
+     * @var Niveau
+     *
+     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Niveau", mappedBy="etablissements")
+     * @ORM\JoinTable(name="etablissement_niveau",
+     *     joinColumns={@ORM\JoinColumn(name="id_etablissement", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="id_niveau", referencedColumnName="id")}
+     *     )
+     */
+    private $niveaux;
 
     /**
      * Get id.
@@ -294,6 +294,6 @@ class Etablissement
     }
 
     public function __toString(){
-      return $this->nom;
+        return $this->nom;
     }
 }
