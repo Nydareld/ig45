@@ -71,18 +71,14 @@ class Evenement
     private $niveauIntervention;
 
     /**
-     * @var Type_evenement
-     *
-     * @ORM\ManyToOne(targetEntity="AgendaBundle\Entity\Type_evenement", inversedBy="evenements", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="AgendaBundle\Entity\TypeEvenement", inversedBy="evenements", cascade={"persist"})
      */
     private $typeEvenement;
 
      /**
-      * @var Etablissement
-      *
       * @ORM\ManyToOne(targetEntity="AgendaBundle\Entity\Etablissement", inversedBy="evenements")
       */
-     private $lieu;
+     private $etablissement;
 
      /**
       * @var status

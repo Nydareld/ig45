@@ -72,7 +72,7 @@ class Etablissement
     /**
      * @var Evenement
      *
-     * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\Evenement", mappedBy="lieu")
+     * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\Evenement", mappedBy="etablissement")
      */
     private $evenements;
 
