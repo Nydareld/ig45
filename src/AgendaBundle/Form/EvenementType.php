@@ -5,6 +5,9 @@ namespace AgendaBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class EvenementType extends AbstractType
 {
@@ -13,17 +16,58 @@ class EvenementType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('dateEvt')
-                ->add('heureDebut')
-                ->add('heureFin')
+        $builder->add('dateEvt', DateType::class, array(
+                        'widget' => 'choice',
+                        // this is actually the default format for single_text
+                        'format' => 'dd-MM-yyyy',
+                        'data' => new \DateTime()
+                    )
+                  )
+
+                ->add('lieu')
+                ->add('heureDebut',  TimeType::class, array(
+                      'input'  => 'datetime',
+                      'widget' => 'choice',
+                  )
+                )
+                ->add('heureFin', TimeType::class, array(
+                      'input'  => 'datetime',
+                      'widget' => 'choice',
+                  )
+                )
+                ->add('niveauIntervention')
                 ->add('typeIntervention')
-                ->add('niveau_classe')
                 ->add('nbEleves')
-                ->add('nbParticipants')
+                ->add('nbParticipants', ChoiceType::class, array(
+                    'choices'  => array(
+                        'Aucun' => 0,
+                        '1' => 1,
+                        '2' => 2,
+                        '3' => 3,
+                        '4' => 4,
+                        '5' => 5,
+                        '6' => 6,
+                        '7' => 7,
+                        '8' => 8,
+                    ),
+                  )
+                )
                 ->add('intervenants')
-                ->add('nbObservateurs')
-                ->add('observateurs')
-                ->add('lieu');
+                ->add('nbObservateurs', ChoiceType::class, array(
+                    'choices'  => array(
+                        'Aucun' => 0,
+                        '1' => 1,
+                        '2' => 2,
+                        '3' => 3,
+                        '4' => 4,
+                        '5' => 5,
+                        '6' => 6,
+                        '7' => 7,
+                        '8' => 8,
+                    ),
+                  )
+                )
+                ->add('observateurs');
     }
 
     /**
