@@ -9,7 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
-class LieuxType extends AbstractType
+class EtablissementType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -18,36 +18,36 @@ class LieuxType extends AbstractType
     {
         $builder
             ->add('nom',TextType::class,array(
-                'label'=>'lieux.fieldslabel.nom',
+                'label'=>'etablissement.fieldslabel.nom',
                 'translation_domain' => 'AgendaBundle'
             ))
             ->add('adresse',TextType::class,array(
-                'label'=>'lieux.fieldslabel.adresse',
+                'label'=>'etablissement.fieldslabel.adresse',
                 'translation_domain' => 'AgendaBundle'
             ))
             ->add('ville',TextType::class,array(
-                'label'=>'lieux.fieldslabel.ville',
+                'label'=>'etablissement.fieldslabel.ville',
                 'translation_domain' => 'AgendaBundle'
             ))
             ->add('codePostal',IntegerType::class,array(
                 'attr' => array('min' => 0,'max' => 99999),
-                'label'=>'lieux.fieldslabel.codePostal',
+                'label'=>'etablissement.fieldslabel.codePostal',
                 'translation_domain' => 'AgendaBundle'
             ))
             ->add('correspondants',EntityType::class,array(
                 'class' => 'UserBundle:User',
-                'label'=>'lieux.fieldslabel.correspondants',
+                'label'=>'etablissement.fieldslabel.correspondants',
                 'translation_domain' => 'AgendaBundle'
             ))
             ->add('adjoints', EntityType::class, array(
                 'class' => 'UserBundle:User',
                 'multiple' => true,
-                'label'=>'lieux.fieldslabel.adjoints',
+                'label'=>'etablissement.fieldslabel.adjoints',
                 'translation_domain' => 'AgendaBundle'
             ))
-            ->add('type', EntityType::class,array(
-                'class' => 'AgendaBundle:Type_lieu',
-                'label'=>'lieux.fieldslabel.type',
+            ->add('niveaux', EntityType::class,array(
+                'class' => 'AgendaBundle:Niveau',
+                'label'=>'etablissement.fieldslabel.etablissement',
                 'translation_domain' => 'AgendaBundle'
             ));
     }
@@ -58,7 +58,7 @@ class LieuxType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AgendaBundle\Entity\Lieux'
+            'data_class' => 'AgendaBundle\Entity\Etablissement'
         ));
     }
 
@@ -67,7 +67,7 @@ class LieuxType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'agendabundle_lieux';
+        return 'agendabundle_etablissement';
     }
 
 

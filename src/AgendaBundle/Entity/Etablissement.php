@@ -54,41 +54,53 @@ class Etablissement
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="correspondants_lieux")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="correspondances")
      */
-     private $correspondants;
-
-     /**
-      * @var User
-      *
-      * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", inversedBy="adjoint_lieux")
-      * @ORM\JoinTable(name="etablissement_adjoints",
-      *      joinColumns={@ORM\JoinColumn(name="lieux_id", referencedColumnName="id")},
-      *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
-      * )
-      */
-      private $adjoints;
-
-      /**
-       * @var Evenement
-       *
-       * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\Evenement", mappedBy="lieu")
-       */
-      private $evenements;
-
-      /**
-       * @var Niveau
-       *
-       * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Niveau", mappedBy="etablissements")
-       * @ORM\JoinTable(name="etablissement_niveau",
-       *     joinColumns={@ORM\JoinColumn(name="id_etablissement", referencedColumnName="id")},
-       *     inverseJoinColumns={@ORM\JoinColumn(name="id_niveau", referencedColumnName="id")}
-       *     )
-       */
-      private $niveaux;
+    private $correspondants;
 
     /**
-     * Get id.
+     * @var User
+     *
+     * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", mappedBy="adjonctions")
+     * @ORM\JoinTable(name="etablissement_adjoints",
+     *      joinColumns={@ORM\JoinColumn(name="etablissement_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
+     * )
+     */
+    private $adjoints;
+
+    /**
+     * @var Evenement
+     *
+     * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\Evenement", mappedBy="etablissement")
+     */
+    private $evenements;
+
+    /**
+     * @var Niveau
+     *
+     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Niveau", mappedBy="etablissements")
+     * @ORM\JoinTable(name="etablissement_niveau",
+     *     joinColumns={@ORM\JoinColumn(name="id_etablissement", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="id_niveau", referencedColumnName="id")}
+     *     )
+     */
+    private $niveaux;
+
+    /**
+     * Constructor
+     */
+    public function __construct(){
+        $this->adjoints = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->evenements = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function __toString(){
+        return $this->nom;
+    }
+
+    /**
+     * Get the value of Id
      *
      * @return int
      */
@@ -97,22 +109,9 @@ class Etablissement
         return $this->id;
     }
 
-    /**
-     * Set nom.
-     *
-     * @param string $nom
-     *
-     * @return Etablissement
-     */
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
 
     /**
-     * Get nom.
+     * Get the value of Nom
      *
      * @return string
      */
@@ -122,21 +121,21 @@ class Etablissement
     }
 
     /**
-     * Set adresse.
+     * Set the value of Nom
      *
-     * @param string $adresse
+     * @param string nom
      *
-     * @return Etablissement
+     * @return self
      */
-    public function setAdresse($adresse)
+    public function setNom($nom)
     {
-        $this->adresse = $adresse;
+        $this->nom = $nom;
 
         return $this;
     }
 
     /**
-     * Get adresse.
+     * Get the value of Adresse
      *
      * @return string
      */
@@ -146,21 +145,21 @@ class Etablissement
     }
 
     /**
-     * Set ville.
+     * Set the value of Adresse
      *
-     * @param string $ville
+     * @param string adresse
      *
-     * @return Etablissement
+     * @return self
      */
-    public function setVille($ville)
+    public function setAdresse($adresse)
     {
-        $this->ville = $ville;
+        $this->adresse = $adresse;
 
         return $this;
     }
 
     /**
-     * Get ville.
+     * Get the value of Ville
      *
      * @return string
      */
@@ -170,11 +169,35 @@ class Etablissement
     }
 
     /**
-     * Set codePostal.
+     * Set the value of Ville
      *
-     * @param string $codePostal
+     * @param string ville
      *
-     * @return Etablissement
+     * @return self
+     */
+    public function setVille($ville)
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Code Postal
+     *
+     * @return integer
+     */
+    public function getCodePostal()
+    {
+        return $this->codePostal;
+    }
+
+    /**
+     * Set the value of Code Postal
+     *
+     * @param integer codePostal
+     *
+     * @return self
      */
     public function setCodePostal($codePostal)
     {
@@ -184,31 +207,23 @@ class Etablissement
     }
 
     /**
-     * Get codePostal.
+     * Get the value of Correspondants
      *
-     * @return string
+     * @return User
      */
-    public function getCodePostal()
+    public function getCorrespondants()
     {
-        return $this->codePostal;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->adjoints = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->evenements = new \Doctrine\Common\Collections\ArrayCollection();
+        return $this->correspondants;
     }
 
     /**
-     * Set correspondants
+     * Set the value of Correspondants
      *
-     * @param \UserBundle\Entity\User $correspondants
+     * @param User correspondants
      *
-     * @return Etablissement
+     * @return self
      */
-    public function setCorrespondants(\UserBundle\Entity\User $correspondants = null)
+    public function setCorrespondants(User $correspondants)
     {
         $this->correspondants = $correspondants;
 
@@ -216,13 +231,27 @@ class Etablissement
     }
 
     /**
-     * Get correspondants
+     * Get the value of Adjoints
      *
-     * @return \UserBundle\Entity\User
+     * @return User
      */
-    public function getCorrespondants()
+    public function getAdjoints()
     {
-        return $this->correspondants;
+        return $this->adjoints;
+    }
+
+    /**
+     * Set the value of Adjoints
+     *
+     * @param User adjoints
+     *
+     * @return self
+     */
+    public function setAdjoints(User $adjoints)
+    {
+        $this->adjoints = $adjoints;
+
+        return $this;
     }
 
     /**
@@ -234,10 +263,12 @@ class Etablissement
      */
     public function addAdjoint(\UserBundle\Entity\User $adjoint)
     {
-        $this->adjoints[] = $adjoint;
+    $this->adjoints->add($adjoint);
 
-        return $this;
+    return $this;
     }
+
+
 
     /**
      * Remove adjoint
@@ -246,17 +277,33 @@ class Etablissement
      */
     public function removeAdjoint(\UserBundle\Entity\User $adjoint)
     {
-        $this->adjoints->removeElement($adjoint);
+    $this->adjoints->removeElement($adjoint);
+
+    return $this;
     }
 
     /**
-     * Get adjoints
+     * Get the value of Evenements
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Evenement
      */
-    public function getAdjoints()
+    public function getEvenements()
     {
-        return $this->adjoints;
+        return $this->evenements;
+    }
+
+    /**
+     * Set the value of Evenements
+     *
+     * @param Evenement evenements
+     *
+     * @return self
+     */
+    public function setEvenements(ArrayCollection $evenements)
+    {
+        $this->evenements = $evenements;
+
+        return $this;
     }
 
     /**
@@ -268,10 +315,11 @@ class Etablissement
      */
     public function addEvenement(\AgendaBundle\Entity\Evenement $evenement)
     {
-        $this->evenements[] = $evenement;
+        $this->evenements->add($evenement);
 
         return $this;
     }
+
 
     /**
      * Remove evenement
@@ -281,19 +329,33 @@ class Etablissement
     public function removeEvenement(\AgendaBundle\Entity\Evenement $evenement)
     {
         $this->evenements->removeElement($evenement);
+
+        return $this;
+    }
+
+
+    /**
+     * Get the value of Niveaux
+     *
+     * @return Niveau
+     */
+    public function getNiveaux()
+    {
+        return $this->niveaux;
     }
 
     /**
-     * Get evenements
+     * Set the value of Niveaux
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @param Niveau niveaux
+     *
+     * @return self
      */
-    public function getEvenements()
+    public function setNiveaux(Niveau $niveaux)
     {
-        return $this->evenements;
+        $this->niveaux = $niveaux;
+
+        return $this;
     }
 
-    public function __toString(){
-      return $this->nom;
-    }
 }
