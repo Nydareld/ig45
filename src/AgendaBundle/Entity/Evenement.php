@@ -82,6 +82,13 @@ class Evenement
     private $etablissement;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="niveau_intervention", type="string")
+     */
+    private $niveauIntervention;
+
+    /**
      * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", mappedBy="interventions")
      * @ORM\JoinTable(name="user_interventions",
      *      joinColumns={@ORM\JoinColumn(name="evenement_id", referencedColumnName="id")},
@@ -743,4 +750,28 @@ class Evenement
         return $this;
     }
 
+
+    /**
+     * Set niveauIntervention.
+     *
+     * @param string $niveauIntervention
+     *
+     * @return Evenement
+     */
+    public function setNiveauIntervention($niveauIntervention)
+    {
+        $this->niveauIntervention = $niveauIntervention;
+
+        return $this;
+    }
+
+    /**
+     * Get niveauIntervention.
+     *
+     * @return string
+     */
+    public function getNiveauIntervention()
+    {
+        return $this->niveauIntervention;
+    }
 }
