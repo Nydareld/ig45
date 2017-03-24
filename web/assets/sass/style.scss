@@ -1,2 +1,43 @@
-@import "_variables.scss";
-@import "_main.scss"
+// ------- VARIABLES ---------
+$bleu_light: #64b5f6;
+$grey_light: #eeeeee;
+
+.agenda {
+    .icon_cancel {
+        color: #f44336;
+    }
+
+    .icon_edit {
+        color: #ff9800;
+    }
+
+    .action_agenda {
+        margin-top: 50px;
+        background-color: $grey_light;
+        padding: 20px 10px;
+    }
+
+    .legende_agenda {
+        margin: 40px 0;
+        border: 1px #9e9e9e solid;
+        padding: 30px 10px 10px;
+
+        i {
+            vertical-align: bottom;
+            margin-right: 10px;
+        }
+    }
+
+    table {
+        margin-bottom: 50px;
+        border: 1px #9e9e9e solid;
+
+        i {
+            vertical-align: bottom;
+        }
+
+        .icon {
+            color: black;
+        }
+    }
+}
