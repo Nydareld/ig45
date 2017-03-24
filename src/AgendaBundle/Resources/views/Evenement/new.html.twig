@@ -1,70 +1,68 @@
-{% extends 'base.html.twig' %}
+{% extends "BaseBundle::Layout/BaseLayout.html.twig" %}
 
-{% block body %}
-    <h1>Evenement creation</h1>
+{% block contentBody %}
+    <h1>Création d'un événement</h1>
 
     {{ form_start(form) }}
-      <p>
-        {{ form_label(form.dateEvt, "Date de l'intervention") }}
-        {{ form_widget(form.dateEvt) }}
-      </p>
-      <p>
-        {{ form_label(form.etablissement, "Lieu de l'intervention") }}
-        {{ form_widget(form.etablissement) }}
-      </p>
-      <p>
-        {{ form_label(form.heureDebut, "Heure de début") }}
-        {{ form_widget(form.heureDebut) }}
-      </p>
-      <p>
-        {{ form_label(form.heureFin, "Heure de fin") }}
-        {{ form_widget(form.heureFin) }}
-      </p>
-      <p>
-        {{ form_label(form.niveauIntervention, "Niveau de la classe") }}
-        {{ form_widget(form.niveauIntervention) }}
-      </p>
-      <p>
-        {{ form_label(form.nbEleves, "Nombre d'éleves") }}
-        {{ form_widget(form.nbEleves) }}
-      </p>
-      <p>
-        {{ form_label(form.nbParticipants, "Nombre de participants")  }}
-        {{ form_widget(form.nbParticipants, {'attr': {'onchange': 'verif_participants(this.value)'}}) }}
-      </p>
-      <p>
+
+      <div class="row">
+        <div class="col s6">{{ form_label(form.dateEvt, "Date de l'intervention") }}</div>
+        <div class="col s6">{{ form_widget(form.dateEvt) }}</div>
+      </div>
+      <div class="row">
+        <div class="col s6">{{ form_label(form.etablissement, "Lieu de l'intervention") }}</div>
+        <div class="col s6">{{ form_widget(form.etablissement) }}</div>
+      </div>
+      <div class="row">
+        <div class="col s6">{{ form_label(form.heureDebut, "Heure de début") }}</div>
+        <div class="col s6">{{ form_widget(form.heureDebut) }}</div>
+      </div>
+      <div class="row">
+        <div class="col s6">{{ form_label(form.heureFin, "Heure de fin") }}</div>
+        <div class="col s6">{{ form_widget(form.heureFin) }}</div>
+      </div>
+      <div class="row">
+        <div class="col s6">{{ form_label(form.niveauIntervention, "Niveau de la classe") }}</div>
+        <div class="col s6">{{ form_widget(form.niveauIntervention) }}</div>
+      </div>
+      <div class="row">
+        <div class="col s6">{{ form_label(form.nbEleves, "Nombre d'éleves") }}</div>
+        <div class="col s6">{{ form_widget(form.nbEleves) }}</div>
+      </div>
+      <div class="row">
+        <div class="col s6">{{ form_label(form.nbParticipants, "Nombre de participants")  }}</div>
+        <div class="col s6">{{ form_widget(form.nbParticipants, {'attr': {'onchange': 'verif_participants(this.value)'}}) }}</div>
+      </div>
+      <div class="row">
         <div id="liste_participants">
-          {{ form_label(form.intervenants, "Sélection des participants") }}
-          {{ form_widget(form.intervenants) }}
+          <div class="col s6">{{ form_label(form.intervenants, "Sélection des participants") }}</div>
+          <div class="col s6">{{ form_widget(form.intervenants) }}</div>
         </div>
-      </p>
-      <p>
-        {{ form_label(form.nbObservateurs, "Nombre d'observateurs") }}
-        {{ form_widget(form.nbObservateurs, {'attr': {'onchange': 'verif_observateurs(this.value)'}}) }}
-      </p>
-      <p>
+      </div>
+      <div class="row">
+        <div class="col s6">{{ form_label(form.nbObservateurs, "Nombre d'observateurs") }}</div>
+        <div class="col s6">{{ form_widget(form.nbObservateurs, {'attr': {'onchange': 'verif_observateurs(this.value)'}}) }}</div>
+      </div>
+      <div class="row">
         <div id="liste_observateurs">
-          {{ form_label(form.observateurs, "Sélection des observateurs") }}
-          {{ form_widget(form.observateurs) }}
+          <div class="col s6">{{ form_label(form.observateurs, "Sélection des observateurs") }}</div>
+          <div class="col s6">{{ form_widget(form.observateurs) }}</div>
         </div>
-      </p>
-        <input type="submit" value="Continuer" />
+      </div>
+      <div class="row">
+        <div class="col s6 offset-s6">
+          <p><input type="submit" value="Continuer" /></p>
+          <p><a href="{{ path('evenement_index') }}">Annuler</a></p>
+        </div>
+      </div>
+
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('evenement_index') }}">Back to the list</a>
-        </li>
-    </ul>
-
     <script type="text/javascript">
-
       window.onload = function () {
           document.getElementById("liste_participants").style.display='none';
           document.getElementById("liste_observateurs").style.display='none';
       }
-
-
       function verif_participants(elem){
         if (elem!=0){
           document.getElementById("liste_participants").style.display='block';
@@ -73,7 +71,6 @@
           document.getElementById("liste_participants").style.display='none';
         }
       }
-
       function verif_observateurs(elem){
         if (elem!=0){
           document.getElementById("liste_observateurs").style.display='block';
