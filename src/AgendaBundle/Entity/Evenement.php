@@ -446,7 +446,7 @@ class Evenement
      */
     public function addIntervenant(\UserBundle\Entity\User $intervenant)
     {
-        $this->intervenants[] = $intervenant;
+        $this->intervenants->add( $intervenant);
 
         return $this;
     }
@@ -495,7 +495,7 @@ class Evenement
      */
     public function addObservateur(\UserBundle\Entity\User $observateur)
     {
-        $this->observateurs[] = $observateur;
+        $this->observateurs->add( $observateur);
 
         return $this;
     }
