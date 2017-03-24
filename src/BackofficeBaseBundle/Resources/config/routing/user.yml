@@ -8,3 +8,8 @@ fos_user:
 fos_user_group:
     resource: "@FOSUserBundle/Resources/config/routing/group.xml"
     prefix: /group
+
+fos_user_show:
+    path:     /{id}/show
+    defaults: { _controller: "BackofficeBaseBundle:UserAdmin:show" }
+    methods:  GET
