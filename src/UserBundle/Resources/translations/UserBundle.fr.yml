@@ -7,3 +7,4 @@ user:
     fieldslabel:
         nom: Nom
         prenom: Prenom
+        groupe: Groupe
