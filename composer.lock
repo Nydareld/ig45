@@ -4,6 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+    "hash": "c7ec6d59de5e3996821be0b8c746fdb5",
     "content-hash": "88078c91dffc017bf74716db67c6048c",
     "packages": [
         {
@@ -208,7 +209,7 @@
                 "collections",
                 "iterator"
             ],
-            "time": "2017-01-03T10:49:41+00:00"
+            "time": "2017-01-03 10:49:41"
         },
         {
             "name": "doctrine/common",
@@ -522,7 +523,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2016-01-26T17:28:51+00:00"
+            "time": "2016-01-26 17:28:51"
         },
         {
             "name": "doctrine/inflector",
@@ -1083,7 +1084,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2017-03-13T16:27:32+00:00"
+            "time": "2017-03-13 16:27:32"
         },
         {
             "name": "psr/cache",
@@ -1381,7 +1382,7 @@
                 }
             ],
             "description": "A Twig Extension filter to sort an array of entries (objects or arrays) by the specified field",
-            "time": "2016-01-27T00:29:51+00:00"
+            "time": "2016-01-27 00:29:51"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -1443,12 +1444,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/monolog-bundle.git",
-                "reference": "1afc6ac72b7fa93bcda189160b54f6629a0c66f2"
+                "reference": "bdfbc93eb253a35a427f1ffa29f3b8a69e6d5b00"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/monolog-bundle/zipball/1afc6ac72b7fa93bcda189160b54f6629a0c66f2",
-                "reference": "1afc6ac72b7fa93bcda189160b54f6629a0c66f2",
+                "url": "https://api.github.com/repos/symfony/monolog-bundle/zipball/bdfbc93eb253a35a427f1ffa29f3b8a69e6d5b00",
+                "reference": "bdfbc93eb253a35a427f1ffa29f3b8a69e6d5b00",
                 "shasum": ""
             },
             "require": {
@@ -1495,7 +1496,7 @@
                 "log",
                 "logging"
             ],
-            "time": "2017-03-22 15:56:53"
+            "time": "2017-03-23 10:30:06"
         },
         {
             "name": "symfony/polyfill-apcu",
@@ -1899,12 +1900,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "f29664893dce91b2cfc0fb107ae7fc3ab9712d48"
+                "reference": "fb56bcce98342630d22f4c9c092830770f5e5bd2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/f29664893dce91b2cfc0fb107ae7fc3ab9712d48",
-                "reference": "f29664893dce91b2cfc0fb107ae7fc3ab9712d48",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/fb56bcce98342630d22f4c9c092830770f5e5bd2",
+                "reference": "fb56bcce98342630d22f4c9c092830770f5e5bd2",
                 "shasum": ""
             },
             "require": {
@@ -2035,7 +2036,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2017-03-22 20:39:24"
+            "time": "2017-03-23 16:09:32"
         },
         {
             "name": "twig/extensions",
@@ -2268,7 +2269,7 @@
                 "Fixture",
                 "persistence"
             ],
-            "time": "2015-11-04T21:23:23+00:00"
+            "time": "2015-11-04 21:23:23"
         },
         {
             "name": "sensio/generator-bundle",
