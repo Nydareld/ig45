@@ -37,20 +37,20 @@
                     </tr>
                 </tfoot>
                 <tbody>
-                    {% for lieux in lieuxes %}
+                    {% for etablissement in etablissements %}
                     <tr>
-                        <td><a href="{{ path('lieux_show', { 'id': lieux.id }) }}">{{ lieux.id }}</a></td>
-                        <td>{{ lieux.nom }}</td>
-                        <td>{{ lieux.adresse }}</td>
-                        <td>{{ lieux.ville }}</td>
-                        <td>{{ lieux.codePostal }}</td>
+                        <td><a href="{{ path('etablissement_show', { 'id': etablissement.id }) }}">{{ etablissement.id }}</a></td>
+                        <td>{{ etablissement.nom }}</td>
+                        <td>{{ etablissement.adresse }}</td>
+                        <td>{{ etablissement.ville }}</td>
+                        <td>{{ etablissement.codePostal }}</td>
                         <td>
                             <ul>
                                 <li>
-                                    <a href="{{ path('lieux_show', { 'id': lieux.id }) }}">show</a>
+                                    <a href="{{ path('etablissement_show', { 'id': etablissement.id }) }}">show</a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('lieux_edit', { 'id': lieux.id }) }}">edit</a>
+                                    <a href="{{ path('etablissement_edit', { 'id': etablissement.id }) }}">edit</a>
                                 </li>
                             </ul>
                         </td>
@@ -64,7 +64,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('lieux_new') }}">Create a new lieux</a>
+            <a href="{{ path('etablissement_new') }}">Create a new etablissement</a>
         </li>
     </ul>
 {% endblock %}
