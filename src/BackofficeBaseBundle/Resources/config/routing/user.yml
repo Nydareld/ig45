@@ -1,0 +1,10 @@
+user_list:
+    path: /list
+    defaults: { _controller: BackofficeBaseBundle:UserAdmin:userList}
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+fos_user_group:
+    resource: "@FOSUserBundle/Resources/config/routing/group.xml"
+    prefix: /group
