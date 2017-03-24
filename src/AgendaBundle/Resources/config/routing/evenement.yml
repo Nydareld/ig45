@@ -21,7 +21,3 @@ evenement_delete:
 evenement_edit:
     path: /{id}/edit
     defaults: {_controller: AgendaBundle:Evenement:edit}
-
-evenement_edit_suite:
-    path: /{id}/edit/suite
-    defaults: {_controller: AgendaBundle:Evenement:suiteEdit}

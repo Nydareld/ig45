@@ -24,7 +24,7 @@ class EvenementType extends AbstractType
                     )
                   )
 
-                ->add('etablissement')
+                ->add('lieu')
                 ->add('heureDebut',  TimeType::class, array(
                       'input'  => 'datetime',
                       'widget' => 'choice',
@@ -35,6 +35,8 @@ class EvenementType extends AbstractType
                       'widget' => 'choice',
                   )
                 )
+                ->add('niveauIntervention')
+                ->add('typeIntervention')
                 ->add('nbEleves')
                 ->add('nbParticipants', ChoiceType::class, array(
                     'choices'  => array(
