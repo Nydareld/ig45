@@ -3,6 +3,7 @@
 namespace UserBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use FOS\UserBundle\Util\LegacyFormHelper;
@@ -15,9 +16,18 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('nom')
-        ->add('prenom')
-        ->add('email', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\EmailType'), array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
+        ->add('nom',TextType::class,array(
+            'label'=>'user.fieldslabel.nom',
+            'translation_domain' => 'UserBundle'
+        ))
+        ->add('prenom',TextType::class,array(
+            'label'=>'user.fieldslabel.prenom',
+            'translation_domain' => 'UserBundle'
+        ))
+        ->add('email', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\EmailType'), array(
+            'label' => 'form.email',
+            'translation_domain' => 'FOSUserBundle'
+        ))
         ->add('plainPassword', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\RepeatedType'), array(
             'type' => LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\PasswordType'),
             'options' => array('translation_domain' => 'FOSUserBundle'),

@@ -45,6 +45,9 @@ class Niveau
      */
     private $typeEvenements;
 
+    public function __toString(){
+        return $this->getNom();
+    }
 
     /**
      * Get id
