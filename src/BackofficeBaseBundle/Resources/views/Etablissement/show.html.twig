@@ -21,8 +21,9 @@
         </div>
         <div class="box-body">
             <div class="row">
-                <div class="col-md-4">
-                    <h4>Informations générales</h4>
+
+                <div class="col-md-6">
+                    <h3>Informations générales</h3>
                     <dl>
                         <dt>Nom</dt>
                         <dd>{{ etablissement.nom }}</dd>
@@ -34,8 +35,9 @@
                         <dd>{{ etablissement.codePostal }}</dd>
                     </dl>
                 </div>
-                <div class="col-md-4">
-                    <h4>Liens utilisateurs</h4>
+
+                <div class="col-md-6">
+                    <h3>Liens avec des utilisateurs</h3>
                     <dl>
                         <dt>Coresspondant</dt>
                         <dd>{{ etablissement.correspondants }}</dd>
@@ -45,8 +47,46 @@
                         {% endfor %}
                     </dl>
                 </div>
-                <div class="col-md-4">
-                    <h4>Interventions</h4>
+                <hr>
+                <div class="col-md-12">
+                    <h3>Interventions</h3>
+                    {% for evenement in etablissement.evenements  | sortbyfield('dateEvt')  %}
+                    <h4>
+                        <a href="{{ path('evenement_show',{'id':evenement.id} )}}">
+                            Intervention {{ evenement.description }} <small>{{ evenement.dateEvt|localizeddate('none', 'none', null, null, 'd MMMM YYYY') }}</small>
+                        </a>
+                    </h4>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <dl class="dl-horizontal">
+                                <dt>Date</dt>
+                                <dd>{{ evenement.dateEvt|localizeddate('none', 'none', null, null, 'd MMMM YYYY') }}</dd>
+                                <dt>Description</dt>
+                                <dd>{{ evenement.description }}</dd>
+                                <dt>Type d'intervention</dt>
+                                <dd>{{ evenement.typeEvenement }}</dd>
+                                <dt>Nombre de groupes</dt>
+                                <dd>{{ evenement.nbGroupes }}</dd>
+                                <dt>Nombre de salles</dt>
+                                <dd>{{ evenement.nbSalles }}</dd>
+                            </dl>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>Intervenants</h4>
+                            {% for user in evenement.intervenants %}
+                            {{user}}
+                            {% endfor %}
+                        </div>
+                        <div class="col-md-4">
+                            <h4>Observateurs</h4>
+                            {% for user in evenement.observateurs %}
+                            {{user}}
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                    <hr>
+                    {% endfor %}
                 </div>
                 <!-- /.col -->
             </div>
