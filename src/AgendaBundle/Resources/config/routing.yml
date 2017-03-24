@@ -9,3 +9,7 @@ agenda_perso:
 admin_crud_lieux:
     resource: "@AgendaBundle/Resources/config/routing/evenement.yml"
     prefix:  /evenement
+
+admin_search:
+    path:     /search
+    defaults: { _controller: AgendaBundle:Agenda:index }

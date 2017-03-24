@@ -51,4 +51,9 @@ class AgendaController extends Controller
         return $this->render('AgendaBundle:Agenda:agenda.html.twig',
                         array('user' => $user));
     }
+
+    public function searchAction()
+    {
+        return $this->render('AgendaBundle:Agenda:search.html.twig');
+    }
 }

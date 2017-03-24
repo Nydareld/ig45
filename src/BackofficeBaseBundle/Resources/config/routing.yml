@@ -2,6 +2,10 @@ backoffice_base_homepage:
     path:     /
     defaults: { _controller: BackofficeBaseBundle:Default:index }
 
+admin_crud_etablissement:
+    resource: "@BackofficeBaseBundle/Resources/config/routing/etablissement.yml"
+    prefix:   /etablissement
+
 user_list:
     path: /user/list
     defaults: { _controller: BackofficeBaseBundle:UserAdmin:userList}

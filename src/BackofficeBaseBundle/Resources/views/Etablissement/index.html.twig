@@ -1,0 +1,70 @@
+{% extends 'BackofficeBaseBundle::Layout/AdminLayout.html.twig' %}
+
+{% block navActive %}etablissement{% endblock %}
+
+{% block contentHeader %}
+<h1>
+    Administration des etablissements
+</h1>
+{% endblock %}
+
+{% block content %}
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Liste des établissements</h3>
+        </div>
+        <div class="box-body">
+            <table class="table table-bordered table-striped dataTable">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Adresse</th>
+                        <th>Ville</th>
+                        <th>Codepostal</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Adresse</th>
+                        <th>Ville</th>
+                        <th>Codepostal</th>
+                        <th>Actions</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    {% for etablissement in etablissements %}
+                    <tr>
+                        <td><a href="{{ path('etablissement_show', { 'id': etablissement.id }) }}">{{ etablissement.id }}</a></td>
+                        <td>{{ etablissement.nom }}</td>
+                        <td>{{ etablissement.adresse }}</td>
+                        <td>{{ etablissement.ville }}</td>
+                        <td>{{ etablissement.codePostal }}</td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('etablissement_show', { 'id': etablissement.id }) }}">show</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('etablissement_edit', { 'id': etablissement.id }) }}">edit</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+    <ul>
+        <li>
+            <a href="{{ path('etablissement_new') }}">Create a new etablissement</a>
+        </li>
+    </ul>
+{% endblock %}

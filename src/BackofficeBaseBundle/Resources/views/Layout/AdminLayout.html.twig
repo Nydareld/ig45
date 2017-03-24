@@ -44,28 +44,32 @@
                 <ul class="nav navbar-nav">
 
                     <!-- User Account Menu -->
+                    <li>
+                        <a>
+                            <span class="hidden-xs"> {{ "now"|localizeddate('none', 'none', null, null, 'd MMMM YYYY')  }} </span>
+                        </a>
+                    </li>
                     <li class="dropdown user user-menu">
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- The user image in the navbar-->
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">Alexander Pierce</span>
+                            <span class="hidden-xs">{{ app.user.prenom }} {{ app.user.nom }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
                             <li class="user-header">
-
                                 <p>
-                                    Alexander Pierce - Web Developer
+                                    {{ app.user.prenom }} {{ app.user.nom }} - {{ app.user.groups.first.name }}
                                 </p>
                             </li>
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                    <a href="{{ path('fos_user_profile_show') }}" class="btn btn-default btn-flat">Profile</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                    <a href="{{ path('fos_user_security_logout') }}" class="btn btn-default btn-flat">Sign out</a>
                                 </div>
                             </li>
                         </ul>
@@ -116,6 +120,9 @@
                 <li class="header">UTILISATEURS</li>
                 <li id="nav-userList"><a href="{{ path('user_list') }}"><i class="fa fa-user"></i> <span>Utilisateurs</span></a></li>
                 <li id="nav-groupList"><a href="{{ path('group_list') }}"><i class="fa fa-users"></i> <span>Groupes</span></a></li>
+                <li class="header">DONNEES FONCTIONELLES</li>
+                <li id="nav-etablissement"><a href="{{ path('etablissement_index') }}"><i class="fa fa-building"></i> <span>Etablissement</span></a></li>
+                <li id="nav-niveaux"><a href=""><i class="fa fa-graduation-cap"></i> <span>Niveaux d'Interventions</span></a></li>
             </ul>
             <!-- /.sidebar-menu -->
         </section>

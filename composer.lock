@@ -4,14 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-    "hash": "24230909023b1a02fa9a935c802f8130",
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
-    "content-hash": "3bf7ae482ae34f7eafbfc4cac40b8d4d",
+    "content-hash": "35933ee30c9f3ec88ed1a216f1f6b90e",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -215,15 +208,7 @@
                 "collections",
                 "iterator"
             ],
-<<<<<<< Updated upstream
             "time": "2017-01-03T10:49:41+00:00"
-=======
-<<<<<<< Updated upstream
-            "time": "2017-01-03 10:49:41"
-=======
-            "time": "2017-01-03T10:49:41+00:00"
->>>>>>> Stashed changes
->>>>>>> Stashed changes
         },
         {
             "name": "doctrine/common",
@@ -1098,15 +1083,7 @@
                 "pseudorandom",
                 "random"
             ],
-<<<<<<< Updated upstream
             "time": "2017-03-13T16:27:32+00:00"
-=======
-<<<<<<< Updated upstream
-            "time": "2017-03-13 16:27:32"
-=======
-            "time": "2017-03-13T16:27:32+00:00"
->>>>>>> Stashed changes
->>>>>>> Stashed changes
         },
         {
             "name": "psr/cache",
@@ -1883,12 +1860,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "04fcac74b189de430c78adfa673f64a8d1a03491"
+                "reference": "f29664893dce91b2cfc0fb107ae7fc3ab9712d48"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/04fcac74b189de430c78adfa673f64a8d1a03491",
-                "reference": "04fcac74b189de430c78adfa673f64a8d1a03491",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/f29664893dce91b2cfc0fb107ae7fc3ab9712d48",
+                "reference": "f29664893dce91b2cfc0fb107ae7fc3ab9712d48",
                 "shasum": ""
             },
             "require": {
@@ -2019,7 +1996,59 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2017-03-22 20:31:03"
+            "time": "2017-03-22 20:39:24"
+        },
+        {
+            "name": "twig/extensions",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twigphp/Twig-extensions.git",
+                "reference": "7c3b21c60be61dcc6473652603c68a5b576ea0d2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twigphp/Twig-extensions/zipball/7c3b21c60be61dcc6473652603c68a5b576ea0d2",
+                "reference": "7c3b21c60be61dcc6473652603c68a5b576ea0d2",
+                "shasum": ""
+            },
+            "require": {
+                "twig/twig": "~1.27|~2.0"
+            },
+            "require-dev": {
+                "symfony/translation": "~2.3"
+            },
+            "suggest": {
+                "symfony/translation": "Allow the time_diff output to be translated"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Twig_Extensions_": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Common additional features for Twig that do not directly belong in core",
+            "homepage": "http://twig.sensiolabs.org/doc/extensions/index.html",
+            "keywords": [
+                "i18n",
+                "text"
+            ],
+            "time": "2017-01-09 14:44:40"
         },
         {
             "name": "twig/twig",
@@ -2200,15 +2229,7 @@
                 "Fixture",
                 "persistence"
             ],
-<<<<<<< Updated upstream
             "time": "2015-11-04T21:23:23+00:00"
-=======
-<<<<<<< Updated upstream
-            "time": "2015-11-04 21:23:23"
-=======
-            "time": "2015-11-04T21:23:23+00:00"
->>>>>>> Stashed changes
->>>>>>> Stashed changes
         },
         {
             "name": "sensio/generator-bundle",
@@ -2324,7 +2345,7 @@
             ],
             "description": "Symfony PHPUnit Bridge",
             "homepage": "https://symfony.com",
-            "time": "2017-03-20T13:28:31+00:00"
+            "time": "2017-03-20 13:28:31"
         }
     ],
     "aliases": [],
