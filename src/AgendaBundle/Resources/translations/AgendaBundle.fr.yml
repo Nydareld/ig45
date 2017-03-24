@@ -1,5 +1,5 @@
 
-lieux:
+etablissement:
     fieldslabel:
         nom: Nom de l'etablissement
         adresse : Adresse
@@ -8,3 +8,4 @@ lieux:
         correspondants : Correspondants
         adjoints : Adjoints
         type : Type détablissement
+        etablissement : Niveau(x)
