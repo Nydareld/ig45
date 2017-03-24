@@ -34,10 +34,6 @@
                 <td>{{ evenement.nbObservateurs }}</td>
             </tr>
             <tr>
-                <th>Niveauintervention</th>
-                <td>{{ evenement.niveauIntervention }}</td>
-            </tr>
-            <tr>
                 <th>Nbgroupes</th>
                 <td>{{ evenement.nbGroupes }}</td>
             </tr>
@@ -78,8 +74,14 @@
                 <td>{{ evenement.nbEleves }}</td>
             </tr>
             <tr>
-                <th>Niveau_classe</th>
-                <td>{{ evenement.niveauclasse }}</td>
+                <th>Etablissement</th>
+                <td>{{ evenement.etablissement }}</td>
+            </tr>
+            <tr>
+                <th>Niveau etablissement</th>
+                {%  for niveau in evenement.etablissement.niveaux %}
+                    <td>{{ niveau }}</td>
+                {% endfor %}
             </tr>
         </tbody>
     </table>
