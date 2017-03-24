@@ -2,3 +2,8 @@
 form:
     group_description: 'Nom du groupe'
     validate : 'Valider'
+
+user:
+    fieldslabel:
+        nom: Nom
+        prenom: Prenom
