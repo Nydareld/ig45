@@ -24,6 +24,10 @@ class Group extends BaseGroup
      */
     protected $description;
 
+    public function __toString(){
+        return $this->getName();
+    }
+
     /**
      * Get the value of Id
      *

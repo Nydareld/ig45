@@ -1,63 +1,121 @@
 {% extends "BaseBundle::Layout/BaseLayout.html.twig" %}
-
 {% block contentBody %}
-    <h1>Agenda</h1>
-    <ul>
+    <div class="agenda">
+        <!-- <h1>Agenda</h1> -->
+        <div class="action_agenda">
+            <a href="#" class="waves-effect waves-light btn blue lighten-2">
+                <i class="material-icons">chevron_left</i>
+            </a>
+            <a href="{{ path('evenement_new') }}" class="waves-effect waves-light btn blue lighten-2">Créer une Intervention</a>
+            <a href="#" class="waves-effect waves-light btn blue lighten-2">Agenda Personnel</a>
+        </div>
+        <!-- <ul>
         <li>
           <a href="#"><i class="material-icons">chevron_left</i></a>
         </li>
         <li>
-            <a href="{{ path('evenement_new') }}">Créer une Intervention</a>
+            <a href="{{ path('evenement_new') }}">Créer un événement</a>
         </li>
         <li>
-          <a href="#">Agenda Personnel</a>
+          <a href="#">Agenda personnel</a>
         </li>
-    </ul>
-
-    <table class="bordered striped responsive-table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Début</th>
-                <th>Fin</th>
-                <th>Information Intervention</th>
-                <th>Intervenant</th>
-                <th>Observateurs</th>
-                <th>Fiche Intervention</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for evenement in evenements %}
-            <tr>
-                <td>{% if evenement.dateEvt %}{{ evenement.dateEvt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if evenement.heureDebut %}{{ evenement.heureDebut|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if evenement.heureFin %}{{ evenement.heureFin|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ evenement.description }}</td>
-                <td>{{ evenement.nbParticipants }}</td>
-                <td>{{ evenement.nbObservateurs }}</td>
-                <td>
-                  <ul>
-                    <li>
-                        <a href="{{ path('evenement_show', { 'id': evenement.id }) }}">détails</a>
-                    </li>
-                  </ul>
-                </td>
-                <td>
-                  <ul>
-                      <li>
-                          <a href="#"><i class="material-icons">mail</i></a>
-                      </li>
-                      <li>
-                          <a href="{{ path('evenement_delete', { 'id': evenement.id }) }}"><i class="material-icons">delete</i></a>
-                      </li>
-                      <li>
-                          <a href="{{ path('evenement_edit', { 'id': evenement.id }) }}"><i class="material-icons">mode_edit</i></a>
-                      </li>
-                  </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    </ul> -->
+        <div class="legende_agenda">
+            <div class="block_legende row">
+                <div class="col s12 m4">
+                    <i class="material-icons">info_outline</i>
+                    <span>Survoler pour voir des informations supplémentaires</span>
+                </div>
+                <div class="col s12 m4">
+                    <i class="material-icons">mail</i>Envoyer un email aux correspondants et adjoints
+                </div>
+                <div class="col s12 m4">
+                    <i class="material-icons">description</i>Obtenir la fiche de l'intervention
+                </div>
+            </div>
+            <div class="block_legende row">
+                <div class="col s12 m4">
+                    <i class="material-icons icon_cancel">cancel</i>Annuler l'évènement
+                </div>
+                <div class="col s12 m4">
+                    <i class="material-icons icon_edit">mode_edit</i>Modifier l'évènement
+                </div>
+            </div>
+        </div>
+        <table class="bordered centered striped responsive-table">
+            <thead>
+                <tr>
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        Début
+                    </th>
+                    <th>
+                        Fin
+                    </th>
+                    <th>
+                        Information Intervention
+                    </th>
+                    <th>
+                        Intervenant
+                    </th>
+                    <th>
+                        Observateurs
+                    </th>
+                    <th>
+                        Fiche Intervention
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for evenement in evenements %}
+                    <tr>
+                        <td>
+                            {% if evenement.dateEvt %}{{ evenement.dateEvt|date('l d/m/Y') }}{% endif %}
+                        </td>
+                        <td>
+                            {% if evenement.heureDebut %}{{ evenement.heureDebut|date('H:i') }}{% endif %}
+                        </td>
+                        <td>
+                            {% if evenement.heureFin %}{{ evenement.heureFin|date('H:i') }}{% endif %}
+                        </td>
+                        <td>
+                            {{ evenement.etablissement }}
+                            <br>
+                            {{ evenement.description }}
+                            <br>
+                        </td>
+                        <td>
+                            {{ evenement.nbParticipants }}
+                            <i class="material-icons">info_outline</i>
+                        </td>
+                        <td>
+                            {{ evenement.nbObservateurs }}
+                            <i class="material-icons">info_outline</i>
+                        </td>
+                        <td>
+                            <a href="{{ path('evenement_show', { 'id': evenement.id }) }}">
+                                <i class="material-icons icon">description</i>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#">
+                                <i class="material-icons icon">mail</i>
+                            </a>
+                            <a href="{{ path('evenement_delete', { 'id': evenement.id }) }}">
+                                <i class="material-icons icon_cancel">cancel</i>
+                            </a>
+                            <a href="{{ path('evenement_edit', { 'id': evenement.id }) }}">
+                                <i class="material-icons icon_edit">mode_edit</i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

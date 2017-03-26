@@ -78,8 +78,14 @@
                 <td>{{ evenement.nbEleves }}</td>
             </tr>
             <tr>
-                <th>Niveau_classe</th>
-                <td>{{ evenement.niveauclasse }}</td>
+                <th>Etablissement</th>
+                <td>{{ evenement.etablissement }}</td>
+            </tr>
+            <tr>
+                <th>Niveau etablissement</th>
+                {%  for niveau in evenement.etablissement.niveaux %}
+                    <td>{{ niveau }}</td>
+                {% endfor %}
             </tr>
         </tbody>
     </table>

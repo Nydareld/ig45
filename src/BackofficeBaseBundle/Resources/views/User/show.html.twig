@@ -1,0 +1,146 @@
+{% extends "BackofficeBaseBundle::Layout/AdminLayout.html.twig" %}
+
+{% block navActive %}etablissement{% endblock %}
+
+{% block contentHeader %}
+<h1>
+    Fiche utilisateur
+</h1>
+{% endblock %}
+
+{% block content %}
+
+<div class="col-md-12">
+    <div class="box">
+        <!-- /.box-header -->
+        <div class="box-header">
+            <h3>
+                {{ user }}
+            </h3>
+        </div>
+        <div class="box-body">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <h3>Informations générales</h3>
+                    <dl>
+                        <dt>Nom, penom:</dt>
+                        <dd>{{ user }}</dd>
+                        <dt>Adresse email</dt>
+                        <dd>{{ user.email }}</dd>
+                        <dt>Telephone fixe</dt>
+                        <dd>{{ user.telFixe }}</dd>
+                        <dt>Telephone portable</dt>
+                        <dd>{{ user.telPortable }}</dd>
+                        <dt>Groupes</dt>
+                        <dd>{% for grp in user.groups %}{{grp}}{% endfor %}</dd>
+                    </dl>
+                </div>
+
+                <div class="col-md-6">
+                    <h3>Liens avec des etablissement</h3>
+                    <dl>
+                        {% for etablissement in user.correspondances %}
+                        <dt>Coresspondant de</dt>
+                        <dd>{{ etablissement }}</dd>
+                        {% endfor %}
+                        {% for etablissement in user.adjonctions %}
+                        <dt>Adjoint de</dt>
+                        <dd>{{ etablissement }}</dd>
+                        {% endfor %}
+                    </dl>
+                </div>
+                <hr>
+                <div class="col-md-12">
+                    <h3>Interventions</h3>
+                    {% for evenement in user.interventions  | sortbyfield('dateEvt')  %}
+                    <h4>
+                        <a href="{{ path('evenement_show',{'id':evenement.id} )}}">
+                            Intervention {{ evenement.description }} <small>{{ evenement.dateEvt|localizeddate('none', 'none', null, null, 'd MMMM YYYY') }}</small>
+                        </a>
+                    </h4>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <dl class="dl-horizontal">
+                                <dt>Date</dt>
+                                <dd>{{ evenement.dateEvt|localizeddate('none', 'none', null, null, 'd MMMM YYYY') }}</dd>
+                                <dt>Description</dt>
+                                <dd>{{ evenement.description }}</dd>
+                                <dt>Type d'intervention</dt>
+                                <dd>{{ evenement.typeEvenement }}</dd>
+                                <dt>Nombre de groupes</dt>
+                                <dd>{{ evenement.nbGroupes }}</dd>
+                                <dt>Nombre de salles</dt>
+                                <dd>{{ evenement.nbSalles }}</dd>
+                            </dl>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>Intervenants</h4>
+                            {% for user in evenement.intervenants %}
+                            {{user}}
+                            {% endfor %}
+                        </div>
+                        <div class="col-md-4">
+                            <h4>Observateurs</h4>
+                            {% for user in evenement.observateurs %}
+                            {{user}}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <hr>
+                    {% endfor %}
+                </div>
+                <hr>
+                <div class="col-md-12">
+                    <h3>Observations</h3>
+                    {% for evenement in user.observations  | sortbyfield('dateEvt')  %}
+                    <h4>
+                        <a href="{{ path('evenement_show',{'id':evenement.id} )}}">
+                            Intervention {{ evenement.description }} <small>{{ evenement.dateEvt|localizeddate('none', 'none', null, null, 'd MMMM YYYY') }}</small>
+                        </a>
+                    </h4>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <dl class="dl-horizontal">
+                                <dt>Date</dt>
+                                <dd>{{ evenement.dateEvt|localizeddate('none', 'none', null, null, 'd MMMM YYYY') }}</dd>
+                                <dt>Description</dt>
+                                <dd>{{ evenement.description }}</dd>
+                                <dt>Type d'intervention</dt>
+                                <dd>{{ evenement.typeEvenement }}</dd>
+                                <dt>Nombre de groupes</dt>
+                                <dd>{{ evenement.nbGroupes }}</dd>
+                                <dt>Nombre de salles</dt>
+                                <dd>{{ evenement.nbSalles }}</dd>
+                            </dl>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>Intervenants</h4>
+                            {% for user in evenement.intervenants %}
+                            {{user}}
+                            {% endfor %}
+                        </div>
+                        <div class="col-md-4">
+                            <h4>Observateurs</h4>
+                            {% for user in evenement.observateurs %}
+                            {{user}}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <hr>
+                    {% endfor %}
+                </div>
+
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- ./box-body -->
+        <div class="box-footer">
+            <div class="btn-group pull-right">
+            </div>
+        </div>
+    </div>
+    <!-- /.box -->
+</div>
+{% endblock %}
