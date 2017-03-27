@@ -1,8 +1,25 @@
 {% extends "BaseBundle::Layout/BaseLayout.html.twig" %}
-{% block title %}Agenda{% endblock %}
 {% block contentBody %}
     <div class="agenda">
-
+        <!-- <h1>Agenda</h1> -->
+        <div class="action_agenda">
+            <a href="#" class="waves-effect waves-light btn blue lighten-2">
+                <i class="material-icons">chevron_left</i>
+            </a>
+            <a href="{{ path('evenement_new') }}" class="waves-effect waves-light btn blue lighten-2">Créer une Intervention</a>
+            <a href="#" class="waves-effect waves-light btn blue lighten-2">Agenda Personnel</a>
+        </div>
+        <!-- <ul>
+        <li>
+          <a href="#"><i class="material-icons">chevron_left</i></a>
+        </li>
+        <li>
+            <a href="{{ path('evenement_new') }}">Créer une Intervention</a>
+        </li>
+        <li>
+          <a href="#">Agenda Personnel</a>
+        </li>
+    </ul> -->
         <div class="legende_agenda">
             <div class="block_legende row">
                 <div class="col s12 m4">
@@ -58,7 +75,7 @@
                 {% for evenement in evenements %}
                     <tr>
                         <td>
-                            {% if evenement.dateEvt %}{{ evenement.dateEvt|localizeddate("medium", "none", null, null, "cccc d/M/yy") }}{% endif %}
+                            {% if evenement.dateEvt %}{{ evenement.dateEvt|date('l d/m/Y') }}{% endif %}
                         </td>
                         <td>
                             {% if evenement.heureDebut %}{{ evenement.heureDebut|date('H:i') }}{% endif %}
@@ -68,21 +85,17 @@
                         </td>
                         <td>
                             {{ evenement.etablissement }}
-                            <i class="material-icons tooltipped" data-position="bottom" data-delay="50" data-tooltip="{{ evenement.etablissement.adresse }} {{ evenement.etablissement.ville }} {{ evenement.etablissement.codePostal }}">info_outline</i>
                             <br>
                             {{ evenement.description }}
                             <br>
-                            <!-- TODO: AFFICHER NIVEAUX  -->
                         </td>
                         <td>
                             {{ evenement.nbParticipants }}
-                            <!-- TODO: AFFICHER INTERVENANTS INSCRITS + TOOLTIP -->
-                            <i class="material-icons tooltipped" data-position="bottom" data-delay="50" data-tooltip="I am tooltip">info_outline</i>
+                            <i class="material-icons">info_outline</i>
                         </td>
                         <td>
                             {{ evenement.nbObservateurs }}
-                            <!-- TODO: AFFICHER OBSERVATEURS INSCRITS + TOOLTIP -->
-                            <i class="material-icons tooltipped" data-position="bottom" data-delay="50" data-tooltip="I am tooltip">info_outline</i>
+                            <i class="material-icons">info_outline</i>
                         </td>
                         <td>
                             <a href="{{ path('evenement_show', { 'id': evenement.id }) }}">
