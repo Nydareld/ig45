@@ -22,7 +22,7 @@ class EvenementController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $evenements = $em->getRepository('AgendaBundle:Evenement')->findAll();
+        $evenements = $em->getRepository('AgendaBundle:Evenement')->findBy(array(), array('dateEvt' => 'ASC'));
 
         return $this->render('AgendaBundle:Evenement:index.html.twig', array(
             'evenements' => $evenements,
