@@ -377,30 +377,4 @@ class Etablissement
         return $this;
     }
 
-
-    /**
-     * Add niveaux.
-     *
-     * @param \AgendaBundle\Entity\Niveau $niveaux
-     *
-     * @return Etablissement
-     */
-    public function addNiveaux(\AgendaBundle\Entity\Niveau $niveaux)
-    {
-        $this->niveaux[] = $niveaux;
-
-        return $this;
-    }
-
-    /**
-     * Remove niveaux.
-     *
-     * @param \AgendaBundle\Entity\Niveau $niveaux
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removeNiveaux(\AgendaBundle\Entity\Niveau $niveaux)
-    {
-        return $this->niveaux->removeElement($niveaux);
-    }
 }

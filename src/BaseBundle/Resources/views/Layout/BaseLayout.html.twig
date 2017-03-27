@@ -31,6 +31,11 @@
                                 </a>
                             {% endif %}
                         </li>
+                        <li>
+                            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') %}
+                                <li><a href="{{ path('backoffice_base_homepage') }}">Interface Administrateur</a></li>
+                            {% endif %}
+                        </li>
                     </ul>
                 </div>
             </nav>
