@@ -56,7 +56,7 @@ class Etablissement
      *
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="correspondances")
      */
-    private $correspondants;
+    private $correspondant;
 
     /**
      * @var User
@@ -86,6 +86,13 @@ class Etablissement
      *     )
      */
     private $niveaux;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Presence", type="string", length=3, nullable=true)
+     */
+    private $presence;
 
     /**
      * Constructor
@@ -207,25 +214,25 @@ class Etablissement
     }
 
     /**
-     * Get the value of Correspondants
+     * Get the value of Correspondant
      *
      * @return User
      */
-    public function getCorrespondants()
+    public function getCorrespondant()
     {
-        return $this->correspondants;
+        return $this->correspondant;
     }
 
     /**
-     * Set the value of Correspondants
+     * Set the value of Correspondant
      *
-     * @param User correspondants
+     * @param User correspondant
      *
      * @return self
      */
-    public function setCorrespondants(User $correspondants)
+    public function setCorrespondant(User $correspondant)
     {
-        $this->correspondants = $correspondants;
+        $this->correspondant = $correspondant;
 
         return $this;
     }
@@ -354,6 +361,18 @@ class Etablissement
     public function setNiveaux(Niveau $niveaux)
     {
         $this->niveaux = $niveaux;
+
+        return $this;
+    }
+
+    public function getPresence()
+    {
+        return $this -> presence;
+    }
+
+    public function setPresence($presence)
+    {
+        $this -> presence = $presence;
 
         return $this;
     }

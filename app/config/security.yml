@@ -9,7 +9,7 @@ security:
     # SuperAdmin > Admin > coresspondant > user
     role_hierarchy:
         ROLE_CORESSPONDANT: ROLE_USER
-        ROLE_ADMIN:         ROLE_CORESSPONDANT
+        ROLE_ADMIN:         ROLE_CORRESPONDANT
         ROLE_SUPER_ADMIN:   ROLE_ADMIN
 
     providers:
@@ -22,6 +22,8 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
+                always_use_default_target_path: false
+                default_target_path: /evenement/
 
             logout:       true
             anonymous:    true
@@ -30,4 +32,6 @@ security:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        # - { path: ^/admin, role: ROLE_ADMIN }
+        - { path: ^/evenement, role: IS_AUTHENTICATED_REMEMBERED }
+        # - { path: ^/admin, role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/admin, role: ROLE_ADMIN }

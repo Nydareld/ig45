@@ -4,6 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+
     "hash": "c7ec6d59de5e3996821be0b8c746fdb5",
     "content-hash": "88078c91dffc017bf74716db67c6048c",
     "packages": [
@@ -362,12 +363,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineBundle.git",
-                "reference": "99a62a7c4139c0ccb6969de5eff1447b1a6cbaf4"
+                "reference": "bdb5af6b2b155173cc50c7804cb0422c37594e0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/99a62a7c4139c0ccb6969de5eff1447b1a6cbaf4",
-                "reference": "99a62a7c4139c0ccb6969de5eff1447b1a6cbaf4",
+                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/bdb5af6b2b155173cc50c7804cb0422c37594e0e",
+                "reference": "bdb5af6b2b155173cc50c7804cb0422c37594e0e",
                 "shasum": ""
             },
             "require": {
@@ -435,7 +436,7 @@
                 "orm",
                 "persistence"
             ],
-            "time": "2017-02-23 13:22:14"
+            "time": "2017-03-26 16:00:39"
         },
         {
             "name": "doctrine/doctrine-cache-bundle",
@@ -1444,12 +1445,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/monolog-bundle.git",
-                "reference": "bdfbc93eb253a35a427f1ffa29f3b8a69e6d5b00"
+                "reference": "6f96c7dbb6b2ef70b307a1a6f897153cbca3da47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/monolog-bundle/zipball/bdfbc93eb253a35a427f1ffa29f3b8a69e6d5b00",
-                "reference": "bdfbc93eb253a35a427f1ffa29f3b8a69e6d5b00",
+                "url": "https://api.github.com/repos/symfony/monolog-bundle/zipball/6f96c7dbb6b2ef70b307a1a6f897153cbca3da47",
+                "reference": "6f96c7dbb6b2ef70b307a1a6f897153cbca3da47",
                 "shasum": ""
             },
             "require": {
@@ -1496,7 +1497,7 @@
                 "log",
                 "logging"
             ],
-            "time": "2017-03-23 10:30:06"
+            "time": "2017-03-26 11:55:59"
         },
         {
             "name": "symfony/polyfill-apcu",
@@ -1900,12 +1901,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "fb56bcce98342630d22f4c9c092830770f5e5bd2"
+                "reference": "dc66960f8426c106722aa3c907b614426c5d54c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/fb56bcce98342630d22f4c9c092830770f5e5bd2",
-                "reference": "fb56bcce98342630d22f4c9c092830770f5e5bd2",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/dc66960f8426c106722aa3c907b614426c5d54c7",
+                "reference": "dc66960f8426c106722aa3c907b614426c5d54c7",
                 "shasum": ""
             },
             "require": {
@@ -2036,7 +2037,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2017-03-23 16:09:32"
+            "time": "2017-03-26 15:47:15"
         },
         {
             "name": "twig/extensions",

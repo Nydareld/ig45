@@ -1,3 +1,9 @@
+.action_agenda {
+  margin-top: 50px;
+  padding: 20px 10px;
+  background-color: #eee;
+}
+
 .agenda .icon_cancel {
   color: #f44336;
 }

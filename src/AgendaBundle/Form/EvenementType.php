@@ -66,7 +66,6 @@ class EvenementType extends AbstractType
                   )
                 )
                 ->add('observateurs');
-
     }
 
     /**
