@@ -9,7 +9,7 @@ security:
     # SuperAdmin > Admin > coresspondant > user
     role_hierarchy:
         ROLE_CORESSPONDANT: ROLE_USER
-        ROLE_ADMIN:         ROLE_CORESSPONDANT
+        ROLE_ADMIN:         ROLE_CORRESPONDANT
         ROLE_SUPER_ADMIN:   ROLE_ADMIN
 
     providers:
@@ -33,5 +33,5 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/evenement, role: IS_AUTHENTICATED_REMEMBERED }
-        - { path: ^/admin, role: IS_AUTHENTICATED_FULLY }
-        # - { path: ^/admin, role: ROLE_ADMIN }
+        # - { path: ^/admin, role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/admin, role: ROLE_ADMIN }

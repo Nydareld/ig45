@@ -567,7 +567,7 @@ class LoadData implements FixtureInterface
         $etablissement->setAdresse("31 avenue Saint Fiacre");
         $etablissement->setCodePostal("45000");
         $etablissement->setVille("Orléans");
-        $etablissement->setCorrespondants($user);
+        $etablissement->setCorrespondant($user);
         $manager->persist($etablissement);
 
         $etablissement2 = new Etablissement();
@@ -576,7 +576,7 @@ class LoadData implements FixtureInterface
         $etablissement2->setAdresse("Avenue Diderot");
         $etablissement2->setCodePostal("45100");
         $etablissement2->setVille("Orléans");
-        $etablissement2->setCorrespondants($user1);
+        $etablissement2->setCorrespondant($user1);
         $etablissement2->addAdjoint($user2);
         $manager->persist($etablissement2);
 
@@ -586,7 +586,7 @@ class LoadData implements FixtureInterface
         $etablissement3->setAdresse("18 Rue du Nécotin");
         $etablissement3->setCodePostal("45000");
         $etablissement3->setVille("Orléans");
-        $etablissement3->setCorrespondants($user3);
+        $etablissement3->setCorrespondant($user3);
         $etablissement3->addAdjoint($user4);
         $manager->persist($etablissement3);
 
@@ -596,7 +596,7 @@ class LoadData implements FixtureInterface
         $etablissement4->setAdresse("1 Rue Françoise Giroud");
         $etablissement4->setCodePostal("45140");
         $etablissement4->setVille("Saint-Jean-de-la-Ruelle");
-        $etablissement4->setCorrespondants($user5);
+        $etablissement4->setCorrespondant($user5);
         $etablissement4->addAdjoint($user3);
         $manager->persist($etablissement4);
 
