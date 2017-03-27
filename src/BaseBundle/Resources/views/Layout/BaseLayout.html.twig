@@ -24,7 +24,9 @@
                     <ul class="right hide-on-med-and-down">
                         <li>
                             {% if app.user %}
-                                <a href="#">{{app.user.nom}} {{app.user.prenom}}<i class="material-icons right">person</i>
+                                <a href="#">{{app.user.nom}}
+                                    {{app.user.prenom}}
+                                    <i class="material-icons right">person</i>
                                 </a>
                             {% else %}
                                 <a href="{{ path('fos_user_security_login') }}">Se connecter<i class="material-icons right">person</i>
@@ -32,26 +34,37 @@
                             {% endif %}
                         </li>
                         <li>
-                            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') %}
-                                <li><a href="{{ path('backoffice_base_homepage') }}">Interface Administrateur</a></li>
-                            {% endif %}
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <div class="container">
-            {% block contentBody %}{% endblock %}
-        </div>
-        <!-- <footer class="page-footer blue lighten-2">
-       <div class="container">
-         © 2017
-       </div>
-    </footer> -->
-        {% block scripts %}
-            <!--Import jQuery before materialize.js-->
-            <script type="text/javascript" src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('bower_components/materialize/dist/js/materialize.min.js') }}"></script>
+                            {% if is_granted('ROLE_ADMIN')or is_granted('ROLE_SUPER_ADMIN') %}
+                            <li>
+                                <a href="{{ path('backoffice_base_homepage') }}">Interface Administrateur</a>
+                            </li>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        {% block actionAgenda%}
+            <div class="action_agenda">
+                <a href="{{ path('evenement_index') }}" class="waves-effect waves-light btn blue lighten-2" title="Retour à l'accueil">
+                    <i class="material-icons">home</i>
+                </a>
+                {% if is_granted('ROLE_CORRESPONDANT')or is_granted('ROLE_ADMIN')or is_granted('ROLE_SUPER_ADMIN') %}
+                    <a href="{{ path('evenement_new') }}" class="waves-effect waves-light btn blue lighten-2" title="Créer une intervention">
+                        <i class="material-icons">add</i>
+                    </a>
+                {% endif %}
+                <a href="#" class="waves-effect waves-light btn blue lighten-2" title="Agenda personnel">Agenda Personnel</a>
+                {% block specificAction%}{% endblock %}
+            </div>
         {% endblock %}
-    </body>
+        {% block contentBody %}{% endblock %}
+    </div>
+    {% block scripts %}
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bower_components/materialize/dist/js/materialize.min.js') }}"></script>
+    {% endblock %}
+</body>
 </html>

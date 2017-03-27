@@ -1,5 +1,5 @@
 .action_agenda {
-  margin-top: 50px;
+  margin: 50px 0;
   padding: 20px 10px;
   background-color: #eee;
 }
@@ -12,14 +12,8 @@
   color: #ff9800;
 }
 
-.agenda .action_agenda {
-  margin-top: 50px;
-  padding: 20px 10px;
-  background-color: #eee;
-}
-
 .agenda .legende_agenda {
-  margin: 40px 0;
+  margin-bottom: 50px;
   padding: 30px 10px 10px;
   border: 1px #9e9e9e solid;
 }
