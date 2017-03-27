@@ -88,6 +88,13 @@ class Etablissement
     private $niveaux;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="Presence", type="string", length=3, nullable=true)
+     */
+    private $presence;
+
+    /**
      * Constructor
      */
     public function __construct(){
@@ -354,6 +361,18 @@ class Etablissement
     public function setNiveaux(Niveau $niveaux)
     {
         $this->niveaux = $niveaux;
+
+        return $this;
+    }
+
+    public function getPresence()
+    {
+        return $this -> presence;
+    }
+
+    public function setPresence($presence)
+    {
+        $this -> presence = $presence;
 
         return $this;
     }
