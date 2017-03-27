@@ -170,6 +170,13 @@ class Evenement
     private $nbEleves;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="niveau_classe", type="string")
+     */
+    private $niveauClasse;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -743,28 +750,16 @@ class Evenement
         return $this;
     }
 
-
-    /**
-     * Set niveauIntervention.
-     *
-     * @param string $niveauIntervention
-     *
-     * @return Evenement
-     */
-    public function setNiveauIntervention($niveauIntervention)
+    public function getNiveauClasse()
     {
-        $this->niveauIntervention = $niveauIntervention;
+        return $this->niveauClasse;
+    }
+
+    public function setNiveauClasse($niveauClasse)
+    {
+        $this->niveauClasse = $niveauClasse;
 
         return $this;
     }
 
-    /**
-     * Get niveauIntervention.
-     *
-     * @return string
-     */
-    public function getNiveauIntervention()
-    {
-        return $this->niveauIntervention;
-    }
 }

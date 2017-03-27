@@ -199,6 +199,166 @@ class LoadData implements FixtureInterface
         $user18->setPlainPassword("catherine.burette");
         $manager->persist($user18);
 
+        $user19 = new User();
+        $user19->addGroup($grpUser);
+        $user19->setNom("DUPRAT");
+        $user19->setEmail("martine.duprat@free.fr");
+        $user19->setPrenom("Martine");
+        $user19->setPlainPassword("martine.duprat");
+        $manager->persist($user19);
+
+        $user20 = new User();
+        $user20->addGroup($grpUser);
+        $user20->setNom("LALISSE");
+        $user20->setEmail("joseph.lalisse@free.fr");
+        $user20->setPrenom("Joseph");
+        $user20->setPlainPassword("joseph.lalisse");
+        $manager->persist($user20);
+
+        $user21 = new User();
+        $user21->addGroup($grpUser);
+        $user21->setNom("AMIOT");
+        $user21->setEmail("philippe.amiot@free.fr");
+        $user21->setPrenom("Philippe");
+        $user21->setPlainPassword("philippe.amiot");
+        $manager->persist($user21);
+
+        $user22 = new User();
+        $user22->addGroup($grpUser);
+        $user22->setNom("COUDRAY");
+        $user22->setEmail("jacques.coudray@free.fr");
+        $user22->setPrenom("Jacques");
+        $user22->setPlainPassword("jacques.coudray");
+        $manager->persist($user22);
+
+        $user23 = new User();
+        $user23->addGroup($grpUser);
+        $user23->setNom("KESTLER");
+        $user23->setEmail("paul.kestler@free.fr");
+        $user23->setPrenom("Paul");
+        $user23->setPlainPassword("paul.kestler");
+        $manager->persist($user23);
+
+        $user24 = new User();
+        $user24->addGroup($grpUser);
+        $user24->setNom("HUGUET-TAHON");
+        $user24->setEmail("martine.huguet-tahon@free.fr");
+        $user24->setPrenom("Martine");
+        $user24->setPlainPassword("martine.huguet-tahon");
+        $manager->persist($user24);
+
+        $user25 = new User();
+        $user25->addGroup($grpUser);
+        $user25->setNom("ARCHAMBAULT");
+        $user25->setEmail("jean-francois.archambault@free.fr");
+        $user25->setPrenom("Jean-François");
+        $user25->setPlainPassword("jean-francois.archambault");
+        $manager->persist($user25);
+
+        $user26 = new User();
+        $user26->addGroup($grpUser);
+        $user26->setNom("GRASSET");
+        $user26->setEmail("michel.grasset@free.fr");
+        $user26->setPrenom("Michel");
+        $user26->setPlainPassword("michel.grasset");
+        $manager->persist($user26);
+
+        $user27 = new User();
+        $user27->addGroup($grpUser);
+        $user27->setNom("BOULARD");
+        $user27->setEmail("alain.boulard@free.fr");
+        $user27->setPrenom("Alain");
+        $user27->setPlainPassword("alain.boulard");
+        $manager->persist($user27);
+
+        $user28 = new User();
+        $user28->addGroup($grpUser);
+        $user28->setNom("RENAULD");
+        $user28->setEmail("philippe.renaud@free.fr");
+        $user28->setPrenom("Philippe");
+        $user28->setPlainPassword("philippe.renaud");
+        $manager->persist($user28);
+
+        $user29 = new User();
+        $user29->addGroup($grpUser);
+        $user29->setNom("RAULIN");
+        $user29->setEmail("andree.raulin@free.fr");
+        $user29->setPrenom("Andrée");
+        $user29->setPlainPassword("andree.raulin");
+        $manager->persist($user29);
+
+        $user29 = new User();
+        $user29->addGroup($grpUser);
+        $user29->setNom("PARICARD");
+        $user29->setEmail("marc.paricard@free.fr");
+        $user29->setPrenom("Marc");
+        $user29->setPlainPassword("marc.paricard");
+        $manager->persist($user29);
+
+        $user30 = new User();
+        $user30->addGroup($grpUser);
+        $user30->setNom("PIQUEMAL");
+        $user30->setEmail("pierre.piquemal@free.fr");
+        $user30->setPrenom("Pierre");
+        $user30->setPlainPassword("pierre.piquemal");
+        $manager->persist($user30);
+
+        $user31 = new User();
+        $user31->addGroup($grpUser);
+        $user31->setNom("BONNEAU");
+        $user31->setEmail("philippe.bonneau@free.fr");
+        $user31->setPrenom("Philippe");
+        $user31->setPlainPassword("philippe.bonneau");
+        $manager->persist($user31);
+
+        $user32 = new User();
+        $user32->addGroup($grpUser);
+        $user32->setNom("PRIZAC");
+        $user32->setEmail("christine.prizac@free.fr");
+        $user32->setPrenom("Christine");
+        $user32->setPlainPassword("christine.prizac");
+        $manager->persist($user32);
+
+        $user33 = new User();
+        $user33->addGroup($grpUser);
+        $user33->setNom("HUREAU");
+        $user33->setEmail("chantal.hureau@free.fr");
+        $user33->setPrenom("Chantal");
+        $user33->setPlainPassword("chantal.hureau");
+        $manager->persist($user33);
+
+        $user34 = new User();
+        $user34->addGroup($grpUser);
+        $user34->setNom("GEORGET");
+        $user34->setEmail("christian.georget@free.fr");
+        $user34->setPrenom("Christian");
+        $user34->setPlainPassword("christian.georget");
+        $manager->persist($user34);
+
+        $user35 = new User();
+        $user35->addGroup($grpUser);
+        $user35->setNom("DELIGNY");
+        $user35->setEmail("andree.deligny@free.fr");
+        $user35->setPrenom("Andrée");
+        $user35->setPlainPassword("andree.deligny");
+        $manager->persist($user35);
+
+        $user36 = new User();
+        $user36->addGroup($grpUser);
+        $user36->setNom("LUPART");
+        $user36->setEmail("michel.lupart@free.fr");
+        $user36->setPrenom("Michel");
+        $user36->setPlainPassword("michel.lupart");
+        $manager->persist($user36);
+
+        $user37 = new User();
+        $user37->addGroup($grpUser);
+        $user37->setNom("CORJON");
+        $user37->setEmail("daniel.corjon@free.fr");
+        $user37->setPrenom("Daniel");
+        $user37->setPlainPassword("daniel.corjon");
+        $manager->persist($user37);
+
         $txNiveau = new Niveau();
         $txNiveau->setNom('txNiveau');
         $manager->persist($txNiveau);
@@ -222,8 +382,6 @@ class LoadData implements FixtureInterface
         $bureauAdministration = new Niveau();
         $bureauAdministration->setNom('bureauAdministration');
         $manager->persist($bureauAdministration);
-
-
 
 
         $typeEvenement = new TypeEvenement();
@@ -567,7 +725,8 @@ class LoadData implements FixtureInterface
         $etablissement->setAdresse("31 avenue Saint Fiacre");
         $etablissement->setCodePostal("45000");
         $etablissement->setVille("Orléans");
-        $etablissement->setCorrespondant($user);
+        $etablissement->setCorrespondants($user);
+        $etablissement->setPresence("oui");
         $manager->persist($etablissement);
 
         $etablissement2 = new Etablissement();
@@ -576,10 +735,12 @@ class LoadData implements FixtureInterface
         $etablissement2->setAdresse("Avenue Diderot");
         $etablissement2->setCodePostal("45100");
         $etablissement2->setVille("Orléans");
-        $etablissement2->setCorrespondant($user1);
+        $etablissement2->setPresence("oui");
+        $etablissement2->setCorrespondants($user1);
         $etablissement2->addAdjoint($user2);
         $manager->persist($etablissement2);
 
+        //a check
         $etablissement3 = new Etablissement();
         $etablissement3->setNiveaux($college);
         $etablissement3->setNom("Collège Jean Rostand");
@@ -601,12 +762,22 @@ class LoadData implements FixtureInterface
         $manager->persist($etablissement4);
 
         $etablissement5 = new Etablissement();
-        $etablissement5->setNiveaux($cfai);
+        $etablissement5->setNiveaux($superieur);
         $etablissement5->setNom("CFAI La Chapelle");
         $etablissement5->setAdresse("74 rue Nationale");
         $etablissement5->setCodePostal("45380");
         $etablissement5->setVille("La Chapelle-Saint-Mesmin");
         $manager->persist($etablissement5);
+
+        $etablissement6 = new Etablissement();
+        $etablissement6->setNiveaux($lycee);
+        $etablissement6->setNom("Lycée Benjamin Franklin");
+        $etablissement6->setAdresse("21 bis rue Eugène Vignat");
+        $etablissement6->setCodePostal("45000");
+        $etablissement6->setVille("Orléans");
+        $manager->persist($etablissement6);
+
+
 
         $evenement = new Evenement();
         $evenement->setDescription("Présentation des entretiens post-bac aux classes de terminale de l'établissement");
