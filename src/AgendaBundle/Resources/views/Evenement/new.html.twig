@@ -1,3 +1,67 @@
 
-
-{% extends 'base.html.twig' %} {% block body %}     <h1>Evenement creation</h1>     {{ form_start(form) }}       <p>         {{ form_label(form.dateEvt, "Date de l'intervention") }}         {{ form_widget(form.dateEvt) }}       </p>       <p>         {{ form_label(form.etablissement, "Lieu de l'intervention") }}         {{ form_widget(form.etablissement) }}       </p>       <p>         {{ form_label(form.heureDebut, "Heure de début") }}         {{ form_widget(form.heureDebut) }}       </p>       <p>         {{ form_label(form.heureFin, "Heure de fin") }}         {{ form_widget(form.heureFin) }}       </p>              <p>         {{ form_label(form.nbEleves, "Nombre d'éleves") }}         {{ form_widget(form.nbEleves) }}       </p>       <p>         {{ form_label(form.nbParticipants, "Nombre de participants")  }}         {{ form_widget(form.nbParticipants, {'attr': {'onchange': 'verif_participants(this.value)'}}) }}       </p>       <p>         <div id="liste_participants">           {{ form_label(form.intervenants, "Sélection des participants") }}           {{ form_widget(form.intervenants) }}         </div>       </p>       <p>         {{ form_label(form.nbObservateurs, "Nombre d'observateurs") }}         {{ form_widget(form.nbObservateurs, {'attr': {'onchange': 'verif_observateurs(this.value)'}}) }}       </p>       <p>         <div id="liste_observateurs">           {{ form_label(form.observateurs, "Sélection des observateurs") }}           {{ form_widget(form.observateurs) }}         </div>       </p>         <input type="submit" value="Continuer" />     {{ form_end(form) }}     <ul>         <li>             <a href="{{ path('evenement_index') }}">Back to the list</a>         </li>     </ul>     <script type="text/javascript">       window.onload = function () {           document.getElementById("liste_participants").style.display='none';           document.getElementById("liste_observateurs").style.display='none';       }       function verif_participants(elem){         if (elem!=0){           document.getElementById("liste_participants").style.display='block';         }         else{           document.getElementById("liste_participants").style.display='none';         }       }       function verif_observateurs(elem){         if (elem!=0){           document.getElementById("liste_observateurs").style.display='block';         }         else{           document.getElementById("liste_observateurs").style.display='none';         }       }     </script> {% endblock %}
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('css/listswap.css') }}">
+{% endblock %}
+{% block body %}
+<h1>Evenement creation</h1>
+{{ form_start(form) }}
+<p>
+  {{ form_label(form.dateEvt, "Date de l'intervention") }}
+  {{ form_widget(form.dateEvt) }}
+</p>
+<p>
+  {{ form_label(form.etablissement, "Lieu de l'intervention") }}
+  {{ form_widget(form.etablissement) }}
+</p>
+<p>
+  {{ form_label(form.heureDebut, "Heure de début") }}
+  {{ form_widget(form.heureDebut) }}
+</p>
+<p>
+  {{ form_label(form.heureFin, "Heure de fin") }}
+  {{ form_widget(form.heureFin) }}
+</p>
+<p>
+  {{ form_label(form.nbEleves, "Nombre d'éleves") }}
+  {{ form_widget(form.nbEleves) }}
+</p>
+<p>
+  {{ form_label(form.nbParticipants, "Nombre de participants")  }}
+  {{ form_widget(form.nbParticipants, {'attr': {'onchange': 'verif_participants(this.value)'}}) }}
+</p>
+<p>
+  <div id="liste_participants">
+    {{ form_label(form.intervenants, "Sélection des participants") }}
+    {{ form_widget(form.intervenants, {'attr': {'data-text':'Users'}}) }}
+    <select id="destination_obs" data-text="Users" name="agendabundle_evenement[intervenants][]">
+    </select>
+  </div>
+</p>
+<p>
+  {{ form_label(form.nbObservateurs, "Nombre d'observateurs") }}
+  {{ form_widget(form.nbObservateurs, {'attr': {'onchange': 'verif_observateurs(this.value)'}}) }}
+</p>
+<p>
+  <div id="liste_observateurs">
+    {{ form_label(form.observateurs, "Sélection des observateurs") }}
+    {{ form_widget(form.observateurs, {'attr': {'data-text':'Users'}})  }}
+    <select id="destination_interv" data-text="Users" name="agendabundle_evenement[observateurs][]">
+    </select>
+  </div>
+</p>
+<input type="submit" value="Continuer" id="valider" />
+{{ form_end(form) }}
+<ul>
+  <li>
+    <a href="{{ path('evenement_index') }}">Back to the list</a>
+  </li>
+</ul>
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+<script src="{{ asset('js/jquery.listswap.js') }}"></script>
+<script src="{{ asset('js/new_evenement.js') }}"></script>
+{% endblock %}
