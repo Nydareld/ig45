@@ -82,13 +82,6 @@ class Evenement
     private $etablissement;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="niveau_intervention", type="string")
-     */
-    private $niveauIntervention;
-
-    /**
      * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", mappedBy="interventions")
      * @ORM\JoinTable(name="user_interventions",
      *      joinColumns={@ORM\JoinColumn(name="evenement_id", referencedColumnName="id")},
