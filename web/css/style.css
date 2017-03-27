@@ -1,15 +1,15 @@
-.action_agenda {
-  margin-top: 50px;
-  padding: 20px 10px;
-  background-color: #eee;
-}
-
 .agenda .icon_cancel {
   color: #f44336;
 }
 
 .agenda .icon_edit {
   color: #ff9800;
+}
+
+.agenda .action_agenda {
+  margin-top: 50px;
+  padding: 20px 10px;
+  background-color: #eee;
 }
 
 .agenda .legende_agenda {
