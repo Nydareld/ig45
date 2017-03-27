@@ -16,7 +16,7 @@ class LoadData implements FixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-
+        echo "Mabite";
         $grpUser = new Group('Membre');
         $grpUser->addRole('ROLE_USER');
         $grpUser->setDescription('Membre d\'integeneration 45, peut consulter l\'agenda, prendre part aux evenements ou adminisrtrer les evenements dont il est l\'adjoint');
@@ -147,7 +147,6 @@ class LoadData implements FixtureInterface
         $manager->persist($bureauAdministration);
 
 
-
         $typeIntervention = new TypeEvenement();
         $typeIntervention->setNom("Atelier CV");
         $typeIntervention->addNiveau($superieur);
@@ -226,7 +225,7 @@ class LoadData implements FixtureInterface
         $manager->persist($evenement2);
 
         $evenement3 = new Evenement();
-        $evenement3->setDescription("Comment sodomiser un homme en 3 étapes");
+        $evenement3->setDescription("CV lettre de motivation");
         $evenement3->setDateEvt(new \DateTime("2017-07-18"));
         $evenement3->setHeureDebut(new \DateTime("10:00"));
         $evenement3->setHeureFin(new \DateTime("12:00"));
@@ -257,7 +256,7 @@ class LoadData implements FixtureInterface
         $manager->persist($evenement4);
 
         $evenement5 = new Evenement();
-        $evenement5->setDescription("Essayer d'intégrer Yoann dans le projet");
+        $evenement5->setDescription("Journée des sciences");
         $evenement5->setDateEvt(new \DateTime("2017-03-20"));
         $evenement5->setHeureDebut(new \DateTime("08:00"));
         $evenement5->setHeureFin(new \DateTime("18:00"));
@@ -271,6 +270,7 @@ class LoadData implements FixtureInterface
         $evenement5->addIntervenant($user3);
         $evenement5->addObservateur($user);
         $manager->persist($evenement5);
+
         $manager->flush();
     }
 }

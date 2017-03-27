@@ -51,4 +51,15 @@ class UserAdminController extends Controller
         ));
     }
 
+    /**
+     * Finds and displays a etablissement entity.
+     *
+     */
+    public function showAction(User $user)
+    {
+        return $this->render('BackofficeBaseBundle:User:show.html.twig', array(
+            'user' => $user
+        ));
+    }
+
 }

@@ -1,46 +1,47 @@
 <!DOCTYPE html>
 <html>
-  <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <title>
-          {% block title %}IG45 BaseFront{% endblock %}
-      </title>
-      <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-      {% block styles %}
-        <!--Import Google Icon Font-->
-        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!--Import materialize.css-->
-        <link type="text/css" rel="stylesheet" href="{{ asset('bower_components/materialize/dist/css/materialize.min.css') }}"  media="screen,projection"/>
-        <!--Import style.css -->
-        <link type="text/css" rel="stylesheet" href="{{ asset('css/style.css') }}"/>
-      {% endblock %}
-  </head>
-  <body>
-    <header>
-      <nav class="white">
-        <div class="nav-wrapper container">
-          <a href="#" class="brand-logo"><img src="{{ asset('assets/image/ig45logo_rogner.png') }}" alt="Logo IG45"></a>
-          <!-- <a href="#" class="brand-logo">IG45</a> -->
-          <ul class="right hide-on-med-and-down">
-            <li class="bloc_user">
-              Zinedine Zidane
-              <i class="material-icons">person</i><
-            </li>
-          </ul>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>
+            {% block title %}IG45 BaseFront{% endblock %}
+        </title>
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        {% block styles %}
+            <!--Import Google Icon Font-->
+            <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+            <!--Import materialize.css-->
+            <link type="text/css" rel="stylesheet" href="{{ asset('bower_components/materialize/dist/css/materialize.min.css') }}" media="screen,projection"/>
+            <!--Import style.css -->
+            <link type="text/css" rel="stylesheet" href="{{ asset('css/style.css') }}"/>
+        {% endblock %}
+    </head>
+    <body>
+        <header>
+            <nav class="blue lighten-2">
+                <div class="nav-wrapper container">
+                    <a href="#" class="brand-logo">Le Groupe Intergénérations</a>
+                    <ul class="right hide-on-med-and-down">
+                        <li>
+                            <a href="#">Jean-François Archambault<i class="material-icons right">person</i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div class="container">
+            {% block contentBody %}{% endblock %}
         </div>
-      </nav>
-    </header>
-    <div class="container">
-      {% block contentBody %}{% endblock %}
-    </div>
-    <footer class="page-footer white">
+        <!-- <footer class="page-footer blue lighten-2">
        <div class="container">
          © 2017
        </div>
-    </footer>
-    <!--Import jQuery before materialize.js-->
-    <script type="text/javascript" src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bower_components/materialize/dist/js/materialize.min.js') }}"></script>
-  </body>
+    </footer> -->
+        {% block scripts %}
+            <!--Import jQuery before materialize.js-->
+            <script type="text/javascript" src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bower_components/materialize/dist/js/materialize.min.js') }}"></script>
+        {% endblock %}
+    </body>
 </html>
