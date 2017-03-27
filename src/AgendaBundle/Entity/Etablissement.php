@@ -56,7 +56,7 @@ class Etablissement
      *
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="correspondances")
      */
-    private $correspondants;
+    private $correspondant;
 
     /**
      * @var User
@@ -214,25 +214,25 @@ class Etablissement
     }
 
     /**
-     * Get the value of Correspondants
+     * Get the value of Correspondant
      *
      * @return User
      */
-    public function getCorrespondants()
+    public function getCorrespondant()
     {
-        return $this->correspondants;
+        return $this->correspondant;
     }
 
     /**
-     * Set the value of Correspondants
+     * Set the value of Correspondant
      *
-     * @param User correspondants
+     * @param User correspondant
      *
      * @return self
      */
-    public function setCorrespondants(User $correspondants)
+    public function setCorrespondant(User $correspondant)
     {
-        $this->correspondants = $correspondants;
+        $this->correspondant = $correspondant;
 
         return $this;
     }
