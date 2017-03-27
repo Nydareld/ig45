@@ -58,7 +58,7 @@
                 {% for evenement in evenements %}
                     <tr>
                         <td>
-                            {% if evenement.dateEvt %}{{ evenement.dateEvt|localizeddate("medium", "none", null, null, "cccc d/M/yy") }}{% endif %}
+                            {% if evenement.dateEvt %}{{ evenement.dateEvt|date('l d/m/Y') }}{% endif %}
                         </td>
                         <td>
                             {% if evenement.heureDebut %}{{ evenement.heureDebut|date('H:i') }}{% endif %}
