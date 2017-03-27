@@ -82,13 +82,6 @@ class Evenement
     private $etablissement;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="niveau_intervention", type="string")
-     */
-    private $niveauIntervention;
-
-    /**
      * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", mappedBy="interventions")
      * @ORM\JoinTable(name="user_interventions",
      *      joinColumns={@ORM\JoinColumn(name="evenement_id", referencedColumnName="id")},
@@ -446,7 +439,7 @@ class Evenement
      */
     public function addIntervenant(\UserBundle\Entity\User $intervenant)
     {
-        $this->intervenants[] = $intervenant;
+        $this->intervenants->add( $intervenant);
 
         return $this;
     }
@@ -495,7 +488,7 @@ class Evenement
      */
     public function addObservateur(\UserBundle\Entity\User $observateur)
     {
-        $this->observateurs[] = $observateur;
+        $this->observateurs->add( $observateur);
 
         return $this;
     }

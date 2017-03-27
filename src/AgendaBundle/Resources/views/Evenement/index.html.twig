@@ -3,23 +3,15 @@
     <div class="agenda">
         <!-- <h1>Agenda</h1> -->
         <div class="action_agenda">
-            <a href="#" class="waves-effect waves-light btn blue lighten-2">
-                <i class="material-icons">chevron_left</i>
-            </a>
-            <a href="{{ path('evenement_new') }}" class="waves-effect waves-light btn blue lighten-2">Créer une Intervention</a>
+            <a href="{{ path('evenement_index') }}" class="waves-effect waves-light btn blue lighten-2">Accueil</a>
+
+            {% if is_granted('ROLE_CORRESPONDANT') or is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') %}
+                <a href="{{ path('evenement_new') }}" class="waves-effect waves-light btn blue lighten-2">Créer une Intervention</a>
+            {% endif %}
+
             <a href="#" class="waves-effect waves-light btn blue lighten-2">Agenda Personnel</a>
         </div>
-        <!-- <ul>
-        <li>
-          <a href="#"><i class="material-icons">chevron_left</i></a>
-        </li>
-        <li>
-            <a href="{{ path('evenement_new') }}">Créer une Intervention</a>
-        </li>
-        <li>
-          <a href="#">Agenda Personnel</a>
-        </li>
-    </ul> -->
+
         <div class="legende_agenda">
             <div class="block_legende row">
                 <div class="col s12 m4">
@@ -106,12 +98,15 @@
                             <a href="#">
                                 <i class="material-icons icon">mail</i>
                             </a>
-                            <a href="{{ path('evenement_delete', { 'id': evenement.id }) }}">
-                                <i class="material-icons icon_cancel">cancel</i>
-                            </a>
-                            <a href="{{ path('evenement_edit', { 'id': evenement.id }) }}">
-                                <i class="material-icons icon_edit">mode_edit</i>
-                            </a>
+                            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') or
+                            app.user.username == evenement.etablissement.correspondant.username %}
+                                <a href="{{ path('evenement_delete', { 'id': evenement.id }) }}">
+                                    <i class="material-icons icon_cancel">cancel</i>
+                                </a>
+                                <a href="{{ path('evenement_edit', { 'id': evenement.id }) }}">
+                                    <i class="material-icons icon_edit">mode_edit</i>
+                                </a>
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}

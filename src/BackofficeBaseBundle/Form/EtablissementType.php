@@ -47,6 +47,7 @@ class EtablissementType extends AbstractType
             ))
             ->add('niveaux', EntityType::class,array(
                 'class' => 'AgendaBundle:Niveau',
+                'multiple' => true,
                 'label'=>'etablissement.fieldslabel.etablissement',
                 'translation_domain' => 'AgendaBundle'
             ));

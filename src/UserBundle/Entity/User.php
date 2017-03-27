@@ -4,6 +4,7 @@ namespace UserBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -50,7 +51,7 @@ class User extends BaseUser
     protected $observations;
 
     /**
-     * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\Etablissement", mappedBy="correspondants")
+     * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\Etablissement", mappedBy="correspondant")
      */
     protected $correspondances;
 
@@ -77,6 +78,7 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
+        $this->groups = new ArrayCollection();
     }
 
     /**
@@ -256,7 +258,7 @@ class User extends BaseUser
      */
     public function setTelFixe($telFixe)
     {
-        $this->tel_fixe = $telFixe;
+        $this->telFixe = $telFixe;
 
         return $this;
     }
@@ -268,7 +270,7 @@ class User extends BaseUser
      */
     public function getTelFixe()
     {
-        return $this->tel_fixe;
+        return $this->telFixe;
     }
 
     /**
@@ -278,9 +280,9 @@ class User extends BaseUser
      *
      * @return User
      */
-    public function setTelPort($telPort)
+    public function setTelPortable($telPort)
     {
-        $this->tel_port = $telPort;
+        $this->telPortable = $telPortable;
 
         return $this;
     }
@@ -290,9 +292,9 @@ class User extends BaseUser
      *
      * @return int
      */
-    public function getTelPort()
+    public function getTelPortable()
     {
-        return $this->tel_port;
+        return $this->telPortable;
     }
 
     /**
@@ -374,6 +376,121 @@ class User extends BaseUser
      */
     public function __toString(){
         return $this->getNom().' '.$this->getPrenom();
+    }
+
+
+    /**
+     * Set the value of Id
+     *
+     * @param mixed id
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Groups
+     *
+     * @return mixed
+     */
+    public function getGroups()
+    {
+        return $this->groups;
+    }
+
+    /**
+     * Set the value of Groups
+     *
+     * @param mixed groups
+     *
+     * @return self
+     */
+    public function setGroups($groups)
+    {
+        $this->groups = $groups;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of Interventions
+     *
+     * @param mixed interventions
+     *
+     * @return self
+     */
+    public function setInterventions($interventions)
+    {
+        $this->interventions = $interventions;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of Observations
+     *
+     * @param mixed observations
+     *
+     * @return self
+     */
+    public function setObservations($observations)
+    {
+        $this->observations = $observations;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Correspondances
+     *
+     * @return mixed
+     */
+    public function getCorrespondances()
+    {
+        return $this->correspondances;
+    }
+
+    /**
+     * Set the value of Correspondances
+     *
+     * @param mixed correspondances
+     *
+     * @return self
+     */
+    public function setCorrespondances($correspondances)
+    {
+        $this->correspondances = $correspondances;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Adjonctions
+     *
+     * @return mixed
+     */
+    public function getAdjonctions()
+    {
+        return $this->adjonctions;
+    }
+
+    /**
+     * Set the value of Adjonctions
+     *
+     * @param mixed adjonctions
+     *
+     * @return self
+     */
+    public function setAdjonctions($adjonctions)
+    {
+        $this->adjonctions = $adjonctions;
+
+        return $this;
     }
 
 }

@@ -7,6 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use FOS\UserBundle\Util\LegacyFormHelper;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class UserType extends AbstractType
 {
@@ -27,6 +28,11 @@ class UserType extends AbstractType
         ->add('email', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\EmailType'), array(
             'label' => 'form.email',
             'translation_domain' => 'FOSUserBundle'
+        ))
+        ->add('groups',EntityType::class,array(
+            'class' => 'UserBundle:Group',
+            'label'=>'user.fieldslabel.groupe',
+            'translation_domain' => 'UserBundle'
         ))
         ->add('plainPassword', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\RepeatedType'), array(
             'type' => LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\PasswordType'),

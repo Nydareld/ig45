@@ -4,7 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "35933ee30c9f3ec88ed1a216f1f6b90e",
+
+    "hash": "c7ec6d59de5e3996821be0b8c746fdb5",
+    "content-hash": "88078c91dffc017bf74716db67c6048c",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -208,7 +210,7 @@
                 "collections",
                 "iterator"
             ],
-            "time": "2017-01-03T10:49:41+00:00"
+            "time": "2017-01-03 10:49:41"
         },
         {
             "name": "doctrine/common",
@@ -361,12 +363,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineBundle.git",
-                "reference": "99a62a7c4139c0ccb6969de5eff1447b1a6cbaf4"
+                "reference": "bdb5af6b2b155173cc50c7804cb0422c37594e0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/99a62a7c4139c0ccb6969de5eff1447b1a6cbaf4",
-                "reference": "99a62a7c4139c0ccb6969de5eff1447b1a6cbaf4",
+                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/bdb5af6b2b155173cc50c7804cb0422c37594e0e",
+                "reference": "bdb5af6b2b155173cc50c7804cb0422c37594e0e",
                 "shasum": ""
             },
             "require": {
@@ -434,7 +436,7 @@
                 "orm",
                 "persistence"
             ],
-            "time": "2017-02-23 13:22:14"
+            "time": "2017-03-26 16:00:39"
         },
         {
             "name": "doctrine/doctrine-cache-bundle",
@@ -522,7 +524,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2016-01-26T17:28:51+00:00"
+            "time": "2016-01-26 17:28:51"
         },
         {
             "name": "doctrine/inflector",
@@ -1083,7 +1085,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2017-03-13T16:27:32+00:00"
+            "time": "2017-03-13 16:27:32"
         },
         {
             "name": "psr/cache",
@@ -1345,6 +1347,45 @@
             "time": "2017-03-09 17:51:09"
         },
         {
+            "name": "snilius/twig-sort-by-field",
+            "version": "v0.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/victorhaggqvist/Twig-sort-by-field.git",
+                "reference": "6d02c6d49f93d78526e24ecf8999d322f291aa44"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/victorhaggqvist/Twig-sort-by-field/zipball/6d02c6d49f93d78526e24ecf8999d322f291aa44",
+                "reference": "6d02c6d49f93d78526e24ecf8999d322f291aa44",
+                "shasum": ""
+            },
+            "require-dev": {
+                "doctrine/collections": "^1.3",
+                "php": ">=5.5.9",
+                "phpunit/phpunit": "~4.5",
+                "twig/extensions": "~1.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Snilius\\Twig\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Victor Häggqvist",
+                    "email": "victor@snilius.com"
+                }
+            ],
+            "description": "A Twig Extension filter to sort an array of entries (objects or arrays) by the specified field",
+            "time": "2016-01-27 00:29:51"
+        },
+        {
             "name": "swiftmailer/swiftmailer",
             "version": "5.x-dev",
             "source": {
@@ -1404,12 +1445,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/monolog-bundle.git",
-                "reference": "1afc6ac72b7fa93bcda189160b54f6629a0c66f2"
+                "reference": "6f96c7dbb6b2ef70b307a1a6f897153cbca3da47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/monolog-bundle/zipball/1afc6ac72b7fa93bcda189160b54f6629a0c66f2",
-                "reference": "1afc6ac72b7fa93bcda189160b54f6629a0c66f2",
+                "url": "https://api.github.com/repos/symfony/monolog-bundle/zipball/6f96c7dbb6b2ef70b307a1a6f897153cbca3da47",
+                "reference": "6f96c7dbb6b2ef70b307a1a6f897153cbca3da47",
                 "shasum": ""
             },
             "require": {
@@ -1456,7 +1497,7 @@
                 "log",
                 "logging"
             ],
-            "time": "2017-03-22 15:56:53"
+            "time": "2017-03-26 11:55:59"
         },
         {
             "name": "symfony/polyfill-apcu",
@@ -1860,12 +1901,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "f29664893dce91b2cfc0fb107ae7fc3ab9712d48"
+                "reference": "dc66960f8426c106722aa3c907b614426c5d54c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/f29664893dce91b2cfc0fb107ae7fc3ab9712d48",
-                "reference": "f29664893dce91b2cfc0fb107ae7fc3ab9712d48",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/dc66960f8426c106722aa3c907b614426c5d54c7",
+                "reference": "dc66960f8426c106722aa3c907b614426c5d54c7",
                 "shasum": ""
             },
             "require": {
@@ -1996,7 +2037,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2017-03-22 20:39:24"
+            "time": "2017-03-26 15:47:15"
         },
         {
             "name": "twig/extensions",
@@ -2229,7 +2270,7 @@
                 "Fixture",
                 "persistence"
             ],
-            "time": "2015-11-04T21:23:23+00:00"
+            "time": "2015-11-04 21:23:23"
         },
         {
             "name": "sensio/generator-bundle",

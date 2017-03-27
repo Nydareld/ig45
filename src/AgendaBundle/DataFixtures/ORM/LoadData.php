@@ -16,14 +16,14 @@ class LoadData implements FixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-
+        echo "Mabite";
         $grpUser = new Group('Membre');
         $grpUser->addRole('ROLE_USER');
         $grpUser->setDescription('Membre d\'integeneration 45, peut consulter l\'agenda, prendre part aux evenements ou adminisrtrer les evenements dont il est l\'adjoint');
         $manager->persist($grpUser);
 
         $grpCoress = new Group('Coresspondant');
-        $grpCoress->addRole('ROLE_CORESSPONDANT');
+        $grpCoress->addRole('ROLE_CORRESPONDANT');
         $grpCoress->setDescription('Membre d\'integeneration 45 coresspondant d\'un etablissement, peut créer un evenement dans les etablissement avec lequel il coresspond');
         $manager->persist($grpCoress);
 
@@ -115,7 +115,7 @@ class LoadData implements FixtureInterface
         $manager->persist($user4);
 
         $user5 = new User();
-        $user5->addGroup($grpUser);
+        $user5->addGroup($grpAdmin);
         $user5->setNom("chef");
         $user5->setEmail("chef@chef.fr");
         $user5->setPrenom("chef");
@@ -147,7 +147,6 @@ class LoadData implements FixtureInterface
         $manager->persist($bureauAdministration);
 
 
-
         $typeIntervention = new TypeEvenement();
         $typeIntervention->setNom("Atelier CV");
         $typeIntervention->addNiveau($superieur);
@@ -175,7 +174,7 @@ class LoadData implements FixtureInterface
         $lieu->setAdresse("12 rue de labas");
         $lieu->setCodePostal("32000");
         $lieu->setVille("Orléans");
-        $lieu->setCorrespondants($user);
+        $lieu->setCorrespondant($user);
         $lieu->addAdjoint($user2);
         $manager->persist($lieu);
 
@@ -184,7 +183,7 @@ class LoadData implements FixtureInterface
         $lieu2->setAdresse("1bis rue d'ici");
         $lieu2->setCodePostal("85000");
         $lieu2->setVille("Lyon");
-        $lieu2->setCorrespondants($user3);
+        $lieu2->setCorrespondant($user3);
         $lieu2->addAdjoint($user);
         $manager->persist($lieu2);
 
@@ -193,7 +192,7 @@ class LoadData implements FixtureInterface
         $lieu3->setAdresse("85 rue du jardin");
         $lieu3->setCodePostal("50000");
         $lieu3->setVille("Tee shirt");
-        $lieu3->setCorrespondants($user5);
+        $lieu3->setCorrespondant($user5);
         $lieu3->addAdjoint($user4);
         $manager->persist($lieu3);
 
@@ -226,7 +225,7 @@ class LoadData implements FixtureInterface
         $manager->persist($evenement2);
 
         $evenement3 = new Evenement();
-        $evenement3->setDescription("Comment sodomiser un homme en 3 étapes");
+        $evenement3->setDescription("CV lettre de motivation");
         $evenement3->setDateEvt(new \DateTime("2017-07-18"));
         $evenement3->setHeureDebut(new \DateTime("10:00"));
         $evenement3->setHeureFin(new \DateTime("12:00"));
@@ -257,7 +256,7 @@ class LoadData implements FixtureInterface
         $manager->persist($evenement4);
 
         $evenement5 = new Evenement();
-        $evenement5->setDescription("Essayer d'intégrer Yoann dans le projet");
+        $evenement5->setDescription("Journée des sciences");
         $evenement5->setDateEvt(new \DateTime("2017-03-20"));
         $evenement5->setHeureDebut(new \DateTime("08:00"));
         $evenement5->setHeureFin(new \DateTime("18:00"));
@@ -271,6 +270,7 @@ class LoadData implements FixtureInterface
         $evenement5->addIntervenant($user3);
         $evenement5->addObservateur($user);
         $manager->persist($evenement5);
+
         $manager->flush();
     }
 }
