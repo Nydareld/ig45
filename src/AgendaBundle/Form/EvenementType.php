@@ -65,8 +65,7 @@ class EvenementType extends AbstractType
                     ),
                   )
                 )
-                ->add('observateurs')
-                ->add('niveauIntervention');
+                ->add('observateurs');
 
     }
 
