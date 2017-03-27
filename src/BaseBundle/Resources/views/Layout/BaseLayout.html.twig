@@ -20,11 +20,16 @@
         <header>
             <nav class="blue lighten-2">
                 <div class="nav-wrapper container">
-                    <a href="#" class="brand-logo">Le Groupe Intergénérations</a>
+                    <a href="#" class="brand-logo">Le Groupe InterGénérations</a>
                     <ul class="right hide-on-med-and-down">
                         <li>
-                            <a href="#">Jean-François Archambault<i class="material-icons right">person</i>
-                            </a>
+                            {% if app.user %}
+                                <a href="#">{{app.user.nom}} {{app.user.prenom}}<i class="material-icons right">person</i>
+                                </a>
+                            {% else %}
+                                <a href="{{ path('fos_user_security_login') }}">Se connecter<i class="material-icons right">person</i>
+                                </a>
+                            {% endif %}
                         </li>
                     </ul>
                 </div>
