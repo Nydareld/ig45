@@ -20,9 +20,9 @@ class NiveauController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $niveaus = $em->getRepository('AgendaBundle:Niveau')->findAll();
+        $niveaux = $em->getRepository('AgendaBundle:Niveau')->findAll();
         return $this->render('BackofficeBaseBundle:Niveau:index.html.twig', array(
-            'niveaus' => $niveaus,
+            'niveaux' => $niveaux,
         ));
     }
 
