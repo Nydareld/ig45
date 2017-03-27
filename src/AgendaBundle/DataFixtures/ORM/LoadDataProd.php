@@ -726,7 +726,7 @@ class LoadData implements FixtureInterface
         $etablissement->setCodePostal("45000");
         $etablissement->setVille("Orléans");
         $etablissement->setCorrespondants($user);
-        $etablissement->setPresence("oui");
+        $etablissement->setPresence(true);
         $manager->persist($etablissement);
 
         $etablissement2 = new Etablissement();
@@ -735,18 +735,18 @@ class LoadData implements FixtureInterface
         $etablissement2->setAdresse("Avenue Diderot");
         $etablissement2->setCodePostal("45100");
         $etablissement2->setVille("Orléans");
-        $etablissement2->setPresence("oui");
+        $etablissement2->setPresence(true);
         $etablissement2->setCorrespondants($user1);
         $etablissement2->addAdjoint($user2);
         $manager->persist($etablissement2);
 
-        //a check
         $etablissement3 = new Etablissement();
         $etablissement3->setNiveaux($college);
         $etablissement3->setNom("Collège Jean Rostand");
         $etablissement3->setAdresse("18 Rue du Nécotin");
         $etablissement3->setCodePostal("45000");
         $etablissement3->setVille("Orléans");
+        $etablissement3->setPresence(true);
         $etablissement3->setCorrespondant($user3);
         $etablissement3->addAdjoint($user4);
         $manager->persist($etablissement3);
@@ -757,6 +757,7 @@ class LoadData implements FixtureInterface
         $etablissement4->setAdresse("1 Rue Françoise Giroud");
         $etablissement4->setCodePostal("45140");
         $etablissement4->setVille("Saint-Jean-de-la-Ruelle");
+        $etablissement4->setPresence(true);
         $etablissement4->setCorrespondant($user5);
         $etablissement4->addAdjoint($user3);
         $manager->persist($etablissement4);
@@ -767,6 +768,7 @@ class LoadData implements FixtureInterface
         $etablissement5->setAdresse("74 rue Nationale");
         $etablissement5->setCodePostal("45380");
         $etablissement5->setVille("La Chapelle-Saint-Mesmin");
+        $etablissement5->setPresence(true);
         $manager->persist($etablissement5);
 
         $etablissement6 = new Etablissement();
@@ -775,7 +777,19 @@ class LoadData implements FixtureInterface
         $etablissement6->setAdresse("21 bis rue Eugène Vignat");
         $etablissement6->setCodePostal("45000");
         $etablissement6->setVille("Orléans");
+        $etablissement6->setPresence(true);
+        $etablissement6->setCorrespondant($user6);
+        $etablissement6->setAdjoints($user4);
         $manager->persist($etablissement6);
+
+        $etablissement7 = new Etablissement();
+        $etablissement7->setNiveaux($lycee);
+        $etablissement7->setNom("Lycée Charles Péguy");
+        $etablissement7->setAdresse("1 Cours Victor Hugo");
+        $etablissement7->setCodePostal("45000");
+        $etablissement7->setVille("Orléans");
+        $etablissement7->setPresence(true);
+        $manager->persist($etablissement7);
 
 
 
