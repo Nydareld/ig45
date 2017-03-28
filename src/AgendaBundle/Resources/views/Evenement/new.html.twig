@@ -12,6 +12,10 @@
   {{ form_widget(form.dateEvt) }}
 </p>
 <p>
+  {{ form_label(form.anneeScolaire, "Année scolaire de l'intervention") }}
+  {{ form_widget(form.anneeScolaire) }}
+</p>
+<p>
   {{ form_label(form.etablissement, "Lieu de l'intervention") }}
   {{ form_widget(form.etablissement) }}
 </p>
@@ -22,6 +26,10 @@
 <p>
   {{ form_label(form.heureFin, "Heure de fin") }}
   {{ form_widget(form.heureFin) }}
+</p>
+<p>
+  {{ form_label(form.niveauClasse, "Niveau de la classe") }}
+  {{ form_widget(form.niveauClasse) }}
 </p>
 <p>
   {{ form_label(form.nbEleves, "Nombre d'éleves") }}

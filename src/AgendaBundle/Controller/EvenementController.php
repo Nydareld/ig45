@@ -151,14 +151,10 @@ class EvenementController extends Controller
      */
     public function deleteAction(Request $request, Evenement $evenement)
     {
-        $form = $this->createDeleteForm($evenement);
-        $form->handleRequest($request);
-
-
         $em = $this->getDoctrine()->getManager();
-        $em->remove($evenement);
+        $evenement->setAnnule(true);
+        $em->persist($evenement);
         $em->flush();
-
 
         return $this->redirectToRoute('evenement_index');
     }
@@ -179,12 +175,12 @@ class EvenementController extends Controller
         ;
     }
 
-    public function exportAction(int $id){
-        $em = $this->getDoctrine()->getManager();
-        $evenement = $em->getRepository('AgendaBundle:Evenement')->findById($id);
+    public function exportAction(Evenement $evenement){
 
         //on stocke la vue à convertir en PDF, en n'oubliant pas les paramètres twig si la vue comporte des données dynamiques
-        $html = $this->render('AgendaBundle:Evenement:showExport.html.twig', array('evenement' => $evenement[0]));
+
+        $html = $this->render('AgendaBundle:Evenement:showExport.html.twig', array('evenement' => $evenement));
+
 
         //if you are in a controlller use :
         $pdf = $this->get("white_october.tcpdf")->create('vertical', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
