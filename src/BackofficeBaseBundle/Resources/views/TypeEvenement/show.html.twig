@@ -1,0 +1,117 @@
+{% extends 'BackofficeBaseBundle::Layout/AdminLayout.html.twig' %}
+
+{% block navActive %}type-intervs{% endblock %}
+
+{% block contentHeader %}
+<h1>
+    Fiche Type d'intervention
+</h1>
+{% endblock %}
+
+{% block content %}
+
+<div class="col-md-8 col-sm-6 col-xs-12">
+    <div class="box">
+        <!-- /.box-header -->
+        <div class="box-header">
+            <h3>
+                {{ typeEvenement.nom }}
+            </h3>
+            <div class="btn-group pull-right">
+                <button type="button" name="btn" id="submitBtn" data-toggle="modal" data-target="#confirm-submit" class="btn btn-danger" /><i class="fa fa-trash"></i> Supprimer</button>
+            </div>
+        </div>
+        <div class="box-body">
+            {% if typeEvenement.niveaux|length != 0 %}
+            <h4>Cible les niveaux : </h4>
+            <ul>
+                {% for niveau in typeEvenement.niveaux %}
+                <li>{{niveau.nom}}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <hr>
+            {% if typeEvenement.evenements|length != 0 %}
+            <h4>Interventions de type {{ typeEvenement.nom }}</h4>
+            {% for evenement in typeEvenement.evenements  | sortbyfield('dateEvt')  %}
+            <h5>
+                <a href="{{ path('evenement_show',{'id':evenement.id} )}}">
+                    Intervention {{ evenement.description }} <small>{{ evenement.dateEvt|localizeddate('none', 'none', null, null, 'd MMMM YYYY') }}</small>
+                </a>
+            </h5>
+            <div class="row">
+                <div class="col-md-4">
+                    <dl class="dl-horizontal">
+                        <dt>Date</dt>
+                        <dd>{{ evenement.dateEvt|localizeddate('none', 'none', null, null, 'd MMMM YYYY') }}</dd>
+                        <dt>Description</dt>
+                        <dd>{{ evenement.description }}</dd>
+                        <dt>Type d'intervention</dt>
+                        <dd>{{ evenement.typeEvenement }}</dd>
+                        <dt>Nombre de groupes</dt>
+                        <dd>{{ evenement.nbGroupes }}</dd>
+                        <dt>Nombre de salles</dt>
+                        <dd>{{ evenement.nbSalles }}</dd>
+                    </dl>
+                </div>
+                <div class="col-md-4">
+                    <h4>Intervenants</h4>
+                    {% for user in evenement.intervenants %}
+                    {{user}}
+                    {% endfor %}
+                </div>
+                <div class="col-md-4">
+                    <h4>Observateurs</h4>
+                    {% for user in evenement.observateurs %}
+                    {{user}}
+                    {% endfor %}
+                </div>
+
+            </div>
+            <hr>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+<div class="col-md-4 col-sm-6 col-xs-12">
+    <div class="box">
+        <!-- /.box-header -->
+        <div class="box-header">
+            Modification du type d'interventuon
+        </div>
+        <div class="box-body">
+            {{ form_start(edit_form) }}
+                {{ form_widget(edit_form) }}
+                <input type="submit" value="Edit" />
+            {{ form_end(edit_form) }}
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block modals %}
+<!-- Modal de validation de la supression de l'etablissement -->
+<div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h4>
+                    Êtes-vous certain de voulour suprimer le typeEvenement {{ typeEvenement.nom }} ?
+                </h4>
+            </div>
+        <div class="modal-footer">
+            {{ form_start(delete_form) }}
+                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                <button type="submit" value="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Valider</button>
+            {{ form_end(delete_form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

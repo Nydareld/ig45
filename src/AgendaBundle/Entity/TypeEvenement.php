@@ -37,10 +37,13 @@ class TypeEvenement
      */
     private $evenements;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Niveau", inversedBy="typeEvenements")
-     * @ORM\JoinTable(name="type_evenement_niveaux")
-     */
+     /**
+      * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Niveau", inversedBy="typeEvenements")
+      * @ORM\JoinTable(name="type_evenement_niveaux",
+      *      joinColumns={@ORM\JoinColumn(name="niveau_id", referencedColumnName="id")},
+      *      inverseJoinColumns={@ORM\JoinColumn(name="type_evenement_id", referencedColumnName="id")}
+      * )
+      */
     private $niveaux;
 
     public function __construct(Type $foo = null)

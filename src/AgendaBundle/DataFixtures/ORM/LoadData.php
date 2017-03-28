@@ -176,25 +176,31 @@ class LoadData implements FixtureInterface
         $manager->persist($typeIntervention4);
 
 
+
         $annee = new AnneeScolaire();
         $annee -> setAnnee("2000 - 2001");
         $manager -> persist($annee);
+
 
         $annee1 = new AnneeScolaire();
         $annee1 -> setAnnee("2001 - 2002");
         $manager -> persist($annee1);
 
+
         $annee2 = new AnneeScolaire();
         $annee2 -> setAnnee("2002 - 2003");
         $manager -> persist($annee2);
+
 
         $annee3 = new AnneeScolaire();
         $annee3 -> setAnnee("2003 - 2004");
         $manager -> persist($annee3);
 
+
         $annee4= new AnneeScolaire();
         $annee4 -> setAnnee("2004 - 2005");
         $manager -> persist($annee4);
+
 
 
 
@@ -247,10 +253,6 @@ class LoadData implements FixtureInterface
         $evenement->setAnneeScolaire($annee);
         $manager->persist($evenement);
 
-        $annee = new AnneeScolaire();
-        $annee -> setAnnee("2000 - 2001");
-        $annee -> addEvenement($evenement);
-        $manager -> persist($annee);
 
         $evenement2 = new Evenement();
         $evenement2->setDescription("Sensibilisation sur la façon de se tenir en entretien");
