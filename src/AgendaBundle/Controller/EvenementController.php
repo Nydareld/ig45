@@ -179,7 +179,7 @@ class EvenementController extends Controller
 
         //on stocke la vue à convertir en PDF, en n'oubliant pas les paramètres twig si la vue comporte des données dynamiques
 
-        $html = $this->render('AgendaBundle:Evenement:showExport.html.twig', array('evenement' => $evenement));
+        $html = $this->renderView('AgendaBundle:Evenement:showExport.html.twig', array('evenement' => $evenement));
 
 
         //if you are in a controlller use :

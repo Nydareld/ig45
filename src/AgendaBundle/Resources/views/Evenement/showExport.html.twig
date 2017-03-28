@@ -22,12 +22,13 @@
 
 
     <body>
+      <img src="{{ asset('assets/image/IGLogo.png') }}" alt="Logo IG">
 
         <div class="container">
 
         {% block contentBody %}
-            <h1>Intervention : {{ evenement.description }}</h1>
-
+            <h1 style="text-align:center;">Fiche d'intervention </h1>
+            <h2 style="text-align:center;">{{ evenement.description }}</h2>
 
             <table class="">
                 <tbody>
