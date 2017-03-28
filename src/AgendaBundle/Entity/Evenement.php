@@ -172,7 +172,7 @@ class Evenement
     /**
      * @var string
      *
-     * @ORM\Column(name="niveau_classe", type="string")
+     * @ORM\Column(name="niveau_classe", type="string", nullable=true)
      */
     private $niveauClasse;
 
