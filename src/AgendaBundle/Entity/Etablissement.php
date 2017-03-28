@@ -61,7 +61,7 @@ class Etablissement
     /**
      * @var User
      *
-     * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", mappedBy="adjonctions")
+     * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", inversedBy="adjonctions")
      * @ORM\JoinTable(name="etablissement_adjoints",
      *      joinColumns={@ORM\JoinColumn(name="etablissement_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
@@ -79,7 +79,7 @@ class Etablissement
     /**
      * @var Niveau
      *
-     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Niveau", mappedBy="etablissements")
+     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Niveau", inversedBy="etablissements")
      * @ORM\JoinTable(name="etablissement_niveau",
      *     joinColumns={@ORM\JoinColumn(name="id_etablissement", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="id_niveau", referencedColumnName="id")}
