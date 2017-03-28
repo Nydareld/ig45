@@ -151,16 +151,19 @@ class EvenementController extends Controller
      */
     public function deleteAction(Request $request, Evenement $evenement)
     {
-        $form = $this->createDeleteForm($evenement);
-        $form->handleRequest($request);
-
-
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($evenement);
-        $em->flush();
-
-
-        return $this->redirectToRoute('evenement_index');
+        dump($evenement);
+        // $form = $this->createDeleteForm($evenement);
+        // $form->handleRequest($request);
+        //
+        //
+        // $em = $this->getDoctrine()->getManager();
+        // $evenement = $em->getRepository('AgendaBundle:Evenement')->findById($id);
+        // $evenement->setAnnule(true);
+        // $em->persist($evenement);
+        // $em->flush();
+        //
+        //
+        // return $this->redirectToRoute('evenement_index');
     }
 
     /**
