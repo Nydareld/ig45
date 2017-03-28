@@ -20,13 +20,13 @@
                 <thead>
                     <tr>
                         <th>Nom</th>
-                        <th>Actions</th>
+                        <th>Afficher</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
                         <th>Nom</th>
-                        <th>Actions</th>
+                        <th>Afficher</th>
                     </tr>
                 <tbody>
                 </tfoot>
@@ -35,9 +35,6 @@
                         <td><a href="{{ path('typeevenement_show', { 'id': typeEvenement.id }) }}">{{ typeEvenement.nom }}</a></td>
                         <td>
                             <a title="Affichier" href="{{ path('typeevenement_show', { 'id': typeEvenement.id }) }}"><i class="fa fa-2x fa-info"></i></a>
-                            <span>   </span>
-                            <span>   </span>
-                            <a title="Modifier" href="{{ path('typeevenement_edit', { 'id': typeEvenement.id }) }}"><i class="fa fa-2x fa-edit"></i></a>
                         </td>
                     </tr>
                     {% endfor %}

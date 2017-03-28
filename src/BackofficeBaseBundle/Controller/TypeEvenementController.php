@@ -44,33 +44,21 @@ class TypeEvenementController extends Controller
      * Finds and displays a typeEvenement entity.
      *
      */
-    public function showAction(TypeEvenement $typeEvenement)
+    public function showAction(Request $request, TypeEvenement $typeEvenement)
     {
         $deleteForm = $this->createDeleteForm($typeEvenement);
 
-        return $this->render('BackofficeBaseBundle:TypeEvenement:show.html.twig', array(
-            'typeEvenement' => $typeEvenement,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-     * Displays a form to edit an existing typeEvenement entity.
-     *
-     */
-    public function editAction(Request $request, TypeEvenement $typeEvenement)
-    {
-        $deleteForm = $this->createDeleteForm($typeEvenement);
         $editForm = $this->createForm('BackofficeBaseBundle\Form\TypeEvenementType', $typeEvenement);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('typeevenement_edit', array('id' => $typeEvenement->getId()));
+            return $this->redirectToRoute('typeevenement_show', array('id' => $typeEvenement->getId()));
         }
 
-        return $this->render('BackofficeBaseBundle:TypeEvenement:edit.html.twig', array(
+
+        return $this->render('BackofficeBaseBundle:TypeEvenement:show.html.twig', array(
             'typeEvenement' => $typeEvenement,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

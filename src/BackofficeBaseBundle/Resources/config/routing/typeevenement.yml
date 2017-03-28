@@ -6,11 +6,6 @@ typeevenement_index:
 typeevenement_show:
     path:     /{id}/show
     defaults: { _controller: "BackofficeBaseBundle:TypeEvenement:show" }
-    methods:  GET
-
-typeevenement_edit:
-    path:     /{id}/edit
-    defaults: { _controller: "BackofficeBaseBundle:TypeEvenement:edit" }
     methods:  [GET, POST]
 
 typeevenement_delete:
