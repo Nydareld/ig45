@@ -53,6 +53,7 @@ class LoadData implements FixtureInterface
         $user->setEmail("michel.deboudemange@live.fr");
         $user->setPrenom("Michel");
         $user->setPlainPassword("michel.deboudemange");
+        $user->setEnabled(true);
         $manager->persist($user);
 
         $user1 = new User();
@@ -61,6 +62,7 @@ class LoadData implements FixtureInterface
         $user1->setEmail("jeandfranois.brocherieux@outlook.fr");
         $user1->setPrenom("Jean-François");
         $user1->setPlainPassword("jeanfrancois.brocherieux");
+        $user1->setEnabled(true);
         $manager->persist($user1);
 
         $user2 = new User();
@@ -69,6 +71,7 @@ class LoadData implements FixtureInterface
         $user2->setEmail("gerard.leger@laposte.net");
         $user2->setPrenom("Gérard");
         $user2->setPlainPassword("gerard.leger");
+        $user2->setEnabled(true);
         $manager->persist($user2);
 
         $user3 = new User();
@@ -77,6 +80,7 @@ class LoadData implements FixtureInterface
         $user3->setEmail("laurence.garnier@gmail.com");
         $user3->setPrenom("Laurence");
         $user3->setPlainPassword("laurence.garnier");
+        $user3->setEnabled(true);
         $manager->persist($user3);
 
         $user4 = new User();
@@ -85,6 +89,7 @@ class LoadData implements FixtureInterface
         $user4->setEmail("regine.grosse@free.fr");
         $user4->setPrenom("Régine");
         $user4->setPlainPassword("regine.grosse");
+        $user4->setEnabled(true);
         $manager->persist($user4);
 
         $user5 = new User();
@@ -93,6 +98,7 @@ class LoadData implements FixtureInterface
         $user5->setEmail("liliane.apparicio@free.com");
         $user5->setPrenom("Liliane");
         $user5->setPlainPassword("liliane.apparicio");
+        $user5->setEnabled(true);
         $manager->persist($user5);
 
         $user6 = new User();
@@ -101,6 +107,7 @@ class LoadData implements FixtureInterface
         $user6->setEmail("jacqueline.nedelec@gmail.com");
         $user6->setPrenom("Jacqueline");
         $user6->setPlainPassword("jacqueline.nedelec");
+        $user6->setEnabled(true);
         $manager->persist($user6);
 
         $user7 = new User();
@@ -109,6 +116,7 @@ class LoadData implements FixtureInterface
         $user7->setEmail("michel.espinasse@laposte.com");
         $user7->setPrenom("Michel");
         $user7->setPlainPassword("michel.espinasse");
+        $user7->setEnabled(true);
         $manager->persist($user7);
 
         $user8 = new User();
@@ -117,6 +125,7 @@ class LoadData implements FixtureInterface
         $user8->setEmail("christiane.villalba@laposte.com");
         $user8->setPrenom("Christiane");
         $user8->setPlainPassword("christiane.villalba");
+        $user8->setEnabled(true);
         $manager->persist($user8);
 
         $user9 = new User();
@@ -125,6 +134,7 @@ class LoadData implements FixtureInterface
         $user9->setEmail("robert.gigou@free.fr");
         $user9->setPrenom("Robert");
         $user9->setPlainPassword("robert.gigou");
+        $user9->setEnabled(true);
         $manager->persist($user9);
 
         $user10 = new User();
@@ -133,6 +143,7 @@ class LoadData implements FixtureInterface
         $user10->setEmail("francois.finous@free.fr");
         $user10->setPrenom("François");
         $user10->setPlainPassword("francois.finous");
+        $user10->setEnabled(true);
         $manager->persist($user10);
 
         $user11 = new User();
@@ -141,6 +152,7 @@ class LoadData implements FixtureInterface
         $user11->setEmail("patrick.liey@free.fr");
         $user11->setPrenom("Patrick");
         $user11->setPlainPassword("patrick.liey");
+        $user11->setEnabled(true);
         $manager->persist($user11);
 
         $user12 = new User();
@@ -149,6 +161,7 @@ class LoadData implements FixtureInterface
         $user12->setEmail("claude.lemarie@free.fr");
         $user12->setPrenom("Claude");
         $user12->setPlainPassword("claude.lemarie");
+        $user12->setEnabled(true);
         $manager->persist($user12);
 
         $user13 = new User();
@@ -157,6 +170,7 @@ class LoadData implements FixtureInterface
         $user13->setEmail("claudine.senelier@free.fr");
         $user13->setPrenom("Claudine");
         $user13->setPlainPassword("claudine.senelier");
+        $user13->setEnabled(true);
         $manager->persist($user13);
 
         $user14 = new User();
@@ -165,6 +179,7 @@ class LoadData implements FixtureInterface
         $user14->setEmail("marie-helene.hardouin@free.fr");
         $user14->setPrenom("Marie-Hélène");
         $user14->setPlainPassword("marie-helene.hardouin");
+        $user14->setEnabled(true);
         $manager->persist($user14);
 
         $user15 = new User();
@@ -173,6 +188,7 @@ class LoadData implements FixtureInterface
         $user15->setEmail("patrick.smeeckaert@free.fr");
         $user15->setPrenom("Patrick");
         $user15->setPlainPassword("patrick.smeeckaert");
+        $user15->setEnabled(true);
         $manager->persist($user15);
 
         $user16 = new User();
@@ -181,6 +197,7 @@ class LoadData implements FixtureInterface
         $user16->setEmail("pierre.auberger@free.fr");
         $user16->setPrenom("Pierre");
         $user16->setPlainPassword("pierre.auberger");
+        $user16->setEnabled(true);
         $manager->persist($user16);
 
         $user17 = new User();
@@ -189,6 +206,7 @@ class LoadData implements FixtureInterface
         $user17->setEmail("francoise.mouly@free.fr");
         $user17->setPrenom("Françoise");
         $user17->setPlainPassword("francoise.mouly");
+        $user17->setEnabled(true);
         $manager->persist($user17);
 
         $user18 = new User();
@@ -197,6 +215,7 @@ class LoadData implements FixtureInterface
         $user18->setEmail("catherine.burette@free.fr");
         $user18->setPrenom("Catherine");
         $user18->setPlainPassword("catherine.burette");
+        $user18->setEnabled(true);
         $manager->persist($user18);
 
         $user19 = new User();
@@ -205,6 +224,7 @@ class LoadData implements FixtureInterface
         $user19->setEmail("martine.duprat@free.fr");
         $user19->setPrenom("Martine");
         $user19->setPlainPassword("martine.duprat");
+        $user19->setEnabled(true);
         $manager->persist($user19);
 
         $user20 = new User();
@@ -213,6 +233,7 @@ class LoadData implements FixtureInterface
         $user20->setEmail("joseph.lalisse@free.fr");
         $user20->setPrenom("Joseph");
         $user20->setPlainPassword("joseph.lalisse");
+        $user20->setEnabled(true);
         $manager->persist($user20);
 
         $user21 = new User();
@@ -221,6 +242,7 @@ class LoadData implements FixtureInterface
         $user21->setEmail("philippe.amiot@free.fr");
         $user21->setPrenom("Philippe");
         $user21->setPlainPassword("philippe.amiot");
+        $user21->setEnabled(true);
         $manager->persist($user21);
 
         $user22 = new User();
@@ -229,6 +251,7 @@ class LoadData implements FixtureInterface
         $user22->setEmail("jacques.coudray@free.fr");
         $user22->setPrenom("Jacques");
         $user22->setPlainPassword("jacques.coudray");
+        $user22->setEnabled(true);
         $manager->persist($user22);
 
         $user23 = new User();
@@ -237,6 +260,7 @@ class LoadData implements FixtureInterface
         $user23->setEmail("paul.kestler@free.fr");
         $user23->setPrenom("Paul");
         $user23->setPlainPassword("paul.kestler");
+        $user23->setEnabled(true);
         $manager->persist($user23);
 
         $user24 = new User();
@@ -245,6 +269,7 @@ class LoadData implements FixtureInterface
         $user24->setEmail("martine.huguet-tahon@free.fr");
         $user24->setPrenom("Martine");
         $user24->setPlainPassword("martine.huguet-tahon");
+        $user24->setEnabled(true);
         $manager->persist($user24);
 
         $user25 = new User();
@@ -253,6 +278,7 @@ class LoadData implements FixtureInterface
         $user25->setEmail("jean-francois.archambault@free.fr");
         $user25->setPrenom("Jean-François");
         $user25->setPlainPassword("jean-francois.archambault");
+        $user25->setEnabled(true);
         $manager->persist($user25);
 
         $user26 = new User();
@@ -261,6 +287,7 @@ class LoadData implements FixtureInterface
         $user26->setEmail("michel.grasset@free.fr");
         $user26->setPrenom("Michel");
         $user26->setPlainPassword("michel.grasset");
+        $user26->setEnabled(true);
         $manager->persist($user26);
 
         $user27 = new User();
@@ -269,6 +296,7 @@ class LoadData implements FixtureInterface
         $user27->setEmail("alain.boulard@free.fr");
         $user27->setPrenom("Alain");
         $user27->setPlainPassword("alain.boulard");
+        $user27->setEnabled(true);
         $manager->persist($user27);
 
         $user28 = new User();
@@ -277,6 +305,7 @@ class LoadData implements FixtureInterface
         $user28->setEmail("philippe.renaud@free.fr");
         $user28->setPrenom("Philippe");
         $user28->setPlainPassword("philippe.renaud");
+        $user28->setEnabled(true);
         $manager->persist($user28);
 
         $user29 = new User();
@@ -285,14 +314,7 @@ class LoadData implements FixtureInterface
         $user29->setEmail("andree.raulin@free.fr");
         $user29->setPrenom("Andrée");
         $user29->setPlainPassword("andree.raulin");
-        $manager->persist($user29);
-
-        $user29 = new User();
-        $user29->addGroup($grpUser);
-        $user29->setNom("PARICARD");
-        $user29->setEmail("marc.paricard@free.fr");
-        $user29->setPrenom("Marc");
-        $user29->setPlainPassword("marc.paricard");
+        $user29->setEnabled(true);
         $manager->persist($user29);
 
         $user30 = new User();
@@ -301,6 +323,7 @@ class LoadData implements FixtureInterface
         $user30->setEmail("pierre.piquemal@free.fr");
         $user30->setPrenom("Pierre");
         $user30->setPlainPassword("pierre.piquemal");
+        $user30->setEnabled(true);
         $manager->persist($user30);
 
         $user31 = new User();
@@ -309,6 +332,7 @@ class LoadData implements FixtureInterface
         $user31->setEmail("philippe.bonneau@free.fr");
         $user31->setPrenom("Philippe");
         $user31->setPlainPassword("philippe.bonneau");
+        $user31->setEnabled(true);
         $manager->persist($user31);
 
         $user32 = new User();
@@ -317,6 +341,7 @@ class LoadData implements FixtureInterface
         $user32->setEmail("christine.prizac@free.fr");
         $user32->setPrenom("Christine");
         $user32->setPlainPassword("christine.prizac");
+        $user32->setEnabled(true);
         $manager->persist($user32);
 
         $user33 = new User();
@@ -325,6 +350,7 @@ class LoadData implements FixtureInterface
         $user33->setEmail("chantal.hureau@free.fr");
         $user33->setPrenom("Chantal");
         $user33->setPlainPassword("chantal.hureau");
+        $user33->setEnabled(true);
         $manager->persist($user33);
 
         $user34 = new User();
@@ -333,6 +359,7 @@ class LoadData implements FixtureInterface
         $user34->setEmail("christian.georget@free.fr");
         $user34->setPrenom("Christian");
         $user34->setPlainPassword("christian.georget");
+        $user34->setEnabled(true);
         $manager->persist($user34);
 
         $user35 = new User();
@@ -341,6 +368,7 @@ class LoadData implements FixtureInterface
         $user35->setEmail("andree.deligny@free.fr");
         $user35->setPrenom("Andrée");
         $user35->setPlainPassword("andree.deligny");
+        $user35->setEnabled(true);
         $manager->persist($user35);
 
         $user36 = new User();
@@ -349,6 +377,7 @@ class LoadData implements FixtureInterface
         $user36->setEmail("michel.lupart@free.fr");
         $user36->setPrenom("Michel");
         $user36->setPlainPassword("michel.lupart");
+        $user36->setEnabled(true);
         $manager->persist($user36);
 
         $user37 = new User();
@@ -357,7 +386,17 @@ class LoadData implements FixtureInterface
         $user37->setEmail("daniel.corjon@free.fr");
         $user37->setPrenom("Daniel");
         $user37->setPlainPassword("daniel.corjon");
+        $user37->setEnabled(true);
         $manager->persist($user37);
+
+        $user38 = new User();
+        $user38->addGroup($grpUser);
+        $user38->setNom("PARICARD");
+        $user38->setEmail("marc.paricard@free.fr");
+        $user38->setPrenom("Marc");
+        $user38->setPlainPassword("marc.paricard");
+        $user38->setEnabled(true);
+        $manager->persist($user38);
 
         $txNiveau = new Niveau();
         $txNiveau->setNom('txNiveau');
