@@ -16,7 +16,6 @@ class LoadData implements FixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        echo "Mabite";
         $grpUser = new Group('Membre');
         $grpUser->addRole('ROLE_USER');
         $grpUser->setDescription('Membre d\'integeneration 45, peut consulter l\'agenda, prendre part aux evenements ou adminisrtrer les evenements dont il est l\'adjoint');
