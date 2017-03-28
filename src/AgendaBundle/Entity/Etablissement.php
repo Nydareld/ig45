@@ -56,7 +56,7 @@ class Etablissement
      *
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="correspondances")
      */
-    private $correspondants;
+    private $correspondant;
 
     /**
      * @var User
@@ -88,9 +88,9 @@ class Etablissement
     private $niveaux;
 
     /**
-     * @var string
+     * @var boolean
      *
-     * @ORM\Column(name="Presence", type="string", length=3, nullable=true)
+     * @ORM\Column(name="Presence", type="boolean", nullable=true)
      */
     private $presence;
 
@@ -214,25 +214,25 @@ class Etablissement
     }
 
     /**
-     * Get the value of Correspondants
+     * Get the value of Correspondant
      *
      * @return User
      */
-    public function getCorrespondants()
+    public function getCorrespondant()
     {
-        return $this->correspondants;
+        return $this->correspondant;
     }
 
     /**
-     * Set the value of Correspondants
+     * Set the value of Correspondant
      *
-     * @param User correspondants
+     * @param User correspondant
      *
      * @return self
      */
-    public function setCorrespondants(User $correspondants)
+    public function setCorrespondant(User $correspondant)
     {
-        $this->correspondants = $correspondants;
+        $this->correspondant = $correspondant;
 
         return $this;
     }
@@ -377,4 +377,30 @@ class Etablissement
         return $this;
     }
 
+
+    /**
+     * Add niveaux.
+     *
+     * @param \AgendaBundle\Entity\Niveau $niveaux
+     *
+     * @return Etablissement
+     */
+    public function addNiveaux(\AgendaBundle\Entity\Niveau $niveaux)
+    {
+        $this->niveaux[] = $niveaux;
+
+        return $this;
+    }
+
+    /**
+     * Remove niveaux.
+     *
+     * @param \AgendaBundle\Entity\Niveau $niveaux
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeNiveaux(\AgendaBundle\Entity\Niveau $niveaux)
+    {
+        return $this->niveaux->removeElement($niveaux);
+    }
 }

@@ -170,6 +170,20 @@ class Evenement
     private $nbEleves;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="niveau_classe", type="string")
+     */
+    private $niveauClasse;
+
+    /**
+     * @var string
+     *
+     * @ORM\ManyToOne(targetEntity="AgendaBundle\Entity\AnneeScolaire", inversedBy="evenements")
+     */
+    private $anneeScolaire;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -743,28 +757,28 @@ class Evenement
         return $this;
     }
 
-
-    /**
-     * Set niveauIntervention.
-     *
-     * @param string $niveauIntervention
-     *
-     * @return Evenement
-     */
-    public function setNiveauIntervention($niveauIntervention)
+    public function getNiveauClasse()
     {
-        $this->niveauIntervention = $niveauIntervention;
+        return $this->niveauClasse;
+    }
+
+    public function setNiveauClasse($niveauClasse)
+    {
+        $this->niveauClasse = $niveauClasse;
 
         return $this;
     }
 
-    /**
-     * Get niveauIntervention.
-     *
-     * @return string
-     */
-    public function getNiveauIntervention()
+    public function getAnneeScolaire()
     {
-        return $this->niveauIntervention;
+        return $this -> anneeScolaire;
     }
+
+    public function setAnneeScolaire($anneeScolaire)
+    {
+        $this -> anneeScolaire = $anneeScolaire;
+
+        return $this;
+    }
+
 }

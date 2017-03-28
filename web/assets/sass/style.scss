@@ -2,6 +2,12 @@
 $bleu_light: #64b5f6;
 $grey_light: #eeeeee;
 
+.action_agenda {
+    margin-top: 50px;
+    background-color: $grey_light;
+    padding: 20px 10px;
+}
+
 .agenda {
     .icon_cancel {
         color: #f44336;
