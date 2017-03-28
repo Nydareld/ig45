@@ -23,32 +23,34 @@ class AgendaController extends Controller
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
         // Récupération de tout les évènements pour l'utilisateur connecté
-        $evenements = [];
-
-        $intervention = $user->getInterventions();
-        foreach ($intervention as $eventInter) {
-            $evenements[] = $eventInter;
-        }
-        $observations = $user->getObservations();
-        foreach ($observations as $eventObs) {
-            $evenements[] = $eventObs;
-        }
+        // $evenements = [];
+        //
+        // $intervention = $user->getInterventions();
+        // foreach ($intervention as $eventInter) {
+        //     $evenements[] = $eventInter;
+        // }
+        // $observations = $user->getObservations();
+        // foreach ($observations as $eventObs) {
+        //     $evenements[] = $eventObs;
+        // }
+        $evenements = $this->getDoctrine()
+                       ->getRepository('AgendaBundle:Evenement')->getByUser($user);
 
         // ajout des évènements dans lesquelles le user est correspondant
-        // $correspondantLieux = $user->getCorrespondantsLieux()->getEvenement();
-        // foreach ($adjointLieux as $lieu) {
-        //     $evenements[] = $lieu->getEvenement();
+        // $etabCorrespondants = $user->getCorrespondances();
+        // foreach ($etabCorrespondants as $corres) {
+        //     $evenements[] = $corres->getEvenement();
         // }
         //
-        // // ajout des évènements dans lesquelles le user est adjoint
-        // $adjointLieux =     return $this->render('AgendaBundle:Agenda:agenda.html.twig',
-        //                array('ev    return $this->render('AgendaBundle:Agenda:agenda.html.twig',
-        //                array('evenements' => $evenements)); as $lieu) {
-        //     $evenements[] = $lieu->getEvenement();
+        // ajout des évènements dans lesquelles le user est adjoint
+        // $etabAdjoints = $user->addAdjonction();
+        // foreach ($etabAdjoints as $adj) {
+        //     $evenements[] = $adj->getEvenement();
         // }
 
+        dump($evenements);
         // on envoie tout les évènements liés à l'utilisateur jusqu'au twig
-        return $this->render('AgendaBundle:Agenda:agenda.html.twig',
+        return $this->render('AgendaBundle:Evenement:index.html.twig',
                         array('evenements' => $evenements));
     }
 
