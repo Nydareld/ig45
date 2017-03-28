@@ -101,7 +101,6 @@
                 <td>{{ evenement.nbEleves }}</td>
             </tr>
             <tr>
-<<<<<<< HEAD
                 <th>Niveau de la classe</th>
                 <td>Informations 6</td>
             </tr>
@@ -156,9 +155,7 @@
             <a href="{{ path('evenement_edit', { 'id': evenement.id }) }}">Edit</a>
         </li>
         <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
+            <a href="{{ path('evenement_export', { 'id': evenement.id }) }}">Export</a>
         </li>
     </ul>
 {% endblock %}

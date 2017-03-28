@@ -5,7 +5,9 @@ namespace AgendaBundle\Controller;
 use AgendaBundle\Entity\Evenement;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Evenement controller.
@@ -22,7 +24,7 @@ class EvenementController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $evenements = $em->getRepository('AgendaBundle:Evenement')->findAll();
+        $evenements = $em->getRepository('AgendaBundle:Evenement')->findBy(array(), array('dateEvt' => 'ASC'));
 
         return $this->render('AgendaBundle:Evenement:index.html.twig', array(
             'evenements' => $evenements,
@@ -149,14 +151,10 @@ class EvenementController extends Controller
      */
     public function deleteAction(Request $request, Evenement $evenement)
     {
-        $form = $this->createDeleteForm($evenement);
-        $form->handleRequest($request);
-
-
         $em = $this->getDoctrine()->getManager();
-        $em->remove($evenement);
+        $evenement->setAnnule(true);
+        $em->persist($evenement);
         $em->flush();
-
 
         return $this->redirectToRoute('evenement_index');
     }
@@ -175,5 +173,24 @@ class EvenementController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    public function exportAction(Evenement $evenement){
+
+        //on stocke la vue à convertir en PDF, en n'oubliant pas les paramètres twig si la vue comporte des données dynamiques
+        $html = $this->render('AgendaBundle:Evenement:show.html.twig', array('evenement' => $evenement));
+
+        //if you are in a controlller use :
+        $pdf = $this->get("white_october.tcpdf")->create('vertical', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+        $pdf->SetTitle(("Fiche d'intervention"));
+        $pdf->setFontSubsetting(true);
+        $pdf->SetFont('helvetica', '', 11, '', true);
+
+        $pdf->AddPage();
+
+        $filename = 'ficheIntervention';
+
+        $pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
+        $pdf->Output($filename.".pdf",'I'); // This will output the PDF as a response directly
     }
 }

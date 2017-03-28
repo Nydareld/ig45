@@ -51,7 +51,7 @@ class User extends BaseUser
     protected $observations;
 
     /**
-     * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\Etablissement", mappedBy="correspondants")
+     * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\Etablissement", mappedBy="correspondant")
      */
     protected $correspondances;
 
