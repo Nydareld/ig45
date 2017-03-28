@@ -1,6 +1,6 @@
 agenda_homepage:
     path:     /
-    defaults: { _controller: AgendaBundle:Agenda:index }
+    defaults: {_controller: AgendaBundle:Evenement:index}
 
 agenda_perso:
     path:     /perso
