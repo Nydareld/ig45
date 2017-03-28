@@ -176,6 +176,8 @@ class LoadData implements FixtureInterface
         $lieu->setVille("Orléans");
         $lieu->setCorrespondant($user);
         $lieu->addAdjoint($user2);
+        $lieu->setPresence(false);
+        $lieu->setNiveaux($txNiveau);
         $manager->persist($lieu);
 
         $lieu2 = new Etablissement();
@@ -185,6 +187,8 @@ class LoadData implements FixtureInterface
         $lieu2->setVille("Lyon");
         $lieu2->setCorrespondant($user3);
         $lieu2->addAdjoint($user);
+        $lieu->setPresence(true);
+        $lieu->setNiveaux($primaire);
         $manager->persist($lieu2);
 
         $lieu3 = new Etablissement();
@@ -194,6 +198,8 @@ class LoadData implements FixtureInterface
         $lieu3->setVille("Tee shirt");
         $lieu3->setCorrespondant($user5);
         $lieu3->addAdjoint($user4);
+        $lieu->setPresence(true);
+        $lieu->setNiveaux($lycee);
         $manager->persist($lieu3);
 
         $evenement = new Evenement();
