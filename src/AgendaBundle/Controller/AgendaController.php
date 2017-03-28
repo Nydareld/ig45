@@ -49,7 +49,7 @@ class AgendaController extends Controller
 
         // on envoie tout les évènements liés à l'utilisateur jusqu'au twig
         return $this->render('AgendaBundle:Agenda:agenda.html.twig',
-                        array('user' => $user));
+                        array('evenements' => $evenements));
     }
 
     public function searchAction()
