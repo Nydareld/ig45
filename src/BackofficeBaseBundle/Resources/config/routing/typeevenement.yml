@@ -1,17 +1,12 @@
 typeevenement_index:
     path:     /
     defaults: { _controller: "BackofficeBaseBundle:TypeEvenement:index" }
-    methods:  GET
+    methods:  [GET, POST]
 
 typeevenement_show:
     path:     /{id}/show
     defaults: { _controller: "BackofficeBaseBundle:TypeEvenement:show" }
     methods:  GET
-
-typeevenement_new:
-    path:     /new
-    defaults: { _controller: "BackofficeBaseBundle:TypeEvenement:new" }
-    methods:  [GET, POST]
 
 typeevenement_edit:
     path:     /{id}/edit
