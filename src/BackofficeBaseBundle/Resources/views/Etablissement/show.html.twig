@@ -14,6 +14,10 @@
     <div class="box">
         <!-- /.box-header -->
         <div class="box-header">
+          <div class="btn-group pull-right">
+              <a class="btn btn-primary" href="{{ path('etablissement_edit', { 'id': etablissement.id }) }}"><i class="fa fa-edit"></i> Modifier</a>
+              <button type="button" name="btn" id="submitBtn" data-toggle="modal" data-target="#confirm-submit" class="btn btn-danger" /><i class="fa fa-trash"></i> Supprimer</button>
+          </div>
             <h3>
                 {{ etablissement.nom }}
                 <small>{{ etablissement.adresse }}, {{ etablissement.codePostal }} {{ etablissement.ville }}</small>
@@ -40,7 +44,7 @@
                     <h3>Liens avec des utilisateurs</h3>
                     <dl>
                         <dt>Coresspondant</dt>
-                        <dd>{{ etablissement.correspondants }}</dd>
+                        <dd>{{ etablissement.correspondant }}</dd>
                         {% for adj in etablissement.adjoints %}
                         <dt>Adjoint {{ loop.index }}</dt>
                         <dd>{{ adj }}</dd>
@@ -93,12 +97,6 @@
             <!-- /.row -->
         </div>
         <!-- ./box-body -->
-        <div class="box-footer">
-            <div class="btn-group pull-right">
-                <a class="btn btn-primary" href="{{ path('etablissement_edit', { 'id': etablissement.id }) }}"><i class="fa fa-edit"></i> Modifier</a>
-                <button type="button" name="btn" id="submitBtn" data-toggle="modal" data-target="#confirm-submit" class="btn btn-danger" /><i class="fa fa-trash"></i> Supprimer</button>
-            </div>
-        </div>
     </div>
     <!-- /.box -->
 </div>
