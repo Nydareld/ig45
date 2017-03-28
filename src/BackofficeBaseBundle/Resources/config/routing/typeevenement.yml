@@ -1,0 +1,24 @@
+typeevenement_index:
+    path:     /
+    defaults: { _controller: "BackofficeBaseBundle:TypeEvenement:index" }
+    methods:  GET
+
+typeevenement_show:
+    path:     /{id}/show
+    defaults: { _controller: "BackofficeBaseBundle:TypeEvenement:show" }
+    methods:  GET
+
+typeevenement_new:
+    path:     /new
+    defaults: { _controller: "BackofficeBaseBundle:TypeEvenement:new" }
+    methods:  [GET, POST]
+
+typeevenement_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BackofficeBaseBundle:TypeEvenement:edit" }
+    methods:  [GET, POST]
+
+typeevenement_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BackofficeBaseBundle:TypeEvenement:delete" }
+    methods:  DELETE
