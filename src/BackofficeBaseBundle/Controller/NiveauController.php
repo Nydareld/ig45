@@ -16,22 +16,10 @@ class NiveauController extends Controller
      * Lists all niveau entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $niveaux = $em->getRepository('AgendaBundle:Niveau')->findAll();
-        return $this->render('BackofficeBaseBundle:Niveau:index.html.twig', array(
-            'niveaux' => $niveaux,
-        ));
-    }
-
-    /**
-     * Creates a new niveau entity.
-     *
-     */
-    public function newAction(Request $request)
-    {
         $niveau = new Niveau();
         $form = $this->createForm('BackofficeBaseBundle\Form\NiveauType', $niveau);
         $form->handleRequest($request);
@@ -44,9 +32,10 @@ class NiveauController extends Controller
             return $this->redirectToRoute('niveau_show', array('id' => $niveau->getId()));
         }
 
-        return $this->render('BackofficeBaseBundle:Niveau:new.html.twig', array(
-            'niveau' => $niveau,
+        $niveaux = $em->getRepository('AgendaBundle:Niveau')->findAll();
+        return $this->render('BackofficeBaseBundle:Niveau:index.html.twig', array(
             'form' => $form->createView(),
+            'niveaux' => $niveaux,
         ));
     }
 
