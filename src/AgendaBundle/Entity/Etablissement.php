@@ -98,8 +98,8 @@ class Etablissement
      * Constructor
      */
     public function __construct(){
-        $this->adjoints = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->evenements = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->adjoints = new ArrayCollection();
+        $this->evenements = new ArrayCollection();
     }
 
     public function __toString(){
@@ -268,7 +268,7 @@ class Etablissement
      *
      * @return Etablissement
      */
-    public function addAdjoint(\UserBundle\Entity\User $adjoint)
+    public function addAdjoint(User $adjoint)
     {
     $this->adjoints->add($adjoint);
 
@@ -282,7 +282,7 @@ class Etablissement
      *
      * @param \UserBundle\Entity\User $adjoint
      */
-    public function removeAdjoint(\UserBundle\Entity\User $adjoint)
+    public function removeAdjoint(User $adjoint)
     {
     $this->adjoints->removeElement($adjoint);
 
@@ -320,7 +320,7 @@ class Etablissement
      *
      * @return Etablissement
      */
-    public function addEvenement(\AgendaBundle\Entity\Evenement $evenement)
+    public function addEvenement(Evenement $evenement)
     {
         $this->evenements->add($evenement);
 
@@ -333,7 +333,7 @@ class Etablissement
      *
      * @param \AgendaBundle\Entity\Evenement $evenement
      */
-    public function removeEvenement(\AgendaBundle\Entity\Evenement $evenement)
+    public function removeEvenement(Evenement $evenement)
     {
         $this->evenements->removeElement($evenement);
 
@@ -385,7 +385,7 @@ class Etablissement
      *
      * @return Etablissement
      */
-    public function addNiveaux(\AgendaBundle\Entity\Niveau $niveaux)
+    public function addNiveaux(Niveau $niveaux)
     {
         $this->niveaux[] = $niveaux;
 
@@ -399,7 +399,7 @@ class Etablissement
      *
      * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
-    public function removeNiveaux(\AgendaBundle\Entity\Niveau $niveaux)
+    public function removeNiveaux(Niveau $niveaux)
     {
         return $this->niveaux->removeElement($niveaux);
     }

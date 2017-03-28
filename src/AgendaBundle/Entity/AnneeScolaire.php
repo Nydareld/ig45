@@ -92,7 +92,7 @@ class AnneeScolaire
      *
      * @return AnneeScolaire
      */
-    public function addEvenement(\AgendaBundle\Entity\Evenement $evenement)
+    public function addEvenement(Evenement $evenement)
     {
         //$this->evenements[] = $evenement;
         $this->evenements->add($evenement);
@@ -107,7 +107,7 @@ class AnneeScolaire
      *
      * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
-    public function removeEvenement(\AgendaBundle\Entity\Evenement $evenement)
+    public function removeEvenement(Evenement $evenement)
     {
         return $this->evenements->removeElement($evenement);
     }
