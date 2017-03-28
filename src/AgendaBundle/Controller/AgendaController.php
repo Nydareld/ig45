@@ -22,33 +22,8 @@ class AgendaController extends Controller
         // Récupération de l'utilisateur connecté
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        // Récupération de tout les évènements pour l'utilisateur connecté
-        // $evenements = [];
-        //
-        // $intervention = $user->getInterventions();
-        // foreach ($intervention as $eventInter) {
-        //     $evenements[] = $eventInter;
-        // }
-        // $observations = $user->getObservations();
-        // foreach ($observations as $eventObs) {
-        //     $evenements[] = $eventObs;
-        // }
-        $evenements = $this->getDoctrine()
-                       ->getRepository('AgendaBundle:Evenement')->getByUser($user);
+        $evenements = $this->getDoctrine()->getRepository('AgendaBundle:Evenement')->getByUser($user);
 
-        // ajout des évènements dans lesquelles le user est correspondant
-        // $etabCorrespondants = $user->getCorrespondances();
-        // foreach ($etabCorrespondants as $corres) {
-        //     $evenements[] = $corres->getEvenement();
-        // }
-        //
-        // ajout des évènements dans lesquelles le user est adjoint
-        // $etabAdjoints = $user->addAdjonction();
-        // foreach ($etabAdjoints as $adj) {
-        //     $evenements[] = $adj->getEvenement();
-        // }
-
-        dump($evenements);
         // on envoie tout les évènements liés à l'utilisateur jusqu'au twig
         return $this->render('AgendaBundle:Evenement:index.html.twig',
                         array('evenements' => $evenements));
