@@ -1,0 +1,74 @@
+{% extends 'BackofficeBaseBundle::Layout/AdminLayout.html.twig' %}
+
+{% block navActive %}niveau{% endblock %}
+
+{% block contentHeader %}
+<h1>
+    Fiche niveau d'etablissement
+</h1>
+{% endblock %}
+
+{% block content %}
+
+<div class="col-md-12">
+    <div class="box">
+        <!-- /.box-header -->
+        <div class="box-header">
+            <h3>
+                Niveau {{ niveau.nom }}
+            </h3>
+            <div class="btn-group pull-right">
+                <a class="btn btn-primary" href="{{ path('niveau_edit', { 'id': niveau.id }) }}"><i class="fa fa-edit"></i> Modifier</a>
+                <button type="button" name="btn" id="submitBtn" data-toggle="modal" data-target="#confirm-submit" class="btn btn-danger" /><i class="fa fa-trash"></i> Supprimer</button>
+            </div>
+        </div>
+        <div class="box-body">
+            <h5>Changement de nom</h5>
+
+            {{ form_start(edit_form) }}
+                {{ form_widget(edit_form) }}
+                <input type="submit" value="Edit" />
+            {{ form_end(edit_form) }}
+
+            {% if niveau.etablissements|length != 0 %}
+            <h5>Etablissements {{ niveau.nom }}</h5>
+            <div class="row">
+                {% for etablissement in niveau.etablissements %}
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h4>{{etablissement.nom}}</h4>
+                        </div>
+                        <div class="box-body">
+                            <p>{{etablissement.adresse}} {{etablissement.codePostal}} {{etablissement.ville}}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block modals %}
+<!-- Modal de validation de la supression de l'etablissement -->
+<div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h4>
+                    Êtes-vous certain de voulour suprimer le niveau {{ niveau.nom }} ?
+                </h4>
+            </div>
+        <div class="modal-footer">
+            {{ form_start(delete_form) }}
+                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                <button type="submit" value="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Valider</button>
+            {{ form_end(delete_form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}
