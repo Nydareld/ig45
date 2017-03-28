@@ -8,16 +8,6 @@ niveau_show:
     defaults: { _controller: "BackofficeBaseBundle:Niveau:show" }
     methods:  [GET, POST]
 
-niveau_new:
-    path:     /new
-    defaults: { _controller: "BackofficeBaseBundle:Niveau:new" }
-    methods:  [GET, POST]
-
-niveau_edit:
-    path:     /{id}/edit
-    defaults: { _controller: "BackofficeBaseBundle:Niveau:edit" }
-    methods:  [GET, POST]
-
 niveau_delete:
     path:     /{id}/delete
     defaults: { _controller: "BackofficeBaseBundle:Niveau:delete" }

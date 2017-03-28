@@ -42,7 +42,7 @@ class AnneeScolaire
      * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\Evenement", mappedBy="anneeScolaire")
      */
     private $evenements;
-   
+
 
     /**
      * Get id.
@@ -95,7 +95,7 @@ class AnneeScolaire
     public function addEvenement(\AgendaBundle\Entity\Evenement $evenement)
     {
         //$this->evenements[] = $evenement;
-        $this -> evenements -> add($evenement);
+        $this->evenements->add($evenement);
 
         return $this;
     }
