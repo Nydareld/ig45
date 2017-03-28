@@ -1,10 +1,10 @@
 {% extends 'BackofficeBaseBundle::Layout/AdminLayout.html.twig' %}
 
-{% block navActive %}niveau{% endblock %}
+{% block navActive %}type-intervs{% endblock %}
 
 {% block contentHeader %}
 <h1>
-    Administration des niveaux d'etablissements
+    Administration des types d'interventions
 </h1>
 {% endblock %}
 
@@ -13,7 +13,7 @@
 <div class="col-md-9 col-sm-8 col-xs-12">
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Liste des niveaux d'établissements</h3>
+            <h3 class="box-title">Liste des types d'interventions</h3>
         </div>
         <div class="box-body">
             <table class="table table-bordered table-striped dataTable">
@@ -30,11 +30,11 @@
                     </tr>
                 <tbody>
                 </tfoot>
-                    {% for niveau in niveaux %}
+                    {% for typeEvenement in typeEvenements %}
                     <tr>
-                        <td><a href="{{ path('niveau_show', { 'id': niveau.id }) }}">{{ niveau.nom }}</a></td>
+                        <td><a href="{{ path('typeevenement_show', { 'id': typeEvenement.id }) }}">{{ typeEvenement.nom }}</a></td>
                         <td>
-                            <a title="Affichier" href="{{ path('niveau_show', { 'id': niveau.id }) }}"><i class="fa fa-2x fa-info"></i></a>
+                            <a title="Affichier" href="{{ path('typeevenement_show', { 'id': typeEvenement.id }) }}"><i class="fa fa-2x fa-info"></i></a>
                         </td>
                     </tr>
                     {% endfor %}
@@ -46,7 +46,7 @@
 <div class="col-md-3 col-sm-4 col-xs-12">
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Ajout de niveau</h3>
+            <h3 class="box-title">Ajout de type d'intervention</h3>
         </div>
         <div class="box-body">
             {{ form_start(form) }}
