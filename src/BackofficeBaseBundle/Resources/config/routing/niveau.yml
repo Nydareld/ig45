@@ -1,0 +1,14 @@
+niveau_index:
+    path:     /
+    defaults: { _controller: "BackofficeBaseBundle:Niveau:index" }
+    methods:  [GET, POST]
+
+niveau_show:
+    path:     /{id}/show
+    defaults: { _controller: "BackofficeBaseBundle:Niveau:show" }
+    methods:  [GET, POST]
+
+niveau_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BackofficeBaseBundle:Niveau:delete" }
+    methods:  DELETE

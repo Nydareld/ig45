@@ -9,6 +9,8 @@
 namespace AgendaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
 
 /**
  * AnneeScolaire
@@ -30,7 +32,7 @@ class AnneeScolaire
     /**
      * @var string
      *
-     * @ORM\Column(name="Nom", type="string", length=255)
+     * @ORM\Column(name="Nom", type="string", length=255, nullable=true)
      */
     private $annee;
 
@@ -41,8 +43,9 @@ class AnneeScolaire
      */
     private $evenements;
 
+
     /**
-     * Get the value of Id
+     * Get id.
      *
      * @return int
      */
@@ -51,23 +54,12 @@ class AnneeScolaire
         return $this->id;
     }
 
-
     /**
-     * Get the value of Annee
+     * Set annee.
      *
-     * @return string
-     */
-    public function getAnnee()
-    {
-        return $this->annee;
-    }
-
-    /**
-     * Set the value of Annee
+     * @param string $annee
      *
-     * @param string annee
-     *
-     * @return self
+     * @return AnneeScolaire
      */
     public function setAnnee($annee)
     {
@@ -76,6 +68,15 @@ class AnneeScolaire
         return $this;
     }
 
+    /**
+     * Get annee.
+     *
+     * @return string
+     */
+    public function getAnnee()
+    {
+        return $this->annee;
+    }
     /**
      * Constructor
      */
@@ -93,7 +94,8 @@ class AnneeScolaire
      */
     public function addEvenement(\AgendaBundle\Entity\Evenement $evenement)
     {
-        $this->evenements[] = $evenement;
+        //$this->evenements[] = $evenement;
+        $this->evenements->add($evenement);
 
         return $this;
     }

@@ -24,24 +24,19 @@ class Niveau
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="text", nullable=true)
+     * @ORM\Column(name="nom", type="string", nullable=true)
      */
     private $nom;
 
     /**
      * @var Etablissement
      *
-     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Etablissement", inversedBy="niveaux")
-     * @ORM\JoinTable(name="etablissement_niveau")
+     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Etablissement", mappedBy="niveaux")
      */
     private $etablissements;
 
     /**
      * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\TypeEvenement", mappedBy="niveaux")
-     * @ORM\JoinTable(name="type_evenement_niveaux",
-     *      joinColumns={@ORM\JoinColumn(name="type_evenement_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="niveau_id", referencedColumnName="id")}
-     * )
      */
     private $typeEvenements;
 

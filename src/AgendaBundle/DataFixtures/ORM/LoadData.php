@@ -2,6 +2,7 @@
 
 namespace AgendaBundle\DataFixtures\ORM;
 
+use AgendaBundle\Entity\AnneeScolaire;
 use AgendaBundle\Entity\Evenement;
 use AgendaBundle\Entity\Etablissement;
 use AgendaBundle\Entity\TypeEvenement;
@@ -16,7 +17,6 @@ class LoadData implements FixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        echo "Mabite";
         $grpUser = new Group('Membre');
         $grpUser->addRole('ROLE_USER');
         $grpUser->setDescription('Membre d\'integeneration 45, peut consulter l\'agenda, prendre part aux evenements ou adminisrtrer les evenements dont il est l\'adjoint');
@@ -80,6 +80,7 @@ class LoadData implements FixtureInterface
         $user->setEmail("test@test.Fr");
         $user->setPrenom("Roger");
         $user->setPlainPassword("roger");
+        $user->setEnabled(true);
         $manager->persist($user);
 
         $user1 = new User();
@@ -88,6 +89,7 @@ class LoadData implements FixtureInterface
         $user1->setEmail("leporc@cbon.fr");
         $user1->setPrenom("peguy");
         $user1->setPlainPassword("peguy");
+        $user1->setEnabled(true);
         $manager->persist($user1);
 
         $user2 = new User();
@@ -96,6 +98,7 @@ class LoadData implements FixtureInterface
         $user2->setEmail("francois@sodomite.fr");
         $user2->setPrenom("francois");
         $user2->setPlainPassword("francois");
+        $user2->setEnabled(true);
         $manager->persist($user2);
 
         $user3 = new User();
@@ -104,6 +107,7 @@ class LoadData implements FixtureInterface
         $user3->setEmail("florian@doudou.Fr");
         $user3->setPrenom("floriant");
         $user3->setPlainPassword("floriant");
+        $user3->setEnabled(true);
         $manager->persist($user3);
 
         $user4 = new User();
@@ -112,6 +116,7 @@ class LoadData implements FixtureInterface
         $user4->setEmail("sboubinator@lubi.fr");
         $user4->setPrenom("sboubinator");
         $user4->setPlainPassword("sboubinator");
+        $user4->setEnabled(true);
         $manager->persist($user4);
 
         $user5 = new User();
@@ -120,6 +125,7 @@ class LoadData implements FixtureInterface
         $user5->setEmail("chef@chef.fr");
         $user5->setPrenom("chef");
         $user5->setPlainPassword("chef");
+        $user5->setEnabled(true);
         $manager->persist($user5);
 
         $txNiveau = new Niveau();
@@ -169,6 +175,35 @@ class LoadData implements FixtureInterface
         $typeIntervention4->setNom("Intervention number 4 moder fucker");
         $manager->persist($typeIntervention4);
 
+
+
+        $annee = new AnneeScolaire();
+        $annee -> setAnnee("2000 - 2001");
+        $manager -> persist($annee);
+
+
+        $annee1 = new AnneeScolaire();
+        $annee1 -> setAnnee("2001 - 2002");
+        $manager -> persist($annee1);
+
+
+        $annee2 = new AnneeScolaire();
+        $annee2 -> setAnnee("2002 - 2003");
+        $manager -> persist($annee2);
+
+
+        $annee3 = new AnneeScolaire();
+        $annee3 -> setAnnee("2003 - 2004");
+        $manager -> persist($annee3);
+
+
+        $annee4= new AnneeScolaire();
+        $annee4 -> setAnnee("2004 - 2005");
+        $manager -> persist($annee4);
+
+
+
+
         $lieu = new Etablissement();
         $lieu->setNom("Ecole Louis de Funes");
         $lieu->setAdresse("12 rue de labas");
@@ -177,7 +212,7 @@ class LoadData implements FixtureInterface
         $lieu->setCorrespondant($user);
         $lieu->addAdjoint($user2);
         $lieu->setPresence(false);
-        $lieu->setNiveaux($txNiveau);
+        $lieu->addNiveaux($txNiveau);
         $manager->persist($lieu);
 
         $lieu2 = new Etablissement();
@@ -188,7 +223,7 @@ class LoadData implements FixtureInterface
         $lieu2->setCorrespondant($user3);
         $lieu2->addAdjoint($user);
         $lieu->setPresence(true);
-        $lieu->setNiveaux($primaire);
+        $lieu->addNiveaux($primaire);
         $manager->persist($lieu2);
 
         $lieu3 = new Etablissement();
@@ -199,7 +234,7 @@ class LoadData implements FixtureInterface
         $lieu3->setCorrespondant($user5);
         $lieu3->addAdjoint($user4);
         $lieu->setPresence(true);
-        $lieu->setNiveaux($lycee);
+        $lieu->addNiveaux($lycee);
         $manager->persist($lieu3);
 
         $evenement = new Evenement();
@@ -215,7 +250,9 @@ class LoadData implements FixtureInterface
         $evenement->addIntervenant($user);
         $evenement->addIntervenant($user3);
         $evenement->addObservateur($user2);
+        $evenement->setAnneeScolaire($annee);
         $manager->persist($evenement);
+
 
         $evenement2 = new Evenement();
         $evenement2->setDescription("Sensibilisation sur la façon de se tenir en entretien");
@@ -228,6 +265,7 @@ class LoadData implements FixtureInterface
         $evenement2->setEtablissement($lieu2);
         $evenement2->setAnnule(false);
         $evenement2->addIntervenant($user2);
+        $evenement2->setAnneeScolaire($annee2);
         $manager->persist($evenement2);
 
         $evenement3 = new Evenement();
@@ -244,6 +282,7 @@ class LoadData implements FixtureInterface
         $evenement3->addIntervenant($user);
         $evenement3->addIntervenant($user3);
         $evenement3->addObservateur($user4);
+        $evenement2->setAnneeScolaire($annee3);
         $manager->persist($evenement3);
 
         $evenement4 = new Evenement();
@@ -259,6 +298,7 @@ class LoadData implements FixtureInterface
         $evenement4->addIntervenant($user4);
         $evenement4->addIntervenant($user2);
         $evenement4->addObservateur($user);
+        $evenement2->setAnneeScolaire($annee1);
         $manager->persist($evenement4);
 
         $evenement5 = new Evenement();
@@ -275,8 +315,10 @@ class LoadData implements FixtureInterface
         $evenement5->addIntervenant($user2);
         $evenement5->addIntervenant($user3);
         $evenement5->addObservateur($user);
+        $evenement2->setAnneeScolaire($annee4);
         $manager->persist($evenement5);
 
         $manager->flush();
+
     }
 }
