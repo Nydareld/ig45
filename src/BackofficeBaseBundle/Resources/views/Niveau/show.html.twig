@@ -23,6 +23,13 @@
             </div>
         </div>
         <div class="box-body">
+            <h5>Changement de nom</h5>
+
+            {{ form_start(edit_form) }}
+                {{ form_widget(edit_form) }}
+                <input type="submit" value="Edit" />
+            {{ form_end(edit_form) }}
+
             {% if niveau.etablissements|length != 0 %}
             <h5>Etablissements {{ niveau.nom }}</h5>
             <div class="row">

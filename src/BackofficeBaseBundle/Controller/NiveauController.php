@@ -43,23 +43,10 @@ class NiveauController extends Controller
      * Finds and displays a niveau entity.
      *
      */
-    public function showAction(Niveau $niveau)
+    public function showAction(Request $request,Niveau $niveau)
     {
         $deleteForm = $this->createDeleteForm($niveau);
 
-        return $this->render('BackofficeBaseBundle:Niveau:show.html.twig', array(
-            'niveau' => $niveau,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-     * Displays a form to edit an existing niveau entity.
-     *
-     */
-    public function editAction(Request $request, Niveau $niveau)
-    {
-        $deleteForm = $this->createDeleteForm($niveau);
         $editForm = $this->createForm('BackofficeBaseBundle\Form\NiveauType', $niveau);
         $editForm->handleRequest($request);
 
@@ -69,7 +56,7 @@ class NiveauController extends Controller
             return $this->redirectToRoute('niveau_edit', array('id' => $niveau->getId()));
         }
 
-        return $this->render('BackofficeBaseBundle:Niveau:edit.html.twig', array(
+        return $this->render('BackofficeBaseBundle:Niveau:show.html.twig', array(
             'niveau' => $niveau,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

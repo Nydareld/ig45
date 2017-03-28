@@ -6,7 +6,7 @@ niveau_index:
 niveau_show:
     path:     /{id}/show
     defaults: { _controller: "BackofficeBaseBundle:Niveau:show" }
-    methods:  GET
+    methods:  [GET, POST]
 
 niveau_new:
     path:     /new
