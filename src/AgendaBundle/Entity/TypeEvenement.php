@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * type_evenement
  *
  * @ORM\Table(name="type_evenement")
- * @ORM\Entity(repositoryClass="AgendaBundle\Repository\type_evenementRepository")
+ * @ORM\Entity(repositoryClass="AgendaBundle\Repository\TypeEvenementRepository")
  */
 class TypeEvenement
 {
