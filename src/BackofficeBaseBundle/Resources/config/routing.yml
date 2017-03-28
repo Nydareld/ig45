@@ -6,6 +6,10 @@ admin_crud_etablissement:
     resource: "@BackofficeBaseBundle/Resources/config/routing/etablissement.yml"
     prefix:   /etablissement
 
+agenda_niveau:
+    resource: "@BackofficeBaseBundle/Resources/config/routing/niveau.yml"
+    prefix:   /niveau
+
 admin_user:
     resource: "@BackofficeBaseBundle/Resources/config/routing/user.yml"
     prefix:   /user
