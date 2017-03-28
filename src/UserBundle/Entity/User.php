@@ -136,260 +136,6 @@ class User extends BaseUser
         return $this;
     }
 
-
-    /**
-     * Add intervention.
-     *
-     * @param \AgendaBundle\Entity\Evenement $interventions
-     *
-     * @return User
-     */
-    public function addIntervention(\AgendaBundle\Entity\Evenement $intervention)
-    {
-        $this->interventions[] = $intervention;
-
-        return $this;
-    }
-
-    /**
-     * Remove intervention.
-     *
-     * @param \AgendaBundle\Entity\Evenement $interventions
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removeIntervention(\AgendaBundle\Entity\Evenement $intervention)
-    {
-        return $this->interventions->removeElement($intervention);
-    }
-
-    /**
-     * Get intervention.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getInterventions()
-    {
-        return $this->interventions;
-    }
-
-    /**
-     * Add observation.
-     *
-     * @param \AgendaBundle\Entity\Evenement $observations
-     *
-     * @return User
-     */
-    public function addObservation(\AgendaBundle\Entity\Evenement $observation)
-    {
-        $this->observations[] = $observation;
-
-        return $this;
-    }
-
-    /**
-     * Remove observation.
-     *
-     * @param \AgendaBundle\Entity\Evenement $observations
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removeObservation(\AgendaBundle\Entity\Evenement $observation)
-    {
-        return $this->observations->removeElement($observation);
-    }
-
-    /**
-     * Get observation.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getObservations()
-    {
-        return $this->observations;
-    }
-
-    /**
-     * Add evenement.
-     *
-     * @param \AgendaBundle\Entity\Evenement $evenement
-     *
-     * @return User
-     */
-    public function addEvenement(\AgendaBundle\Entity\Evenement $evenement)
-    {
-        $this->evenements[] = $evenement;
-
-        return $this;
-    }
-
-    /**
-     * Remove evenement.
-     *
-     * @param \AgendaBundle\Entity\Evenement $evenement
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removeEvenement(\AgendaBundle\Entity\Evenement $evenement)
-    {
-        return $this->evenements->removeElement($evenement);
-    }
-
-    /**
-     * Get evenements.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getEvenements()
-    {
-        return $this->evenements;
-    }
-
-
-    /**
-     * Set telFixe.
-     *
-     * @param int $telFixe
-     *
-     * @return User
-     */
-    public function setTelFixe($telFixe)
-    {
-        $this->telFixe = $telFixe;
-
-        return $this;
-    }
-
-    /**
-     * Get telFixe.
-     *
-     * @return int
-     */
-    public function getTelFixe()
-    {
-        return $this->telFixe;
-    }
-
-    /**
-     * Set telPort.
-     *
-     * @param int $telPort
-     *
-     * @return User
-     */
-    public function setTelPortable($telPort)
-    {
-        $this->telPortable = $telPortable;
-
-        return $this;
-    }
-
-    /**
-     * Get telPort.
-     *
-     * @return int
-     */
-    public function getTelPortable()
-    {
-        return $this->telPortable;
-    }
-
-    /**
-     * Add correspondantsLieux.
-     *
-     * @param \AgendaBundle\Entity\Etablissement $correspondantsLieux
-     *
-     * @return User
-     */
-    public function addCorrespondantsLieux(\AgendaBundle\Entity\Etablissement $correspondantsLieux)
-    {
-        $this->correspondants_lieux[] = $correspondantsLieux;
-
-        return $this;
-    }
-
-    /**
-     * Remove correspondantsLieux.
-     *
-     * @param \AgendaBundle\Entity\Etablissement $correspondantsLieux
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removeCorrespondantsLieux(\AgendaBundle\Entity\Etablissement $correspondantsLieux)
-    {
-        return $this->correspondants_lieux->removeElement($correspondantsLieux);
-    }
-
-    /**
-     * Get correspondantsLieux.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCorrespondantsLieux()
-    {
-        return $this->correspondants_lieux;
-    }
-
-    /**
-     * Add adjointLieux.
-     *
-     * @param \AgendaBundle\Entity\Etablissement $adjointLieux
-     *
-     * @return User
-     */
-    public function addAdjointLieux(\AgendaBundle\Entity\Etablissement $adjointLieux)
-    {
-        $this->adjoint_lieux[] = $adjointLieux;
-
-        return $this;
-    }
-
-    /**
-     * Remove adjointLieux.
-     *
-     * @param \AgendaBundle\Entity\Etablissement $adjointLieux
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removeAdjointLieux(\AgendaBundle\Entity\Etablissement $adjointLieux)
-    {
-        return $this->adjoint_lieux->removeElement($adjointLieux);
-    }
-
-    /**
-     * Get adjointLieux.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getAdjointLieux()
-    {
-        return $this->adjoint_lieux;
-    }
-
-    /**
-     * Representation en chaine d'un utilisateur : Prenom Nom
-     * @method __toString
-     * @return string
-     */
-    public function __toString(){
-        return $this->getNom().' '.$this->getPrenom();
-    }
-
-
-    /**
-     * Set the value of Id
-     *
-     * @param mixed id
-     *
-     * @return self
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
     /**
      * Get the value of Groups
      *
@@ -415,6 +161,66 @@ class User extends BaseUser
     }
 
     /**
+     * Get the value of Tel Fixe
+     *
+     * @return int
+     */
+    public function getTelFixe()
+    {
+        return $this->telFixe;
+    }
+
+    /**
+     * Set the value of Tel Fixe
+     *
+     * @param int telFixe
+     *
+     * @return self
+     */
+    public function setTelFixe($telFixe)
+    {
+        $this->telFixe = $telFixe;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Tel Portable
+     *
+     * @return int
+     */
+    public function getTelPortable()
+    {
+        return $this->telPortable;
+    }
+
+    /**
+     * Set the value of Tel Portable
+     *
+     * @param int telPortable
+     *
+     * @return self
+     */
+    public function setTelPortable($telPortable)
+    {
+        $this->telPortable = $telPortable;
+
+        return $this;
+    }
+
+
+
+    /**
+     * Get the value of Interventions
+     *
+     * @return mixed
+     */
+    public function getInterventions()
+    {
+        return $this->interventions;
+    }
+
+    /**
      * Set the value of Interventions
      *
      * @param mixed interventions
@@ -429,6 +235,40 @@ class User extends BaseUser
     }
 
     /**
+     * @method addInterventions
+     * @param  AgendaBundleEntityEvenement $intervention [description]
+     * @return self
+     */
+    public function addInterventions(AgendaBundle\Entity\Evenement $intervention)
+    {
+        $this->interventions->add($intervention);
+
+        return $this;
+    }
+
+    /**
+     * @method removeInterventions
+     * @param  AgendaBundleEntityEvenement $intervention [description]
+     * @return self
+     */
+    public function removeInterventions(AgendaBundle\Entity\Evenement $intervention)
+    {
+        $this->interventions->removeElement($intervention);
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Observations
+     *
+     * @return mixed
+     */
+    public function getObservations()
+    {
+        return $this->observations;
+    }
+
+    /**
      * Set the value of Observations
      *
      * @param mixed observations
@@ -438,6 +278,30 @@ class User extends BaseUser
     public function setObservations($observations)
     {
         $this->observations = $observations;
+
+        return $this;
+    }
+
+    /**
+     * @method addObervations
+     * @param  AgendaBundleEntityEvenement $observation [description]
+     * @return self
+     */
+    public function addObervations(AgendaBundle\Entity\Evenement $observation)
+    {
+        $this->observations->add($observation);
+
+        return $this;
+    }
+
+    /**
+     * @method removeObervations
+     * @param  AgendaBundleEntityEvenement $observation [description]
+     * @return self
+     */
+    public function removeObervations(AgendaBundle\Entity\Evenement $observation)
+    {
+        $this->observations->removeElement($observation);
 
         return $this;
     }
@@ -467,6 +331,30 @@ class User extends BaseUser
     }
 
     /**
+     * @method addCorrespondances
+     * @param  AgendaBundleEntityEvenement $correspondances [description]
+     * @return self
+     */
+    public function addCorrespondances(AgendaBundle\Entity\Evenement $correspondances)
+    {
+        $this->correspondances->add($correspondances);
+
+        return $this;
+    }
+
+    /**
+     * @method removeCorrespondances
+     * @param  AgendaBundleEntityEvenement $correspondances [description]
+     * @return self
+     */
+    public function removeCorrespondances(AgendaBundle\Entity\Evenement $correspondances)
+    {
+        $this->correspondances->removeElement($correspondances);
+
+        return $this;
+    }
+
+    /**
      * Get the value of Adjonctions
      *
      * @return mixed
@@ -486,6 +374,30 @@ class User extends BaseUser
     public function setAdjonctions($adjonctions)
     {
         $this->adjonctions = $adjonctions;
+
+        return $this;
+    }
+
+    /**
+     * @method addAdjonctions
+     * @param  AgendaBundleEntityEvenement $adjonctions [description]
+     * @return self
+     */
+    public function addAdjonctions(AgendaBundle\Entity\Evenement $adjonctions)
+    {
+        $this->adjonctions->add($adjonctions);
+
+        return $this;
+    }
+
+    /**
+     * @method removeAdjonctions
+     * @param  AgendaBundleEntityEvenement $adjonctions [description]
+     * @return self
+     */
+    public function removeAdjonctions(AgendaBundle\Entity\Evenement $adjonctions)
+    {
+        $this->adjonctions->removeElement($adjonctions);
 
         return $this;
     }
