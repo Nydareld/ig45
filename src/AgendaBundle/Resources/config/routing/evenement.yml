@@ -25,3 +25,7 @@ evenement_edit:
 evenement_edit_suite:
     path: /{id}/edit/suite
     defaults: {_controller: AgendaBundle:Evenement:suiteEdit}
+
+evenement_export:
+    path: /{id}/export
+    defaults: {_controller: AgendaBundle:Evenement:export}
