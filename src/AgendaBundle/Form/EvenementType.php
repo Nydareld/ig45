@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class EvenementType extends AbstractType
 {
@@ -21,24 +22,26 @@ class EvenementType extends AbstractType
                         // this is actually the default format for single_text
                         'format' => 'dd-MM-yyyy',
                         'data' => new \DateTime(),
-                        'required' => true
                     )
                   )
-                ->add('anneeScolaire')
-                ->add('etablissement', array('required' => true))
+                ->add('anneeScolaire',TextType::class)
+                ->add('etablissement')
                 ->add('heureDebut',  TimeType::class, array(
                       'input'  => 'datetime',
                       'widget' => 'choice',
-                      'required' => true
                   )
                 )
                 ->add('heureFin', TimeType::class, array(
                       'input'  => 'datetime',
                       'widget' => 'choice',
-                      'required' => true
                   )
                 )
-                ->add('niveauClasse',array('placeholder' => 'ex : CM2', 'required' => true))
+                ->add('niveauClasse',TextType::class, array(
+                    'attr' => array(
+                      'placeholder' => 'Ex : CM2',
+                    ),
+                  )
+                )
                 ->add('nbEleves')
                 ->add('nbParticipants', ChoiceType::class, array(
                     'choices'  => array(
@@ -52,7 +55,6 @@ class EvenementType extends AbstractType
                         '7' => 7,
                         '8' => 8,
                     ),
-                    'required' => true
                   )
                 )
                 ->add('intervenants')
@@ -68,7 +70,6 @@ class EvenementType extends AbstractType
                         '7' => 7,
                         '8' => 8,
                     ),
-                    'required' => true
                   )
                 )
                 ->add('observateurs');
