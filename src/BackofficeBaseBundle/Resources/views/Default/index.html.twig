@@ -3,10 +3,64 @@
 {% block navActive %}overview{% endblock %}
 
 {% block contentHeader %}
-<h1>
-  Vue d'ensemble
-  <small>retrouvez ici les dernieres activité du site</small>
-</h1>
+<section class="content-header">
+  <h1>
+    Vue d'ensemble
+  </h1>
+</section>
+<section class="content">
+
+  <div class="row">
+    <a href="{{ path('etablissement_index') }}">
+      <div class="col-md-6 col-sm-6 col-xs-6">
+        <div class="info-box">
+          <span class="info-box-icon bg-aqua"><i class="ion ion-ios-home-outline"></i></span>
+
+          <div class="info-box-content">
+            <span class="info-box-text">Etablissement</span>
+            <span class="info-box-number">{{ etablissement }}</span>
+          </div>
+        </div>
+      </div>
+    </a>
+    <a href="{{ path('user_list') }}">
+      <div class="col-md-6 col-sm-6 col-xs-6">
+        <div class="info-box">
+          <span class="info-box-icon bg-red"><i class="ion ion-ios-people-outline"></i></span>
+
+          <div class="info-box-content">
+            <span class="info-box-text">Membres</span>
+            <span class="info-box-number">{{ user }}</span>
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <div class="clearfix visible-sm-block"></div>
+    <a href="{{ path('niveau_index') }}">
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="info-box">
+          <span class="info-box-icon bg-green"><i class="ion ion-ios-book-outline"></i></span>
+
+          <div class="info-box-content">
+            <span class="info-box-text">Niveau</span>
+            <span class="info-box-number">{{ niveau }}</span>
+          </div>
+        </div>
+      </div>
+    </a>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-yellow"><i class="ion ion-ios-briefcase-outline"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Type d'evenement</span>
+          <span class="info-box-number">{{ typeEvenement }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}
 
 {% block content %}

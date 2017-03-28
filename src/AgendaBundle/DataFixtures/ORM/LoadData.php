@@ -80,6 +80,7 @@ class LoadData implements FixtureInterface
         $user->setEmail("test@test.Fr");
         $user->setPrenom("Roger");
         $user->setPlainPassword("roger");
+        $user->setEnabled(true);
         $manager->persist($user);
 
         $user1 = new User();
@@ -88,6 +89,7 @@ class LoadData implements FixtureInterface
         $user1->setEmail("leporc@cbon.fr");
         $user1->setPrenom("peguy");
         $user1->setPlainPassword("peguy");
+        $user1->setEnabled(true);
         $manager->persist($user1);
 
         $user2 = new User();
@@ -96,6 +98,7 @@ class LoadData implements FixtureInterface
         $user2->setEmail("francois@sodomite.fr");
         $user2->setPrenom("francois");
         $user2->setPlainPassword("francois");
+        $user2->setEnabled(true);
         $manager->persist($user2);
 
         $user3 = new User();
@@ -104,6 +107,7 @@ class LoadData implements FixtureInterface
         $user3->setEmail("florian@doudou.Fr");
         $user3->setPrenom("floriant");
         $user3->setPlainPassword("floriant");
+        $user3->setEnabled(true);
         $manager->persist($user3);
 
         $user4 = new User();
@@ -112,6 +116,7 @@ class LoadData implements FixtureInterface
         $user4->setEmail("sboubinator@lubi.fr");
         $user4->setPrenom("sboubinator");
         $user4->setPlainPassword("sboubinator");
+        $user4->setEnabled(true);
         $manager->persist($user4);
 
         $user5 = new User();
@@ -120,6 +125,7 @@ class LoadData implements FixtureInterface
         $user5->setEmail("chef@chef.fr");
         $user5->setPrenom("chef");
         $user5->setPlainPassword("chef");
+        $user5->setEnabled(true);
         $manager->persist($user5);
 
         $txNiveau = new Niveau();
