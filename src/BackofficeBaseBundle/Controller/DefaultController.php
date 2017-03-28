@@ -8,26 +8,26 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
+
         $em = $this->getDoctrine()->getManager();
 
-        $query = $em->createQuery('SELECT count(e.id) as nbE FROM AgendaBundle:Etablissement e');
-        $etablissement = $query->getResult();
+        $etablissement = $em->getRepository('AgendaBundle:Etablissement');
+        $nbEtablissement = $etablissement->getNb();
 
-        $query = $em->createQuery('SELECT count(ev.id) as nbEv FROM AgendaBundle:Evenement ev');
-        $evenement = $query->getResult();
+        $nbUser = count($this->get('fos_user.user_manager')->findUsers());
 
-        $query = $em->createQuery('SELECT count(n.id) as nbN FROM AgendaBundle:Niveau n');
-        $niveau = $query->getResult();
+        $niveau = $em->getRepository('AgendaBundle:Niveau');
+        $nbNiveau = $niveau->getNb();
 
-        $query = $em->createQuery('SELECT count(t.id) as nbT FROM AgendaBundle:TypeEvenement t');
-        $typeEvenement = $query->getResult();
+        $typeEvenement = $em->getRepository('AgendaBundle:TypeEvenement');
+        $nbTypeEvenement = $typeEvenement->getNb();
 
 
         return $this->render('BackofficeBaseBundle:Default:index.html.twig',array(
-          'etablissement' => $etablissement[0],
-          'evenement' => $evenement[0],
-          'niveau' => $niveau[0],
-          'typeEvenement' => $typeEvenement[0],
+          'etablissement' => $nbEtablissement,
+          'user' => $nbUser,
+          'niveau' => $nbNiveau,
+          'typeEvenement' => $nbTypeEvenement,
         ));
     }
 }
