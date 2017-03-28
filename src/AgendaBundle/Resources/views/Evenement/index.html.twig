@@ -50,6 +50,9 @@
                         Information Intervention
                     </th>
                     <th>
+                        Correspondant
+                    </th>
+                    <th>
                         Intervenant
                     </th>
                     <th>
@@ -82,6 +85,9 @@
                             {{ evenement.description }}
                             <br>
                             <!-- TODO: AFFICHER NIVEAUX  -->
+                        </td>
+                        <td>
+                            {% if evenement.etablissement.correspondant %}{{ evenement.etablissement.correspondant }}{% endif %}
                         </td>
                         <td>
                             {{ evenement.nbParticipants }}
