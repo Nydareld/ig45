@@ -121,4 +121,9 @@ class AnneeScolaire
     {
         return $this->evenements;
     }
+
+    public function __toString()
+    {
+      return $this->getAnnee();
+    }
 }
