@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class EvenementType extends AbstractType
 {
@@ -20,10 +21,10 @@ class EvenementType extends AbstractType
                         'widget' => 'choice',
                         // this is actually the default format for single_text
                         'format' => 'dd-MM-yyyy',
-                        'data' => new \DateTime()
+                        'data' => new \DateTime(),
                     )
                   )
-
+                ->add('anneeScolaire',TextType::class)
                 ->add('etablissement')
                 ->add('heureDebut',  TimeType::class, array(
                       'input'  => 'datetime',
@@ -33,6 +34,12 @@ class EvenementType extends AbstractType
                 ->add('heureFin', TimeType::class, array(
                       'input'  => 'datetime',
                       'widget' => 'choice',
+                  )
+                )
+                ->add('niveauClasse',TextType::class, array(
+                    'attr' => array(
+                      'placeholder' => 'Ex : CM2',
+                    ),
                   )
                 )
                 ->add('nbEleves')
