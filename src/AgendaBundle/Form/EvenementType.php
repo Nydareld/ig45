@@ -20,7 +20,8 @@ class EvenementType extends AbstractType
                         'widget' => 'choice',
                         // this is actually the default format for single_text
                         'format' => 'dd-MM-yyyy',
-                        'data' => new \DateTime()
+                        'data' => new \DateTime(),
+                        'required' => true
                     )
                   )
 
@@ -28,11 +29,13 @@ class EvenementType extends AbstractType
                 ->add('heureDebut',  TimeType::class, array(
                       'input'  => 'datetime',
                       'widget' => 'choice',
+                      'required' => true
                   )
                 )
                 ->add('heureFin', TimeType::class, array(
                       'input'  => 'datetime',
                       'widget' => 'choice',
+                      'required' => true
                   )
                 )
                 ->add('nbEleves')
@@ -48,6 +51,7 @@ class EvenementType extends AbstractType
                         '7' => 7,
                         '8' => 8,
                     ),
+                    'required' => true
                   )
                 )
                 ->add('intervenants')
@@ -63,6 +67,7 @@ class EvenementType extends AbstractType
                         '7' => 7,
                         '8' => 8,
                     ),
+                    'required' => true
                   )
                 )
                 ->add('observateurs');
