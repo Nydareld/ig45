@@ -4,6 +4,7 @@ namespace AgendaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Evenement
@@ -33,6 +34,9 @@ class Evenement
      * @var \DateTime
      *
      * @ORM\Column(name="date_evt", type="datetime")
+     * @Assert\NotBlank(
+     *               message = "Cette valeur ne peut être vide"
+     * )
      */
     private $dateEvt;
 
@@ -40,6 +44,9 @@ class Evenement
      * @var \DateTime
      *
      * @ORM\Column(name="heure_debut", type="datetime")
+     * @Assert\NotBlank(
+     *               message = "Cette valeur ne peut être vide"
+     * )
      */
     private $heureDebut;
 
@@ -47,6 +54,9 @@ class Evenement
      * @var \DateTime
      *
      * @ORM\Column(name="heure_fin", type="datetime")
+     * @Assert\NotBlank(
+     *               message = "Cette valeur ne peut être vide"
+     * )
      */
     private $heureFin;
 
@@ -54,6 +64,9 @@ class Evenement
      * @var int
      *
      * @ORM\Column(name="nb_participants", type="integer")
+     * @Assert\NotBlank(
+     *               message = "Cette valeur ne peut être vide"
+     * )
      */
     private $nbParticipants;
 
@@ -61,6 +74,9 @@ class Evenement
      * @var int
      *
      * @ORM\Column(name="nb_observateurs", type="integer")
+     * @Assert\NotBlank(
+     *               message = "Cette valeur ne peut être vide"
+     * )
      */
     private $nbObservateurs;
 
@@ -78,6 +94,9 @@ class Evenement
 
     /**
      * @ORM\ManyToOne(targetEntity="AgendaBundle\Entity\Etablissement", inversedBy="evenements")
+     * @Assert\NotBlank(
+     *               message = "Cette valeur ne peut être vide"
+     * )
      */
     private $etablissement;
 
@@ -173,6 +192,9 @@ class Evenement
      * @var string
      *
      * @ORM\Column(name="niveau_classe", type="string", nullable=true)
+     * @Assert\NotBlank(
+     *               message = "Cette valeur ne peut être vide"
+     * )
      */
     private $niveauClasse;
 
@@ -180,6 +202,9 @@ class Evenement
      * @var string
      *
      * @ORM\ManyToOne(targetEntity="AgendaBundle\Entity\AnneeScolaire", inversedBy="evenements")
+     * @Assert\NotBlank(
+     *               message = "Cette valeur ne peut être vide"
+     * )
      */
     private $anneeScolaire;
 

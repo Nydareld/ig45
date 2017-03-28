@@ -24,7 +24,7 @@ class EvenementType extends AbstractType
                         'data' => new \DateTime(),
                     )
                   )
-                ->add('anneeScolaire',TextType::class)
+                ->add('anneeScolaire')
                 ->add('etablissement')
                 ->add('heureDebut',  TimeType::class, array(
                       'input'  => 'datetime',
