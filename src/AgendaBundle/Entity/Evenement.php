@@ -101,7 +101,7 @@ class Evenement
     private $etablissement;
 
     /**
-     * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", mappedBy="interventions")
+     * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", inversedBy="interventions")
      * @ORM\JoinTable(name="user_interventions",
      *      joinColumns={@ORM\JoinColumn(name="evenement_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
@@ -110,7 +110,7 @@ class Evenement
     private $intervenants;
 
     /**
-     * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", mappedBy="observations")
+     * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", inversedBy="observations")
      * @ORM\JoinTable(name="user_observations",
      *      joinColumns={@ORM\JoinColumn(name="evenement_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}

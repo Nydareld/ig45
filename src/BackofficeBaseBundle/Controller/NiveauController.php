@@ -53,7 +53,7 @@ class NiveauController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('niveau_edit', array('id' => $niveau->getId()));
+            return $this->redirectToRoute('niveau_show', array('id' => $niveau->getId()));
         }
 
         return $this->render('BackofficeBaseBundle:Niveau:show.html.twig', array(
