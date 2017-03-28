@@ -1,3 +1,9 @@
+@charset 'UTF-8';
+
+.brand-logo img {
+  vertical-align: ☺text-bottom;
+}
+
 .action_agenda {
   margin: 50px 0;
   padding: 20px 10px;
@@ -12,8 +18,17 @@
   color: #ff9800;
 }
 
+.agenda .logo_enfants {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.agenda .logo_enfants img {
+  max-width: 250px;
+}
+
 .agenda .legende_agenda {
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   padding: 30px 10px 10px;
   border: 1px #9e9e9e solid;
 }
@@ -26,6 +41,10 @@
 .agenda table {
   margin-bottom: 50px;
   border: 1px #9e9e9e solid;
+}
+
+.agenda table .annule {
+  background-color: rgba(244, 67, 54, .5) !important;
 }
 
 .agenda table i {

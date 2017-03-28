@@ -1,6 +1,12 @@
 // ------- VARIABLES ---------
 $bleu_light: #64b5f6;
-$grey_light: #eeeeee; // ------- GLOBAL ------
+$grey_light: #eeeeee;
+
+.brand-logo {
+    img {
+        vertical-align: ☺text-bottom;
+    }
+}
 
 .action_agenda {
     margin: 50px 0;
@@ -17,8 +23,17 @@ $grey_light: #eeeeee; // ------- GLOBAL ------
         color: #ff9800;
     }
 
+    .logo_enfants {
+        text-align: center;
+        margin-bottom: 20px;
+
+        img {
+            max-width: 250px;
+        }
+    }
+
     .legende_agenda {
-        margin-bottom: 50px;
+        margin-bottom: 20px;
         border: 1px #9e9e9e solid;
         padding: 30px 10px 10px;
 
@@ -31,6 +46,10 @@ $grey_light: #eeeeee; // ------- GLOBAL ------
     table {
         margin-bottom: 50px;
         border: 1px #9e9e9e solid;
+
+        .annule {
+            background-color: rgba(244, 67, 54, 0.3)!important;
+        }
 
         i {
             vertical-align: bottom;
