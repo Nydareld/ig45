@@ -39,14 +39,12 @@ class User extends BaseUser
     protected $groups;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Evenement", inversedBy="intervenants")
-     * @ORM\JoinTable(name="user_interventions")
+     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Evenement", mappedBy="intervenants")
      */
     protected $interventions;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Evenement", inversedBy="observateurs")
-     * @ORM\JoinTable(name="user_observations")
+     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Evenement", mappedBy="observateurs")
      */
     protected $observations;
 
@@ -56,8 +54,7 @@ class User extends BaseUser
     protected $correspondances;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Etablissement", inversedBy="adjoints")
-     * @ORM\JoinTable(name="etablissement_adjoints")
+     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Etablissement", mappedBy="adjoints")
      */
     protected $adjonctions;
 
