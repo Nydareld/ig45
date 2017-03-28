@@ -1,6 +1,8 @@
 <?php
 
 namespace AgendaBundle\Repository;
+use UserBundle\Entity\User;
+use AgendaBundle\Entity\Evenement;
 
 /**
  * EvenementRepository
@@ -10,4 +12,25 @@ namespace AgendaBundle\Repository;
  */
 class EvenementRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getByUser(User $user){
+        $res = array();
+
+        //Si l'utilisateur est intervenant dans un evenement
+        $res = array_merge($res, $user->getInterventions()->getValues());
+        //Si l'utilisateur est observateur dans un evenement
+        $res = array_merge($res, $user->getObservations()->getValues());
+
+        //Si l'utilisateur est adjoint dans un evenement
+        foreach ($user->getAdjonctions() as $etab) {
+            $res = array_merge($res, $etab->getEvenements()->getValues());
+        }
+
+        //Si l'utilisateur est correspondant d'un evenement
+        foreach ($user->getCorrespondances() as $etab) {
+            $res = array_merge($res, $etab->getEvenements()->getValues());
+        }
+
+        //On supprime les éventuels doublons
+        return array_unique($res);
+    }
 }

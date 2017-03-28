@@ -22,34 +22,11 @@ class AgendaController extends Controller
         // Récupération de l'utilisateur connecté
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        // Récupération de tout les évènements pour l'utilisateur connecté
-        $evenements = [];
-
-        $intervention = $user->getInterventions();
-        foreach ($intervention as $eventInter) {
-            $evenements[] = $eventInter;
-        }
-        $observations = $user->getObservations();
-        foreach ($observations as $eventObs) {
-            $evenements[] = $eventObs;
-        }
-
-        // ajout des évènements dans lesquelles le user est correspondant
-        // $correspondantLieux = $user->getCorrespondantsLieux()->getEvenement();
-        // foreach ($adjointLieux as $lieu) {
-        //     $evenements[] = $lieu->getEvenement();
-        // }
-        //
-        // // ajout des évènements dans lesquelles le user est adjoint
-        // $adjointLieux =     return $this->render('AgendaBundle:Agenda:agenda.html.twig',
-        //                array('ev    return $this->render('AgendaBundle:Agenda:agenda.html.twig',
-        //                array('evenements' => $evenements)); as $lieu) {
-        //     $evenements[] = $lieu->getEvenement();
-        // }
+        $evenements = $this->getDoctrine()->getRepository('AgendaBundle:Evenement')->getByUser($user);
 
         // on envoie tout les évènements liés à l'utilisateur jusqu'au twig
-        return $this->render('AgendaBundle:Agenda:agenda.html.twig',
-                        array('user' => $user));
+        return $this->render('AgendaBundle:Evenement:index.html.twig',
+                        array('evenements' => $evenements));
     }
 
     public function searchAction()

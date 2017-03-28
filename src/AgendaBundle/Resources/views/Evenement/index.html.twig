@@ -2,30 +2,35 @@
 {% block title %}Agenda{% endblock %}
 {% block contentBody %}
     <div class="agenda">
-        <div class="logo_enfants">
-            <img src="{{ asset('assets/image/enfantsJoyeux.gif') }}" alt="Logo Enfants">
+        <div class="action_agenda">
+            <a href="{{ path('evenement_index') }}" class="waves-effect waves-light btn blue lighten-2">Accueil</a>
+
+            {% if is_granted('ROLE_CORRESPONDANT') or is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') %}
+                <a href="{{ path('evenement_new') }}" class="waves-effect waves-light btn blue lighten-2">Créer une Intervention</a>
+            {% endif %}
+
+            <a href="#" class="waves-effect waves-light btn blue lighten-2">Agenda Personnel</a>
         </div>
+
         <div class="legende_agenda">
             <div class="block_legende row">
                 <div class="col s12 m4">
-                    <i class="material-icons">add</i>Créer une intervention
-                </div>
-                <div class="col s12 m4">
-                    <i class="material-icons">info_outline</i>Survoler pour voir des informations supplémentaires
+                    <i class="material-icons">info_outline</i>
+                    <span>Survoler pour voir des informations supplémentaires</span>
                 </div>
                 <div class="col s12 m4">
                     <i class="material-icons">mail</i>Envoyer un email aux correspondants et adjoints
                 </div>
-            </div>
-            <div class="block_legende row">
                 <div class="col s12 m4">
                     <i class="material-icons">description</i>Obtenir la fiche de l'intervention
                 </div>
+            </div>
+            <div class="block_legende row">
                 <div class="col s12 m4">
-                    <i class="material-icons icon_cancel">cancel</i>Annuler l'intervention
+                    <i class="material-icons icon_cancel">cancel</i>Annuler l'évènement
                 </div>
                 <div class="col s12 m4">
-                    <i class="material-icons icon_edit">mode_edit</i>Modifier l'intervention
+                    <i class="material-icons icon_edit">mode_edit</i>Modifier l'évènement
                 </div>
             </div>
         </div>
@@ -45,6 +50,9 @@
                         Information Intervention
                     </th>
                     <th>
+                        Correspondant
+                    </th>
+                    <th>
                         Intervenant
                     </th>
                     <th>
@@ -60,63 +68,57 @@
             </thead>
             <tbody>
                 {% for evenement in evenements %}
-                    {% if evenement.annule == true %}
-                        <tr class="annule">
-                        {% else %}
-                            <tr>
+                    <tr>
+                        <td>
+                            {% if evenement.dateEvt %}{{ evenement.dateEvt|date('l d/m/Y') }}{% endif %}
+                        </td>
+                        <td>
+                            {% if evenement.heureDebut %}{{ evenement.heureDebut|date('H:i') }}{% endif %}
+                        </td>
+                        <td>
+                            {% if evenement.heureFin %}{{ evenement.heureFin|date('H:i') }}{% endif %}
+                        </td>
+                        <td>
+                            {{ evenement.etablissement }}
+                            <i class="material-icons tooltipped" data-position="bottom" data-delay="50" data-tooltip="{{ evenement.etablissement.adresse }} {{ evenement.etablissement.ville }} {{ evenement.etablissement.codePostal }}">info_outline</i>
+                            <br>
+                            {{ evenement.description }}
+                            <br>
+                            {{ evenement.niveauClasse }}
+                        </td>
+                        <td>
+                            {% if evenement.etablissement.correspondant %}{{ evenement.etablissement.correspondant }}{% endif %}
+                        </td>
+                        <td>
+                            {{ evenement.nbParticipants }}
+                            <i class="material-icons tooltipped" data-position="bottom" data-delay="50" data-tooltip="{% for intervenant in evenement.intervenants %}{{ intervenant.prenom }} {{ intervenant.nom }}<br />{% endfor %}">info_outline</i>
+                        </td>
+                        <td>
+                            {{ evenement.nbObservateurs }}
+                            <i class="material-icons tooltipped" data-position="bottom" data-delay="50" data-tooltip="{% for observateur in evenement.observateurs %}{{ observateur.prenom }} {{ observateur.nom }}<br />{% endfor %}">info_outline</i>
+                        </td>
+                        <td>
+                            <a href="{{ path('evenement_show', { 'id': evenement.id }) }}">
+                                <i class="material-icons icon">description</i>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#">
+                                <i class="material-icons icon">mail</i>
+                            </a>
+                            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') or
+                            app.user.username == evenement.etablissement.correspondant.username %}
+                                <a href="{{ path('evenement_delete', { 'id': evenement.id }) }}">
+                                    <i class="material-icons icon_cancel">cancel</i>
+                                </a>
+                                <a href="{{ path('evenement_edit', { 'id': evenement.id }) }}">
+                                    <i class="material-icons icon_edit">mode_edit</i>
+                                </a>
                             {% endif %}
-                            <td>
-                                <!-- TODO: TRADUCTION DE LA DATE EN FR : Installation du Intl sur le serveur du client -->
-                                {% if evenement.dateEvt %}{{ evenement.dateEvt|date('l d/m/Y') }}{% endif %}
-                            </td>
-                            <td>
-                                {% if evenement.heureDebut %}{{ evenement.heureDebut|date('H:i') }}{% endif %}
-                            </td>
-                            <td>
-                                {% if evenement.heureFin %}{{ evenement.heureFin|date('H:i') }}{% endif %}
-                            </td>
-                            <td>
-                                {{ evenement.etablissement }}
-                                {% if evenement.etablissement.adresse %}
-                                    <i class="material-icons tooltipped" data-position="bottom" data-delay="50" data-tooltip="{{ evenement.etablissement.adresse }} {{ evenement.etablissement.ville }} {{ evenement.etablissement.codePostal }}">info_outline</i>
-                                {% endif %}
-                                <br>
-                                {{ evenement.description }}
-                                <br>
-                                <!-- TODO: AFFICHER NIVEAUX  -->
-                            </td>
-                            <td>
-                                {{ evenement.nbParticipants }}
-                                <!-- TODO: AFFICHER INTERVENANTS INSCRITS + TOOLTIP -->
-                                <i class="material-icons tooltipped" data-position="bottom" data-delay="50" data-tooltip="I am tooltip">info_outline</i>
-                            </td>
-                            <td>
-                                {{ evenement.nbObservateurs }}
-                                <!-- TODO: AFFICHER OBSERVATEURS INSCRITS + TOOLTIP -->
-                                <i class="material-icons tooltipped" data-position="bottom" data-delay="50" data-tooltip="I am tooltip">info_outline</i>
-                            </td>
-                            <td>
-                                <a href="{{ path('evenement_show', { 'id': evenement.id }) }}" title="Fiche de l'intervention">
-                                    <i class="material-icons icon">description</i>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="#" title="Envoyer un email aux correspondants et adjoints">
-                                    <i class="material-icons icon">mail</i>
-                                </a>
-                                {% if is_granted('ROLE_ADMIN')or is_granted('ROLE_SUPER_ADMIN')or
-                                app.user.username == evenement.etablissement.correspondant.username %}
-                                    <a href="{{ path('evenement_delete', { 'id': evenement.id }) }}" title="Annuler l'intervention">
-                                        <i class="material-icons icon_cancel">cancel</i>
-                                    </a>
-                                    <a href="{{ path('evenement_edit', { 'id': evenement.id }) }}" title="Modifier l'intervention">
-                                        <i class="material-icons icon_edit">mode_edit</i>
-                                    </a>
-                                {% endif %}
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    {% endblock %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

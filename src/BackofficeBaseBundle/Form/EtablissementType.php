@@ -34,9 +34,9 @@ class EtablissementType extends AbstractType
                 'label'=>'etablissement.fieldslabel.codePostal',
                 'translation_domain' => 'AgendaBundle'
             ))
-            ->add('correspondants',EntityType::class,array(
+            ->add('correspondant',EntityType::class,array(
                 'class' => 'UserBundle:User',
-                'label'=>'etablissement.fieldslabel.correspondants',
+                'label'=>'etablissement.fieldslabel.correspondant',
                 'translation_domain' => 'AgendaBundle'
             ))
             ->add('adjoints', EntityType::class, array(
