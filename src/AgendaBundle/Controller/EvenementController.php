@@ -178,7 +178,9 @@ class EvenementController extends Controller
     public function exportAction(Evenement $evenement){
 
         //on stocke la vue à convertir en PDF, en n'oubliant pas les paramètres twig si la vue comporte des données dynamiques
-        $html = $this->render('AgendaBundle:Evenement:show.html.twig', array('evenement' => $evenement));
+
+        $html = $this->renderView('AgendaBundle:Evenement:showExport.html.twig', array('evenement' => $evenement));
+
 
         //if you are in a controlller use :
         $pdf = $this->get("white_october.tcpdf")->create('vertical', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
