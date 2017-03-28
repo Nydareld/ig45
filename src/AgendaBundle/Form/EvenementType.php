@@ -24,8 +24,8 @@ class EvenementType extends AbstractType
                         'required' => true
                     )
                   )
-
-                ->add('etablissement')
+                ->add('anneeScolaire')
+                ->add('etablissement', array('required' => true))
                 ->add('heureDebut',  TimeType::class, array(
                       'input'  => 'datetime',
                       'widget' => 'choice',
@@ -38,6 +38,7 @@ class EvenementType extends AbstractType
                       'required' => true
                   )
                 )
+                ->add('niveauClasse',array('placeholder' => 'ex : CM2', 'required' => true))
                 ->add('nbEleves')
                 ->add('nbParticipants', ChoiceType::class, array(
                     'choices'  => array(
