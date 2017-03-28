@@ -24,7 +24,7 @@
                     <ul class="right hide-on-med-and-down">
                         <li>
                             {% if app.user %}
-                                <a href="#">{{app.user.nom}}
+                                <a href="{{ path('fos_user_security_login') }}">{{app.user.nom}}
                                     {{app.user.prenom}}
                                     <i class="material-icons right">person</i>
                                 </a>
@@ -55,7 +55,7 @@
                         <i class="material-icons">add</i>
                     </a>
                 {% endif %}
-                <a href="#" class="waves-effect waves-light btn blue lighten-2" title="Agenda personnel">Agenda Personnel</a>
+                <a href="{{ path('agenda_perso') }}" class="waves-effect waves-light btn blue lighten-2" title="Agenda personnel">Agenda Personnel</a>
                 {% block specificAction%}{% endblock %}
             </div>
         {% endblock %}
