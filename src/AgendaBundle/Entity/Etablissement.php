@@ -1,11 +1,8 @@
 <?php
-
 namespace AgendaBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 use UserBundle\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
-
 /**
  * Etablissement
  *
@@ -22,42 +19,36 @@ class Etablissement
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var string
      *
      * @ORM\Column(name="Nom", type="string", length=255)
      */
     private $nom;
-
     /**
      * @var string
      *
      * @ORM\Column(name="adresse", type="string", length=255)
      */
     private $adresse;
-
     /**
      * @var string
      *
      * @ORM\Column(name="ville", type="string", length=255)
      */
     private $ville;
-
     /**
      * @var integer
      *
      * @ORM\Column(name="code_postal", type="integer")
      */
     private $codePostal;
-
     /**
      * @var User
      *
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="correspondances")
      */
     private $correspondant;
-
     /**
      * @var User
      *
@@ -68,14 +59,12 @@ class Etablissement
      * )
      */
     private $adjoints;
-
     /**
      * @var Evenement
      *
      * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\Evenement", mappedBy="etablissement")
      */
     private $evenements;
-
     /**
      * @var Niveau
      *
@@ -86,14 +75,12 @@ class Etablissement
      *     )
      */
     private $niveaux;
-
     /**
      * @var boolean
      *
      * @ORM\Column(name="Presence", type="boolean", nullable=true)
      */
     private $presence;
-
     /**
      * Constructor
      */
@@ -101,11 +88,9 @@ class Etablissement
         $this->adjoints = new ArrayCollection();
         $this->evenements = new ArrayCollection();
     }
-
     public function __toString(){
         return $this->nom;
     }
-
     /**
      * Get the value of Id
      *
@@ -115,8 +100,6 @@ class Etablissement
     {
         return $this->id;
     }
-
-
     /**
      * Get the value of Nom
      *
@@ -126,7 +109,6 @@ class Etablissement
     {
         return $this->nom;
     }
-
     /**
      * Set the value of Nom
      *
@@ -137,10 +119,8 @@ class Etablissement
     public function setNom($nom)
     {
         $this->nom = $nom;
-
         return $this;
     }
-
     /**
      * Get the value of Adresse
      *
@@ -150,7 +130,6 @@ class Etablissement
     {
         return $this->adresse;
     }
-
     /**
      * Set the value of Adresse
      *
@@ -161,10 +140,8 @@ class Etablissement
     public function setAdresse($adresse)
     {
         $this->adresse = $adresse;
-
         return $this;
     }
-
     /**
      * Get the value of Ville
      *
@@ -174,7 +151,6 @@ class Etablissement
     {
         return $this->ville;
     }
-
     /**
      * Set the value of Ville
      *
@@ -185,10 +161,8 @@ class Etablissement
     public function setVille($ville)
     {
         $this->ville = $ville;
-
         return $this;
     }
-
     /**
      * Get the value of Code Postal
      *
@@ -198,7 +172,6 @@ class Etablissement
     {
         return $this->codePostal;
     }
-
     /**
      * Set the value of Code Postal
      *
@@ -209,10 +182,8 @@ class Etablissement
     public function setCodePostal($codePostal)
     {
         $this->codePostal = $codePostal;
-
         return $this;
     }
-
     /**
      * Get the value of Correspondant
      *
@@ -222,7 +193,6 @@ class Etablissement
     {
         return $this->correspondant;
     }
-
     /**
      * Set the value of Correspondant
      *
@@ -233,10 +203,8 @@ class Etablissement
     public function setCorrespondant(User $correspondant)
     {
         $this->correspondant = $correspondant;
-
         return $this;
     }
-
     /**
      * Get the value of Adjoints
      *
@@ -246,7 +214,6 @@ class Etablissement
     {
         return $this->adjoints;
     }
-
     /**
      * Set the value of Adjoints
      *
@@ -257,10 +224,8 @@ class Etablissement
     public function setAdjoints(User $adjoints)
     {
         $this->adjoints = $adjoints;
-
         return $this;
     }
-
     /**
      * Add adjoint
      *
@@ -270,13 +235,9 @@ class Etablissement
      */
     public function addAdjoint(User $adjoint)
     {
-    $this->adjoints->add($adjoint);
-
-    return $this;
+        $this->adjoints->add($adjoint);
+        return $this;
     }
-
-
-
     /**
      * Remove adjoint
      *
@@ -284,11 +245,9 @@ class Etablissement
      */
     public function removeAdjoint(User $adjoint)
     {
-    $this->adjoints->removeElement($adjoint);
-
-    return $this;
+        $this->adjoints->removeElement($adjoint);
+        return $this;
     }
-
     /**
      * Get the value of Evenements
      *
@@ -298,7 +257,6 @@ class Etablissement
     {
         return $this->evenements;
     }
-
     /**
      * Set the value of Evenements
      *
@@ -309,10 +267,8 @@ class Etablissement
     public function setEvenements(ArrayCollection $evenements)
     {
         $this->evenements = $evenements;
-
         return $this;
     }
-
     /**
      * Add evenement
      *
@@ -323,11 +279,8 @@ class Etablissement
     public function addEvenement(Evenement $evenement)
     {
         $this->evenements->add($evenement);
-
         return $this;
     }
-
-
     /**
      * Remove evenement
      *
@@ -336,11 +289,8 @@ class Etablissement
     public function removeEvenement(Evenement $evenement)
     {
         $this->evenements->removeElement($evenement);
-
         return $this;
     }
-
-
     /**
      * Get the value of Niveaux
      *
@@ -350,7 +300,6 @@ class Etablissement
     {
         return $this->niveaux;
     }
-
     /**
      * Set the value of Niveaux
      *
@@ -361,23 +310,17 @@ class Etablissement
     public function setNiveaux(Niveau $niveaux)
     {
         $this->niveaux = $niveaux;
-
         return $this;
     }
-
     public function getPresence()
     {
         return $this -> presence;
     }
-
     public function setPresence($presence)
     {
         $this -> presence = $presence;
-
         return $this;
     }
-
-
     /**
      * Add niveaux.
      *
@@ -388,10 +331,8 @@ class Etablissement
     public function addNiveaux(Niveau $niveaux)
     {
         $this->niveaux[] = $niveaux;
-
         return $this;
     }
-
     /**
      * Remove niveaux.
      *
