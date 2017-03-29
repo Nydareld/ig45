@@ -1,7 +1,5 @@
-@charset 'UTF-8';
-
 .brand-logo img {
-  vertical-align: ☺text-bottom;
+  vertical-align: text-bottom;
 }
 
 .action_agenda {
@@ -44,7 +42,7 @@
 }
 
 .agenda table .annule {
-  background-color: rgba(244, 67, 54, .5) !important;
+  background-color: rgba(244, 67, 54, .3) !important;
 }
 
 .agenda table i {
