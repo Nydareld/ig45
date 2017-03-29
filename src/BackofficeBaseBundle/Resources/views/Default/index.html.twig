@@ -49,17 +49,19 @@
         </div>
       </div>
     </a>
-    <div class="col-md-6 col-sm-6 col-xs-12">
-      <div class="info-box">
-        <span class="info-box-icon bg-yellow"><i class="ion ion-ios-briefcase-outline"></i></span>
+    <a href="{{ path('typeevenement_index') }}">
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="info-box">
+          <span class="info-box-icon bg-yellow"><i class="ion ion-ios-briefcase-outline"></i></span>
 
-        <div class="info-box-content">
-          <span class="info-box-text">Type d'evenement</span>
-          <span class="info-box-number">{{ typeEvenement }}</span>
+          <div class="info-box-content">
+            <span class="info-box-text">Type d'evenement</span>
+            <span class="info-box-number">{{ typeEvenement }}</span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </a>
 </section>
 {% endblock %}
 
