@@ -12,12 +12,10 @@
     <p>
         {{ form_label(form.dateEvt, "Date de l'intervention") }}
         {{ form_widget(form.dateEvt) }}
-        {{ form_widget(form.dateEvt, { 'attr': {'class': 'browser-default'} }) }}
-
     </p>
     <p>
-
-        {{ form_widget(form.anneeScolaire, { 'attr': {'class': 'browser-default'} }) }}
+        {{ form_label(form.anneeScolaire, "Date de l'intervention") }}
+        {{ form_widget(form.anneeScolaire) }}
     </p>
     <p>
         {{ form_label(form.etablissement, "Lieu de l'intervention") }}
