@@ -195,4 +195,14 @@ class EvenementController extends Controller
         $pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
         $pdf->Output($filename.".pdf",'I'); // This will output the PDF as a response directly
     }
+
+    public function reactivateAction(Request $request, Evenement $evenement)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $evenement->setAnnule(false);
+        $em->persist($evenement);
+        $em->flush();
+
+        return $this->redirectToRoute('evenement_index');
+    }
 }
