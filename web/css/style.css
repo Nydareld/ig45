@@ -12,6 +12,14 @@
   color: #f44336;
 }
 
+.agenda .icon_check_circle {
+  color: #3c3;
+}
+
+.agenda .icon_report_problem {
+  color: #cc0;
+}
+
 .agenda .icon_edit {
   color: #ff9800;
 }
