@@ -5,6 +5,7 @@ namespace AgendaBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use UserBundle\Entity\User;
 
 /**
  * Evenement
@@ -213,8 +214,8 @@ class Evenement
      */
     public function __construct()
     {
-        $this->intervenants = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->observateurs = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->intervenants = new ArrayCollection();
+        $this->observateurs = new ArrayCollection();
     }
 
 
@@ -476,7 +477,7 @@ class Evenement
      *
      * @return Evenement
      */
-    public function addIntervenant(\UserBundle\Entity\User $intervenant)
+    public function addIntervenant(User $intervenant)
     {
         $this->intervenants->add( $intervenant);
 
@@ -488,7 +489,7 @@ class Evenement
      *
      * @param \UserBundle\Entity\User $intervenant
      */
-    public function removeIntervenant(\UserBundle\Entity\User $intervenant)
+    public function removeIntervenant(User $intervenant)
     {
         $this->intervenants->removeElement($intervenant);
     }
@@ -525,7 +526,7 @@ class Evenement
      *
      * @return Evenement
      */
-    public function addObservateur(\UserBundle\Entity\User $observateur)
+    public function addObservateur(User $observateur)
     {
         $this->observateurs->add( $observateur);
 
@@ -537,7 +538,7 @@ class Evenement
      *
      * @param \UserBundle\Entity\User $observateur
      */
-    public function removeObservateur(\UserBundle\Entity\User $observateur)
+    public function removeObservateur(User $observateur)
     {
         $this->observateurs->removeElement($observateur);
     }
@@ -804,6 +805,10 @@ class Evenement
         $this -> anneeScolaire = $anneeScolaire;
 
         return $this;
+    }
+
+    public function __toString() {
+        return strval($this->id);
     }
 
 }

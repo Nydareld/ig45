@@ -5,6 +5,7 @@ namespace UserBundle\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use AgendaBundle\Entity\Evenement;
 
 /**
  * @ORM\Entity
@@ -236,10 +237,10 @@ class User extends BaseUser
 
     /**
      * @method addInterventions
-     * @param  AgendaBundleEntityEvenement $intervention [description]
+     * @param  AgendaBundle\Entity\Evenement $intervention l'intervention a ajouter
      * @return self
      */
-    public function addInterventions(AgendaBundle\Entity\Evenement $intervention)
+    public function addInterventions(Evenement $intervention)
     {
         $this->interventions->add($intervention);
 
@@ -251,7 +252,7 @@ class User extends BaseUser
      * @param  AgendaBundleEntityEvenement $intervention [description]
      * @return self
      */
-    public function removeInterventions(AgendaBundle\Entity\Evenement $intervention)
+    public function removeInterventions(Evenement $intervention)
     {
         $this->interventions->removeElement($intervention);
 
@@ -287,7 +288,7 @@ class User extends BaseUser
      * @param  AgendaBundleEntityEvenement $observation [description]
      * @return self
      */
-    public function addObervations(AgendaBundle\Entity\Evenement $observation)
+    public function addObervations(Evenement $observation)
     {
         $this->observations->add($observation);
 
@@ -299,7 +300,7 @@ class User extends BaseUser
      * @param  AgendaBundleEntityEvenement $observation [description]
      * @return self
      */
-    public function removeObervations(AgendaBundle\Entity\Evenement $observation)
+    public function removeObervations(Evenement $observation)
     {
         $this->observations->removeElement($observation);
 
@@ -335,7 +336,7 @@ class User extends BaseUser
      * @param  AgendaBundleEntityEvenement $correspondances [description]
      * @return self
      */
-    public function addCorrespondances(AgendaBundle\Entity\Evenement $correspondances)
+    public function addCorrespondances(Evenement $correspondances)
     {
         $this->correspondances->add($correspondances);
 
@@ -347,7 +348,7 @@ class User extends BaseUser
      * @param  AgendaBundleEntityEvenement $correspondances [description]
      * @return self
      */
-    public function removeCorrespondances(AgendaBundle\Entity\Evenement $correspondances)
+    public function removeCorrespondances(Evenement $correspondances)
     {
         $this->correspondances->removeElement($correspondances);
 
@@ -383,7 +384,7 @@ class User extends BaseUser
      * @param  AgendaBundleEntityEvenement $adjonctions [description]
      * @return self
      */
-    public function addAdjonctions(AgendaBundle\Entity\Evenement $adjonctions)
+    public function addAdjonctions(Evenement $adjonctions)
     {
         $this->adjonctions->add($adjonctions);
 
@@ -395,7 +396,7 @@ class User extends BaseUser
      * @param  AgendaBundleEntityEvenement $adjonctions [description]
      * @return self
      */
-    public function removeAdjonctions(AgendaBundle\Entity\Evenement $adjonctions)
+    public function removeAdjonctions(Evenement $adjonctions)
     {
         $this->adjonctions->removeElement($adjonctions);
 
