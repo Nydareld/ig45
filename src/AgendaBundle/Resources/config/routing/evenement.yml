@@ -15,8 +15,12 @@ evenement_new_suite:
     defaults: {_controller: AgendaBundle:Evenement:SuiteNew}
 
 evenement_delete:
-    path: /supprimer/{id}
+    path: /annuler/{id}
     defaults: {_controller: AgendaBundle:Evenement:delete}
+
+evenement_reactivate:
+    path: /supprimer/{id}
+    defaults: {_controller: AgendaBundle:Evenement:reactivate}
 
 evenement_edit:
     path: /{id}/edit
