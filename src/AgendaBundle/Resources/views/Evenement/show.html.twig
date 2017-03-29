@@ -62,10 +62,6 @@
                     <td>{{ evenement.description }}</td>
                 </tr>
                 <tr>
-                    <th>Nombres d'intervenants nécessaires</th>
-                    <td>Informations5</td>
-                </tr>
-                <tr>
                     <th>Nombres de participants</th>
                     <td>{{ evenement.nbParticipants }}</td>
                 </tr>
@@ -88,7 +84,7 @@
                 <tr>
                     <th>Documentation attendue</th>
                     <td>
-                        {% if evenement.documentationattendue %}Yes{% else %}No{% endif %}
+                        {% if evenement.documentationattendue %}Oui{% else %}Non{% endif %}
                     </td>
                 </tr>
                 <tr>
@@ -117,47 +113,7 @@
                 </tr>
                 <tr>
                     <th>Niveau de la classe</th>
-                    <td>Informations 6</td>
-                </tr>
-                <tr>
-                    <th>Nombres d'intervenants IG45</th>
-                    <td>Informations 7</td>
-                </tr>
-                <tr>
-                    <th>Observateurs possibles</th>
-                    <td>Informations 8</td>
-                </tr>
-                <tr>
-                    <th>Correspondant d'établissement</th>
-                    <td>Informations 9</td>
-                </tr>
-                <tr>
-                    <th>Courriel correspondant</th>
-                    <td>Informations 10</td>
-                </tr>
-                <tr>
-                    <th>Tel. fixe correspondant</th>
-                    <td>Informations 11</td>
-                </tr>
-                <tr>
-                    <th>Tel. port. correspondant</th>
-                    <td>Informations 12</td>
-                </tr>
-                <tr>
-                    <th>1er corresp. adjoint</th>
-                    <td>Informations 13</td>
-                </tr>
-                <tr>
-                    <th>Courriel 1er corresp. adjoint</th>
-                    <td>Informations 14</td>
-                </tr>
-                <tr>
-                    <th>Tel. fixe 1er corresp. adjoint</th>
-                    <td>Informations 15</td>
-                </tr>
-                <tr>
-                    <th>Tel. port. 1er corresp. adjoint</th>
-                    <td>Informations 16</td>
+                    <td>{{ evenement.niveauClasse }}</td>
                 </tr>
             </tbody>
         </table>
