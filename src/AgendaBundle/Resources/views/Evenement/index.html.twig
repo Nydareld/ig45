@@ -45,6 +45,9 @@
                         Information Intervention
                     </th>
                     <th>
+                        Correspondant
+                    </th>
+                    <th>
                         Intervenant
                     </th>
                     <th>
@@ -78,22 +81,54 @@
                             <td>
                                 {{ evenement.etablissement }}
                                 {% if evenement.etablissement.adresse %}
-                                    <i class="material-icons tooltipped" data-position="bottom" data-delay="50" data-tooltip="{{ evenement.etablissement.adresse }} {{ evenement.etablissement.ville }} {{ evenement.etablissement.codePostal }}">info_outline</i>
+                                    <i class="material-icons tooltipped" data-position="bottom" data-delay="50"
+                                    data-tooltip="{{ evenement.etablissement.adresse }} {{ evenement.etablissement.ville }} {{ evenement.etablissement.codePostal }}">info_outline</i>
                                 {% endif %}
                                 <br>
                                 {{ evenement.description }}
                                 <br>
-                                <!-- TODO: AFFICHER NIVEAUX  -->
+                                {{ evenement.niveauClasse }}
                             </td>
                             <td>
-                                {{ evenement.nbParticipants }}
-                                <!-- TODO: AFFICHER INTERVENANTS INSCRITS + TOOLTIP -->
-                                <i class="material-icons tooltipped" data-position="bottom" data-delay="50" data-tooltip="I am tooltip">info_outline</i>
+                                {% if evenement.etablissement.correspondant %}{{ evenement.etablissement.correspondant }}{% endif %}
                             </td>
                             <td>
-                                {{ evenement.nbObservateurs }}
-                                <!-- TODO: AFFICHER OBSERVATEURS INSCRITS + TOOLTIP -->
-                                <i class="material-icons tooltipped" data-position="bottom" data-delay="50" data-tooltip="I am tooltip">info_outline</i>
+                                {% if (evenement.intervenants.getValues | length) == evenement.nbParticipants %}
+                                    <i class="material-icons icon_check_circle tooltipped" data-position="bottom" data-delay="50"
+                                    data-tooltip="Nombre d'intervenants requis atteint">check_circle</i>
+                                {% elseif (evenement.intervenants.getValues | length) > evenement.nbParticipants %}
+                                    <i class="material-icons icon_report_problem tooltipped" data-position="bottom" data-delay="50"
+                                    data-tooltip="Nombre d'intervenants requis dépassé">report_problem</i>
+                                {% endif %}
+
+                                {{evenement.intervenants.getValues | length}} / {{ evenement.nbParticipants }}
+
+                                <i class="material-icons tooltipped" data-position="bottom" data-delay="50"
+                                data-tooltip="{% for intervenant in evenement.intervenants %}
+                                {{ intervenant.prenom }} {{ intervenant.nom }}
+                                {% if not loop.last %}
+                                    &
+                                {% endif %}
+                                {% endfor %}">info_outline</i>
+                            </td>
+                            <td>
+                                {% if (evenement.observateurs.getValues | length) == evenement.nbObservateurs %}
+                                    <i class="material-icons icon_done tooltipped" data-position="bottom" data-delay="50"
+                                    data-tooltip="Nombre d'observateurs requis atteint">done</i>
+                                {% elseif (evenement.observateurs.getValues | length) > evenement.nbObservateurs %}
+                                    <i class="material-icons icon_report_problem tooltipped" data-position="bottom" data-delay="50"
+                                    data-tooltip="Nombre d'observateurs requis dépassé">report_problem</i>
+                                {% endif %}
+
+                                {{evenement.observateurs.getValues | length}} / {{ evenement.nbObservateurs }}
+
+                                <i class="material-icons tooltipped" data-position="bottom" data-delay="50"
+                                data-tooltip="{% for observateur in evenement.observateurs %}
+                                {{ observateur.prenom }} {{ observateur.nom }}
+                                {% if not loop.last %}
+                                    &
+                                {% endif %}
+                                {% endfor %}">info_outline</i>
                             </td>
                             <td>
                                 <a href="{{ path('evenement_show', { 'id': evenement.id }) }}" title="Fiche de l'intervention">
@@ -106,9 +141,17 @@
                                 </a>
                                 {% if is_granted('ROLE_ADMIN')or is_granted('ROLE_SUPER_ADMIN')or
                                 app.user.username == evenement.etablissement.correspondant.username %}
-                                    <a href="{{ path('evenement_delete', { 'id': evenement.id }) }}" title="Annuler l'intervention">
-                                        <i class="material-icons icon_cancel">cancel</i>
-                                    </a>
+                                    {% if evenement.annule %}
+                                        <a href="{{ path('evenement_reactivate', { 'id': evenement.id }) }}" title="Réactiver l'intervention"
+                                        onclick="return confirm('Etes-vous sûr de vouloir réactiver cette intervention ?');">
+                                            <i class="material-icons icon_check_box">check_box</i>
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ path('evenement_delete', { 'id': evenement.id }) }}" title="Annuler l'intervention"
+                                        onclick="return confirm('Etes-vous sûr de vouloir annuler cette intervention ?');">
+                                            <i class="material-icons icon_cancel">cancel</i>
+                                        </a>
+                                    {% endif %}
                                     <a href="{{ path('evenement_edit', { 'id': evenement.id }) }}" title="Modifier l'intervention">
                                         <i class="material-icons icon_edit">mode_edit</i>
                                     </a>

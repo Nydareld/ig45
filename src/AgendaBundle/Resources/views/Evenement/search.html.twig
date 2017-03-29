@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ form_start(form) }}
+    <p>
+        {{ form_label(form.dateIntervention, "Date de l'intervention") }}
+        {{ form_widget(form.dateIntervention) }}
+    </p>
+    <p>
+        {{ form_label(form.etablissement, "Lieu de l'intervention") }}
+        {{ form_widget(form.etablissement) }}
+    </p>
+    <p>
+        {{ form_label(form.niveau, "Niveau de l'intervention") }}
+        {{ form_widget(form.niveau, {'attr': {'onchange': 'verif_type(this.value)'}}) }}
+    </p>
+    <p>
+        {{ form_label(form.type, "Type evenement") }}
+        {{ form_widget(form.type) }}
+    </p>
+    <p>
+        {{ form_label(form.complet, "Intervention non complètes") }}
+        {{ form_widget(form.complet) }}
+    </p>
+    <input type="submit" value="Continuer" />
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('evenement_index') }}">Back to the list</a>
+        </li>
+    </ul>
+    <script>
+        function verif_type(niveau) {
+            var liste = document.getElementById("evenement_search_type");
+            while (liste.firstChild) {
+                liste.removeChild(liste.firstChild);
+            }
+            var option = document.createElement("option");
+            option.text = "Choisir un type d'intervention";
+            option.value = null;
+            liste.appendChild(option);
+            {% for niveauPhp in niveaux %}
+                if (niveau=={{ niveauPhp.id }}){
+                    {% for typeEvent in niveauPhp.typeEvenements %}
+                        option = document.createElement("option");
+                        option.text = "{{ typeEvent.nom }}";
+                        option.value = "{{ typeEvent.id }}";
+                        liste.appendChild(option);
+                    {% endfor %}
+                }
+            {% endfor %}
+        }
+    </script>
+{% endblock %}
