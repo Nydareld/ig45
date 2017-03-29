@@ -8,13 +8,15 @@
         <a href="{{ path('evenement_export', { 'id': evenement.id }) }}" class="waves-effect waves-light btn blue lighten-2" title="Exporter la fiche">
             <i class="material-icons">file_download</i>
         </a>
-        <a href="{{ path('evenement_edit', { 'id': evenement.id }) }}" class="waves-effect waves-light btn orange" title="Modifier l'intervention">
-            <i class="material-icons icon_edit">mode_edit</i>
-        </a>
-        <!-- TODO: Gérer l'annulation -->
-        <a href="#" class="waves-effect waves-light btn red" title="Annuler l'intervention">
-            <i class="material-icons icon_cancel">cancel</i>
-        </a>
+        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') or
+        app.user.username == evenement.etablissement.correspondant.username %}
+            <a href="{{ path('evenement_edit', { 'id': evenement.id }) }}" class="waves-effect waves-light btn orange" title="Modifier l'intervention">
+                <i class="material-icons icon_edit">mode_edit</i>
+            </a>
+            <a href="{{ path('evenement_delete', { 'id': evenement.id }) }}" class="waves-effect waves-light btn red" title="Annuler l'intervention">
+                <i class="material-icons icon_cancel">cancel</i>
+            </a>
+        {% endif %}
     </div>
 {% endblock %}
 {% block contentBody %}
