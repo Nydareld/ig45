@@ -2,12 +2,14 @@
 
 namespace AgendaBundle\Controller;
 
+use AgendaBundle\Entity\Etablissement;
 use AgendaBundle\Entity\Evenement;
+use AgendaBundle\Repository\EtablissementRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Evenement controller.
@@ -59,7 +61,6 @@ class EvenementController extends Controller
     /**
      * Displays a form to edit an existing evenement entity.
      *
-     * @Route("/{id}/new/suite", name="evenement_new_suite")
      * @Method({"GET", "POST"})
      */
     public function SuiteNewAction(Request $request, Evenement $evenement)
@@ -88,6 +89,7 @@ class EvenementController extends Controller
      */
     public function showAction(Evenement $evenement)
     {
+
         $deleteForm = $this->createDeleteForm($evenement);
 
         return $this->render('AgendaBundle:Evenement:show.html.twig', array(
@@ -204,5 +206,269 @@ class EvenementController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('evenement_index');
+    }
+
+    public function searchEvenementAction(Request $request)
+    {
+        $form = $this->createForm('AgendaBundle\Form\EvenementSearchType');
+
+        if ($form->handleRequest($request)->isSubmitted()) {
+
+            if(($form['etablissement']->getData()) != null){
+                $etablissement = $form['etablissement']->getData()->getId();
+            }
+            if (($form['dateIntervention']->getData()) != null){
+                $date = $form['dateIntervention']->getData();
+            }
+            if (($form['complet']->getData()) == true){
+                $complet = $form['complet']->getData();
+
+            }
+            if (($form['niveau']->getData() != null)){
+                $niveau = $form['niveau']->getData();
+            }
+            if (($form['type']->getData() != "Choisir un type d'intervention")){
+                $type = $form['type']->getData();
+            }
+
+            $repository = $this->getDoctrine()->getRepository('AgendaBundle:Evenement');
+            if(isset($etablissement) && !isset($date) && !isset($complet) && !isset($niveau) && !isset($type)){
+                $evenements = $repository->findBy(
+                    array('etablissement' => $etablissement));
+            }elseif(!isset($etablissement) && isset($date) && !isset($complet) && !isset($niveau) && !isset($type)){
+                $evenements = $repository->findBy(
+                    array('dateEvt' => $date));
+            }elseif(isset($etablissement) && !isset($date) && isset($complet) && !isset($niveau) && !isset($type)){
+                $events = $repository->findBy(
+                    array('etablissement' => $etablissement));
+                $evenements = new ArrayCollection();
+                foreach ($events as $event){
+                    if($event->isComplet()==false){
+                        $evenements->add($event);
+                    }
+                }
+            }elseif(isset($etablissement) && isset($date) && !isset($complet) && !isset($niveau) && !isset($type)){
+                $evenements = $repository->findBy(
+                    array('etablissement' => $etablissement, 'dateEvt' => $date));
+            }elseif(!isset($etablissement) && !isset($date) && isset($complet) && !isset($niveau) && !isset($type)) {
+                $events = $repository->findAll();
+                $evenements = new ArrayCollection();
+                foreach ($events as $event){
+                    if($event->isComplet()==false){
+                        $evenements->add($event);
+                    }
+                }
+            }elseif(!isset($etablissement) && isset($date) && isset($complet) && !isset($niveau) && !isset($type)) {
+                $events = $repository->findBy(
+                    array('dateEvt' => $date));
+                $evenements = new ArrayCollection();
+                foreach ($events as $event){
+                    if($event->isComplet()==false){
+                        $evenements->add($event);
+                    }
+                }
+            }elseif(isset($etablissement) && isset($date) && isset($complet) && !isset($niveau) && !isset($type)) {
+                $events = $repository->findBy(
+                    array('dateEvt' => $date, 'etablissement' => $etablissement));
+                $evenements = new ArrayCollection();
+                foreach ($events as $event){
+                    if($event->isComplet()==false){
+                        $evenements->add($event);
+                    }
+                }
+            }elseif(!isset($etablissement) && !isset($date) && !isset($complet) && isset($niveau) && !isset($type)) {
+                $events = $repository->findAll();
+                $evenements = new ArrayCollection();
+                foreach ($events as $event){
+                    foreach ($event->getNiveaux() as $niv){
+                        if($niv == $niveau){
+                            $evenements->add($event);
+                        }
+                    }
+
+                }
+            }elseif(!isset($etablissement) && !isset($date) && !isset($complet) && isset($niveau) && isset($type)) {
+                $events = $repository->findAll();
+                $evenements = new ArrayCollection();
+                foreach ($events as $event){
+                    foreach ($event->getTypeEvenement()as $typeEvent){
+                        if($typeEvent == $type){
+                            $evenements->add($event);
+                        }
+                    }
+
+                }
+            }elseif(!isset($etablissement) && !isset($date) && isset($complet) && isset($niveau) && isset($type)) {
+                $events = $repository->findAll();
+                $evenements = new ArrayCollection();
+                foreach ($events as $event){
+                    foreach ($event->getTypeEvenement()as $typeEvent){
+                        if($typeEvent == $type){
+                            if($event->getNiveaux() == $niveau){
+                                $evenements->add($event);
+                            }
+                        }
+                    }
+
+                }
+            }elseif(!isset($etablissement) && isset($date) && isset($complet) && isset($niveau) && isset($type)) {
+                $events = $repository->findBy(
+                    array('dateEvt' => $date));
+                $evenements = new ArrayCollection();
+                foreach ($events as $event){
+                    foreach ($event->getTypeEvenement()as $typeEvent){
+                        if($typeEvent == $type){
+                            if($event->getNiveaux() == $niveau){
+                                $evenements->add($event);
+                            }
+                        }
+                    }
+
+                }
+            }elseif(isset($etablissement) && isset($date) && !isset($complet) && isset($niveau) && isset($type)) {
+                $events = $repository->findBy(
+                    array('dateEvt' => $date, 'etablissement' => $etablissement));
+                $evenements = new ArrayCollection();
+                foreach ($events as $event){
+                    foreach ($event->getTypeEvenement()as $typeEvent){
+                        if($typeEvent == $type){
+                            foreach ($event->getNiveaux() as $niv){
+                                if($niv == $niveau){
+                                    $evenements->add($event);
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }elseif(isset($etablissement) && isset($date) && isset($complet) && isset($niveau) && !isset($type)) {
+                $events = $repository->findBy(
+                    array('dateEvt' => $date, 'etablissement' => $etablissement));
+                $evenements = new ArrayCollection();
+                foreach ($events as $event){
+                    foreach ($event->getNiveaux() as $niv){
+                        if($niv == $niveau){
+                            if($event->isComplet()==false){
+                                $evenements->add($event);
+                            }
+                        }
+                    }
+                }
+            }elseif(!isset($etablissement) && isset($date) && isset($complet) && isset($niveau) && !isset($type)) {
+                $events = $repository->findBy(
+                    array('dateEvt' => $date));
+                $evenements = new ArrayCollection();
+                foreach ($events as $event){
+                    foreach ($event->getNiveaux() as $niv){
+                        if($niv == $niveau){
+                            if($event->isComplet()==false){
+                                $evenements->add($event);
+                            }
+                        }
+                    }
+                }
+            }elseif(isset($etablissement) && !isset($date) && !isset($complet) && isset($niveau) && isset($type)) {
+                $events = $repository->findBy(
+                    array('etablissement' => $etablissement));
+                $evenements = new ArrayCollection();
+                foreach ($events as $event){
+                    foreach ($event->getTypeEvenement()as $typeEvent){
+                        if($typeEvent == $type){
+                            foreach ($event->getNiveaux() as $niv){
+                                if($niv == $niveau){
+                                    $evenements->add($event);
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }elseif(isset($etablissement) && !isset($date) && !isset($complet) && isset($niveau) && !isset($type)) {
+                $events = $repository->findBy(
+                    array('etablissement' => $etablissement));
+                $evenements = new ArrayCollection();
+                foreach ($events as $event){
+                    if($event->getNiveaux() == $niveau){
+                        $evenements->add($event);
+                    }
+                }
+            }elseif(!isset($etablissement) && isset($date) && !isset($complet) && isset($niveau) && !isset($type)) {
+                $events = $repository->findBy(
+                    array('dateEvt' => $date));
+                $evenements = new ArrayCollection();
+                foreach ($events as $event){
+                    $lesNiveaux = $event->getNiveaux();
+                    foreach ($lesNiveaux as $nivo){
+                        if( $nivo == $niveau){
+                            $evenements->add($event);
+                        }
+                    }
+                }
+            }elseif(isset($etablissement) && !isset($date) && isset($complet) && isset($niveau) && !isset($type)) {
+                $events = $repository->findBy(
+                    array('etablissement' => $etablissement));
+                $evenements = new ArrayCollection();
+                foreach ($events as $event){
+                    foreach ($event->getNiveaux() as $niv){
+                        if($niv == $niveau){
+                            if($event->isComplet()==false){
+                                $evenements->add($event);
+                            }
+                        }
+                    }
+                }
+            }
+            elseif(isset($etablissement) && isset($date) && !isset($complet) && isset($niveau) && !isset($type)) {
+                $events = $repository->findBy(
+                    array('etablissement' => $etablissement, 'dateEvt' => $date));
+                $evenements = new ArrayCollection();
+                foreach ($events as $event){
+                    foreach ($event->getNiveaux() as $niv){
+                        if($niv == $niveau){
+                                $evenements->add($event);
+                        }
+                    }
+                }
+            }elseif(!isset($etablissement) && isset($date) && !isset($complet) && isset($niveau) && isset($type)) {
+                $events = $repository->findBy(
+                    array('dateEvt' => $date));
+                $evenements = new ArrayCollection();
+                foreach ($events as $event){
+                    foreach ($event->getTypeEvenement()as $typeEvent){
+                        if($typeEvent == $type){
+                            foreach ($event->getNiveaux() as $niv){
+                                if($niv == $niveau){
+                                    $evenements->add($event);
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }elseif(!isset($etablissement) && !isset($date) && isset($complet) && isset($niveau) && !isset($type)) {
+                $events = $repository->findAll();
+                $evenements = new ArrayCollection();
+                foreach ($events as $event){
+                    foreach ($event->getNiveaux() as $niv){
+                        if($niv == $niveau){
+                            if($event->isComplet()==false){
+                                $evenements->add($event);
+                            }
+                        }
+                    }
+                }
+            }else{
+                $evenements = $repository->findAll();
+            }
+
+            return $this->render('AgendaBundle:Evenement:index.html.twig', array('evenements' => $evenements));
+        }
+
+        $repo_type = $this->getDoctrine()->getRepository('AgendaBundle:Niveau');
+        $niveaux = $repo_type->findAll();
+        return $this->render('AgendaBundle:Evenement:search.html.twig', array(
+            'form' => $form->createView(),
+            'niveaux' => $niveaux,
+        ));
     }
 }
