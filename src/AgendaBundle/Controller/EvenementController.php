@@ -24,7 +24,53 @@ class EvenementController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $evenements = $em->getRepository('AgendaBundle:Evenement')->findBy(array(), array('dateEvt' => 'ASC'));
+        $year = date_format(new \DateTime(),'Y');
+        $yearPlus = strval(intval($year)+1);
+        $yearMoins = strval(intval($year)-1);
+        $debut_annee_scolaire = date_format(new \DateTime('09/01/'.$year),'d/m');
+        $fin_annee_scolaire = date_format(new \DateTime('08/31/'.$yearPlus),'d/m');
+        $debut_annee = date_format(new \DateTime('01/01/'.$year),'d/m');
+        $fin_annee = date_format(new \DateTime('12/31/'.$year),'d/m');
+        $today = date_format(new \DateTime(),'d/m');
+
+        function isSupDate($d1, $d2){
+          $d1 = explode('/',$d1);
+          $d2 = explode('/',$d2);
+          $d1_m = intval($d1[1]);
+          $d1_j = intval($d1[0]);
+          $d2_m = intval($d2[1]);
+          $d2_j = intval($d2[0]);
+          if($d1_m>$d2_m){
+            return true;
+          }
+          else if($d1_m==$d2_m){
+            if ($d1_j<$d2_j){
+              return false;
+            }
+            else{
+              return true;
+            }
+          }
+          else{
+            return false;
+          }
+        }
+
+        if (isSupDate($fin_annee,$today) && isSupDate($today,$debut_annee_scolaire)){
+          $scolaire = $year.' - '.$yearPlus;
+        }
+
+        else if (isSupDate($today,$debut_annee) && isSupDate($fin_annee_scolaire,$today)){
+          $scolaire = $yearMoins.' - '.$year;
+        }
+
+        $annee = $em->getRepository('AgendaBundle:AnneeScolaire')->findOneBy(array('annee' => $scolaire));
+        if (!empty($annee)){
+          $evenements = $em->getRepository('AgendaBundle:Evenement')->findBy(array('anneeScolaire' => $annee->getId()), array('dateEvt' => 'ASC'));
+        }
+        else{
+          $evenements = null;
+        }
 
         return $this->render('AgendaBundle:Evenement:index.html.twig', array(
             'evenements' => $evenements,

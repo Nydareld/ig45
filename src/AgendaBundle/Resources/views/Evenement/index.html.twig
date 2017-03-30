@@ -62,6 +62,7 @@
                 </tr>
             </thead>
             <tbody>
+            {% if evenements!=null %}
                 {% for evenement in evenements %}
                     {% if evenement.annule == true %}
                         <tr class="annule">
@@ -156,10 +157,11 @@
                                         <i class="material-icons icon_edit">mode_edit</i>
                                     </a>
                                 {% endif %}
-                            </td>
+                              </td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
+            {% endif %}
         </div>
     {% endblock %}
