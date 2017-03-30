@@ -74,6 +74,10 @@ form {
         font-size: 40px;
         margin-bottom: 50px;
     }
+
+    textarea {
+        resize: vertical;
+    }
 }
 
 .input_form {
