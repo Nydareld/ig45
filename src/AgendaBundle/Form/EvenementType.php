@@ -20,8 +20,7 @@ class EvenementType extends AbstractType
         $builder->add('dateEvt', DateType::class, array(
                         'widget' => 'choice',
                         // this is actually the default format for single_text
-                        'format' => 'dd-MM-yyyy',
-                        'data' => new \DateTime()
+                        'format' => 'dd-MM-yyyy'
                     )
                   )
                 ->add('anneeScolaire')
