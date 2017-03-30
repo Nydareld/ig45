@@ -16,17 +16,21 @@
     {{ form_start(form) }}
     <h2 class="info_etape">Étape 1 sur 2</h2>
     <div class="row">
-        <div class="col-lg-4 col-sm-6">
+        <div class="col-lg-6 col-sm-6">
             {{ form_label(form.dateEvt, "Date de l'intervention") }}
             {{ form_widget(form.dateEvt) }}
         </div>
-        <div class="col-lg-4 col-sm-6">
+        <div class="col-lg-6 col-sm-6">
             {{ form_label(form.anneeScolaire, "Année scolaire de l'intervention") }}
             {{ form_widget(form.anneeScolaire) }}
         </div>
-        <div class="col-lg-4 col-sm-6">
+        <div class="col-lg-6 col-sm-6">
             {{ form_label(form.etablissement, "Lieu de l'intervention") }}
-            {{ form_widget(form.etablissement) }}
+            {{ form_widget(form.etablissement, {'attr': {'onchange': 'verif_type(this.value)'}}) }}
+        </div>
+        <div class="col-lg-6 col-sm-6">
+            {{ form_label(form.typeEvenement, "Type de l'intervention") }}
+            {{ form_widget(form.typeEvenement) }}
         </div>
     </div>
     <div class="row">
@@ -86,4 +90,45 @@
 <script src="{{ asset('js/jquery.listswap.js') }}"></script>
 <script src="{{ asset('js/new_evenement.js') }}"></script>
 <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+<script type="text/javascript">
+function verif_type(elem){
+  var liste = document.getElementById('agendabundle_evenement_typeEvenement');
+  while (liste.firstChild) {
+      liste.removeChild(liste.firstChild);
+  }
+  var ajout = true;
+  var option = document.createElement("option");
+  option.text = "Choisir un type d'intervention";
+  option.value = null;
+  liste.appendChild(option);
+  {% for niveau in niveau_etbl %}
+    {% for niveau_e in niveau.Etablissements %}
+      if(elem=={{ niveau_e.id }})
+      {
+        {% for typeEv in typeEvenement %}
+          {% for typeEvNiveau in typeEv.niveaux %}
+            {% for niv in niveau_e.niveaux %}
+              if ("{{ typeEvNiveau }}" == "{{ niv }}"){
+                console.log("{{typeEv.id}}")
+                option = document.createElement("option");
+                option.text = "{{typeEv.nom}}";
+                option.value = "{{typeEv.id}}";
+                var alreadyExist = liste.children;
+                for (let i=0;i<liste.length;i++){
+                  if (liste[i].value=={{typeEv.id}}){
+                    ajout = false;
+                  }
+                }
+                if (ajout){
+                  liste.appendChild(option);
+                }
+              }
+            {% endfor %}
+          {% endfor %}
+        {% endfor %}
+      }
+    {% endfor %}
+  {% endfor %}
+}
+</script>
 {% endblock %}

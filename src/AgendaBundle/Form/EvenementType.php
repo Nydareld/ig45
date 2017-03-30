@@ -26,6 +26,7 @@ class EvenementType extends AbstractType
                   )
                 ->add('anneeScolaire')
                 ->add('etablissement')
+                ->add('typeEvenement')
                 ->add('heureDebut',  TimeType::class, array(
                       'input'  => 'datetime',
                       'widget' => 'choice'
