@@ -17,71 +17,76 @@
                 <i class="material-icons">mail</i>Envoyer un email aux correspondants et adjoints
             </div>
         </div>
-        <div class="legende_agenda">
-            <div class="block_legende row">
-                <div class="col s12 m4">
-                    <i class="material-icons">add</i>Créer une intervention
-                </div>
-                <div class="col s12 m4">
-                    <i class="material-icons">info_outline</i>Survoler pour voir des informations supplémentaires
-                </div>
-                <div class="col s12 m4">
-                    <i class="material-icons">mail</i>Envoyer un email aux correspondants et adjoints
-                </div>
+        <div class="block_legende row">
+            <div class="col s12 m4">
+                <i class="material-icons">description</i>Obtenir la fiche de l'intervention
             </div>
-            <div class="block_legende row">
-                <div class="col s12 m4">
-                    <i class="material-icons">description</i>Obtenir la fiche de l'intervention
-                </div>
-                <div class="col s12 m4">
-                    <i class="material-icons icon_cancel">cancel</i>Annuler l'intervention
-                </div>
-                <div class="col s12 m4">
-                    <i class="material-icons icon_edit">mode_edit</i>Modifier l'intervention
-                </div>
+            <div class="col s12 m4">
+                <i class="material-icons icon_cancel">cancel</i>Annuler l'intervention
             </div>
             <div class="col s12 m4">
                 <i class="material-icons icon_edit">mode_edit</i>Modifier l'intervention
             </div>
         </div>
-        <table class="bordered centered striped responsive-table">
-            <thead>
-                <tr>
-                    <th>
-                        Date
-                    </th>
-                    <th>
-                        Début
-                    </th>
-                    <th>
-                        Fin
-                    </th>
-                    <th>
-                        Information Intervention
-                    </th>
-                    <th>
-                        Correspondant
-                    </th>
-                    <th>
-                        Intervenant
-                    </th>
-                    <th>
-                        Observateurs
-                    </th>
-                    <th>
-                        Fiche Intervention
-                    </th>
-                    <th>
-                        Action
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for evenement in evenements %}
-                    {% if evenement.annule == true %}
-                        <tr class="annule">
-                        {% else %}
-                            <tr>
+        <div class="block_legende row">
+            <div class="col s12 m4">
+                <i class="material-icons icon_check_box">check_box</i>Réactiver l'intervention
+            </div>
+        </div>
+    </div>
+    <table class="bordered centered striped responsive-table">
+        <thead>
+            <tr>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Début
+                </th>
+                <th>
+                    Fin
+                </th>
+                <th>
+                    Information Intervention
+                </th>
+                <th>
+                    Correspondant
+                </th>
+                <th>
+                    Intervenant
+                </th>
+                <th>
+                    Observateurs
+                </th>
+                <th>
+                    Fiche Intervention
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for evenement in evenements %}
+                {% if evenement.annule == true %}
+                    <tr class="annule">
+                    {% else %}
+                        <tr>
+                        {% endif %}
+                        <td>
+                            <!-- TODO: TRADUCTION DE LA DATE EN FR : Installation du Intl sur le serveur du client -->
+                            {% if evenement.dateEvt %}{{ evenement.dateEvt|date('l d/m/Y') }}{% endif %}
+                        </td>
+                        <td>
+                            {% if evenement.heureDebut %}{{ evenement.heureDebut|date('H:i') }}{% endif %}
+                        </td>
+                        <td>
+                            {% if evenement.heureFin %}{{ evenement.heureFin|date('H:i') }}{% endif %}
+                        </td>
+                        <td>
+                            {{ evenement.etablissement }}
+                            {% if evenement.etablissement.adresse %}
+                                <i class="material-icons tooltipped" data-position="bottom" data-delay="50" data-tooltip="{{ evenement.etablissement.adresse }} {{ evenement.etablissement.ville }} {{ evenement.etablissement.codePostal }}">info_outline</i>
                             {% endif %}
                             <br>
                             {{ evenement.description }}
@@ -109,7 +114,7 @@
                                 data-tooltip="{% for intervenant in evenement.intervenants %}
                                 {{ intervenant.prenom }} {{ intervenant.nom }}
                                 {% if not loop.last %}
-                                    &
+                                    -
                                 {% endif %}
                                 {% endfor %}">info_outline</i>
                         </td>
@@ -131,7 +136,7 @@
                                 data-tooltip="{% for observateur in evenement.observateurs %}
                                 {{ observateur.prenom }} {{ observateur.nom }}
                                 {% if not loop.last %}
-                                    &
+                                  -
                                 {% endif %}
                                 {% endfor %}">info_outline</i>
                         </td>
@@ -148,7 +153,7 @@
                             app.user.username == evenement.etablissement.correspondant.username %}
                                 {% if evenement.annule %}
                                     <a href="{{ path('evenement_reactivate', { 'id': evenement.id }) }}" title="Réactiver l'intervention" onclick="return confirm('Etes-vous sûr de vouloir réactiver cette intervention ?');">
-                                        <i class="material-icons icon_check_box">check_box</i>
+                                        <i class="material-icons icon">check_box</i>
                                     </a>
                                 {% else %}
                                     <a href="{{ path('evenement_delete', { 'id': evenement.id }) }}" title="Annuler l'intervention" onclick="return confirm('Etes-vous sûr de vouloir annuler cette intervention ?');">
