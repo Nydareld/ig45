@@ -311,7 +311,7 @@ class EvenementController extends Controller
             if(($form['etablissement']->getData()) != null){
                 $etablissement = $form['etablissement']->getData()->getId();
             }
-            if (($form['dateIntervention']->getData()) != null){
+            if (($form['utildate']->getData()) == true){
                 $date = $form['dateIntervention']->getData();
             }
             if (($form['complet']->getData()) == true){

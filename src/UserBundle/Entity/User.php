@@ -1,12 +1,9 @@
 <?php
-
 namespace UserBundle\Entity;
-
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use AgendaBundle\Entity\Evenement;
-
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
@@ -19,17 +16,14 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
     /**
      * @ORM\Column(type="string")
      */
     protected $nom;
-
     /**
      * @ORM\Column(type="string")
      */
     protected $prenom;
-
     /**
      * @ORM\ManyToMany(targetEntity="UserBundle\Entity\Group")
      * @ORM\JoinTable(name="fos_user_user_group",
@@ -38,47 +32,39 @@ class User extends BaseUser
      * )
      */
     protected $groups;
-
     /**
      * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Evenement", mappedBy="intervenants")
      */
     protected $interventions;
-
     /**
      * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Evenement", mappedBy="observateurs")
      */
     protected $observations;
-
     /**
      * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\Etablissement", mappedBy="correspondant")
      */
     protected $correspondances;
-
     /**
      * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Etablissement", mappedBy="adjoints")
      */
     protected $adjonctions;
-
     /**
      * @var string
      *
      * @ORM\Column(name="tel_fixe", type="string", nullable=true)
      */
     private $telFixe;
-
     /**
      * @var string
      *
      * @ORM\Column(name="tel_port", type="string", nullable=true)
      */
     private $telPortable;
-
     public function __construct()
     {
         parent::__construct();
         $this->groups = new ArrayCollection();
     }
-
     /**
      * Get the value of Id
      *
@@ -88,7 +74,6 @@ class User extends BaseUser
     {
         return $this->id;
     }
-
     /**
      * Get the value of Nom
      *
@@ -98,7 +83,6 @@ class User extends BaseUser
     {
         return $this->nom;
     }
-
     /**
      * Set the value of Nom
      *
@@ -109,10 +93,8 @@ class User extends BaseUser
     public function setNom($nom)
     {
         $this->nom = $nom;
-
         return $this;
     }
-
     /**
      * Get the value of Prenom
      *
@@ -122,7 +104,6 @@ class User extends BaseUser
     {
         return $this->prenom;
     }
-
     /**
      * Set the value of Prenom
      *
@@ -133,10 +114,8 @@ class User extends BaseUser
     public function setPrenom($prenom)
     {
         $this->prenom = $prenom;
-
         return $this;
     }
-
     /**
      * Get the value of Groups
      *
@@ -146,7 +125,6 @@ class User extends BaseUser
     {
         return $this->groups;
     }
-
     /**
      * Set the value of Groups
      *
@@ -157,10 +135,8 @@ class User extends BaseUser
     public function setGroups($groups)
     {
         $this->groups = $groups;
-
         return $this;
     }
-
     /**
      * Get the value of Tel Fixe
      *
@@ -170,7 +146,6 @@ class User extends BaseUser
     {
         return $this->telFixe;
     }
-
     /**
      * Set the value of Tel Fixe
      *
@@ -181,10 +156,8 @@ class User extends BaseUser
     public function setTelFixe($telFixe)
     {
         $this->telFixe = $telFixe;
-
         return $this;
     }
-
     /**
      * Get the value of Tel Portable
      *
@@ -194,7 +167,6 @@ class User extends BaseUser
     {
         return $this->telPortable;
     }
-
     /**
      * Set the value of Tel Portable
      *
@@ -205,12 +177,8 @@ class User extends BaseUser
     public function setTelPortable($telPortable)
     {
         $this->telPortable = $telPortable;
-
         return $this;
     }
-
-
-
     /**
      * Get the value of Interventions
      *
@@ -220,21 +188,18 @@ class User extends BaseUser
     {
         return $this->interventions;
     }
-
     /**
      * Set the value of Interventions
      *
-     * @param mixed interventions
+     * @param  AgendaBundle\Entity\Evenement $intervention l'intervention a ajouter
      *
      * @return self
      */
     public function setInterventions($interventions)
     {
         $this->interventions = $interventions;
-
         return $this;
     }
-
     /**
      * @method addInterventions
      * @param  AgendaBundle\Entity\Evenement $intervention l'intervention a ajouter
@@ -243,10 +208,8 @@ class User extends BaseUser
     public function addInterventions(Evenement $intervention)
     {
         $this->interventions->add($intervention);
-
         return $this;
     }
-
     /**
      * @method removeInterventions
      * @param  AgendaBundleEntityEvenement $intervention [description]
@@ -255,10 +218,8 @@ class User extends BaseUser
     public function removeInterventions(Evenement $intervention)
     {
         $this->interventions->removeElement($intervention);
-
         return $this;
     }
-
     /**
      * Get the value of Observations
      *
@@ -268,7 +229,6 @@ class User extends BaseUser
     {
         return $this->observations;
     }
-
     /**
      * Set the value of Observations
      *
@@ -279,10 +239,8 @@ class User extends BaseUser
     public function setObservations($observations)
     {
         $this->observations = $observations;
-
         return $this;
     }
-
     /**
      * @method addObervations
      * @param  AgendaBundleEntityEvenement $observation [description]
@@ -291,10 +249,8 @@ class User extends BaseUser
     public function addObervations(Evenement $observation)
     {
         $this->observations->add($observation);
-
         return $this;
     }
-
     /**
      * @method removeObervations
      * @param  AgendaBundleEntityEvenement $observation [description]
@@ -303,10 +259,8 @@ class User extends BaseUser
     public function removeObervations(Evenement $observation)
     {
         $this->observations->removeElement($observation);
-
         return $this;
     }
-
     /**
      * Get the value of Correspondances
      *
@@ -316,7 +270,6 @@ class User extends BaseUser
     {
         return $this->correspondances;
     }
-
     /**
      * Set the value of Correspondances
      *
@@ -327,10 +280,8 @@ class User extends BaseUser
     public function setCorrespondances($correspondances)
     {
         $this->correspondances = $correspondances;
-
         return $this;
     }
-
     /**
      * @method addCorrespondances
      * @param  AgendaBundleEntityEvenement $correspondances [description]
@@ -339,10 +290,8 @@ class User extends BaseUser
     public function addCorrespondances(Evenement $correspondances)
     {
         $this->correspondances->add($correspondances);
-
         return $this;
     }
-
     /**
      * @method removeCorrespondances
      * @param  AgendaBundleEntityEvenement $correspondances [description]
@@ -351,10 +300,8 @@ class User extends BaseUser
     public function removeCorrespondances(Evenement $correspondances)
     {
         $this->correspondances->removeElement($correspondances);
-
         return $this;
     }
-
     /**
      * Get the value of Adjonctions
      *
@@ -364,7 +311,6 @@ class User extends BaseUser
     {
         return $this->adjonctions;
     }
-
     /**
      * Set the value of Adjonctions
      *
@@ -375,10 +321,8 @@ class User extends BaseUser
     public function setAdjonctions($adjonctions)
     {
         $this->adjonctions = $adjonctions;
-
         return $this;
     }
-
     /**
      * @method addAdjonctions
      * @param  AgendaBundleEntityEvenement $adjonctions [description]
@@ -387,10 +331,8 @@ class User extends BaseUser
     public function addAdjonctions(Evenement $adjonctions)
     {
         $this->adjonctions->add($adjonctions);
-
         return $this;
     }
-
     /**
      * @method removeAdjonctions
      * @param  AgendaBundleEntityEvenement $adjonctions [description]
@@ -399,8 +341,6 @@ class User extends BaseUser
     public function removeAdjonctions(Evenement $adjonctions)
     {
         $this->adjonctions->removeElement($adjonctions);
-
         return $this;
     }
-
 }

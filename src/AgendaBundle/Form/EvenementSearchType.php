@@ -64,6 +64,7 @@ class EvenementSearchType extends AbstractType
                     'class' => 'AgendaBundle:AnneeScolaire',
                     'label'=>'anneeScolaire.fieldslabel.annee',
                 ))
+                ->add('utildate', CheckboxType::class, array('mapped' => false, 'required' => false, 'label'    => 'Recherche par date'))
                 ->add('complet', CheckboxType::class, array('mapped' => false, 'required' => false, 'label'    => 'interventions non complétes'));
     }
 }

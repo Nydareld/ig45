@@ -7,6 +7,18 @@
         <img src="{{ asset('assets/image/enfantsJoyeux.gif') }}" alt="Logo Enfants">
     </div>
     <div class="legende_agenda">
+    <div class="block_legende row">
+        <div class="col s12 m4">
+            <i class="material-icons">add</i>Créer une intervention
+        </div>
+        <div class="col s12 m4">
+            <i class="material-icons">info_outline</i>Survoler pour voir des informations supplémentaires
+        </div>
+        <div class="col s12 m4">
+            <i class="material-icons">mail</i>Envoyer un email aux correspondants et adjoints
+        </div>
+    </div>
+    <div class="legende_agenda">
         <div class="block_legende row">
             <div class="col s12 m4">
                 <i class="material-icons">add</i>{{ 'evenement_index.legende.creer'|trans }}
@@ -119,23 +131,21 @@
                                     -
                                 {% endif %}
                                 {% endfor %}">info_outline</i>
-                        </td>
-                        <td>
-                            {% if (evenement.observateurs.getValues | length) == evenement.nbObservateurs %}
-                                <i class="material-icons icon_done tooltipped" data-position="bottom" data-delay="50" data-tooltip="Nombre d'observateurs requis atteint">done</i>
-                            {% elseif(evenement.observateurs.getValues | length) > evenement.nbObservateurs %}
-                                <i class="material-icons icon_report_problem tooltipped" data-position="bottom" data-delay="50" data-tooltip="Nombre d'observateurs requis dépassé">report_problem</i>
-                            {% endif %}
-
-                            {{evenement.observateurs.getValues | length}}
-                            /
-                            {{ evenement.nbObservateurs }}
-
-                            <i
-                                class="material-icons tooltipped"
-                                data-position="bottom"
-                                data-delay="50"
-                                data-tooltip="{% for observateur in evenement.observateurs %}
+            </td>
+            <td>
+                {% if (evenement.observateurs.getValues | length) == evenement.nbObservateurs %}
+                    <i class="material-icons icon_done tooltipped" data-position="bottom" data-delay="50" data-tooltip="Nombre d'observateurs requis atteint">done</i>
+                {% elseif(evenement.observateurs.getValues | length) > evenement.nbObservateurs %}
+                    <i class="material-icons icon_report_problem tooltipped" data-position="bottom" data-delay="50" data-tooltip="Nombre d'observateurs requis dépassé">report_problem</i>
+                {% endif %}
+                {{evenement.observateurs.getValues | length}}
+                /
+                {{ evenement.nbObservateurs }}
+                <i
+                        class="material-icons tooltipped"
+                        data-position="bottom"
+                        data-delay="50"
+                        data-tooltip="{% for observateur in evenement.observateurs %}
                                 {{ observateur.prenom }} {{ observateur.nom }}
                                 {% if not loop.last %}
                                   -
