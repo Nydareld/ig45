@@ -1,6 +1,7 @@
 {% extends "BaseBundle::Layout/BaseLayout.html.twig" %}
 {% block title %}Agenda{% endblock %}
 {% block contentBody %}
+{% trans_default_domain 'AgendaBundle' %}
 
     <div class="logo_enfants">
         <img src="{{ asset('assets/image/enfantsJoyeux.gif') }}" alt="Logo Enfants">
@@ -8,29 +9,29 @@
     <div class="legende_agenda">
         <div class="block_legende row">
             <div class="col s12 m4">
-                <i class="material-icons">add</i>Créer une intervention
+                <i class="material-icons">add</i>{{ 'evenement_index.legende.creer'|trans }}
             </div>
             <div class="col s12 m4">
-                <i class="material-icons">info_outline</i>Survoler pour voir des informations supplémentaires
+                <i class="material-icons">info_outline</i>{{ 'evenement_index.legende.survoler'|trans }}
             </div>
             <div class="col s12 m4">
-                <i class="material-icons">mail</i>Envoyer un email aux correspondants et adjoints
-            </div>
-        </div>
-        <div class="block_legende row">
-            <div class="col s12 m4">
-                <i class="material-icons">description</i>Obtenir la fiche de l'intervention
-            </div>
-            <div class="col s12 m4">
-                <i class="material-icons icon_cancel">cancel</i>Annuler l'intervention
-            </div>
-            <div class="col s12 m4">
-                <i class="material-icons icon_edit">mode_edit</i>Modifier l'intervention
+                <i class="material-icons">mail</i>{{ 'evenement_index.legende.envoyer'|trans }}
             </div>
         </div>
         <div class="block_legende row">
             <div class="col s12 m4">
-                <i class="material-icons icon_check_box">check_box</i>Réactiver l'intervention
+                <i class="material-icons">description</i>{{ 'evenement_index.legende.obtenir'|trans }}
+            </div>
+            <div class="col s12 m4">
+                <i class="material-icons icon_cancel">cancel</i>{{ 'evenement_index.legende.annuler'|trans }}
+            </div>
+            <div class="col s12 m4">
+                <i class="material-icons icon_edit">mode_edit</i>{{ 'evenement_index.legende.modifier'|trans }}
+            </div>
+        </div>
+        <div class="block_legende row">
+            <div class="col s12 m4">
+                <i class="material-icons icon_check_box">check_box</i>{{ 'evenement_index.legende.reactiver'|trans }}
             </div>
         </div>
     </div>
@@ -38,35 +39,33 @@
         <thead>
             <tr>
                 <th>
-                    Date
+                    {{ 'evenement_index.table.date'|trans }}
                 </th>
                 <th>
-                    Début
+                    {{ 'evenement_index.table.debut'|trans }}
                 </th>
                 <th>
-                    Fin
+                    {{ 'evenement_index.table.fin'|trans }}
                 </th>
                 <th>
-                    Information Intervention
+                    {{ 'evenement_index.table.info'|trans }}
                 </th>
                 <th>
-                    Correspondant
+                    {{ 'evenement_index.table.intervenant'|trans }}
                 </th>
                 <th>
-                    Intervenant
+                    {{ 'evenement_index.table.observateur'|trans }}
                 </th>
                 <th>
-                    Observateurs
+                    {{ 'evenement_index.table.fiche'|trans }}
                 </th>
                 <th>
-                    Fiche Intervention
-                </th>
-                <th>
-                    Action
+                    {{ 'evenement_index.table.action'|trans }}
                 </th>
             </tr>
         </thead>
         <tbody>
+          {% if evenements!=null %}
             {% for evenement in evenements %}
                 {% if evenement.annule == true %}
                     <tr class="annule">
@@ -169,4 +168,5 @@
                 {% endfor %}
             </tbody>
         </table>
+        {% endif %}
     {% endblock %}
