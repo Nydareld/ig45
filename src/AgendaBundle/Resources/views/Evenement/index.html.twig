@@ -67,6 +67,7 @@
             </tr>
         </thead>
         <tbody>
+          {% if evenements!=null %}
             {% for evenement in evenements %}
                 {% if evenement.annule == true %}
                     <tr class="annule">
@@ -169,4 +170,5 @@
                 {% endfor %}
             </tbody>
         </table>
+        {% endif %}
     {% endblock %}
