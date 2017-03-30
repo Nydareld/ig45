@@ -173,6 +173,38 @@ class EvenementController extends Controller
      *
      * @Method({"GET", "POST"})
      */
+     public function duplicationAction(Request $request, Evenement $evenement)
+     {
+       $evenementDuplicated = clone($evenement);
+       $evenementDuplicated->removeId();
+       $evenementDuplicated->setDateEvt(new \DateTime("2017-01-01"));
+       $evenementDuplicated->setHeureDebut(new \DateTime("00:00"));
+       $evenementDuplicated->setHeureFin(new \DateTime("00:00"));
+       $evenementDuplicated->setIntervenants(null);
+       $evenementDuplicated->setObservateurs(null);
+
+       $form = $this->createForm('AgendaBundle\Form\EvenementType', $evenementDuplicated);
+       $form->handleRequest($request);
+
+       if ($form->isSubmitted() && $form->isValid()) {
+         $em = $this->getDoctrine()->getManager();
+         $em->persist($evenementDuplicated);
+         $em->flush();
+
+         return $this->redirectToRoute('evenement_new_suite', array('id' => $evenementDuplicated->getId()));
+       }
+
+       return $this->render('AgendaBundle:Evenement:new.html.twig', array(
+         'evenementDuplicated' => $evenementDuplicated,
+         'form' => $form->createView()
+       ));
+     }
+
+    /**
+     * Displays a form to edit an existing evenement entity.
+     *
+     * @Method({"GET", "POST"})
+     */
     public function suiteEditAction(Request $request, Evenement $evenement)
     {
         $deleteForm = $this->createDeleteForm($evenement);

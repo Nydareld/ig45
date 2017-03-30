@@ -33,8 +33,18 @@ $('#agendabundle_evenement_observateurs, #destination_interv').listswap({
 });
 
 window.onload = function () {
-  document.getElementById("liste_participants").style.display='none';
-  document.getElementById("liste_observateurs").style.display='none';
+    if (elem!=0){
+      document.getElementById("liste_participants").style.display='block';
+    }
+    else{
+      document.getElementById("liste_participants").style.display='none';
+    }
+    if (elem!=0){
+      document.getElementById("liste_observateurs").style.display='block';
+    }
+    else{
+      document.getElementById("liste_observateurs").style.display='none';
+    }
 
   document.getElementById("valider").addEventListener("click",function(event){
     event.preventDefault();
