@@ -230,6 +230,16 @@ class Evenement
     }
 
     /**
+     * set the value of Id to null
+     *
+     */
+    public function removeId()
+    {
+        $this->id=null;
+        return $this;
+    }
+
+    /**
      * Get the value of Description
      *
      * @return string

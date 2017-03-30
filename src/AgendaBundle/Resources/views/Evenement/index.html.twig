@@ -32,6 +32,9 @@
             <div class="col s12 m4">
                 <i class="material-icons icon_check_box">check_box</i>Réactiver l'intervention
             </div>
+            <div class="col s12 m4">
+                <i class="material-icons icon_check_box">content_copy</i>Dupliquer l'intervention
+            </div>
         </div>
     </div>
     <table class="bordered centered striped responsive-table">
@@ -162,6 +165,9 @@
                                 {% endif %}
                                 <a href="{{ path('evenement_edit', { 'id': evenement.id }) }}" title="Modifier l'intervention">
                                     <i class="material-icons icon_edit">mode_edit</i>
+                                </a>
+                                <a href="{{ path('evenement_duplication', { 'id': evenement.id }) }}" title="Dupliquer l'intervention">
+                                    <i class="material-icons ">content_copy</i>
                                 </a>
                             {% endif %}
                         </td>
