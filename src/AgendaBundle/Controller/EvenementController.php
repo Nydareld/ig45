@@ -163,6 +163,12 @@ class EvenementController extends Controller
         $editForm = $this->createForm('AgendaBundle\Form\EvenementType', $evenement);
         $editForm->handleRequest($request);
 
+        $repo_niveau = $this->getDoctrine()->getRepository('AgendaBundle:Niveau');
+        $niveau_etbl = $repo_niveau->findAll();
+
+        $repo_typeEvenement = $this->getDoctrine()->getRepository('AgendaBundle:TypeEvenement');
+        $typeEvenement = $repo_typeEvenement->findAll();
+
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
@@ -171,6 +177,8 @@ class EvenementController extends Controller
 
         return $this->render('AgendaBundle:Evenement:new.html.twig', array(
             'evenement' => $evenement,
+            'niveau_etbl' => $niveau_etbl,
+            'typeEvenement' => $typeEvenement,
             'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));

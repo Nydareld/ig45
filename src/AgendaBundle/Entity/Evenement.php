@@ -141,9 +141,9 @@ class Evenement
     private $elevesVolontaires;
 
     /**
-     * @var boolean
+     * @var string
      *
-     * @ORM\Column(name="documentation_attendue", type="boolean", nullable=true)
+     * @ORM\Column(name="documentation_attendue", type="string", nullable=true)
      */
     private $documentationAttendue;
 

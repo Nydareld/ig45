@@ -91,6 +91,63 @@
 <script src="{{ asset('js/new_evenement.js') }}"></script>
 <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 <script type="text/javascript">
+
+window.onload = function () {
+
+  var select_multi = document.getElementById("destination_obs");
+    {% for intervenant in evenement.intervenants %}
+      option = document.createElement("option");
+      option.text = "{{ intervenant.nom }}"+"."+"{{ intervenant.prenom }}";
+      option.value = "{{ intervenant.id }}";
+      select_multi.appendChild(option);
+      li = document.createElement("li");
+      li.classList="listbox_option even";
+      li.datavalue="{{ intervenant.id }}";
+      var liste_affiche = document.getElementById('listbox_destination_obs_wrapper');
+      spanUser = document.createElement("span");
+      spanUser.innerHTML = "{{ intervenant.nom }}"+"."+"{{ intervenant.prenom }}";
+      li.appendChild(spanUser)
+      liste_affiche.children[1].appendChild(li);
+    {% endfor %}
+    document.getElementById("liste_participants").style.display='block';
+
+    var select_multi = document.getElementById("destination_interv");
+      {% for observateur in evenement.observateurs %}
+        option = document.createElement("option");
+        option.text = "{{ observateur.nom }}"+"."+"{{ observateur.prenom }}";
+        option.value = "{{ observateur.id }}";
+        select_multi.appendChild(option);
+        li = document.createElement("li");
+        li.classList="listbox_option even";
+        li.datavalue="{{ observateur.id }}";
+        var liste_affiche = document.getElementById('listbox_destination_interv_wrapper');
+        spanUser = document.createElement("span");
+        spanUser.innerHTML = "{{ observateur.nom }}"+"."+"{{ observateur.prenom }}";
+        li.appendChild(spanUser)
+        liste_affiche.children[1].appendChild(li);
+      {% endfor %}
+    document.getElementById("liste_observateurs").style.display='block';
+
+
+  document.getElementById("valider").addEventListener("click",function(event){
+    event.preventDefault();
+    var hDebut = document.getElementById("agendabundle_evenement_heureDebut_hour").value;
+    var hFin = document.getElementById("agendabundle_evenement_heureFin_hour").value;
+    var mDebut = document.getElementById("agendabundle_evenement_heureDebut_minute").value;
+    var mFin = document.getElementById("agendabundle_evenement_heureFin_minute").value;
+    if (hDebut>hFin){
+      document.getElementById("alert_heure").innerHTML="L'heure de début et de fin ne correspondent pas";
+    }
+    else if(hDebut==hFin && mDebut>hFin){
+      document.getElementById("alert_heure").innerHTML="L'heure de début et de fin ne correspondent pas";
+    }
+    else{
+      document.getElementsByName("agendabundle_evenement")[0].submit();
+    }
+  })
+}
+
+
 function verif_type(elem){
   var liste = document.getElementById('agendabundle_evenement_typeEvenement');
   while (liste.firstChild) {
