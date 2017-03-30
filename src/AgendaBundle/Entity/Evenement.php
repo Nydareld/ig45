@@ -141,9 +141,9 @@ class Evenement
     private $elevesVolontaires;
 
     /**
-     * @var boolean
+     * @var string
      *
-     * @ORM\Column(name="documentation_attendue", type="boolean", nullable=true)
+     * @ORM\Column(name="documentation_attendue", type="string", nullable=true)
      */
     private $documentationAttendue;
 
@@ -227,6 +227,16 @@ class Evenement
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * set the value of Id to null
+     *
+     */
+    public function removeId()
+    {
+        $this->id=null;
+        return $this;
     }
 
     /**
