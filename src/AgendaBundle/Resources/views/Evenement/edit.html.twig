@@ -1,11 +1,15 @@
-{% extends 'base.html.twig' %}
-
-{% block body %}
+{% extends "BaseBundle::Layout/BaseLayout.html.twig" %}
+{% block title %}Édition intervention{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
+    {{ parent() }}
+{% endblock %}
+{% block contentBody %}
     <h1>Evenement edit</h1>
 
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+    {{ form_widget(edit_form) }}
+    <input type="submit" value="Edit"/>
     {{ form_end(edit_form) }}
 
     <ul>
@@ -14,8 +18,12 @@
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+            <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
     </ul>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 {% endblock %}
