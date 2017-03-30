@@ -820,7 +820,8 @@ class Evenement
         return strval($this->id);
     }
 
-    public function getNiveaux(){
+    public function getNiveaux()
+    {
         $etab = $this->getEtablissement();
         $niveaux = $etab->getNiveaux();
         return $niveaux;
