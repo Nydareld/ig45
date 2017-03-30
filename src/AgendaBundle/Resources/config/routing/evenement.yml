@@ -38,3 +38,7 @@ evenement_edit_suite:
 evenement_export:
     path: /{id}/export
     defaults: {_controller: AgendaBundle:Evenement:export}
+
+evenement_duplication:
+    path: /{id}/duplication
+    defaults: {_controller: AgendaBundle:Evenement:duplication}

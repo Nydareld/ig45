@@ -4,6 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+    "hash": "2bf8a703e999c21b92c3a20933f9da5b",
     "content-hash": "a55a02421ecf817d9751635dd51079e5",
     "packages": [
         {
@@ -208,7 +209,7 @@
                 "collections",
                 "iterator"
             ],
-            "time": "2017-01-03T10:49:41+00:00"
+            "time": "2017-01-03 10:49:41"
         },
         {
             "name": "doctrine/common",
@@ -522,7 +523,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2016-01-26T17:28:51+00:00"
+            "time": "2016-01-26 17:28:51"
         },
         {
             "name": "doctrine/inflector",
@@ -784,12 +785,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "400001b0897d53114e820b9cc1a0a4b1fbcc3ca8"
+                "reference": "3b0ef089ef0c29ece7cd8ae4b1cc9a62d7dc568f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/400001b0897d53114e820b9cc1a0a4b1fbcc3ca8",
-                "reference": "400001b0897d53114e820b9cc1a0a4b1fbcc3ca8",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/3b0ef089ef0c29ece7cd8ae4b1cc9a62d7dc568f",
+                "reference": "3b0ef089ef0c29ece7cd8ae4b1cc9a62d7dc568f",
                 "shasum": ""
             },
             "require": {
@@ -853,7 +854,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2017-03-28 12:18:02"
+            "time": "2017-03-29 09:55:38"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -1083,7 +1084,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2017-03-13T16:27:32+00:00"
+            "time": "2017-03-13 16:27:32"
         },
         {
             "name": "psr/cache",
@@ -1306,12 +1307,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/security-checker.git",
-                "reference": "8707499a59f03d24d2cd2582111dae28c5a368f8"
+                "reference": "04bb87f5bd28a7d6ce7f4a4d1d6b94b3c1aa8dae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/security-checker/zipball/8707499a59f03d24d2cd2582111dae28c5a368f8",
-                "reference": "8707499a59f03d24d2cd2582111dae28c5a368f8",
+                "url": "https://api.github.com/repos/sensiolabs/security-checker/zipball/04bb87f5bd28a7d6ce7f4a4d1d6b94b3c1aa8dae",
+                "reference": "04bb87f5bd28a7d6ce7f4a4d1d6b94b3c1aa8dae",
                 "shasum": ""
             },
             "require": {
@@ -1342,7 +1343,7 @@
                 }
             ],
             "description": "A security checker for your composer.lock",
-            "time": "2017-03-09 17:51:09"
+            "time": "2017-03-29 08:08:00"
         },
         {
             "name": "snilius/twig-sort-by-field",
@@ -1381,7 +1382,7 @@
                 }
             ],
             "description": "A Twig Extension filter to sort an array of entries (objects or arrays) by the specified field",
-            "time": "2016-01-27T00:29:51+00:00"
+            "time": "2016-01-27 00:29:51"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -1899,12 +1900,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "8f090bca12f3effa76e7bca28a29e1d311174cb9"
+                "reference": "924337fcb0c7655929e74285140ad50d7a5c91b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/8f090bca12f3effa76e7bca28a29e1d311174cb9",
-                "reference": "8f090bca12f3effa76e7bca28a29e1d311174cb9",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/924337fcb0c7655929e74285140ad50d7a5c91b3",
+                "reference": "924337fcb0c7655929e74285140ad50d7a5c91b3",
                 "shasum": ""
             },
             "require": {
@@ -2035,7 +2036,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2017-03-28 08:44:09"
+            "time": "2017-03-29 05:35:29"
         },
         {
             "name": "tecnickcom/tcpdf",
@@ -2257,7 +2258,7 @@
                 "TCPDF",
                 "pdf"
             ],
-            "time": "2015-09-18T08:47:03+00:00"
+            "time": "2015-09-18 08:47:03"
         }
     ],
     "packages-dev": [
@@ -2375,7 +2376,7 @@
                 "Fixture",
                 "persistence"
             ],
-            "time": "2015-11-04T21:23:23+00:00"
+            "time": "2015-11-04 21:23:23"
         },
         {
             "name": "sensio/generator-bundle",
