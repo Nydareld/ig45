@@ -155,7 +155,7 @@
                             app.user.username == evenement.etablissement.correspondant.username %}
                                 {% if evenement.annule %}
                                     <a href="{{ path('evenement_reactivate', { 'id': evenement.id }) }}" title="Réactiver l'intervention" onclick="return confirm('Etes-vous sûr de vouloir réactiver cette intervention ?');">
-                                        <i class="material-icons icon">check_box</i>
+                                        <i class="material-icons icon_check_box">check_box</i>
                                     </a>
                                 {% else %}
                                     <a href="{{ path('evenement_delete', { 'id': evenement.id }) }}" title="Annuler l'intervention" onclick="return confirm('Etes-vous sûr de vouloir annuler cette intervention ?');">
