@@ -72,6 +72,10 @@ form .info_etape {
   color: #64b5f6;
 }
 
+form textarea {
+  resize: vertical;
+}
+
 .input_form {
   margin-bottom: 50px;
 }
