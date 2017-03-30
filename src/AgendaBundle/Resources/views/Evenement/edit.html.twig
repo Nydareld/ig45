@@ -1,21 +1,72 @@
-{% extends 'base.html.twig' %}
-
-{% block body %}
-    <h1>Evenement edit</h1>
-
+{% extends "BaseBundle::Layout/BaseLayout.html.twig" %}
+{% block title %}Édition intervention{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
+    {{ parent() }}
+{% endblock %}
+{% block specificAction%}
+    <div class="right">
+        <a href="{{ path('evenement_index') }}" class="waves-effect waves-light btn blue lighten-2" title="Retour liste">
+            <i class="material-icons">chevron_left</i>
+        </a>
+    </div>
+{% endblock %}
+{% block contentBody %}
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+    <h2 class="info_etape">Étape 2 sur 2</h2>
 
-    <ul>
-        <li>
-            <a href="{{ path('evenement_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <div class="row">
+        <div class="col-lg-6">
+            {{ form_label(edit_form.description, "Description") }}
+            {{ form_widget(edit_form.description) }}
+        </div>
+        <div class="col-lg-6">
+            {{ form_label(edit_form.nbGroupes, "Nombres de groupe") }}
+            {{ form_widget(edit_form.nbGroupes) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            {{ form_label(edit_form.nbSalles, "Nombres de salles") }}
+            {{ form_widget(edit_form.nbSalles) }}
+        </div>
+        <div class="col-lg-4">
+            {{ form_label(edit_form.eleves_volontaires, "Élèves volontaires") }}
+            {{ form_widget(edit_form.eleves_volontaires) }}
+        </div>
+        <div class="col-lg-4">
+            {{ form_label(edit_form.documentation_attendue, "Documentation attendue") }}
+            {{ form_widget(edit_form.documentation_attendue) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            {{ form_label(edit_form.particularite, "Particularité") }}
+            {{ form_widget(edit_form.particularite) }}
+        </div>
+        <div class="col-lg-6">
+            {{ form_label(edit_form.complement_info, "Complément d'information") }}
+            {{ form_widget(edit_form.complement_info) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-sm-6">
+            {{ form_label(edit_form.enseignant_ref, "Enseignant référent") }}
+            {{ form_widget(edit_form.enseignant_ref) }}
+        </div>
+        <div class="col-lg-4 col-sm-6">
+            {{ form_label(edit_form.courriel_enseignant_ref, "Téléphone enseignant référent") }}
+            {{ form_widget(edit_form.courriel_enseignant_ref) }}
+        </div>
+        <div class="col-lg-4 col-sm-6">
+            {{ form_label(edit_form.tel_enseignant_ref, "Téléphone enseignant référent") }}
+            {{ form_widget(edit_form.tel_enseignant_ref) }}
+        </div>
+    </div>
+    <input type="submit" value="Valider" id="edit" class="waves-effect waves-light btn blue lighten-2 right input_form"/>
+    {{ form_end(edit_form) }}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 {% endblock %}

@@ -14,57 +14,72 @@ $grey_light: #eeeeee;
     padding: 20px 10px;
 }
 
-.agenda {
-    .icon_cancel {
-        color: #f44336;
+.icon_cancel {
+    color: #f44336;
+}
+
+.icon_check_circle {
+    color: #33cc33;
+}
+
+.icon_report_problem {
+    color: #cccc00;
+}
+
+.icon_edit {
+    color: #ff9800;
+}
+
+.logo_enfants {
+    text-align: center;
+    margin-bottom: 20px;
+
+    img {
+        max-width: 250px;
+    }
+}
+
+.legende_agenda {
+    margin-bottom: 20px;
+    border: 1px #9e9e9e solid;
+    padding: 30px 10px 10px;
+
+    i {
+        vertical-align: bottom;
+        margin-right: 10px;
+    }
+}
+
+table {
+    margin-bottom: 50px;
+    border: 1px #9e9e9e solid;
+
+    .annule {
+        background-color: rgba(244, 67, 54, 0.3)!important;
     }
 
-    .icon_check_circle {
-        color: #33cc33;
+    i {
+        vertical-align: bottom;
     }
 
-    .icon_report_problem {
-        color: #cccc00;
+    .icon {
+        color: black;
     }
+}
 
-    .icon_edit {
-        color: #ff9800;
-    }
-
-    .logo_enfants {
+form {
+    .info_etape {
         text-align: center;
-        margin-bottom: 20px;
-
-        img {
-            max-width: 250px;
-        }
-    }
-
-    .legende_agenda {
-        margin-bottom: 20px;
-        border: 1px #9e9e9e solid;
-        padding: 30px 10px 10px;
-
-        i {
-            vertical-align: bottom;
-            margin-right: 10px;
-        }
-    }
-
-    table {
+        color: $bleu_light;
+        font-size: 40px;
         margin-bottom: 50px;
-        border: 1px #9e9e9e solid;
-
-        .annule {
-            background-color: rgba(244, 67, 54, 0.3)!important;
-        }
-
-        i {
-            vertical-align: bottom;
-        }
-
-        .icon {
-            color: black;
-        }
     }
+
+    textarea {
+        resize: vertical;
+    }
+}
+
+.input_form {
+    margin-bottom: 50px;
 }
