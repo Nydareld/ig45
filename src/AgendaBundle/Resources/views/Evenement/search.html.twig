@@ -3,12 +3,16 @@
 {% block body %}
     {{ form_start(form) }}
     <p>
+        {{ form_label(form.annee, "Année scolaire") }}
+        {{ form_widget(form.annee) }}
+    </p>
+    <p>
         {{ form_label(form.dateIntervention, "Date de l'intervention") }}
         {{ form_widget(form.dateIntervention) }}
     </p>
     <p>
         {{ form_label(form.etablissement, "Lieu de l'intervention") }}
-        {{ form_widget(form.etablissement) }}
+        {{ form_widget(form.etablissement, {'attr': {'onchange': 'verif_niveau(this.value)'}}) }}
     </p>
     <p>
         {{ form_label(form.niveau, "Niveau de l'intervention") }}
@@ -18,6 +22,7 @@
         {{ form_label(form.type, "Type evenement") }}
         {{ form_widget(form.type) }}
     </p>
+
     <p>
         {{ form_label(form.complet, "Intervention non complètes") }}
         {{ form_widget(form.complet) }}
@@ -49,6 +54,27 @@
                         liste.appendChild(option);
                     {% endfor %}
                 }
+            {% endfor %}
+        }
+        function verif_niveau(etablissement) {
+            var liste = document.getElementById("evenement_search_niveau");
+            while (liste.firstChild) {
+                liste.removeChild(liste.firstChild);
+            }
+            var option = document.createElement("option");
+            option.text = "Choisir un niveau";
+            option.value = null;
+            liste.appendChild(option);
+            {% for etabli in etablissements %}
+            if(etablissement=={{ etabli.id }}){
+                {% for nivo in etabli.niveaux %}
+                    console.log('{{ nivo.nom }}');
+                    option = document.createElement("option");
+                    option.text = "{{ nivo.nom }}";
+                    option.value = "{{ nivo.id }}";
+                    liste.appendChild(option);
+                {% endfor %}
+            }
             {% endfor %}
         }
     </script>

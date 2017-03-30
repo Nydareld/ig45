@@ -2,10 +2,29 @@
 etablissement:
     fieldslabel:
         nom: Nom de l'etablissement
-        adresse : Adresse
-        ville : Ville
-        codePostal : Code postal
-        correspondants : Correspondants
-        adjoints : Adjoints
-        type : Type détablissement
-        etablissement : Niveau(x)
+        adresse: Adresse
+        ville: Ville
+        codePostal: Code postal
+        correspondants: Correspondants
+        adjoints: Adjoints
+        type: Type détablissement
+        etablissement: Niveau(x)
+
+evenement_index:
+    legende:
+        creer: Créer une intervention
+        survoler: Survoler pour voir des informations supplémentaires
+        envoyer: Envoyer un email aux correspondants et adjoints
+        obtenir: Obtenir la fiche de l'intervention
+        annuler: Annuler l'intervention
+        modifier: Modifier l'intervention
+        reactiver: Réactiver l'intervention
+    table:
+        date: Date
+        debut: Début
+        fin: Fin
+        info: Information Intervention
+        intervenant: Intervenants
+        observateur: Observateurs
+        fiche: Fiche Intervention
+        action: Actions
