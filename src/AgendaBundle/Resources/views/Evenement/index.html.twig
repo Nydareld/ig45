@@ -8,58 +8,55 @@
         <div class="legende_agenda">
             <div class="block_legende row">
                 <div class="col s12 m4">
-                    <i class="material-icons">add</i>Créer une intervention
+                    <i class="material-icons">add</i>{{ 'evenement_index.legende.creer'|trans }}
                 </div>
                 <div class="col s12 m4">
-                    <i class="material-icons">info_outline</i>Survoler pour voir des informations supplémentaires
+                    <i class="material-icons">info_outline</i>{{ 'evenement_index.legende.survoler'|trans }}
                 </div>
                 <div class="col s12 m4">
-                    <i class="material-icons">mail</i>Envoyer un email aux correspondants et adjoints
+                    <i class="material-icons">mail</i>{{ 'evenement_index.legende.envoyer'|trans }}
                 </div>
             </div>
             <div class="block_legende row">
                 <div class="col s12 m4">
-                    <i class="material-icons">description</i>Obtenir la fiche de l'intervention
+                    <i class="material-icons">description</i>{{ 'evenement_index.legende.obtenir'|trans }}
                 </div>
                 <div class="col s12 m4">
-                    <i class="material-icons icon_cancel">cancel</i>Annuler l'intervention
+                    <i class="material-icons icon_cancel">cancel</i>{{ 'evenement_index.legende.annuler'|trans }}
                 </div>
                 <div class="col s12 m4">
-                    <i class="material-icons icon_edit">mode_edit</i>Modifier l'intervention
+                    <i class="material-icons icon_edit">mode_edit</i>{{ 'evenement_index.legende.modifier'|trans }}
                 </div>
             </div>
         </div>
         <table class="bordered centered striped responsive-table">
             <thead>
-                <tr>
-                    <th>
-                        Date
-                    </th>
-                    <th>
-                        Début
-                    </th>
-                    <th>
-                        Fin
-                    </th>
-                    <th>
-                        Information Intervention
-                    </th>
-                    <th>
-                        Correspondant
-                    </th>
-                    <th>
-                        Intervenant
-                    </th>
-                    <th>
-                        Observateurs
-                    </th>
-                    <th>
-                        Fiche Intervention
-                    </th>
-                    <th>
-                        Action
-                    </th>
-                </tr>
+              <tr>
+                  <th>
+                      {{ 'evenement_index.table.date'|trans }}
+                  </th>
+                  <th>
+                      {{ 'evenement_index.table.debut'|trans }}
+                  </th>
+                  <th>
+                      {{ 'evenement_index.table.fin'|trans }}
+                  </th>
+                  <th>
+                      {{ 'evenement_index.table.info'|trans }}
+                  </th>
+                  <th>
+                      {{ 'evenement_index.table.intervenant'|trans }}
+                  </th>
+                  <th>
+                      {{ 'evenement_index.table.observateur'|trans }}
+                  </th>
+                  <th>
+                      {{ 'evenement_index.table.fiche'|trans }}
+                  </th>
+                  <th>
+                      {{ 'evenement_index.table.action'|trans }}
+                  </th>
+              </tr>
             </thead>
             <tbody>
                 {% for evenement in evenements %}
