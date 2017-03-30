@@ -12,6 +12,7 @@
   color: #f44336;
 }
 
+.icon_check_box,
 .icon_check_circle {
   color: #3c3;
 }
@@ -22,10 +23,6 @@
 
 .icon_edit {
   color: #ff9800;
-}
-
-.icon_check_box {
-  color: #3c3;
 }
 
 .logo_enfants {
@@ -78,4 +75,14 @@ form textarea {
 
 .input_form {
   margin-bottom: 50px;
+}
+
+.listboxswap .listbox_controls .add,
+.listboxswap .listbox_controls .remove {
+  background-color: #64b5f6;
+}
+
+.checkbox label,
+.radio label {
+  padding-left: 0;
 }
