@@ -115,9 +115,9 @@ class EvenementController extends Controller
             return $this->redirectToRoute('evenement_edit_suite', array('id' => $evenement->getId()));
         }
 
-        return $this->render('AgendaBundle:Evenement:edit.html.twig', array(
+        return $this->render('AgendaBundle:Evenement:new.html.twig', array(
             'evenement' => $evenement,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
