@@ -130,52 +130,42 @@
       <tr>
         <th>Tel. fixe correspondant</th>
         <td>
-        {{ evenement.etablissement.correspondant.telFixe}}
+          {{ evenement.etablissement.correspondant.telFixe}}
         </td>
       </tr>
       <tr>
         <th>Tel. port. correspondant</th>
         <td>
-             {{ evenement.etablissement.correspondant.telPortable}}
+          {{ evenement.etablissement.correspondant.telPortable}}
+        </td>
+      </tr>
+      {% for user in evenement.etablissement.adjoints  %}
+      <tr>
+        <th>Corresp. adjoint  {{ loop.index }}</th>
+        <td>
+          {{ user.nom }}
+          {{user.prenom }}
         </td>
       </tr>
       <tr>
-        <th>1er corresp. adjoint</th>
+        <th>Courriel  corresp. adjoint  {{ loop.index }}</th>
         <td>
-          {% for adjoint in evenement.etablissement.adjoints  %}
-            {{ adjoint.nom }}
-            {{ adjoint.prenom }}
-
-          {% endfor %}
-         </td>
-      </tr>
-      <tr>
-        <th>Courriel 1er corresp. adjoint</th>
-        <td>
-          {% for adjoint in evenement.etablissement.adjoints  %}
-            {{ adjoint.email_canonical }}
-
-          {% endfor %}
-         </td>
-      </tr>
-      <tr>
-        <th>Tel. fixe 1er corresp. adjoint</th>
-        <td>
-          {% for adjoint in evenement.etablissement.adjoints  %}
-            {{ adjoint.telFixe }}
-
-          {% endfor %}
+          {{user.emailCanonical }}
         </td>
       </tr>
       <tr>
-        <th>Tel. port. 1er corresp. adjoint</th>
+        <th>Tel. fixe corresp. adjoint  {{ loop.index }}</th>
         <td>
-        {% for adjoint in evenement.etablissement.adjoints  %}
-          {{ adjoint.telPortable }}
-
-        {% endfor %}
-      </td>
+          {{user.telFixe }}
+        </td>
       </tr>
+      <tr>
+        <th>Tel. port. corresp. adjoint  {{ loop.index }}</th>
+        <td>
+          {{user.telPortable }}
+        </td>
+      </tr>
+      {% endfor %}
     </tbody>
   </table>
 </div>

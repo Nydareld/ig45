@@ -60,16 +60,16 @@ class User extends BaseUser
     protected $adjonctions;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="tel_fixe", type="integer", nullable=true)
+     * @ORM\Column(name="tel_fixe", type="string", nullable=true)
      */
     private $telFixe;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="tel_port", type="integer", nullable=true)
+     * @ORM\Column(name="tel_port", type="string", nullable=true)
      */
     private $telPortable;
 
