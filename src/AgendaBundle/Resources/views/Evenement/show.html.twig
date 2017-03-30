@@ -1,23 +1,23 @@
 {% extends "BaseBundle::Layout/BaseLayout.html.twig" %}
 {% block title %}Fiche intervention{% endblock %}
 {% block specificAction%}
-<div class="right">
-  <a href="{{ path('evenement_index') }}" class="waves-effect waves-light btn blue lighten-2" title="Retour liste">
-    <i class="material-icons icon_edit">chevron_left</i>
-  </a>
-  <a href="{{ path('evenement_export', { 'id': evenement.id }) }}" class="waves-effect waves-light btn blue lighten-2" title="Exporter la fiche">
-    <i class="material-icons">file_download</i>
-  </a>
-  {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') or
-  app.user.username == evenement.etablissement.correspondant.username %}
-  <a href="{{ path('evenement_edit', { 'id': evenement.id }) }}" class="waves-effect waves-light btn orange" title="Modifier l'intervention">
-    <i class="material-icons icon_edit">mode_edit</i>
-  </a>
-  <a href="{{ path('evenement_delete', { 'id': evenement.id }) }}" class="waves-effect waves-light btn red" title="Annuler l'intervention">
-    <i class="material-icons icon_cancel">cancel</i>
-  </a>
-  {% endif %}
-</div>
+    <div class="right">
+        <a href="{{ path('evenement_index') }}" class="waves-effect waves-light btn blue lighten-2" title="Retour liste">
+            <i class="material-icons icon_edit">chevron_left</i>
+        </a>
+        <a href="{{ path('evenement_export', { 'id': evenement.id }) }}" class="waves-effect waves-light btn blue lighten-2" title="Exporter la fiche">
+            <i class="material-icons">file_download</i>
+        </a>
+        {% if is_granted('ROLE_ADMIN')or is_granted('ROLE_SUPER_ADMIN')or
+        app.user.username == evenement.etablissement.correspondant.username %}
+            <a href="{{ path('evenement_edit', { 'id': evenement.id }) }}" class="waves-effect waves-light btn orange" title="Modifier l'intervention">
+                <i class="material-icons icon_edit">mode_edit</i>
+            </a>
+            <a href="{{ path('evenement_delete', { 'id': evenement.id }) }}" class="waves-effect waves-light btn red" title="Annuler l'intervention">
+                <i class="material-icons icon_cancel">cancel</i>
+            </a>
+        {% endif %}
+    </div>
 {% endblock %}
 {% block contentBody %}
 <div class="agenda">
@@ -169,6 +169,4 @@
     </tbody>
   </table>
 </div>
-
-
 {% endblock %}
