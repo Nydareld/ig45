@@ -2,9 +2,6 @@
 {% block title %}Fiche intervention{% endblock %}
 {% block specificAction%}
     <div class="right">
-        <a href="{{ path('evenement_index') }}" class="waves-effect waves-light btn blue lighten-2" title="Retour liste">
-            <i class="material-icons ">chevron_left</i>
-        </a>
         <a href="{{ path('evenement_export', { 'id': evenement.id }) }}" class="waves-effect waves-light btn blue lighten-2" title="Exporter la fiche">
             <i class="material-icons">file_download</i>
         </a>
@@ -22,6 +19,9 @@
                     <i class="material-icons">cancel</i>
                 </a>
             {% endif %}
+            <a href="{{ path('evenement_duplication', { 'id': evenement.id }) }}" class="waves-effect waves-light btn blue" title="Duplication de la fiche">
+                <i class="material-icons">content_copy</i>
+            </a>
         {% endif %}
     </div>
 {% endblock %}
