@@ -33,3 +33,7 @@ evenement_edit_suite:
 evenement_export:
     path: /{id}/export
     defaults: {_controller: AgendaBundle:Evenement:export}
+
+evenement_mail:
+    path:  /{id}/mail
+    defaults: {_controller: AgendaBundle:Evenement:mail}
