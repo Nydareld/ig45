@@ -22,21 +22,26 @@
                 <div class="nav-wrapper container">
                     <a href="#" class="brand-logo"><img src="{{ asset('assets/image/IGLogo.png') }}" alt="Logo IG"></a>
                     <ul class="right hide-on-med-and-down">
-                        <li>
-                            {% if app.user %}
+                        {% if app.user %}
+                            <li>
                                 <a href="{{ path('fos_user_security_logout') }}">{{app.user.nom}}
                                     {{app.user.prenom}}
                                     <i class="material-icons right">power_settings_new</i>
                                 </a>
-                            {% else %}
+                            </li>
+                            <li>
+                                <a href="{{ path('fos_user_change_password') }}">Changer pass</a>
+                            </li>
+                        {% else %}
+                            <li>
                                 <a href="{{ path('fos_user_security_login') }}">Se connecter<i class="material-icons right">person</i>
                                 </a>
-                            {% endif %}
-                        </li>
+                            </li>
+                        {% endif %}
                         <li>
                             {% if is_granted('ROLE_ADMIN')or is_granted('ROLE_SUPER_ADMIN') %}
                             <li>
-                                <a href="{{ path('backoffice_base_homepage') }}">Interface Administrateur</a>
+                                <a href="{{ path('backoffice_base_homepage') }}">Admin</a>
                             </li>
                         {% endif %}
                     </li>
