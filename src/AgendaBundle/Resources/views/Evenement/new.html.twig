@@ -94,6 +94,10 @@
 
 window.onload = function() {
 
+  document.getElementById("liste_participants").style.display = 'none';
+  document.getElementById("liste_observateurs").style.display = 'none';
+
+  {% if evenement.intervenants is not empty %}
     var select_multi = document.getElementById("destination_obs");
     {% for intervenant in evenement.intervenants %}
         option = document.createElement("option");
@@ -110,7 +114,10 @@ window.onload = function() {
         liste_affiche.children[1].appendChild(li);
     {% endfor %}
     document.getElementById("liste_participants").style.display = 'block';
+    console.log("coucou");
+  {% endif %}
 
+  {% if evenement.observateurs is not empty %}
     var select_multi = document.getElementById("destination_interv");
     {% for observateur in evenement.observateurs %}
         option = document.createElement("option");
@@ -127,6 +134,7 @@ window.onload = function() {
         liste_affiche.children[1].appendChild(li);
     {% endfor %}
     document.getElementById("liste_observateurs").style.display = 'block';
+  {% endif %}
 
     document.getElementById("valider").addEventListener("click", function(event) {
         event.preventDefault();
