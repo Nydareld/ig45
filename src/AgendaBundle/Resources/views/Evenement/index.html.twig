@@ -1,64 +1,77 @@
 {% extends "BaseBundle::Layout/BaseLayout.html.twig" %}
 {% block title %}Agenda{% endblock %}
 {% block contentBody %}
-    <div class="agenda">
-        <div class="logo_enfants">
-            <img src="{{ asset('assets/image/enfantsJoyeux.gif') }}" alt="Logo Enfants">
-        </div>
-        <div class="legende_agenda">
-            <div class="block_legende row">
-                <div class="col s12 m4">
-                    <i class="material-icons">add</i>Créer une intervention
-                </div>
-                <div class="col s12 m4">
-                    <i class="material-icons">info_outline</i>Survoler pour voir des informations supplémentaires
-                </div>
-                <div class="col s12 m4">
-                    <i class="material-icons">mail</i>Envoyer un email aux correspondants et adjoints
-                </div>
+    {% trans_default_domain 'AgendaBundle' %}
+
+    <div class="logo_enfants">
+        <img src="{{ asset('assets/image/enfantsJoyeux.gif') }}" alt="Logo Enfants">
+    </div>
+    <div class="legende_agenda">
+        <div class="block_legende row">
+            <div class="col s12 m4">
+                <i class="material-icons">add</i>{{ 'evenement_index.legende.creer'|trans }}
             </div>
-            <div class="block_legende row">
-                <div class="col s12 m4">
-                    <i class="material-icons">description</i>Obtenir la fiche de l'intervention
-                </div>
-                <div class="col s12 m4">
-                    <i class="material-icons icon_cancel">cancel</i>Annuler l'intervention
-                </div>
-                <div class="col s12 m4">
-                    <i class="material-icons icon_edit">mode_edit</i>Modifier l'intervention
-                </div>
+            <div class="col s12 m4">
+                <i class="material-icons">info_outline</i>{{ 'evenement_index.legende.survoler'|trans }}
+            </div>
+            <div class="col s12 m4">
+                <i class="material-icons">mail</i>{{ 'evenement_index.legende.envoyer'|trans }}
             </div>
         </div>
-        <table class="bordered centered striped responsive-table">
-            <thead>
-                <tr>
-                    <th>
-                        Date
-                    </th>
-                    <th>
-                        Début
-                    </th>
-                    <th>
-                        Fin
-                    </th>
-                    <th>
-                        Information Intervention
-                    </th>
-                    <th>
-                        Intervenant
-                    </th>
-                    <th>
-                        Observateurs
-                    </th>
-                    <th>
-                        Fiche Intervention
-                    </th>
-                    <th>
-                        Action
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
+        <div class="block_legende row">
+            <div class="col s12 m4">
+                <i class="material-icons">description</i>{{ 'evenement_index.legende.obtenir'|trans }}
+            </div>
+            <div class="col s12 m4">
+                <i class="material-icons icon_cancel">cancel</i>{{ 'evenement_index.legende.annuler'|trans }}
+            </div>
+            <div class="col s12 m4">
+                <i class="material-icons icon_edit">mode_edit</i>{{ 'evenement_index.legende.modifier'|trans }}
+            </div>
+        </div>
+        <div class="block_legende row">
+            <div class="col s12 m4">
+                <i class="material-icons icon_check_box">check_box</i>{{ 'evenement_index.legende.reactiver'|trans }}
+            </div>
+            <div class="col s12 m4">
+                <i class="material-icons icon_check_box">content_copy</i>Dupliquer l'intervention
+            </div>
+            <div class="col s12 m4">
+                <i class="material-icons icons">search</i>Rechercher une intervention
+            </div>
+        </div>
+    </div>
+    <table class="bordered centered striped responsive-table">
+        <thead>
+            <tr>
+                <th>
+                    {{ 'evenement_index.table.date'|trans }}
+                </th>
+                <th>
+                    {{ 'evenement_index.table.debut'|trans }}
+                </th>
+                <th>
+                    {{ 'evenement_index.table.fin'|trans }}
+                </th>
+                <th>
+                    {{ 'evenement_index.table.info'|trans }}
+                </th>
+                <th>
+                    {{ 'evenement_index.table.intervenant'|trans }}
+                </th>
+                <th>
+                    {{ 'evenement_index.table.observateur'|trans }}
+                </th>
+                <th>
+                    {{ 'evenement_index.table.fiche'|trans }}
+                </th>
+                <th>
+                    {{ 'evenement_index.table.action'|trans }}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if evenements != null %}
                 {% for evenement in evenements %}
                     {% if evenement.annule == true %}
                         <tr class="annule">
@@ -66,7 +79,6 @@
                             <tr>
                             {% endif %}
                             <td>
-                                <!-- TODO: TRADUCTION DE LA DATE EN FR : Installation du Intl sur le serveur du client -->
                                 {% if evenement.dateEvt %}{{ evenement.dateEvt|date('l d/m/Y') }}{% endif %}
                             </td>
                             <td>
@@ -83,17 +95,52 @@
                                 <br>
                                 {{ evenement.description }}
                                 <br>
-                                <!-- TODO: AFFICHER NIVEAUX  -->
+                                {{ evenement.niveauClasse }}
                             </td>
                             <td>
+                                {% if evenement.etablissement.correspondant %}{{ evenement.etablissement.correspondant }}{% endif %}
+                            </td>
+                            <td>
+                                {% if (evenement.intervenants.getValues | length) == evenement.nbParticipants %}
+                                    <i class="material-icons icon_check_circle tooltipped" data-position="bottom" data-delay="50" data-tooltip="Nombre d'intervenants requis atteint">check_circle</i>
+                                {% elseif(evenement.intervenants.getValues | length) > evenement.nbParticipants %}
+                                    <i class="material-icons icon_report_problem tooltipped" data-position="bottom" data-delay="50" data-tooltip="Nombre d'intervenants requis dépassé">report_problem</i>
+                                {% endif %}
+
+                                {{evenement.intervenants.getValues | length}}
+                                /
                                 {{ evenement.nbParticipants }}
-                                <!-- TODO: AFFICHER INTERVENANTS INSCRITS + TOOLTIP -->
-                                <i class="material-icons tooltipped" data-position="bottom" data-delay="50" data-tooltip="I am tooltip">info_outline</i>
+
+                                <i
+                                    class="material-icons tooltipped"
+                                    data-position="bottom"
+                                    data-delay="50"
+                                    data-tooltip="{% for intervenant in evenement.intervenants %}
+                                {{ intervenant.prenom }} {{ intervenant.nom }}
+                                {% if not loop.last %}
+                                    -
+                                {% endif %}
+                                {% endfor %}">info_outline</i>
                             </td>
                             <td>
+                                {% if (evenement.observateurs.getValues | length) == evenement.nbObservateurs %}
+                                    <i class="material-icons icon_check_circle tooltipped" data-position="bottom" data-delay="50" data-tooltip="Nombre d'observateurs requis atteint">check_circle</i>
+                                {% elseif(evenement.observateurs.getValues | length) > evenement.nbObservateurs %}
+                                    <i class="material-icons icon_report_problem tooltipped" data-position="bottom" data-delay="50" data-tooltip="Nombre d'observateurs requis dépassé">report_problem</i>
+                                {% endif %}
+                                {{evenement.observateurs.getValues | length}}
+                                /
                                 {{ evenement.nbObservateurs }}
-                                <!-- TODO: AFFICHER OBSERVATEURS INSCRITS + TOOLTIP -->
-                                <i class="material-icons tooltipped" data-position="bottom" data-delay="50" data-tooltip="I am tooltip">info_outline</i>
+                                <i
+                                    class="material-icons tooltipped"
+                                    data-position="bottom"
+                                    data-delay="50"
+                                    data-tooltip="{% for observateur in evenement.observateurs %}
+                                {{ observateur.prenom }} {{ observateur.nom }}
+                                {% if not loop.last %}
+                                  -
+                                {% endif %}
+                                {% endfor %}">info_outline</i>
                             </td>
                             <td>
                                 <a href="{{ path('evenement_show', { 'id': evenement.id }) }}" title="Fiche de l'intervention">
@@ -107,18 +154,19 @@
                                 {% if is_granted('ROLE_ADMIN')or is_granted('ROLE_SUPER_ADMIN')or
                                 app.user.username == evenement.etablissement.correspondant.username %}
                                     {% if evenement.annule %}
-                                        <a href="{{ path('evenement_reactivate', { 'id': evenement.id }) }}" title="Réactiver l'intervention"
-                                        onclick="return confirm('Etes-vous sûr de vouloir réactiver l\'intervention ?');">
+                                        <a href="{{ path('evenement_reactivate', { 'id': evenement.id }) }}" title="Réactiver l'intervention" onclick="return confirm('Etes-vous sûr de vouloir réactiver cette intervention ?');">
                                             <i class="material-icons icon_check_box">check_box</i>
                                         </a>
                                     {% else %}
-                                        <a href="{{ path('evenement_delete', { 'id': evenement.id }) }}" title="Annuler l'intervention"
-                                        onclick="return confirm('Etes-vous sûr de vouloir annuler l\'intervention ?');">
+                                        <a href="{{ path('evenement_delete', { 'id': evenement.id }) }}" title="Annuler l'intervention" onclick="return confirm('Etes-vous sûr de vouloir annuler cette intervention ?');">
                                             <i class="material-icons icon_cancel">cancel</i>
                                         </a>
                                     {% endif %}
                                     <a href="{{ path('evenement_edit', { 'id': evenement.id }) }}" title="Modifier l'intervention">
                                         <i class="material-icons icon_edit">mode_edit</i>
+                                    </a>
+                                    <a href="{{ path('evenement_duplication', { 'id': evenement.id }) }}" title="Dupliquer l'intervention">
+                                        <i class="material-icons ">content_copy</i>
                                     </a>
                                 {% endif %}
                             </td>
@@ -126,5 +174,5 @@
                     {% endfor %}
                 </tbody>
             </table>
-        </div>
+        {% endif %}
     {% endblock %}

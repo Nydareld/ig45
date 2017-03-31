@@ -1,176 +1,191 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>
-            {% block title %}IG45 BaseFront{% endblock %}
-        </title>
-        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>
+    {% block title %}IG45 BaseFront{% endblock %}
+  </title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-        <style>
-        table {
-            border-collapse: collapse;
-        }
+  <style>
+  table {
+    border-collapse: collapse;
+  }
 
-        table, th, td {
-            border: 1px solid black;
-        }
-        </style>
-    </head>
+  table, th, td {
+    border: 1px solid black;
+  }
+  </style>
+</head>
 
 
 
-    <body>
-      <img src="{{ asset('assets/image/IGLogo.png') }}" alt="Logo IG">
+<body>
+  <img src="{{ asset('assets/image/IGLogo.png') }}" alt="Logo IG">
 
-        <div class="container">
+  <div class="container">
 
-        {% block contentBody %}
-            <h1 style="text-align:center;">Fiche d'intervention </h1>
-            <h2 style="text-align:center;">{{ evenement.description }}</h2>
+    {% block contentBody %}
+    <h1 style="text-align:center;">Fiche d'intervention </h1>
+    <h2 style="text-align:center;">{{ evenement.description }}</h2>
 
-            <table class="">
-                <tbody>
-                    <tr>
-                        <th>Etablissement</th>
-                        <td>Informations1</td>
-                    </tr>
-                    <tr>
-                        <th>Adresse de l'établessiment</th>
-                        <td>Informations2</td>
-                    </tr>
-                    <tr>
-                        <th>Code Postal</th>
-                        <td>Informations3</td>
-                    </tr>
-                    <tr>
-                        <th>Ville</th>
-                        <td>Informations4</td>
-                    </tr>
-                    <tr>
-                        <th>Date de l'évènement</th>
-                        <td>{% if evenement.dateEvt %}{{ evenement.dateEvt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                    </tr>
-                    <tr>
-                        <th>Début de l'évènement</th>
-                        <td>{% if evenement.heureDebut %}{{ evenement.heureDebut|date('Y-m-d H:i:s') }}{% endif %}</td>
-                    </tr>
-                    <tr>
-                        <th>Fin de l'évènement</th>
-                        <td>{% if evenement.heureFin %}{{ evenement.heureFin|date('Y-m-d H:i:s') }}{% endif %}</td>
-                    </tr>
-                    <tr>
-                        <th>Description</th>
-                        <td>{{ evenement.description }}</td>
-                    </tr>
-                    <tr>
-                        <th>Nombres d'intervenants nécessaires</th>
-                        <td>Informations5</td>
-                    </tr>
-                    <tr>
-                        <th>Nombres de participants</th>
-                        <td>{{ evenement.nbParticipants }}</td>
-                    </tr>
-                    <tr>
-                        <th>Nombres d'observateurs</th>
-                        <td>{{ evenement.nbObservateurs }}</td>
-                    </tr>
-                    <tr>
-                        <th>Nombres de groupes</th>
-                        <td>{{ evenement.nbGroupes }}</td>
-                    </tr>
-                    <tr>
-                        <th>Nombres de salles</th>
-                        <td>{{ evenement.nbSalles }}</td>
-                    </tr>
-                    <tr>
-                        <th>Nombres élèves volontaires</th>
-                        <td>{{ evenement.elevesvolontaires }}</td>
-                    </tr>
-                    <tr>
-                        <th>Documentation attendue</th>
-                        <td>{% if evenement.documentationattendue %}Yes{% else %}No{% endif %}</td>
-                    </tr>
-                    <tr>
-                        <th>Particularite</th>
-                        <td>{{ evenement.particularite }}</td>
-                    </tr>
-                    <tr>
-                        <th>Complement d'information</th>
-                        <td>{{ evenement.complementinfo }}</td>
-                    </tr>
-                    <tr>
-                        <th>Enseignant référant</th>
-                        <td>{{ evenement.enseignantref }}</td>
-                    </tr>
-                    <tr>
-                        <th>Courriel enseignant réf</th>
-                        <td>{{ evenement.courrielenseignantref }}</td>
-                    </tr>
-                    <tr>
-                        <th>Tel enseignant réf</th>
-                        <td>{{ evenement.telenseignantref }}</td>
-                    </tr>
-                    <tr>
-                        <th>Nombres d'élèves</th>
-                        <td>{{ evenement.nbEleves }}</td>
-                    </tr>
-                    <tr>
-                        <th>Niveau de la classe</th>
-                        <td>Informations 6</td>
-                    </tr>
-                    <tr>
-                        <th>Nombres d'intervenants IG45</th>
-                        <td>Informations 7</td>
-                    </tr>
-                    <tr>
-                        <th>Observateurs possibles</th>
-                        <td>Informations 8</td>
-                    </tr>
-                    <tr>
-                        <th>Correspondant d'établissement</th>
-                        <td>Informations 9</td>
-                    </tr>
-                    <tr>
-                        <th>Courriel correspondant</th>
-                        <td>Informations 10</td>
-                    </tr>
-                    <tr>
-                        <th>Tel. fixe correspondant</th>
-                        <td>Informations 11</td>
-                    </tr>
-                    <tr>
-                        <th>Tel. port. correspondant</th>
-                        <td>Informations 12</td>
-                    </tr>
-                    <tr>
-                        <th>1er corresp. adjoint</th>
-                        <td>Informations 13</td>
-                    </tr>
-                    <tr>
-                        <th>Courriel 1er corresp. adjoint</th>
-                        <td>Informations 14</td>
-                    </tr>
-                    <tr>
-                        <th>Tel. fixe 1er corresp. adjoint</th>
-                        <td>Informations 15</td>
-                    </tr>
-                    <tr>
-                        <th>Tel. port. 1er corresp. adjoint</th>
-                        <td>Informations 16</td>
-                    </tr>
-                </tbody>
-            </table>
-        {% endblock %}
+    <table class="">
+      <tbody>
+        <tr>
+          <th>Etablissement</th>
+          <td>{{ evenement.etablissement }}</td>
+        </tr>
+        <tr>
+          <th>Adresse de l'établissement</th>
+          <td>{{ evenement.etablissement.adresse }}</td>
+        </tr>
+        <tr>
+          <th>Code Postal</th>
+          <td>{{ evenement.etablissement.codePostal }}</td>
+        </tr>
+        <tr>
+          <th>Ville</th>
+          <td>{{ evenement.etablissement.ville }}</td>
+        </tr>
+        <tr>
+          <th>Date de l'intervention</th>
+          <td>
+            {% if evenement.dateEvt %}{{ evenement.dateEvt|date('l d/m/Y') }}{% endif %}
+          </td>
+        </tr>
+        <tr>
+          <th>Début de l'intervention</th>
+          <td>
+            {% if evenement.heureDebut %}{{ evenement.heureDebut|date('H:i') }}{% endif %}
+          </td>
+        </tr>
+        <tr>
+          <th>Fin de l'intervention</th>
+          <td>
+            {% if evenement.heureFin %}{{ evenement.heureFin|date('H:i') }}{% endif %}
+          </td>
+        </tr>
+        <tr>
+          <th>Description</th>
+          <td>{{ evenement.description }}</td>
+        </tr>
+        <tr>
+          <th>Nombres de participants</th>
+          <td>{{ evenement.nbParticipants }}</td>
+        </tr>
+        <tr>
+          <th>Nombres d'observateurs</th>
+          <td>{{ evenement.nbObservateurs }}</td>
+        </tr>
+        <tr>
+          <th>Nombres de groupes</th>
+          <td>{{ evenement.nbGroupes }}</td>
+        </tr>
+        <tr>
+          <th>Nombres de salles</th>
+          <td>{{ evenement.nbSalles }}</td>
+        </tr>
+        <tr>
+          <th>Nombres élèves volontaires</th>
+          <td>{{ evenement.elevesvolontaires }}</td>
+        </tr>
+        <tr>
+          <th>Documentation attendue</th>
+          <td>
+            {% if evenement.documentationattendue %}Oui{% else %}Non{% endif %}
+          </td>
+        </tr>
+        <tr>
+          <th>Particularite</th>
+          <td>{{ evenement.particularite }}</td>
+        </tr>
+        <tr>
+          <th>Complement d'information</th>
+          <td>{{ evenement.complementinfo }}</td>
+        </tr>
+        <tr>
+          <th>Enseignant référant</th>
+          <td>{{ evenement.enseignantref }}</td>
+        </tr>
+        <tr>
+          <th>Courriel enseignant réf</th>
+          <td>{{ evenement.courrielenseignantref }}</td>
+        </tr>
+        <tr>
+          <th>Tel enseignant réf</th>
+          <td>{{ evenement.telenseignantref }}</td>
+        </tr>
+        <tr>
+          <th>Nombres d'élèves</th>
+          <td>{{ evenement.nbEleves }}</td>
+        </tr>
+        <tr>
+          <th>Niveau de la classe</th>
+          <td>{{ evenement.niveauClasse }}</td>
+        </tr>
+        <tr>
+          <th>Correspondant</th>
+          <td>
+            {{ evenement.etablissement.correspondant.nom}} {{evenement.etablissement.correspondant.prenom}}
+          </td>
+        </tr>
+        <tr>
+          <th>Courriel correspondant</th>
+          <td>
+            {{ evenement.etablissement.correspondant.emailCanonical}}
+          </td>
+        </tr>
+        <tr>
+          <th>Tel. fixe correspondant</th>
+          <td>
+            {{ evenement.etablissement.correspondant.telFixe}}
+          </td>
+        </tr>
+        <tr>
+          <th>Tel. port. correspondant</th>
+          <td>
+            {{ evenement.etablissement.correspondant.telPortable}}
+          </td>
+        </tr>
+        {% for user in evenement.etablissement.adjoints  %}
+        <tr>
+          <th>Corresp. adjoint  {{ loop.index }}</th>
+          <td>
+            {{ user.nom }}
+            {{user.prenom }}
+          </td>
+        </tr>
+        <tr>
+          <th>Courriel  corresp. adjoint  {{ loop.index }}</th>
+          <td>
+            {{user.emailCanonical }}
+          </td>
+        </tr>
+        <tr>
+          <th>Tel. fixe corresp. adjoint  {{ loop.index }}</th>
+          <td>
+            {{user.telFixe }}
+          </td>
+        </tr>
+        <tr>
+          <th>Tel. port. corresp. adjoint  {{ loop.index }}</th>
+          <td>
+            {{user.telPortable }}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endblock %}
 
-        </div>
-         <footer class="page-footer blue lighten-2">
-       <div class="container">
-        <p>
-          InterGénérations45 © 2017
-        </p>
-       </div>
-    </footer>
-    </body>
+  </div>
+  <footer class="page-footer blue lighten-2">
+    <div class="container">
+      <p>
+        InterGénérations45 © 2017
+      </p>
+    </div>
+  </footer>
+</body>
 </html>

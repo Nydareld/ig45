@@ -141,9 +141,9 @@ class Evenement
     private $elevesVolontaires;
 
     /**
-     * @var boolean
+     * @var string
      *
-     * @ORM\Column(name="documentation_attendue", type="boolean", nullable=true)
+     * @ORM\Column(name="documentation_attendue", type="string", nullable=true)
      */
     private $documentationAttendue;
 
@@ -219,7 +219,6 @@ class Evenement
     }
 
 
-
     /**
      * Get the value of Id
      *
@@ -228,6 +227,16 @@ class Evenement
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * set the value of Id to null
+     *
+     */
+    public function removeId()
+    {
+        $this->id=null;
+        return $this;
     }
 
     /**
@@ -479,8 +488,7 @@ class Evenement
      */
     public function addIntervenant(User $intervenant)
     {
-        $this->intervenants->add( $intervenant);
-
+        $this->intervenants->add($intervenant);
         return $this;
     }
 
@@ -529,7 +537,6 @@ class Evenement
     public function addObservateur(User $observateur)
     {
         $this->observateurs->add( $observateur);
-
         return $this;
     }
 
@@ -807,8 +814,27 @@ class Evenement
         return $this;
     }
 
+    public function isComplet(){
+        $nbPart = $this->getNbParticipants();
+        $nbPartReel = count( $this->getIntervenants());
+        $complet = false;
+
+        if($nbPart == $nbPartReel){
+            $complet = true;
+        }
+
+        return $complet;
+    }
+
     public function __toString() {
         return strval($this->id);
+    }
+
+    public function getNiveaux()
+    {
+        $etab = $this->getEtablissement();
+        $niveaux = $etab->getNiveaux();
+        return $niveaux;
     }
 
 }
