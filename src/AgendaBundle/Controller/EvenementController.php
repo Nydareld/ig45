@@ -4,6 +4,7 @@ namespace AgendaBundle\Controller;
 
 use AgendaBundle\Entity\Etablissement;
 use AgendaBundle\Entity\Evenement;
+use AgendaBundle\Entity\MailCorrespondant;
 use AgendaBundle\Repository\EtablissementRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -300,6 +301,34 @@ class EvenementController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('evenement_index');
+    }
+
+    /**
+     * send mail
+     *
+     * @Method("GET")
+     */
+    public function mailAction(Request $request, Evenement $evenement)
+    {
+        $mail = new MailCorrespondant($evenement,$this->get('security.token_storage')->getToken()->getUser());
+        $mailForm = $this->createForm('AgendaBundle\Form\MailType', $mail);
+
+        $mailForm->handleRequest($request);
+
+        if ($mailForm->isSubmitted() && $mailForm->isValid()) {
+            $message = \Swift_Message::newInstance()
+                ->setSubject($mail->getObjet())
+                ->setFrom($mail->getExpediteur())
+                ->setTo($mail->getDestinataire())
+                ->setBody($mail->getMessage());
+
+            $this->get('mailer')->send($message);
+            // return $this->redirectToRoute('evenement_show',array("id"=>$evenement->getId()));
+        }
+
+        return $this->render('AgendaBundle:Evenement:mail.html.twig', array(
+            'form' => $mailForm->createView(),
+        ));
     }
 
     public function searchEvenementAction(Request $request)
