@@ -24,9 +24,9 @@
                     <ul class="right hide-on-med-and-down">
                         <li>
                             {% if app.user %}
-                                <a href="{{ path('fos_user_security_login') }}">{{app.user.nom}}
+                                <a href="{{ path('fos_user_security_logout') }}">{{app.user.nom}}
                                     {{app.user.prenom}}
-                                    <i class="material-icons right">person</i>
+                                    <i class="material-icons right">power_settings_new</i>
                                 </a>
                             {% else %}
                                 <a href="{{ path('fos_user_security_login') }}">Se connecter<i class="material-icons right">person</i>
@@ -55,6 +55,9 @@
                         <i class="material-icons">add</i>
                     </a>
                 {% endif %}
+                <a href="{{ path('evenement_search') }}" class="waves-effect waves-light btn blue lighten-2" title="Rechercher une intervention">
+                    <i class="material-icons">search</i>
+                </a>
                 <a href="{{ path('agenda_perso') }}" class="waves-effect waves-light btn blue lighten-2" title="Agenda personnel">Agenda Personnel</a>
                 {% block specificAction%}{% endblock %}
             </div>

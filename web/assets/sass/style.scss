@@ -18,6 +18,7 @@ $grey_light: #eeeeee;
     color: #f44336;
 }
 
+.icon_check_box,
 .icon_check_circle {
     color: #33cc33;
 }
@@ -28,10 +29,6 @@ $grey_light: #eeeeee;
 
 .icon_edit {
     color: #ff9800;
-}
-
-.icon_check_box {
-    color: #33cc33;
 }
 
 .logo_enfants {
@@ -86,4 +83,14 @@ form {
 
 .input_form {
     margin-bottom: 50px;
+}
+
+.listboxswap .listbox_controls .add,
+.listboxswap .listbox_controls .remove {
+    background-color: $bleu_light;
+}
+
+.checkbox label,
+.radio label {
+    padding-left: 0;
 }
