@@ -1,0 +1,113 @@
+{% extends "BaseBundle::Layout/BaseLayout.html.twig" %}
+{% block title %}Recherche intervention{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
+    {{ parent() }}
+    <!-- Icheck -->
+    <link rel="stylesheet" href="{{ asset('bower_components/AdminLTE/plugins/iCheck/square/blue.css') }}">
+{% endblock %}
+{% block specificAction%}
+    <div class="right">
+        <a href="{{ path('evenement_index') }}" class="waves-effect waves-light btn blue lighten-2" title="Retour liste">
+            <i class="material-icons ">chevron_left</i>
+        </a>
+    </div>
+{% endblock %}
+{% block contentBody %}
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-lg-6">
+            {{ form_label(form.annee, "Année scolaire") }}
+            {{ form_widget(form.annee) }}
+        </div>
+        <div class="col-lg-6">
+            {{ form_label(form.complet, "Intervention non complètes") }}
+            {{ form_widget(form.complet) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            {{ form_label(form.utildate, "Filtrage par date") }}
+            {{ form_widget(form.utildate) }}
+
+        </div>
+        <div class="col-lg-6">
+            {{ form_label(form.dateIntervention, "Date de l'intervention") }}
+            {{ form_widget(form.dateIntervention) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            {{ form_label(form.etablissement, "Lieu de l'intervention") }}
+            {{ form_widget(form.etablissement, {'attr': {'onchange': 'verif_niveau(this.value)'}}) }}
+        </div>
+        <div class="col-lg-6">
+            {{ form_label(form.niveau, "Niveau de l'intervention") }}
+            {{ form_widget(form.niveau, {'attr': {'onchange': 'verif_type(this.value)'}}) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            {{ form_label(form.type, "Type evenement") }}
+            {{ form_widget(form.type) }}
+        </div>
+    </div>
+    <input type="submit" value="Rechercher" id="rechercher" class="waves-effect waves-light btn blue lighten-2 right input_form"/>
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <!-- icheck -->
+    <script src="{{ asset('bower_components/AdminLTE/plugins/iCheck/icheck.min.js') }}"></script>
+    <script>
+        $(function() {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_square-blue', radioClass: 'iradio_square-blue', increaseArea: '20%' // optional
+            });
+        });
+    </script>
+    <script>
+        function verif_type(niveau) {
+            var liste = document.getElementById("evenement_search_type");
+            while (liste.firstChild) {
+                liste.removeChild(liste.firstChild);
+            }
+            var option = document.createElement("option");
+            option.text = "Choisir un type d'intervention";
+            option.value = null;
+            liste.appendChild(option);
+            {% for niveauPhp in niveaux %}
+                if (niveau == {{ niveauPhp.id }}) {
+                    {% for typeEvent in niveauPhp.typeEvenements %}
+                        option = document.createElement("option");
+                        option.text = "{{ typeEvent.nom }}";
+                        option.value = "{{ typeEvent.id }}";
+                        liste.appendChild(option);
+                    {% endfor %}
+            }
+        {% endfor %}
+    }
+    function verif_niveau(etablissement) {
+        var liste = document.getElementById("evenement_search_niveau");
+        while (liste.firstChild) {
+            liste.removeChild(liste.firstChild);
+        }
+        var option = document.createElement("option");
+        option.text = "Choisir un niveau";
+        option.value = null;
+        liste.appendChild(option);
+        {% for etabli in etablissements %}
+            if (etablissement == {{ etabli.id }}) {
+                {% for nivo in etabli.niveaux %}
+                    console.log('{{ nivo.nom }}');
+                    option = document.createElement("option");
+                    option.text = "{{ nivo.nom }}";
+                    option.value = "{{ nivo.id }}";
+                    liste.appendChild(option);
+                {% endfor %}
+        }
+    {% endfor %}
+}
+    </script>
+{% endblock %}

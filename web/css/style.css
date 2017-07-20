@@ -1,0 +1,92 @@
+.brand-logo img {
+  vertical-align: text-bottom;
+}
+
+.action_agenda {
+  margin: 50px 0;
+  padding: 20px 10px;
+  background-color: #eee;
+}
+
+.icon_cancel {
+  color: #f44336;
+}
+
+.icon_check_box,
+.icon_check_circle {
+  color: #3c3;
+}
+
+.icon_copy {
+  color: #39f;
+}
+
+.icon_report_problem {
+  color: #cc0;
+}
+
+.icon_edit {
+  color: #ff9800;
+}
+
+.logo_enfants {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.logo_enfants img {
+  max-width: 250px;
+}
+
+.legende_agenda {
+  margin-bottom: 20px;
+  padding: 30px 10px 10px;
+  border: 1px #9e9e9e solid;
+}
+
+.legende_agenda i {
+  margin-right: 10px;
+  vertical-align: bottom;
+}
+
+table {
+  margin-bottom: 50px;
+  border: 1px #9e9e9e solid;
+}
+
+table .annule {
+  background-color: rgba(244, 67, 54, .3) !important;
+}
+
+table i {
+  vertical-align: bottom;
+}
+
+table .icon {
+  color: black;
+}
+
+form .info_etape {
+  font-size: 40px;
+  margin-bottom: 50px;
+  text-align: center;
+  color: #64b5f6;
+}
+
+form textarea {
+  resize: vertical;
+}
+
+.input_form {
+  margin-bottom: 50px;
+}
+
+.listboxswap .listbox_controls .add,
+.listboxswap .listbox_controls .remove {
+  background-color: #64b5f6;
+}
+
+.checkbox label,
+.radio label {
+  padding-left: 0;
+}

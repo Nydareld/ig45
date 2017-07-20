@@ -1,0 +1,82 @@
+{% extends 'BackofficeBaseBundle::Layout/AdminLayout.html.twig' %}
+
+{% block navActive %}etablissement{% endblock %}
+
+{% block contentHeader %}
+<h1>
+    Administration des etablissements
+</h1>
+{% endblock %}
+
+{% block content %}
+
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="info-box">
+        <span class="info-box-icon bg-aqua"><i class="fa fa-building"></i></span>
+
+        <div class="info-box-content">
+            <span class="info-box-text">Nombre d'etablissements</span>
+            <span class="info-box-number">{{etablissements|length}}</span>
+        </div>
+        <!-- /.info-box-content -->
+    </div>
+    <!-- /.info-box -->
+</div>
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <a href="{{ path('etablissement_new') }}">
+        <div class="info-box">
+            <span class="info-box-icon bg-green"><i class="fa fa-plus-circle"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-number">Créer un etablissement</span>
+            </div>
+        </div>
+    </a>
+</div>
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Liste des établissements</h3>
+        </div>
+        <div class="box-body">
+            <table class="table table-bordered table-striped dataTable">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Adresse</th>
+                        <th>Ville</th>
+                        <th>Codepostal</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Adresse</th>
+                        <th>Ville</th>
+                        <th>Codepostal</th>
+                        <th>Actions</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    {% for etablissement in etablissements %}
+                    <tr>
+                        <td><a href="{{ path('etablissement_show', { 'id': etablissement.id }) }}">{{ etablissement.nom }}</a></td>
+                        <td>{{ etablissement.adresse }}</td>
+                        <td>{{ etablissement.ville }}</td>
+                        <td>{{ etablissement.codePostal }}</td>
+                        <td>
+                            <a title="Affichier" href="{{ path('etablissement_show', { 'id': etablissement.id }) }}"><i class="fa fa-2x fa-info"></i></a>
+                            <span>   </span>
+                            <span>   </span>
+                            <a title="Modifier" href="{{ path('etablissement_edit', { 'id': etablissement.id }) }}"><i class="fa fa-2x fa-edit"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

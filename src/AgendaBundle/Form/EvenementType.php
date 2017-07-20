@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class EvenementType extends AbstractType
 {
@@ -19,55 +20,44 @@ class EvenementType extends AbstractType
         $builder->add('dateEvt', DateType::class, array(
                         'widget' => 'choice',
                         // this is actually the default format for single_text
-                        'format' => 'dd-MM-yyyy',
-                        'data' => new \DateTime()
+                        'format' => 'dd-MM-yyyy'
                     )
                   )
-
-                ->add('lieu')
+                ->add('anneeScolaire')
+                ->add('etablissement')
+                ->add('typeEvenement')
                 ->add('heureDebut',  TimeType::class, array(
                       'input'  => 'datetime',
-                      'widget' => 'choice',
+                      'widget' => 'choice'
                   )
                 )
                 ->add('heureFin', TimeType::class, array(
                       'input'  => 'datetime',
-                      'widget' => 'choice',
+                      'widget' => 'choice'
                   )
                 )
-                ->add('niveauIntervention')
-                ->add('typeIntervention')
+                ->add('niveauClasse',TextType::class, array(
+                    'attr' => array(
+                      'placeholder' => 'Ex : CM2'
+                    )
+                  )
+                )
                 ->add('nbEleves')
                 ->add('nbParticipants', ChoiceType::class, array(
-                    'choices'  => array(
-                        'Aucun' => 0,
-                        '1' => 1,
-                        '2' => 2,
-                        '3' => 3,
-                        '4' => 4,
-                        '5' => 5,
-                        '6' => 6,
-                        '7' => 7,
-                        '8' => 8,
-                    ),
+                    'choices'  => array_merge(
+                        array('Aucun' => 0),range(1,31)
+                    )
                   )
                 )
                 ->add('intervenants')
                 ->add('nbObservateurs', ChoiceType::class, array(
-                    'choices'  => array(
-                        'Aucun' => 0,
-                        '1' => 1,
-                        '2' => 2,
-                        '3' => 3,
-                        '4' => 4,
-                        '5' => 5,
-                        '6' => 6,
-                        '7' => 7,
-                        '8' => 8,
-                    ),
+                  'choices'  => array_merge(
+                      array('Aucun' => 0),range(1,9)
+                  )
                   )
                 )
-                ->add('observateurs');
+                ->add('observateurs')
+                ->add('typeEvenement');
     }
 
     /**

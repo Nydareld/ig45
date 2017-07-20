@@ -2,10 +2,15 @@
 
 namespace AgendaBundle\Controller;
 
+use AgendaBundle\Entity\Etablissement;
 use AgendaBundle\Entity\Evenement;
+use AgendaBundle\Entity\MailCorrespondant;
+use AgendaBundle\Repository\EtablissementRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Evenement controller.
@@ -22,7 +27,53 @@ class EvenementController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $evenements = $em->getRepository('AgendaBundle:Evenement')->findAll();
+        $year = date_format(new \DateTime(),'Y');
+        $yearPlus = strval(intval($year)+1);
+        $yearMoins = strval(intval($year)-1);
+        $debut_annee_scolaire = date_format(new \DateTime('09/01/'.$year),'d/m');
+        $fin_annee_scolaire = date_format(new \DateTime('08/31/'.$yearPlus),'d/m');
+        $debut_annee = date_format(new \DateTime('01/01/'.$year),'d/m');
+        $fin_annee = date_format(new \DateTime('12/31/'.$year),'d/m');
+        $today = date_format(new \DateTime(),'d/m');
+
+        function isSupDate($d1, $d2){
+          $d1 = explode('/',$d1);
+          $d2 = explode('/',$d2);
+          $d1_m = intval($d1[1]);
+          $d1_j = intval($d1[0]);
+          $d2_m = intval($d2[1]);
+          $d2_j = intval($d2[0]);
+          if($d1_m>$d2_m){
+            return true;
+          }
+          else if($d1_m==$d2_m){
+            if ($d1_j<$d2_j){
+              return false;
+            }
+            else{
+              return true;
+            }
+          }
+          else{
+            return false;
+          }
+        }
+
+        if (isSupDate($fin_annee,$today) && isSupDate($today,$debut_annee_scolaire)){
+          $scolaire = $year.' - '.$yearPlus;
+        }
+
+        else if (isSupDate($today,$debut_annee) && isSupDate($fin_annee_scolaire,$today)){
+          $scolaire = $yearMoins.' - '.$year;
+        }
+
+        $annee = $em->getRepository('AgendaBundle:AnneeScolaire')->findOneBy(array('annee' => $scolaire));
+        if (!empty($annee)){
+          $evenements = $em->getRepository('AgendaBundle:Evenement')->findBy(array('anneeScolaire' => $annee->getId()), array('dateEvt' => 'ASC'));
+        }
+        else{
+          $evenements = null;
+        }
 
         return $this->render('AgendaBundle:Evenement:index.html.twig', array(
             'evenements' => $evenements,
@@ -40,6 +91,12 @@ class EvenementController extends Controller
         $form = $this->createForm('AgendaBundle\Form\EvenementType', $evenement);
         $form->handleRequest($request);
 
+        $repo_niveau = $this->getDoctrine()->getRepository('AgendaBundle:Niveau');
+        $niveau_etbl = $repo_niveau->findAll();
+
+        $repo_typeEvenement = $this->getDoctrine()->getRepository('AgendaBundle:TypeEvenement');
+        $typeEvenement = $repo_typeEvenement->findAll();
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($evenement);
@@ -50,6 +107,8 @@ class EvenementController extends Controller
 
         return $this->render('AgendaBundle:Evenement:new.html.twig', array(
             'evenement' => $evenement,
+            'niveau_etbl' => $niveau_etbl,
+            'typeEvenement' => $typeEvenement,
             'form' => $form->createView(),
         ));
     }
@@ -57,7 +116,6 @@ class EvenementController extends Controller
     /**
      * Displays a form to edit an existing evenement entity.
      *
-     * @Route("/{id}/new/suite", name="evenement_new_suite")
      * @Method({"GET", "POST"})
      */
     public function SuiteNewAction(Request $request, Evenement $evenement)
@@ -86,6 +144,7 @@ class EvenementController extends Controller
      */
     public function showAction(Evenement $evenement)
     {
+
         $deleteForm = $this->createDeleteForm($evenement);
 
         return $this->render('AgendaBundle:Evenement:show.html.twig', array(
@@ -105,18 +164,58 @@ class EvenementController extends Controller
         $editForm = $this->createForm('AgendaBundle\Form\EvenementType', $evenement);
         $editForm->handleRequest($request);
 
+        $repo_niveau = $this->getDoctrine()->getRepository('AgendaBundle:Niveau');
+        $niveau_etbl = $repo_niveau->findAll();
+
+        $repo_typeEvenement = $this->getDoctrine()->getRepository('AgendaBundle:TypeEvenement');
+        $typeEvenement = $repo_typeEvenement->findAll();
+
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('evenement_edit_suite', array('id' => $evenement->getId()));
         }
 
-        return $this->render('AgendaBundle:Evenement:edit.html.twig', array(
+        return $this->render('AgendaBundle:Evenement:new.html.twig', array(
             'evenement' => $evenement,
-            'edit_form' => $editForm->createView(),
+            'niveau_etbl' => $niveau_etbl,
+            'typeEvenement' => $typeEvenement,
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
+
+    /**
+     * Displays a form to edit an existing evenement entity.
+     *
+     * @Method({"GET", "POST"})
+     */
+     public function duplicationAction(Request $request, Evenement $evenement)
+     {
+       $evenementDuplicated = clone($evenement);
+       $evenementDuplicated->removeId();
+       $evenementDuplicated->setDateEvt(new \DateTime("2017-01-01"));
+       $evenementDuplicated->setHeureDebut(new \DateTime("00:00"));
+       $evenementDuplicated->setHeureFin(new \DateTime("00:00"));
+       $evenementDuplicated->setIntervenants(null);
+       $evenementDuplicated->setObservateurs(null);
+
+       $form = $this->createForm('AgendaBundle\Form\EvenementType', $evenementDuplicated);
+       $form->handleRequest($request);
+
+       if ($form->isSubmitted() && $form->isValid()) {
+         $em = $this->getDoctrine()->getManager();
+         $em->persist($evenementDuplicated);
+         $em->flush();
+
+         return $this->redirectToRoute('evenement_new_suite', array('id' => $evenementDuplicated->getId()));
+       }
+
+       return $this->render('AgendaBundle:Evenement:new.html.twig', array(
+         'evenementDuplicated' => $evenementDuplicated,
+         'form' => $form->createView()
+       ));
+     }
 
     /**
      * Displays a form to edit an existing evenement entity.
@@ -149,14 +248,10 @@ class EvenementController extends Controller
      */
     public function deleteAction(Request $request, Evenement $evenement)
     {
-        $form = $this->createDeleteForm($evenement);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($evenement);
-            $em->flush();
-        }
+        $em = $this->getDoctrine()->getManager();
+        $evenement->setAnnule(true);
+        $em->persist($evenement);
+        $em->flush();
 
         return $this->redirectToRoute('evenement_index');
     }
@@ -175,5 +270,155 @@ class EvenementController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    public function exportAction(Evenement $evenement){
+
+        //on stocke la vue à convertir en PDF, en n'oubliant pas les paramètres twig si la vue comporte des données dynamiques
+
+        $html = $this->renderView('AgendaBundle:Evenement:showExport.html.twig', array('evenement' => $evenement));
+
+
+        //if you are in a controlller use :
+        $pdf = $this->get("white_october.tcpdf")->create('vertical', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+        $pdf->SetTitle(("Fiche d'intervention"));
+        $pdf->setFontSubsetting(true);
+        $pdf->SetFont('helvetica', '', 11, '', true);
+
+        $pdf->AddPage();
+
+        $filename = 'ficheIntervention';
+
+        $pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
+        $pdf->Output($filename.".pdf",'I'); // This will output the PDF as a response directly
+    }
+
+    public function reactivateAction(Request $request, Evenement $evenement)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $evenement->setAnnule(false);
+        $em->persist($evenement);
+        $em->flush();
+
+        return $this->redirectToRoute('evenement_index');
+    }
+
+    /**
+     * send mail
+     *
+     * @Method("GET")
+     */
+    public function mailAction(Request $request, Evenement $evenement)
+    {
+        $mail = new MailCorrespondant($evenement,$this->get('security.token_storage')->getToken()->getUser());
+        $mailForm = $this->createForm('AgendaBundle\Form\MailType', $mail);
+
+        $mailForm->handleRequest($request);
+
+        if ($mailForm->isSubmitted() && $mailForm->isValid()) {
+            $message = \Swift_Message::newInstance()
+                ->setSubject($mail->getObjet())
+                ->setFrom($mail->getExpediteur())
+                ->setTo($mail->getDestinataire())
+                ->setBody($mail->getMessage());
+
+            $this->get('mailer')->send($message);
+            // return $this->redirectToRoute('evenement_show',array("id"=>$evenement->getId()));
+        }
+
+        return $this->render('AgendaBundle:Evenement:mail.html.twig', array(
+            'form' => $mailForm->createView(),
+        ));
+    }
+
+    public function searchEvenementAction(Request $request)
+    {
+        $form = $this->createForm('AgendaBundle\Form\EvenementSearchType');
+
+        if ($form->handleRequest($request)->isSubmitted()) {
+
+            if(($form['etablissement']->getData()) != null){
+                $etablissement = $form['etablissement']->getData()->getId();
+            }
+            if (($form['utildate']->getData()) == true){
+                $date = $form['dateIntervention']->getData();
+            }
+            if (($form['complet']->getData()) == true){
+                $complet = $form['complet']->getData();
+
+            }
+            if (($form['niveau']->getData() != null)){
+                $niveau = $form['niveau']->getData();
+            }
+            if (($form['type']->getData() != null)){
+                $type = $form['type']->getData();
+            }
+            if (($form['annee']->getData() != null)){
+                $annee = $form['annee']->getData();
+            }
+
+            $repository = $this->getDoctrine()->getRepository('AgendaBundle:Evenement');
+
+            $evenements = $repository->findAll();
+
+            foreach ($evenements as $event){
+                $remove = false;
+                if(isset($etablissement) && $remove == false){
+                    if ($etablissement != $event->getEtablissement()->getId()){
+                        unset($evenements[array_search($event, $evenements)]);
+                        $remove = true;
+                    }
+                }
+                if(isset($date) && $remove == false){
+                   if($event->getDateEvt() != $date){
+                       unset($evenements[array_search($event, $evenements)]);
+                       $remove = true;
+                   }
+                }
+                if(isset($complet) && $remove == false){
+                    if($event->isComplet() == $complet){
+                        unset($evenements[array_search($event, $evenements)]);
+                        $remove = true;
+                    }
+                }
+                if(isset($niveau) && $remove == false){
+                    $test = true;
+                    foreach ($event->getNiveaux() as $nival){
+                        if($nival == $niveau){
+                            $test = false;
+                        }
+                    }
+                    if($test){
+                        unset($evenements[array_search($event, $evenements)]);
+                        $remove = true;
+                    }
+                }
+                if(isset($type) && $remove == false){
+                    foreach ($event->getTypeEvenement() as $typ){
+                        if ($typ != $type){
+                            unset($evenements[array_search($event, $evenements)]);
+                            $remove = true;
+                        }
+                    }
+                }
+                if(isset($annee) && $remove == false){
+                    if($event->getAnneeScolaire() != $annee){
+                        unset($evenements[array_search($event, $evenements)]);
+                        $remove = true;
+                    }
+                }
+            }
+            return $this->render('AgendaBundle:Evenement:index.html.twig', array('evenements' => $evenements));
+        }
+
+        $repo_type = $this->getDoctrine()->getRepository('AgendaBundle:Niveau');
+        $repo_etable = $this->getDoctrine()->getRepository('AgendaBundle:Etablissement');
+        $etablissements = $repo_etable->findAll();
+        $niveaux = $repo_type->findAll();
+        return $this->render('AgendaBundle:Evenement:search.html.twig', array(
+            'form' => $form->createView(),
+            'niveaux' => $niveaux,
+            'etablissements' => $etablissements,
+        ));
     }
 }

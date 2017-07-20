@@ -1,0 +1,124 @@
+{% extends "BackofficeBaseBundle::Layout/AdminLayout.html.twig" %}
+
+{% block navActive %}etablissement{% endblock %}
+
+{% block contentHeader %}
+<h1>
+    Fiche établissement
+</h1>
+{% endblock %}
+
+{% block content %}
+
+<div class="col-md-12">
+    <div class="box">
+        <!-- /.box-header -->
+        <div class="box-header">
+          <div class="btn-group pull-right">
+              <a class="btn btn-primary" href="{{ path('etablissement_edit', { 'id': etablissement.id }) }}"><i class="fa fa-edit"></i> Modifier</a>
+              <button type="button" name="btn" id="submitBtn" data-toggle="modal" data-target="#confirm-submit" class="btn btn-danger" /><i class="fa fa-trash"></i> Supprimer</button>
+          </div>
+            <h3>
+                {{ etablissement.nom }}
+                <small>{{ etablissement.adresse }}, {{ etablissement.codePostal }} {{ etablissement.ville }}</small>
+            </h3>
+        </div>
+        <div class="box-body">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <h3>Informations générales</h3>
+                    <dl>
+                        <dt>Nom</dt>
+                        <dd>{{ etablissement.nom }}</dd>
+                        <dt>Adresse</dt>
+                        <dd>{{ etablissement.adresse }}</dd>
+                        <dt>Ville</dt>
+                        <dd>{{ etablissement.ville }}</dd>
+                        <dt>Codepostal</dt>
+                        <dd>{{ etablissement.codePostal }}</dd>
+                    </dl>
+                </div>
+
+                <div class="col-md-6">
+                    <h3>Liens avec des utilisateurs</h3>
+                    <dl>
+                        <dt>Coresspondant</dt>
+                        <dd>{{ etablissement.correspondant }}</dd>
+                        {% for adj in etablissement.adjoints %}
+                        <dt>Adjoint {{ loop.index }}</dt>
+                        <dd>{{ adj }}</dd>
+                        {% endfor %}
+                    </dl>
+                </div>
+                <hr>
+                <div class="col-md-12">
+                    <h3>Interventions</h3>
+                    {% for evenement in etablissement.evenements  | sortbyfield('dateEvt')  %}
+                    <h4>
+                        <a href="{{ path('evenement_show',{'id':evenement.id} )}}">
+                            Intervention {{ evenement.description }} <small>{{ evenement.dateEvt|localizeddate('none', 'none', null, null, 'd MMMM YYYY') }}</small>
+                        </a>
+                    </h4>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <dl class="dl-horizontal">
+                                <dt>Date</dt>
+                                <dd>{{ evenement.dateEvt|localizeddate('none', 'none', null, null, 'd MMMM YYYY') }}</dd>
+                                <dt>Description</dt>
+                                <dd>{{ evenement.description }}</dd>
+                                <dt>Type d'intervention</dt>
+                                <dd>{{ evenement.typeEvenement }}</dd>
+                                <dt>Nombre de groupes</dt>
+                                <dd>{{ evenement.nbGroupes }}</dd>
+                                <dt>Nombre de salles</dt>
+                                <dd>{{ evenement.nbSalles }}</dd>
+                            </dl>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>Intervenants</h4>
+                            {% for user in evenement.intervenants %}
+                            {{user}}
+                            {% endfor %}
+                        </div>
+                        <div class="col-md-4">
+                            <h4>Observateurs</h4>
+                            {% for user in evenement.observateurs %}
+                            {{user}}
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                    <hr>
+                    {% endfor %}
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- ./box-body -->
+    </div>
+    <!-- /.box -->
+</div>
+{% endblock %}
+
+{% block modals %}
+<!-- Modal de validation de la supression de l'etablissement -->
+<div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h4>
+                    Êtes-vous certain de voulour suprimer l'établissement {{ etablissement.nom }} ?
+                </h4>
+            </div>
+        <div class="modal-footer">
+            {{ form_start(delete_form) }}
+            <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+            <button type="submit" value="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Valider</button>
+            {{ form_end(delete_form) }}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,100 +1,178 @@
-{% extends 'base.html.twig' %}
-
-{% block body %}
-    <h1>Evenement</h1>
-
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ evenement.id }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ evenement.description }}</td>
-            </tr>
-            <tr>
-                <th>Dateevt</th>
-                <td>{% if evenement.dateEvt %}{{ evenement.dateEvt|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Heuredebut</th>
-                <td>{% if evenement.heureDebut %}{{ evenement.heureDebut|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Heurefin</th>
-                <td>{% if evenement.heureFin %}{{ evenement.heureFin|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Nbparticipants</th>
-                <td>{{ evenement.nbParticipants }}</td>
-            </tr>
-            <tr>
-                <th>Nbobservateurs</th>
-                <td>{{ evenement.nbObservateurs }}</td>
-            </tr>
-            <tr>
-                <th>Niveauintervention</th>
-                <td>{{ evenement.niveauIntervention }}</td>
-            </tr>
-            <tr>
-                <th>Nbgroupes</th>
-                <td>{{ evenement.nbGroupes }}</td>
-            </tr>
-            <tr>
-                <th>Nbsalles</th>
-                <td>{{ evenement.nbSalles }}</td>
-            </tr>
-            <tr>
-                <th>Eleves_volontaires</th>
-                <td>{{ evenement.elevesvolontaires }}</td>
-            </tr>
-            <tr>
-                <th>Documentation_attendue</th>
-                <td>{% if evenement.documentationattendue %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Particularite</th>
-                <td>{{ evenement.particularite }}</td>
-            </tr>
-            <tr>
-                <th>Complement_info</th>
-                <td>{{ evenement.complementinfo }}</td>
-            </tr>
-            <tr>
-                <th>Enseignant_ref</th>
-                <td>{{ evenement.enseignantref }}</td>
-            </tr>
-            <tr>
-                <th>Courriel_enseignant_ref</th>
-                <td>{{ evenement.courrielenseignantref }}</td>
-            </tr>
-            <tr>
-                <th>Tel_enseignant_ref</th>
-                <td>{{ evenement.telenseignantref }}</td>
-            </tr>
-            <tr>
-                <th>Nbeleves</th>
-                <td>{{ evenement.nbEleves }}</td>
-            </tr>
-            <tr>
-                <th>Niveau_classe</th>
-                <td>{{ evenement.niveauclasse }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('evenement_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('evenement_edit', { 'id': evenement.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+{% extends "BaseBundle::Layout/BaseLayout.html.twig" %}
+{% block title %}Fiche intervention{% endblock %}
+{% block specificAction%}
+    <div class="right">
+        <a href="{{ path('evenement_export', { 'id': evenement.id }) }}" class="waves-effect waves-light btn blue lighten-2" title="Exporter la fiche">
+            <i class="material-icons">file_download</i>
+        </a>
+        {% if is_granted('ROLE_ADMIN')or is_granted('ROLE_SUPER_ADMIN')or
+        app.user.username == evenement.etablissement.correspondant.username %}
+            <a href="{{ path('evenement_edit', { 'id': evenement.id }) }}" class="waves-effect waves-light btn orange" title="Modifier l'intervention">
+                <i class="material-icons ">mode_edit</i>
+            </a>
+            {% if evenement.annule %}
+                <a class='waves-effect waves-light btn green' href="{{ path('evenement_reactivate', { 'id': evenement.id }) }}" title="Réactiver l'intervention" onclick="return confirm('Etes-vous sûr de vouloir réactiver cette intervention ?');">
+                    <i class="material-icons">check_box</i>
+                </a>
+            {% else %}
+                <a class='waves-effect waves-light btn red' href="{{ path('evenement_delete', { 'id': evenement.id }) }}" title="Annuler l'intervention" onclick="return confirm('Etes-vous sûr de vouloir annuler cette intervention ?');">
+                    <i class="material-icons">cancel</i>
+                </a>
+            {% endif %}
+            <a href="{{ path('evenement_duplication', { 'id': evenement.id }) }}" class="waves-effect waves-light btn blue" title="Duplication de la fiche">
+                <i class="material-icons">content_copy</i>
+            </a>
+        {% endif %}
+    </div>
+{% endblock %}
+{% block contentBody %}
+<div class="agenda">
+  <table class="bordered striped responsive-table">
+    <tbody>
+      <tr>
+        <th>Etablissement</th>
+        <td>{{ evenement.etablissement }}</td>
+      </tr>
+      <tr>
+        <th>Adresse de l'établissement</th>
+        <td>{{ evenement.etablissement.adresse }}</td>
+      </tr>
+      <tr>
+        <th>Code Postal</th>
+        <td>{{ evenement.etablissement.codePostal }}</td>
+      </tr>
+      <tr>
+        <th>Ville</th>
+        <td>{{ evenement.etablissement.ville }}</td>
+      </tr>
+      <tr>
+        <th>Date de l'intervention</th>
+        <td>
+          {% if evenement.dateEvt %}{{ evenement.dateEvt|date('l d/m/Y') }}{% endif %}
+        </td>
+      </tr>
+      <tr>
+        <th>Début de l'intervention</th>
+        <td>
+          {% if evenement.heureDebut %}{{ evenement.heureDebut|date('H:i') }}{% endif %}
+        </td>
+      </tr>
+      <tr>
+        <th>Fin de l'intervention</th>
+        <td>
+          {% if evenement.heureFin %}{{ evenement.heureFin|date('H:i') }}{% endif %}
+        </td>
+      </tr>
+      <tr>
+        <th>Description</th>
+        <td>{{ evenement.description }}</td>
+      </tr>
+      <tr>
+        <th>Nombres de participants</th>
+        <td>{{ evenement.nbParticipants }}</td>
+      </tr>
+      <tr>
+        <th>Nombres d'observateurs</th>
+        <td>{{ evenement.nbObservateurs }}</td>
+      </tr>
+      <tr>
+        <th>Nombres de groupes</th>
+        <td>{{ evenement.nbGroupes }}</td>
+      </tr>
+      <tr>
+        <th>Nombres de salles</th>
+        <td>{{ evenement.nbSalles }}</td>
+      </tr>
+      <tr>
+        <th>Nombres élèves volontaires</th>
+        <td>{{ evenement.elevesvolontaires }}</td>
+      </tr>
+      <tr>
+        <th>Documentation attendue</th>
+        <td>
+          {% if evenement.documentationattendue %}Oui{% else %}Non{% endif %}
+        </td>
+      </tr>
+      <tr>
+        <th>Particularite</th>
+        <td>{{ evenement.particularite }}</td>
+      </tr>
+      <tr>
+        <th>Complement d'information</th>
+        <td>{{ evenement.complementinfo }}</td>
+      </tr>
+      <tr>
+        <th>Enseignant référant</th>
+        <td>{{ evenement.enseignantref }}</td>
+      </tr>
+      <tr>
+        <th>Courriel enseignant réf</th>
+        <td>{{ evenement.courrielenseignantref }}</td>
+      </tr>
+      <tr>
+        <th>Tel enseignant réf</th>
+        <td>{{ evenement.telenseignantref }}</td>
+      </tr>
+      <tr>
+        <th>Nombres d'élèves</th>
+        <td>{{ evenement.nbEleves }}</td>
+      </tr>
+      <tr>
+        <th>Niveau de la classe</th>
+        <td>{{ evenement.niveauClasse }}</td>
+      </tr>
+      <tr>
+        <th>Correspondant</th>
+        <td>
+          {{ evenement.etablissement.correspondant.nom}} {{evenement.etablissement.correspondant.prenom}}
+        </td>
+      </tr>
+      <tr>
+        <th>Courriel correspondant</th>
+        <td>
+          {{ evenement.etablissement.correspondant.emailCanonical}}
+        </td>
+      </tr>
+      <tr>
+        <th>Tel. fixe correspondant</th>
+        <td>
+          {{ evenement.etablissement.correspondant.telFixe}}
+        </td>
+      </tr>
+      <tr>
+        <th>Tel. port. correspondant</th>
+        <td>
+          {{ evenement.etablissement.correspondant.telPortable}}
+        </td>
+      </tr>
+      {% for user in evenement.etablissement.adjoints  %}
+      <tr>
+        <th>Corresp. adjoint  {{ loop.index }}</th>
+        <td>
+          {{ user.nom }}
+          {{user.prenom }}
+        </td>
+      </tr>
+      <tr>
+        <th>Courriel  corresp. adjoint  {{ loop.index }}</th>
+        <td>
+          {{user.emailCanonical }}
+        </td>
+      </tr>
+      <tr>
+        <th>Tel. fixe corresp. adjoint  {{ loop.index }}</th>
+        <td>
+          {{user.telFixe }}
+        </td>
+      </tr>
+      <tr>
+        <th>Tel. port. corresp. adjoint  {{ loop.index }}</th>
+        <td>
+          {{user.telPortable }}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endblock %}

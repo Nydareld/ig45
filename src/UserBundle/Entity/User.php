@@ -1,10 +1,9 @@
 <?php
-
 namespace UserBundle\Entity;
-
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
-
+use Doctrine\Common\Collections\ArrayCollection;
+use AgendaBundle\Entity\Evenement;
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
@@ -17,17 +16,14 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
     /**
      * @ORM\Column(type="string")
      */
     protected $nom;
-
     /**
      * @ORM\Column(type="string")
      */
     protected $prenom;
-
     /**
      * @ORM\ManyToMany(targetEntity="UserBundle\Entity\Group")
      * @ORM\JoinTable(name="fos_user_user_group",
@@ -36,52 +32,39 @@ class User extends BaseUser
      * )
      */
     protected $groups;
-
     /**
-    * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Evenement", inversedBy="intervenants")
-    * @ORM\JoinTable(name="intervention")
-    */
+     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Evenement", mappedBy="intervenants")
+     */
     protected $interventions;
-
     /**
-    * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Evenement", inversedBy="observateurs")
-    * @ORM\JoinTable(name="observation")
-    */
+     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Evenement", mappedBy="observateurs")
+     */
     protected $observations;
-
     /**
-     * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\Lieux", mappedBy="correspondants")
+     * @ORM\OneToMany(targetEntity="AgendaBundle\Entity\Etablissement", mappedBy="correspondant")
      */
-    protected $correspondants_lieux;
-
+    protected $correspondances;
     /**
-     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Lieux", mappedBy="adjoints")
-     * @ORM\JoinTable(name="fos_user_user_adjoints",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="lieux_id", referencedColumnName="id")}
-     * )
+     * @ORM\ManyToMany(targetEntity="AgendaBundle\Entity\Etablissement", mappedBy="adjoints")
      */
-    protected $adjoint_lieux;
-
+    protected $adjonctions;
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="tel_fixe", type="integer", nullable=true)
+     * @ORM\Column(name="tel_fixe", type="string", nullable=true)
      */
-    private $tel_fixe;
-
+    private $telFixe;
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="tel_port", type="integer", nullable=true)
+     * @ORM\Column(name="tel_port", type="string", nullable=true)
      */
-    private $tel_port;
-
+    private $telPortable;
     public function __construct()
     {
         parent::__construct();
+        $this->groups = new ArrayCollection();
     }
-
     /**
      * Get the value of Id
      *
@@ -91,7 +74,6 @@ class User extends BaseUser
     {
         return $this->id;
     }
-
     /**
      * Get the value of Nom
      *
@@ -101,7 +83,6 @@ class User extends BaseUser
     {
         return $this->nom;
     }
-
     /**
      * Set the value of Nom
      *
@@ -112,10 +93,8 @@ class User extends BaseUser
     public function setNom($nom)
     {
         $this->nom = $nom;
-
         return $this;
     }
-
     /**
      * Get the value of Prenom
      *
@@ -125,7 +104,6 @@ class User extends BaseUser
     {
         return $this->prenom;
     }
-
     /**
      * Set the value of Prenom
      *
@@ -136,247 +114,233 @@ class User extends BaseUser
     public function setPrenom($prenom)
     {
         $this->prenom = $prenom;
-
         return $this;
     }
-
-
     /**
-     * Add intervention.
+     * Get the value of Groups
      *
-     * @param \AgendaBundle\Entity\Evenement $interventions
-     *
-     * @return User
+     * @return mixed
      */
-    public function addIntervention(\AgendaBundle\Entity\Evenement $intervention)
+    public function getGroups()
     {
-        $this->interventions[] = $intervention;
-
+        return $this->groups;
+    }
+    /**
+     * Set the value of Groups
+     *
+     * @param mixed groups
+     *
+     * @return self
+     */
+    public function setGroups($groups)
+    {
+        $this->groups = $groups;
         return $this;
     }
-
     /**
-     * Remove intervention.
-     *
-     * @param \AgendaBundle\Entity\Evenement $interventions
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removeIntervention(\AgendaBundle\Entity\Evenement $intervention)
-    {
-        return $this->interventions->removeElement($intervention);
-    }
-
-    /**
-     * Get intervention.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getInterventions()
-    {
-        return $this->interventions;
-    }
-
-    /**
-     * Add observation.
-     *
-     * @param \AgendaBundle\Entity\Evenement $observations
-     *
-     * @return User
-     */
-    public function addObservation(\AgendaBundle\Entity\Evenement $observation)
-    {
-        $this->observations[] = $observation;
-
-        return $this;
-    }
-
-    /**
-     * Remove observation.
-     *
-     * @param \AgendaBundle\Entity\Evenement $observations
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removeObservation(\AgendaBundle\Entity\Evenement $observation)
-    {
-        return $this->observations->removeElement($observation);
-    }
-
-    /**
-     * Get observation.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getObservations()
-    {
-        return $this->observations;
-    }
-
-    /**
-     * Add evenement.
-     *
-     * @param \AgendaBundle\Entity\Evenement $evenement
-     *
-     * @return User
-     */
-    public function addEvenement(\AgendaBundle\Entity\Evenement $evenement)
-    {
-        $this->evenements[] = $evenement;
-
-        return $this;
-    }
-
-    /**
-     * Remove evenement.
-     *
-     * @param \AgendaBundle\Entity\Evenement $evenement
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removeEvenement(\AgendaBundle\Entity\Evenement $evenement)
-    {
-        return $this->evenements->removeElement($evenement);
-    }
-
-    /**
-     * Get evenements.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getEvenements()
-    {
-        return $this->evenements;
-    }
-
-
-    /**
-     * Set telFixe.
-     *
-     * @param int $telFixe
-     *
-     * @return User
-     */
-    public function setTelFixe($telFixe)
-    {
-        $this->tel_fixe = $telFixe;
-
-        return $this;
-    }
-
-    /**
-     * Get telFixe.
+     * Get the value of Tel Fixe
      *
      * @return int
      */
     public function getTelFixe()
     {
-        return $this->tel_fixe;
+        return $this->telFixe;
     }
-
     /**
-     * Set telPort.
+     * Set the value of Tel Fixe
      *
-     * @param int $telPort
+     * @param int telFixe
      *
-     * @return User
+     * @return self
      */
-    public function setTelPort($telPort)
+    public function setTelFixe($telFixe)
     {
-        $this->tel_port = $telPort;
-
+        $this->telFixe = $telFixe;
         return $this;
     }
-
     /**
-     * Get telPort.
+     * Get the value of Tel Portable
      *
      * @return int
      */
-    public function getTelPort()
+    public function getTelPortable()
     {
-        return $this->tel_port;
+        return $this->telPortable;
     }
-
     /**
-     * Add correspondantsLieux.
+     * Set the value of Tel Portable
      *
-     * @param \AgendaBundle\Entity\Lieux $correspondantsLieux
+     * @param int telPortable
      *
-     * @return User
+     * @return self
      */
-    public function addCorrespondantsLieux(\AgendaBundle\Entity\Lieux $correspondantsLieux)
+    public function setTelPortable($telPortable)
     {
-        $this->correspondants_lieux[] = $correspondantsLieux;
-
+        $this->telPortable = $telPortable;
         return $this;
     }
-
     /**
-     * Remove correspondantsLieux.
+     * Get the value of Interventions
      *
-     * @param \AgendaBundle\Entity\Lieux $correspondantsLieux
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     * @return mixed
      */
-    public function removeCorrespondantsLieux(\AgendaBundle\Entity\Lieux $correspondantsLieux)
+    public function getInterventions()
     {
-        return $this->correspondants_lieux->removeElement($correspondantsLieux);
+        return $this->interventions;
     }
-
     /**
-     * Get correspondantsLieux.
+     * Set the value of Interventions
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @param  AgendaBundle\Entity\Evenement $intervention l'intervention a ajouter
+     *
+     * @return self
      */
-    public function getCorrespondantsLieux()
+    public function setInterventions($interventions)
     {
-        return $this->correspondants_lieux;
-    }
-
-    /**
-     * Add adjointLieux.
-     *
-     * @param \AgendaBundle\Entity\Lieux $adjointLieux
-     *
-     * @return User
-     */
-    public function addAdjointLieux(\AgendaBundle\Entity\Lieux $adjointLieux)
-    {
-        $this->adjoint_lieux[] = $adjointLieux;
-
+        $this->interventions = $interventions;
         return $this;
     }
-
     /**
-     * Remove adjointLieux.
-     *
-     * @param \AgendaBundle\Entity\Lieux $adjointLieux
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     * @method addInterventions
+     * @param  AgendaBundle\Entity\Evenement $intervention l'intervention a ajouter
+     * @return self
      */
-    public function removeAdjointLieux(\AgendaBundle\Entity\Lieux $adjointLieux)
+    public function addInterventions(Evenement $intervention)
     {
-        return $this->adjoint_lieux->removeElement($adjointLieux);
+        $this->interventions->add($intervention);
+        return $this;
     }
-
     /**
-     * Get adjointLieux.
-     *
-     * @return \Doctrine\Common\Collections\Collection
+     * @method removeInterventions
+     * @param  AgendaBundleEntityEvenement $intervention [description]
+     * @return self
      */
-    public function getAdjointLieux()
+    public function removeInterventions(Evenement $intervention)
     {
-        return $this->adjoint_lieux;
+        $this->interventions->removeElement($intervention);
+        return $this;
     }
-
     /**
-     * Representation en chaine d'un utilisateur : Prenom Nom
-     * @method __toString
-     * @return string
+     * Get the value of Observations
+     *
+     * @return mixed
      */
-    public function __toString(){
-        return $this->getNom().' '.$this->getPrenom();
+    public function getObservations()
+    {
+        return $this->observations;
     }
-
+    /**
+     * Set the value of Observations
+     *
+     * @param mixed observations
+     *
+     * @return self
+     */
+    public function setObservations($observations)
+    {
+        $this->observations = $observations;
+        return $this;
+    }
+    /**
+     * @method addObervations
+     * @param  AgendaBundleEntityEvenement $observation [description]
+     * @return self
+     */
+    public function addObervations(Evenement $observation)
+    {
+        $this->observations->add($observation);
+        return $this;
+    }
+    /**
+     * @method removeObervations
+     * @param  AgendaBundleEntityEvenement $observation [description]
+     * @return self
+     */
+    public function removeObervations(Evenement $observation)
+    {
+        $this->observations->removeElement($observation);
+        return $this;
+    }
+    /**
+     * Get the value of Correspondances
+     *
+     * @return mixed
+     */
+    public function getCorrespondances()
+    {
+        return $this->correspondances;
+    }
+    /**
+     * Set the value of Correspondances
+     *
+     * @param mixed correspondances
+     *
+     * @return self
+     */
+    public function setCorrespondances($correspondances)
+    {
+        $this->correspondances = $correspondances;
+        return $this;
+    }
+    /**
+     * @method addCorrespondances
+     * @param  AgendaBundleEntityEvenement $correspondances [description]
+     * @return self
+     */
+    public function addCorrespondances(Evenement $correspondances)
+    {
+        $this->correspondances->add($correspondances);
+        return $this;
+    }
+    /**
+     * @method removeCorrespondances
+     * @param  AgendaBundleEntityEvenement $correspondances [description]
+     * @return self
+     */
+    public function removeCorrespondances(Evenement $correspondances)
+    {
+        $this->correspondances->removeElement($correspondances);
+        return $this;
+    }
+    /**
+     * Get the value of Adjonctions
+     *
+     * @return mixed
+     */
+    public function getAdjonctions()
+    {
+        return $this->adjonctions;
+    }
+    /**
+     * Set the value of Adjonctions
+     *
+     * @param mixed adjonctions
+     *
+     * @return self
+     */
+    public function setAdjonctions($adjonctions)
+    {
+        $this->adjonctions = $adjonctions;
+        return $this;
+    }
+    /**
+     * @method addAdjonctions
+     * @param  AgendaBundleEntityEvenement $adjonctions [description]
+     * @return self
+     */
+    public function addAdjonctions(Evenement $adjonctions)
+    {
+        $this->adjonctions->add($adjonctions);
+        return $this;
+    }
+    /**
+     * @method removeAdjonctions
+     * @param  AgendaBundleEntityEvenement $adjonctions [description]
+     * @return self
+     */
+    public function removeAdjonctions(Evenement $adjonctions)
+    {
+        $this->adjonctions->removeElement($adjonctions);
+        return $this;
+    }
 }
